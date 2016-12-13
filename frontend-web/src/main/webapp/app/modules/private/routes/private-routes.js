@@ -13,7 +13,7 @@
                 url: '/private',
                 controller: 'PrivateController',
                 controllerAs: 'vm',
-                templateUrl: 'modules/private/private-view.html',
+                templateUrl: 'modules/private/views/private-view.html',
                 resolve:  {
                     /* @ngInject */
                     'translate': function($translatePartialLoader, $translate) {

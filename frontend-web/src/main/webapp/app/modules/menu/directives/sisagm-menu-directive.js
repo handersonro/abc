@@ -1,14 +1,16 @@
 (function(){
 'use strict';
 
-angular.module('menu.directives')
+angular
+    .module('menu.directives')
+    .directive('sisagmMenu', sisagmMenuDirective);
 
-    .directive('menuTree', [ '$mdSticky', function($mdSticky){
+    function sisagmMenuDirective(){
         return {
             restrict: 'E',
             replace: true,
             scope: {},
-            templateUrl: 'modules/menu/views/menu.html',
+            templateUrl: 'modules/menu/views/menu-view.html',
             controller: 'MenuController',
             controllerAs: 'menuCtrl',
             compile: function compile(tElement, tAttrs, transclude) {
@@ -19,8 +21,10 @@ angular.module('menu.directives')
                     post: function postLink(scope, iElement, iAttrs, controller){
 
                     }
-                }
+                };
             }
-        }
-    }]);
+        };
+    }
+
+
 })();

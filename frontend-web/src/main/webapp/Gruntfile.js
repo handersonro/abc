@@ -11,9 +11,10 @@ module.exports = function(grunt) {
                 "modules/**/*-module.js",
                 "modules/**/*-+(config|routes|view|controller|filter|directive|service).js"
         ],
-        css: '**/*.css'
+        css: '**/*.css',
+        image: '**/*.+(jpg|jpeg|png|gif)'
     };
-    
+
     grunt.initConfig({
         yeoman: appConfig,
         appConfig: appConfig,
@@ -50,6 +51,10 @@ module.exports = function(grunt) {
                 files: 'bower.json',
                 tasks: ['vendor']
             },
+            image: {
+                files: '<%= appConfig.app %>**/*.+(jpg|jpeg|png|gif)',
+                tasks: ['image']
+            }
         },
 
         copy: {
@@ -72,6 +77,18 @@ module.exports = function(grunt) {
                     cwd: '<%= appConfig.app %>',
                     dest: '<%= appConfig.dist %>',
                     src: '**/*.json'
+                }]
+            },
+            image: {
+                options: {
+                    noProcess: '<%= appConfig.image %>'
+                },
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= appConfig.app %>',
+                    dest: '<%= appConfig.dist %>',
+                    src: '<%= appConfig.image %>'
                 }]
             },
             fonts: {
@@ -303,10 +320,11 @@ module.exports = function(grunt) {
         'clean:temp'
     ]);
     grunt.registerTask('css-application', ['cssmin:css']);
-    grunt.registerTask('application', ['js-application', 'css-application', 'data', 'fonts']);
+    grunt.registerTask('application', ['js-application', 'css-application', 'data', 'image', 'fonts']);
     grunt.registerTask('js-vendor', ['bower_concat:js-vendor']);
     grunt.registerTask('css-vendor',['bower_concat:css-vendor']);
     grunt.registerTask('vendor', ['js-vendor', 'css-vendor']);
     grunt.registerTask('data', ['copy:data']);
     grunt.registerTask('fonts', ['copy:fonts']);
+    grunt.registerTask('image', ['copy:image']);
 };

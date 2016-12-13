@@ -16,6 +16,8 @@
             'sisagmApp.controllers',
 
             'sisagmApp.private',
+            'sisagmApp.public',
+            'sisagmApp.login',
             'menu',
 
 

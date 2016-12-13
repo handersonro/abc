@@ -68,6 +68,6 @@
                }
            });
 
-        $urlRouterProvider.otherwise('/private');
+        //$urlRouterProvider.otherwise('/private');
     }
 })();
