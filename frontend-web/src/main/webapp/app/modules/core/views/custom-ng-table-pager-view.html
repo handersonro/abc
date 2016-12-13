@@ -1,0 +1,74 @@
+<script type="text/ng-template" id="ngtable/custom-pagination">
+    <div layout-gt-sm="row" flex-sm="column" layout-align="end center" ng-show="params.total()>0">
+        <div flex="1" layout layout-align="start center">
+            <span>Página:&nbsp;&nbsp;</span>
+
+            <md-button data-ng-click="params.page(1)"
+                data-ng-class="{'disabled': params.page()==1}"
+                class="md-raised dir-pagination-item"aria-label="Página inicial">
+                <div>
+                    <md-tooltip md-direction="bottom">
+                        Primeira
+                    </md-tooltip>
+                    &laquo;
+                </div>
+            </md-button>
+
+            <md-button ng-if="pages.length > 0" data-ng-repeat="page in pages"
+                data-ng-click="params.page(page.number)"
+                data-ng-class="{'md-primary': page.current, 'disabled': !page.active}"
+                class="md-raised dir-pagination-item" data-ng-switch="page.type" aria-label="Página {{page.number}}">
+
+                <div data-ng-switch-when="prev">
+                    <md-tooltip md-direction="bottom">
+                        Anterior
+                    </md-tooltip>
+                    <
+                </div>
+                <div data-ng-switch-when="next" >
+                    <md-tooltip md-direction="bottom">
+                        Próxima
+                    </md-tooltip>
+                    >
+                </div>
+                <div data-ng-switch-when="page" >{{ page.number }}</div>
+                <span data-ng-switch-when="first" >{{ page.number }}</span>
+                <span data-ng-switch-when="last" >{{ page.number }}</span>
+            </md-button>
+
+            <md-button ng-if="pages.length == 0"
+                class="md-raised dir-pagination-item md-primary disabled" data-ng-switch="page.type" aria-label="Página 1">
+
+                <span>1</span>
+            </md-button>
+
+
+            <md-button data-ng-click="params.page(pages[pages.length-2].number)"
+                data-ng-class="{'disabled': !page.active}"
+                class="md-raised dir-pagination-item"aria-label="Página final">
+                <div>
+                    <md-tooltip md-direction="bottom">
+                        Última
+                    </md-tooltip>
+                    &raquo;
+                </div>
+            </md-button>
+        </div>
+
+        <div flex="1" layout layout-align="end center">
+            <span>Itens por página:&nbsp;&nbsp;</span>
+            <md-button data-ng-repeat="pageSize in params.settings().counts track by $index"
+                data-ng-click="params.count(pageSize)"
+                data-ng-class="{'md-primary' : params.count() == pageSize}"
+                class="md-raised dir-pagination-item"
+                aria-label="{{pageSize}} itens por página">
+                {{ pageSize }}
+            </md-button>
+        </div>
+    </div>
+    <div layout-gt-sm="row" flex-sm="column" layout-align="end center" ng-show="params.total() === 0">
+        <div flex="1" layout layout-align="start center">
+            <span>Nenhum registro encontrado.</span>
+        </div>
+    </div>
+</script>

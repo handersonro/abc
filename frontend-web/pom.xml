@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>br.gov.mtur</groupId>
+        <artifactId>sisagm-frontend</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>sisagm-frontend-web</artifactId>
+    <packaging>war</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jasig.cas.client</groupId>
+            <artifactId>cas-client-core</artifactId>
+            <version>3.4.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>pl.allegro</groupId>
+                <artifactId>grunt-maven-plugin</artifactId>
+                <version>1.4.1</version>
+                <configuration>
+                    <gruntOptions>
+                        <gruntOption>--force</gruntOption>
+                    </gruntOptions>
+                    <bowerExecutable>node_modules/bower/bin/bower</bowerExecutable>
+                    <gruntExecutable>node_modules/grunt-cli/bin/grunt</gruntExecutable>
+                    <runGruntWithNode>true</runGruntWithNode>
+                    <gruntBuildDirectory>${project.basedir}/src/main/webapp</gruntBuildDirectory>
+                    <npmOptions>
+                        <npmOption>--force-latest</npmOption>
+                    </npmOptions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>create-resources</goal>
+                            <goal>npm</goal>
+                            <goal>grunt</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/webapp/dist</directory>
+                            <includes>
+                                <include>**</include>
+                            </includes>
+                            <targetPath>.</targetPath>
+                        </resource>
+                    </webResources>
+                    <warSourceExcludes>app/**,bower_components/**,node_modules/**,test/**,e2e/**, **-test.js, **</warSourceExcludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

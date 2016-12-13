@@ -1,0 +1,9 @@
+{
+    "filesToWatch": "C:/Users/diego.silveira/git/sisagm-frontend-frontend/frontend-web/src/main/webapp/static/**",
+    "directoryToWatch": "C:/Users/diego.silveira/git/sisagm-frontend-frontend/frontend-web/src/main/webapp/static",
+    "projectRootPath": "C:/Users/diego.silveira/git/sisagm-frontend-frontend/frontend-web",
+    "targetPath": "C:/Users/diego.silveira/git/sisagm-frontend-frontend/frontend-web/target",
+    "sourceDirectory": "src/main/webapp",
+    "jsSourceDirectory": "static",
+    "filteredFiles": ["**/node_modules.tar"]
+}

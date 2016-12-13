@@ -1,0 +1,44 @@
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <md-button name="buttonMenu" id="buttonMenu" class="md-icon-button" data-ng-click="toggleMenu()" aria-label="Menu">
+            <md-icon>&#xE5D2;</md-icon>
+        </md-button>
+        <h2>
+            <span>APLICACAO</span>
+        </h2>
+        <span flex></span>
+
+        <span>{{login}}</span>
+
+        <md-button name="userPage" id="userPage" class="md-icon-button" layout-align="center center" aria-label="Profile">
+            <i class="material-icons">&#xE8A6;</i>
+            <md-tooltip md-direction="bottom">
+                {{'tooltip.perfil' | translate}}
+            </md-tooltip>
+        </md-button>
+
+        <barra-idioma></barra-idioma>
+
+        <md-button name="logout" id="logout" class="md-icon-button" aria-label="Logout">
+            <i class="material-icons">&#xE8AC;</i>
+            <md-tooltip md-direction="bottom">
+                Logout
+            </md-tooltip>
+        </md-button>
+    </div>
+</md-toolbar>
+
+
+<div flex layout="row" style="height: 100%;">
+    <div md-theme="default">
+        <menu-tree></menu-tree>
+    </div>
+
+    <div id="view-funcao" layout="column" flex style="padding: 0.5% 0.5% 0.7% 0.5%; height: 100vh; overflow: scroll; " layout-fill>
+        <div layout data-ncy-breadcrumb></div>
+        <alerts></alerts>
+        <alerts-e2e></alerts-e2e>
+        <div layout="column" flex ui-view style="padding-bottom: 150px"></div>
+    </div>
+
+</div>

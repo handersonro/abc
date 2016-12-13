@@ -1,0 +1,16 @@
+<div layout="row" layout-align="start center" flex>
+  <div layout="row" layout-align="start center" flex="50">
+         <p class="md-body-2" style="padding-right: 40px">{{'label.status' | translate}}</p>
+         <md-radio-group class="radio-inline" data-ng-model="status.id">
+             <md-radio-button data-ng-class="{'display-inline': !appCtrl.screenIsSmall}"
+                              stlye="padding-right: 10px"
+                              data-ng-repeat="status in status.lista"
+                              value="{{status.id}}"
+                              class="md-primary md-hue-1 md-body-2"
+                              name="{{status.nome}}"
+                              id="{{status.id}}">{{status.nome}}
+              </md-radio-button>
+         </md-radio-group>
+     </div>
+     <ng-transclude></ng-transclude>
+</div>

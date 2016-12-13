@@ -1,0 +1,15 @@
+<md-menu>
+    <md-button name="languague" id="languague" aria-label="Languague" class="md-icon-button" ng-click="abrirMenuIdiomas($mdOpenMenu, $event)">
+        <i class="material-icons">&#xE894;</i>
+    </md-button>
+
+    <md-menu-content width="{{idiomas.length}}">
+
+        <md-menu-item ng-repeat="(language, idioma) in idiomas">
+            <md-button ng-click="mudarIdioma(language);" ng-class="{'md-primary md-raised': idiomaAtual===language}">
+                {{idioma.label}}
+            </md-button>
+        </md-menu-item>
+
+    </md-menu-content>
+</md-menu>

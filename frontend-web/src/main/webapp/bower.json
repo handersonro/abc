@@ -1,0 +1,33 @@
+{
+  "name": "sisagm-frontend-frontend",
+  "description": "descricao do projeto",
+  "version": "0.0.1",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "angular": "1.5.7",
+    "angular-animate": "1.5.7",
+    "angular-aria": "1.5.7",
+    "angular-messages": "1.5.7",
+    "angular-mocks": "1.5.7",
+    "angular-material": "1.1.1",
+    "oclazyload": "^1.x",
+    "ng-table": "~0.8.3",
+    "ui-router": "^0.x",
+    "angular-recaptcha": "^3.0.3",
+    "angular-translate": "^2.11.0",
+    "angular-translate-loader-url": "^2.11.0",
+    "angular-translate-loader-partial": "^2.11.0",
+    "angular-material-icons": "^0.7.0",
+    "lodash": "^4.13.1",
+    "restangular": "~1.5.2",
+    "ngc-loader": "ssh://git@gitlab.apoio.fsw.ctis.com.br:10022/mtur-componentes-angular/ngc-loader.git#0.0.69",
+    "ngc-infinity-scroll": "ssh://git@gitlab.apoio.fsw.ctis.com.br:10022/mtur-componentes-angular/ngc-infinity-scroll.git",
+    "angular-breadcrumb": "^0.4.1",
+    "moment": "~2.14.1"
+  },
+  "devDependencies": {},
+  "resolutions": {
+    "lodash": "^4.13.1"
+  }
+}

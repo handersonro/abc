@@ -1,0 +1,13 @@
+{
+    "botao.fechar":"Fechar",
+
+    "label.botao.tabela.primeira":"Primeira",
+    "label.botao.tabela.anterior":"Anterior",
+    "label.botao.tabela.proxima":"Próxima",
+    "label.botao.tabela.ultima":"Última",
+
+    "msg.error.required": "O campo é de preenchimento obrigatório.",
+    "msg.error.md-maxlength": "O limite máximo de caracteres foi excedido.",
+    "msg.error.minlength": "É necessário informar ao menos 4 caracteres."
+
+}

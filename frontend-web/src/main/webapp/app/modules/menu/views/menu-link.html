@@ -1,0 +1,7 @@
+<div>
+    <md-button class="md-button" ng-class="{'{{section.icon}}' : true}" ui-sref-active="md-primary md-hue-2" ui-sref="{{section.state}}" ng-click="decoraToggle(section)">
+        <span class="material-icons">{{section.icon}}</span>
+        <span class="texto-alinhado">{{section | humanizeDoc | translate}}</span>
+        <span  class="md-visually-hidden" ng-if="isSelected()">current page</span> 
+    </md-button>
+</div>
