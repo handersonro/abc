@@ -18,6 +18,7 @@
             'sisagmApp.private',
             'sisagmApp.public',
             'sisagmApp.login',
+            'sisagmApp.pessoas',
             'menu',
 
 
