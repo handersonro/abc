@@ -3,7 +3,7 @@
 
     angular
 
-        .module('sisagmApp.login.routes')
+        .module('sisagmApp.convite.routes')
         .config(configPublicRoutes);
 
     /* @ngInject */
