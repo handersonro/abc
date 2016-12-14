@@ -1,3 +1,14 @@
+<div id="title">
+    <md-toolbar class=" md-toolbar-tools">
+        <h1 class="md-toolbar-tools">{{title}}</h1>
+        <md-button class="md-icon-button   hide-xs hide-sm hide-md" ng-click="cadastro()" ng-if="!telaCadastro">
+            <md-tooltip md-direction="left">
+                Cadastrar
+            </md-tooltip>
+            <md-icon class="icon-white">&#xE145;</md-icon>
+        </md-button>
+    </md-toolbar>
+</div>
 <md-content class="box">
     <!-- TELA DE BUSCA -->
     <div class="md-padding" ng-if="telaPesquisa">
