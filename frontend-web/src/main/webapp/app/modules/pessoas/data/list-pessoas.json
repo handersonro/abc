@@ -1,0 +1,69 @@
+[
+    {
+     "id":1,
+     "nome": "Fulano da Silva",
+     "cargo": "Web Developer",
+     "email": "fulano@gmail.com",    
+     "dataNascimento": "18/07/1980",
+     "sexo": "Masculino",
+     "mae": "Maria Elena da Silva",
+     "pai":"Humberto Martins Pereira Silva",
+     "tel":"(61) 4545-4545",
+     "telefoneC":"(61) 99999-9999",
+     "facebook":"@fulanoSilva"
+    },
+    {
+     "id":2,
+     "nome": "Armando Nogueira",
+     "cargo": "Arquiteto de Sistemas",
+     "email": "armando@gmail.com",    
+     "dataNascimento": "20/04/1970",
+     "sexo": "Masculino",
+     "mae": "Joselina Moreira",
+     "pai":"Renato Nobrega Araújo",
+     "tel":"(61) 4545-4545",
+     "telefoneC":"(61) 88888-8888",
+     "facebook":"@armandoNogueira"
+    },
+    {
+     "id":3,
+     "nome": "Paulo Cunha ",
+     "cargo": "Funcionário Público",    
+     "email": "pauloCunha@gmail.com",    
+     "dataNascimento": "20/04/1970",
+     "sexo": "Masculino",
+     "mae": "Eleni Maria da Graça",
+     "pai":"Wilson Pereira",
+     "tel":"(61) 4545-4545",
+     "telefoneC":"(61) 98988-9898",
+     "facebook":"@pauloP"
+    },
+    {
+     "id":4,
+     "nome": "Maria de Lurdes ",
+     "cargo": "Secretária de Gabinete",
+     "email": "mariaLu@gmail.com",    
+     "dataNascimento": "07/11/1976",
+     "sexo": "Feminino",
+     "mae": "Maria de Almeida Lurdes Oliveira",
+     "pai":"José Batista Almeida",
+     "tel":"(61) 4545-4545",
+     "telefoneC":"(61) 9988-9988",
+     "facebook":"@MariaLu"
+    },
+    {
+     "id":5,
+     "nome": "Sandra Cassias ",
+     "cargo": "Recursos Humanos",    
+     "email": "sandra@gmail.com",    
+     "dataNascimento": "05/06/1972",
+     "sexo": "Feminino",
+     "mae": "Filomena da Silva",
+     "pai":"Orlando do Shoio",
+     "tel":"(61) 4545-4545",
+     "telefoneC":"(61) 8899-0104",
+     "facebook":"@sandraC"
+    }
+    
+    
+]

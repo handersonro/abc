@@ -73,7 +73,7 @@
         }
         $scope.carregaLista = function(){
             $http
-            .get('list-tabela.json')
+            .get('modules/pessoas/data/list-pessoas.json')
             .success (function(data){
                 $scope.lista = data;
             })

@@ -12,107 +12,100 @@
 <md-content class="box">
     <!-- TELA DE BUSCA -->
     <div class="md-padding" ng-if="telaPesquisa">
-        <form name="formPesquisaRemetente">
-            <!-- conteudo -->
-            <div layout="row" layout-xs="column">
-                <md-input-container flex=50 class="md-icon-float md-block">
-                    <label>
-                        Nome
-                    </label>
-                    <md-icon>&#xE8A6;</md-icon>
-                    <input type="text" ng-model="search.nome" name="nome" md-maxlength="50"/>
-                    <div ng-messages="formPesquisaRemetente.nome.$error">
-                        <div ng-message="md-maxlength">Mínimo ou igual à 50 caracter</div>
-                    </div>
-                </md-input-container>
-                <md-input-container flex class="md-icon-float md-block">
-                    <label>
-                        E-mail
-                    </label>
-                    <md-icon>&#xE0BE;</md-icon>
-                    <input type="text" ng-model="email"  md-maxlength="50" />
-                    <div ng-messages="formPesquisaRemetente.nome.$error">
-                        <div ng-message="md-maxlength">Mínimo ou igual à 50 caracter</div>
-                    </div>
-                </md-input-container>
-            </div>
-            <div layout="row" layout-xs="column">
+      <form name="formPesquisaRemetente">
+        <!-- conteudo -->
+        <div layout="row" layout-xs="column">
+          <md-input-container flex=50 class="md-icon-float md-block">
+              <label>
+                  Nome
+              </label>
+              <md-icon>&#xE8A6;</md-icon>
+              <input type="text" ng-model="search.nome" name="nome" md-maxlength="50"/>
+              <div ng-messages="formPesquisaRemetente.nome.$error">
+                <div ng-message="md-maxlength">Mínimo ou igual à 50 caracter</div>
+              </div>
+          </md-input-container>
+          <md-input-container flex class="md-icon-float md-block">
+              <label>
+                  E-mail
+              </label>
+              <md-icon>&#xE0BE;</md-icon>
+              <input type="text" ng-model="email"  md-maxlength="50" />
+              <div ng-messages="formPesquisaRemetente.nome.$error">
+                <div ng-message="md-maxlength">Mínimo ou igual à 50 caracter</div>
+              </div>
+          </md-input-container>
+        </div>
+        <div layout="row" layout-xs="column">
 
-                <md-input-container flex  class=" md-icon-float md-block">
-                    <label>
-                        Cargo
-                    </label>
-                    <md-icon>&#xE8F8;</md-icon>
-                    <input name="cargo" type="text" ng-model="search.cargo" md-maxlength="250"/>
-                    <div ng-messages="formPesquisaRemetente.cargo.$error">
-                        <div ng-message="md-maxlength">Mínimo ou igual à 250 caracter</div>
-                    </div>
-                </md-input-container>
-            </div>
-            <!-- conteudo -->
+          <md-input-container flex  class=" md-icon-float md-block">
+              <label>
+                  Cargo
+              </label>
+              <md-icon>&#xE8F8;</md-icon>
+              <input name="cargo" type="text" ng-model="search.cargo" md-maxlength="250"/>
+              <div ng-messages="formPesquisaRemetente.cargo.$error">
+                <div ng-message="md-maxlength">Mínimo ou igual à 250 caracter</div>
+              </div>
+          </md-input-container>
+        </div>
+        <!-- conteudo -->
+        <!-- footer button-->
+        <section class="md-padding action" layout="row" layout-align="end center" layout-wrap>
+          <md-button class="md-raised md-primary" ng-click="pesquisar()" >
+              <md-icon>&#xE8B6;</md-icon> Pesquisar
+            </md-button>
+        </section>
             <!-- footer button-->
-            <section class="md-padding action" layout="row" layout-align="end center" layout-wrap>
-                <md-button class="md-raised md-primary" ng-click="pesquisar()" >
-                    <md-icon>&#xE8B6;</md-icon> Pesquisar
-                </md-button>
-            </section>
-            <!-- footer button-->
-        </form>
+      </form>
     </div>
     <!-- resultado da busca -->
     <div class="md-padding" ng-if="tbResultado">
-        <md-input-container flex=30  class="md-block">
-            <input ng-model="search.nome" type="text" placeholder="Filtrar por nome" >
-            <md-icon style="display:inline-block;">&#xE152;</md-icon>
-        </md-input-container>
-
         <!-- tabela css angular material -->
         <div class="table-responsive-vertical shadow-z-1">
             <!-- Table starts here -->
-            <table id="table" class="table table-hover table-mc-light-blue" ng-controller="BasicDemoCtrl as ctrl">
-                <thead>
+            <table id="table" class="table table-hover table-mc-light-blue">
+                  <thead>
                     <tr>
-                        <th class="text-center">Ações</th>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Cargo</th>
-                        <th>E-mail</th>
+                      <th class="text-center">Ações</th>
+                      <th>Nome</th>
+                      <th>Cargo</th>
+                      <th>E-mail</th>
                     </tr>
-                </thead>
-                <tbody>
+                  </thead>
+                  <tbody>
                     <tr ng-repeat="item in lista | filter:search">
-                        <td class="text-center">
+                      <td class="text-center">
                             <md-menu>
-                                <md-button class="md-icon-button" aria-label="Favorite" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
-                                    <md-tooltip md-direction="left">
-                                        Ações
-                                    </md-tooltip>
-                                    <md-icon class="icon-white">&#xE8B8;</md-icon>
-                                </md-button>
+                              <md-button class="md-icon-button" aria-label="Favorite" ng-click="appCtrl.openMenu($mdOpenMenu, $event)">
+                                <md-tooltip md-direction="left">
+                                    Ações
+                                </md-tooltip>
+                                   <md-icon class="icon-white">&#xE8B8;</md-icon>
+                              </md-button>
 
-                                <md-menu-content width="1">
-                                    <md-menu-item>
-                                        <md-button ng-click="editar(item)" title="{{item.nome}}">
-                                            <md-icon>&#xE22B;</md-icon>
-                                            Editar
-                                        </md-button>
-                                    </md-menu-item>
-                                    <md-menu-item>
-                                        <md-button ng-click="showConfirm($event)">
-                                            <md-icon>&#xE92B;</md-icon>
-                                            Remover
-                                        </md-button>
-                                    </md-menu-item>
-                                </md-menu-content>
+                              <md-menu-content width="1">
+                                <md-menu-item>
+                                  <md-button ng-click="editar(item)" title="{{item.nome}}">
+                                    <md-icon>&#xE22B;</md-icon>
+                                    Editar
+                                  </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                  <md-button ng-click="showConfirm($event)">
+                                    <md-icon>&#xE92B;</md-icon>
+                                    Remover
+                                  </md-button>
+                                </md-menu-item>
+                              </md-menu-content>
                             </md-menu>
-                        </td>
-                        <td>{{ item.id }}</td>
-                        <td>{{ item.nome }}</td>
-                        <td>{{ item.cargo }}</td>
-                        <td>{{ item.email }}</td>
+                      </td>
+                      <td>{{ item.nome }}</td>
+                      <td>{{ item.cargo }}</td>
+                      <td>{{ item.email }}</td>
                     </tr>
-                </tbody>
-            </table>
+                  </tbody>
+                </table>
         </div>
         <!-- tabela css angular material -->
     </div>

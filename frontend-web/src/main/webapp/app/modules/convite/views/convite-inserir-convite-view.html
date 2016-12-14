@@ -1,1 +1,421 @@
-<p>teste</p>
+<div id="title">
+    <md-toolbar class=" md-toolbar-tools">
+        <h1 class="md-toolbar-tools">
+            {{title}}
+        </h1>
+        <md-button class="md-icon-button hide-xs hide-sm hide-md" ng-click="cadastro()"
+        ng-if="!telaCadastro">
+            <md-tooltip md-direction="left">
+                Cadastrar
+            </md-tooltip>
+            <md-icon>
+                &#xE145;
+            </md-icon>
+        </md-button>
+    </md-toolbar>
+</div>
+<md-content class="box">
+    <div class="md-padding header-info" layout="row" layout-xs="column"  layout-align="end center">
+        <strong>Autoridade: &nbsp;</strong> {{autoridade}}
+    </div>
+    <!-- TELA DE BUSCA -->
+    <div class="md-padding" ng-if="telaPesquisa">
+        <form name="formPesquisaConvite">
+            <!-- conteudo -->
+            <div layout="row" layout-xs="column"  layout-align="space-around center">
+                <div flex="50" flex-xs="100">
+                    <div class="panel">
+                        <div class="panel-title bg-panel-default">
+                            <h3>
+                                Data do evento
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div layout="row" layout-xs="column">
+                                <md-input-container flex>
+                                    <label>
+                                        Data inicial
+                                    </label>
+                                    <md-datepicker ng-model="filtro.dataInicialEven">
+                                    </md-datepicker>
+                                </md-input-container>
+                                <md-input-container flex>
+                                    <label>
+                                        Data final
+                                    </label>
+                                    <md-datepicker ng-model="filtro.dataFimEven">
+                                    </md-datepicker>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div flex="50" flex-xs="100">
+                    <div class="panel ">
+                        <div class="panel-title bg-panel-default">
+                            <h3>
+                                Data do cadastro
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div layout="row" layout-xs="column">
+                                <md-input-container flex="100">
+                                    <label>
+                                        Cadastramento
+                                    </label>
+                                    <md-datepicker  ng-model="filtro.dataInicialCad">
+                                    </md-datepicker>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div layout="row" layout-xs="column">
+                <md-input-container flex class="md-icon-float md-block">
+                    <label>
+                        Remetente
+                    </label>
+                    <md-icon>
+                        &#xE8A6;
+                    </md-icon>
+                    <input name="text" type="text" ng-model="filtro.remetente" md-maxlength="50"
+                    />
+                    <div ng-messages="formParticipante.email.$error">
+                        <div ng-message="md-maxlength">
+                            Mínimo ou igual à 50 caracter
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-xs="column">
+                <md-input-container flex="50" class="md-icon-float md-block">
+                    <label>
+                        Local do evento
+                    </label>
+                    <md-icon>
+                        &#xE55F;
+                    </md-icon>
+                    <input name="text" type="text" ng-model="filtro.localEvento" md-maxlength="50"
+                    />
+                    <div ng-messages="formParticipante.email.$error">
+                        <div ng-message="md-maxlength">
+                            Mínimo ou igual à 50 caracter
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block" flex>
+                    <label>
+                        Validado
+                    </label>
+                    <md-icon>
+                        &#xE834;
+                    </md-icon>
+                    <md-select ng-model="filtro.validado">
+                        <md-option ng-repeat="item in lista" value="{{item.nome}}">
+                            {{item.nome}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-xs="column">
+                <md-input-container flex="50" flex-xs="100" class="md-block">
+                    <label>
+                        Observação
+                    </label>
+                    <textarea ng-model="filtro.observacao" md-maxlength="500" rows="3" md-select-on-focus>
+                    </textarea>
+                </md-input-container>
+                <md-input-container class="md-block" flex flex-xs="100">
+                    <label>
+                        Despacho
+                    </label>
+                    <textarea ng-model="filtro.despacho" md-maxlength="500" rows="3" md-select-on-focus>
+                    </textarea>
+                </md-input-container>
+            </div>
+            <div class="row">
+                <md-input-container class="md-block" flex-xs="100">
+                    <label>
+                        Descrição
+                    </label>
+                    <textarea ng-model="filtro.descricao" md-maxlength="500" rows="3" md-select-on-focus>
+                    </textarea>
+                </md-input-container>
+            </div>
+            <!-- footer button-->
+            <section class="md-padding action" layout="row" layout-align="end center"
+            layout-wrap>
+                <md-button class="md-raised md-primary" ng-click="pesquisar()">
+                    <md-icon>
+                        &#xE8B6;
+                    </md-icon>
+                    Pesquisar
+                </md-button>
+                <md-button class="md-raised" ng-click="limpar()">
+                    <md-icon>
+                        &#xE5D5;
+                    </md-icon>
+                    Limpar
+                </md-button>
+            </section>
+            <!-- footer button-->
+        </form>
+    </div>
+    <!-- resultado da busca -->
+    <div class="md-padding" ng-if="tbResultado">
+        <!-- Filtrar resultado da pesquisa por nome <md-input-container flex=30
+        class="md-block">
+              <input ng-model="search.nome" type="text" placeholder="Filtrar por nome" >
+              <md-icon style="display:inline-block;">&#xE152;</md-icon>
+          </md-input-container>
+          -->
+        <!-- tabela css angular material -->
+        <div class="table-responsive-vertical shadow-z-1">
+            <!-- Table starts here -->
+            <table id="table" class="table table-hover table-mc-green">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            Ações
+                        </th>
+                        <th>
+                            Remetente
+                        </th>
+                        <th>
+                            Data do cadastro
+                        </th>
+                        <th>
+                            Local do evento
+                        </th>
+                        <th>
+                            Data do evento
+                        </th>
+                        <th>
+                            Validado
+                        </th>
+                        <th>
+                            Descrição
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in listaConvites">
+                        <td class="text-center">
+                            <md-menu>
+                              <md-button class="md-icon-button" aria-label="Favorite" ng-click="appCtrl.openMenu($mdOpenMenu, $event)">
+                                <md-tooltip md-direction="left">
+                                    Ações
+                                </md-tooltip>
+                                   <md-icon class="icon-white">&#xE8B8;</md-icon>
+                              </md-button>
+                                <md-menu-content width="1">
+                                    <md-menu-item>
+                                        <md-button ng-click="editar(item)" title="{{item.nome}}">
+                                            <md-icon>
+                                                &#xE22B;
+                                            </md-icon>
+                                            Editar
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="showConfirm($event)">
+                                            <md-icon>
+                                                &#xE92B;
+                                            </md-icon>
+                                            Remover
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </td>
+                        <td>
+                            {{ item.remetente }}
+                        </td>
+                        <td>
+                            {{ item.dataCadastro }}
+                        </td>
+                        <td>
+                            {{ item.localEvento }}
+                        </td>
+                        <td>
+                            {{ item.dataEventoInicio }} à {{ item.dataEventoFim }}
+                        </td>
+                        <td>
+                            {{ item.validado }}
+                        </td>
+                        <td>
+                            {{ item.descricao }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- tabela css angular material -->
+    </div>
+    <!-- resultado da busca -->
+    <!-- TELA DE BUSCA -->
+    <!-- TELA DE CADASTRO -->
+    <div class="md-padding" ng-if="telaCadastro">
+
+        <form name="formConvite">
+            <!-- conteudo -->
+
+            <div layout="row" layout-xs="column">
+                <md-input-container flex>
+                    <label>
+                        Inicio evento
+                    </label>
+                    <md-datepicker  ng-model="convite.dataInicioEvento" required>
+                    </md-datepicker>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>
+                        Fim evento
+                    </label>
+                    <md-datepicker  ng-model="convite.dataFimEvento" required>
+                    </md-datepicker>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>
+                        Cadastramento
+                    </label>
+                    <md-datepicker  ng-model="convite.dataCadastramento" required>
+                    </md-datepicker>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-xs="column">
+                <md-input-container flex class="md-icon-float md-block">
+                    <label>
+                        Remetente
+                    </label>
+                    <md-icon>
+                        &#xE8A6;
+                    </md-icon>
+                    <input type="text" ng-model="convite.remetente" name="remetente" required md-maxlength="50"/>
+                    <div ng-messages="formConvite.remetente.$error">
+                        <div ng-message="required">
+                            Campo obrigatório
+                        </div>
+                        <div ng-message="md-maxlength">
+                            Mínimo ou igual à 50 caracter
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div class="row">
+                <md-input-container class="md-block" flex-xs="100">
+                    <label>
+                        Descrição
+                    </label>
+                    <textarea ng-model="convite.descricao" required md-maxlength="255" rows="3" md-select-on-focus>
+                    </textarea>
+                </md-input-container>
+            </div>
+            <div class="row">
+                <md-radio-group ng-model="convite.tipoEvento">
+                    <md-input-container>
+                        <md-radio-button value="Evento nacional" class="md-primary">Evento nacional</md-radio-button>
+                    </md-input-container>
+                    <md-input-container>
+                        <md-radio-button value="Evento internacional" class="md-primary">Evento internacional</md-radio-button>
+                    </md-input-container>
+                </md-radio-group>
+            </div>
+            <div layout="row" layout-xs="column">
+                <md-input-container flex class="md-icon-float md-block" >
+                    <label>
+                        País
+                    </label>
+                    <md-icon>
+                      &#xE55B;
+                    </md-icon>
+                    <input type="text" ng-model="convite.pais" name="pais" required md-maxlength="150"/>
+                    <div ng-messages="formConvite.pais.$error">
+                        <div ng-message="required">
+                            Campo obrigatório
+                        </div>
+                        <div ng-message="md-maxlength">
+                            Mínimo ou igual à 150 caracter
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex class="md-icon-float md-block">
+                    <label>
+                        Cidade
+                    </label>
+                    <md-icon>
+                        &#xE7F1;
+                    </md-icon>
+                    <input name="cidade" type="text" ng-model="convite.cidade" required md-maxlength="150"/>
+                    <div ng-messages="formConvite.cidade.$error">
+                        <div ng-message="required">
+                            Campo obrigatório
+                        </div>
+                        <div ng-message="md-maxlength">
+                            Mínimo ou igual à 150 caracter
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-xs="column">
+                <md-input-container class="md-icon-float md-block" flex>
+                    <label>
+                        Local do evento
+                    </label>
+                    <md-icon>
+                        &#xE55F;
+                    </md-icon>
+                    <input name="text" type="text" ng-model="convite.localEvento" required md-maxlength="50"
+                    />
+                    <div ng-messages="formParticipante.email.$error">
+                        <div ng-message="md-maxlength">
+                            Mínimo ou igual à 50 caracter
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div class="row">
+                <md-input-container class="md-block" flex-xs="100">
+                    <label>
+                        Observação
+                    </label>
+                    <textarea ng-model="convite.observacao" md-maxlength="255" rows="3" md-select-on-focus>
+                    </textarea>
+                </md-input-container>
+            </div>
+            <div class="row">
+                <md-input-container class="md-block" flex-xs="100">
+                    <label>
+                        Despacho
+                    </label>
+                    <textarea ng-model="convite.despacho" md-maxlength="150" rows="3" md-select-on-focus>
+                    </textarea>
+                </md-input-container>
+            </div>
+            <section class="md-padding action" layout="row" layout-align="end center"
+            layout-wrap>
+                <md-button class="md-raised md-primary" ng-disabled="!convite.remetente.length > 0"
+                ng-click="salvar()">
+                    <md-icon>
+                        &#xE161;
+                    </md-icon>
+                    Salvar
+                </md-button>
+                <md-button class="md-raised" ng-click="limpar()">
+                    <md-icon>
+                        &#xE5D5;
+                    </md-icon>
+                    Limpar
+                </md-button>
+                <md-button class="md-raised" ng-click="backTlPesquisa()">
+                    <md-icon>
+                        &#xE5CD;
+                    </md-icon>
+                    Cancelar
+                </md-button>
+            </section>
+        </form>
+    </div>
+    <!-- TELA DE CADASTRO -->
+</md-content>
