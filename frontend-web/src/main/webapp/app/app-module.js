@@ -19,6 +19,7 @@
             'sisagmApp.public',
             'sisagmApp.login',
             'sisagmApp.pessoas',
+            'sisagmApp.convite',
             'menu',
 
 
