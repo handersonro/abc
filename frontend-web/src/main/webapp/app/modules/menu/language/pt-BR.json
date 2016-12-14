@@ -1,0 +1,11 @@
+{
+
+  "label_toggle_dashboard": "dashboard",
+  "label_toggle_pessoa": "pessoa",
+
+  "label_link_consultar": "Consultar",
+  "label_link_cadastrar": "Cadastar",
+  "label_link_demo": "Demo",
+  "tooltip.perfil":"Perfil"
+
+}

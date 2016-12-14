@@ -1,0 +1,118 @@
+body{
+    background-color: #dedede;
+    height:auto;
+}
+.error404 h2{
+    color: #333
+}
+.error404 h2 i{
+    font-size: 40px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 40px;
+    border: 4px solid rgb(124,179,66);;
+    color: rgb(124,179,66);
+}
+.header-info{
+    background: #f8f8f8;
+    border-bottom: 2px solid rgb(139,195,74)
+}
+.md-conteudo{
+    padding-top: 60px;
+}
+.box{
+    background: #fff;
+}
+.box dl dd{
+    margin: 0;
+}
+.box dl dt{
+    font-weight: bold;
+}
+.btn-action{
+    color: #fff;
+}
+.action{
+    background-color: #f8f8f8;
+    border-right: 3px solid rgb(139,195,74)
+}
+.box-login{
+    width: 400px;
+    margin: 0 auto;
+}
+.fab-action-right{
+    position: fixed;
+    z-index: 58;
+    right: 0;
+    height:174px;
+}
+.logo-mtur{
+    margin-top: -12px;
+    position: absolute;
+    z-index: 77;
+    width: 171px;
+}
+.header-topo{
+    background: url(img/bg-verde.jpg);
+}
+
+#title .md-toolbar-tools{
+    height:50px;
+}
+#title h1{
+    color: #fff;
+    padding: 0;
+}
+#title md-toolbar{
+    height:50px;
+    min-height:50px;
+}
+.md-toolbar-tools{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6dc238+0,5cb02c+100 */
+background: #6dc238; /* Old browsers */
+background: -moz-linear-gradient(top, #6dc238 0%, #5cb02c 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #6dc238 0%,#5cb02c 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #6dc238 0%,#5cb02c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6dc238', endColorstr='#5cb02c',GradientType=0 ); /* IE6-9 */
+    border-bottom: 1px solid #2b662a;
+}
+.menu-bar{
+    background-color: #fff;
+    box-shadow: 0px 2px 5px #ccc;
+}
+/*Menu bar*/
+.menu-bar-item{
+    padding: 12px 20px;
+    font-size: 16px !important;
+}
+.menu-bar-item button{
+    font-size: 16px !important;
+}
+@media only screen and (max-width: 1263px) {
+   ul.nav.navbar-nav {
+        margin-left: 0;
+    }
+    .md-conteudo{
+        padding-top: 0px;
+    }
+}
+.panel{
+    margin: 10px;
+    border: 1px solid #d2d2d2;
+}
+.panel-body{
+    margin: 10px;
+}
+.panel-title{
+    text-align: center;
+    padding: 8px 0;
+    margin: 0;
+}
+.panel-title h3{
+    padding: 0;
+    margin: 0;
+}
+.bg-panel-default{
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #d2d2d2;
+}

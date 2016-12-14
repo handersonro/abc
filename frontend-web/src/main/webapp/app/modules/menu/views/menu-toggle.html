@@ -1,0 +1,21 @@
+<div>
+    <md-button layout="row" class="md-button-toggle"  ng-click="selectSection(section)" aria-controls="docs-menu-{{section.name | nospace}}" flex aria-expanded="{{isOpen()}}" ng-class="{'md-primary md-hue-2':
+             sectionCompareToggle(sectionSelected)}" name="{{section.name | nospace}}">
+        <div layout layout-align="start center">
+            <md-icon style="margin: 0px;" ng-class="{decoraToggle : sectionDecoratingToggle(section)}">{{section.icon}}</md-icon>
+            <span ng-show="showFullWidth()" class="texto-alinhado"
+                  ng-class="{parentActive: sectionCompareToggle(sectionSelected)}">&nbsp;{{section.name | translate}}
+            </span>
+        	<span aria-hidden="true"  class="material-icons arrow md-toggle-icon" ng-class="{toggled : isOpen()}">arrow_drop_{{showFullWidth(section)?'up':'down'}}</span>
+        </div>
+    </md-button>
+
+    <ul ng-show="showFullWidth(section)" id="docs-menu-{{section.name | nospace}}" class="menu-toggle-list">
+        <li ng-repeat="page in section.pages">
+            <div ng-switch="page.type">
+                <menu-link section="page" ng-switch-when="link"></menu-link>
+                <menu-toggle section="page" ng-switch-when="toggle"></menu-toggle>
+            </div>
+        </li>
+    </ul>
+</div>

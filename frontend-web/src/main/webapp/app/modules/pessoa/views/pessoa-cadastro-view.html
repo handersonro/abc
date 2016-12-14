@@ -1,0 +1,92 @@
+<div>
+    <!--Titulo inicio-->
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h1>{{'pessoa.cadastro.label.titulo' | translate}}</h1>
+        </div>
+    </md-toolbar><!--Titulo fim-->
+
+
+    <!-- Formulario de cadastro inicio-->
+    <form name="pessoaCadastro" novalidate ng-submit="!pessoaCadastro.$invalid && vm.salvar()">
+
+        <!-- Campo nome inicio-->
+        <div class="md-dialog-content" layout="row">
+            <md-input-container flex>
+                <label>{{'Nome' | translate}}</label>
+                <input id="pessoa-nome"
+                       name="pessoa-nome"
+                       data-ng-model="vm.pessoa.nome"
+                       ng-minlength="4"
+
+                       md-maxlength="250"
+                       maxlength="250"
+                       data-ng-disabled="vm.readOnly"
+                       custom-validator
+                       ng-required="true">
+
+                <custom-validator-messages input-name="pessoa-nome"></custom-validator-messages>
+            </md-input-container>
+        </div><!-- Campo nome fim-->
+
+        <!-- Campo idade inicio-->
+        <div class="md-dialog-content" layout="row">
+            <md-input-container flex>
+                <label>{{'Email' | translate}}</label>
+                <input id="pessoa-email"
+                       name="pessoa-email"
+                       data-ng-model="vm.pessoa.email"
+
+                       data-ng-disabled="vm.readOnly"
+                       custom-validator
+                       ng-required="true">
+
+                <custom-validator-messages input-name="pessoa-email"></custom-validator-messages>
+            </md-input-container>
+            <md-input-container flex>
+                <label>{{'Idade' | translate}}</label>
+                <input id="pessoa-idade"
+                       name="pessoa-idade"
+                       data-ng-model="vm.pessoa.idadeEmAnos"
+
+                       data-ng-disabled="vm.readOnly"
+                       custom-validator
+                       ng-required="true">
+                <custom-validator-messages input-name="pessoa-idade"></custom-validator-messages>
+            </md-input-container>
+        </div><!-- Campo nome fim-->
+
+        <!-- Campo data criação inicio-->
+        <div class="md-dialog-content" layout="row" data-ng-show="vm.labels.dataCriacao">
+            <md-content layout layout-align="row" flex>
+                <md-input-container flex>
+                    <label>{{'label.datacriacao' | translate}}</label>
+                    <input id="pessoa-data-criacao" name="pessoa-data-criacao" value="{{vm.pessoa.dataCriacao | date: 'dd/MM/yyyy'}}" data-ng-disabled="true">
+                </md-input-container>
+            </md-content>
+        </div><!-- Campo data criação fim-->
+
+        <!-- Campo data inativação inicio-->
+        <div class="md-dialog-content" layout="row" data-ng-show="vm.isPerfilDesabilitado(vm.perfil) && vm.labels.dataInativacao">
+            <md-content layout layout-align="row" flex>
+                <md-input-container flex>
+                    <label>{{'label.datainativacao' | translate}}</label>
+                    <input id="pessoa-data-inativacao" name="pessoa-data-inativacao" value="{{vm.pessoa.dataInativacao | date: 'dd/MM/yyyy'}}" data-ng-disabled="true">
+                </md-input-container>
+            </md-content>
+        </div><!-- Campo data inativação fim-->
+
+        <!--Botões Salver e Concluir inicio-->
+        <div layout="row" layout-align="end">
+
+            <md-button data-ng-show="vm.labels.botao.salvar != ''" class="md-raised md-primary" type="submit">
+              <i class="material-icons vertical-center">&#xE161;</i>
+              &nbsp;{{'Inserir'}}
+            </md-button>
+            <md-button  data-ng-show="vm.labels.botao.concluir != ''" class="md-raised md-warn" ng-click="vm.cancelar()">
+                <i class="material-icons vertical-center">&#xE14C;</i>
+                &nbsp;{{'Cancelar'}}
+            </md-button>
+        </div><!--Botões Salver e Concluir fim-->
+    </form><!-- Formulario de cadastro fim-->
+</div>

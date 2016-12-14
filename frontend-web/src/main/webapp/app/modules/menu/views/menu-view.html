@@ -1,0 +1,81 @@
+<div layout="row" class="menu-bar">
+    <div flex>
+
+    </div>
+    <div flex="66" flex-offset="10">
+        <div>
+            <md-toolbar class="md-menu-toolbar hide-xs hide-sm hide-md ">
+        <md-toolbar class="md-menu-toolbar">
+    <div layout="row">
+        <md-menu-bar class="menu-bar-item">
+            <md-menu>
+                <button ng-click="$mdOpenMenu()">
+                    Pessoa   <md-icon class="icon-white">&#xE313;</md-icon>
+                </button>
+                <md-menu-content>
+                    <md-menu-item >
+                        <md-button ui-sref="app.private.pessoas.inserir-remetente">
+                            <md-icon>&#xE8B6;</md-icon> Buscar remetente
+                        </md-button>
+                    </md-menu-item>
+                    <!--
+                    <md-menu-item>
+                    <md-button>
+                    <md-icon>&#xE145;</md-icon> Cadastrar pessoa
+                </md-button>
+            </md-menu-item>
+        -->
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item>
+            <md-button ui-sref="app.private.pessoas.inserir-participante">
+                <md-icon>&#xE8B6;</md-icon> Buscar participante
+            </md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>
+<md-menu>
+    <button ng-click="$mdOpenMenu()">
+        Convites   <md-icon class="icon-white">&#xE313;</md-icon>
+    </button>
+    <md-menu-content>
+        <md-menu-item>
+            <md-button ui-sref="app.private.convite.inserir-convite">
+                <md-icon>&#xE8B6;</md-icon>  Buscar convites
+            </md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>
+<md-menu>
+    <button ng-click="$mdOpenMenu()">
+        Audiências   <md-icon class="icon-white">&#xE313;</md-icon>
+    </button>
+    <md-menu-content>
+        <md-menu-item>
+            <md-button ng-click="backTlPesquisa()">
+                <md-icon>&#xE8B6;</md-icon> Buscar audiências
+            </md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>
+<md-menu>
+    <button ng-click="$mdOpenMenu()">
+        Relatórios   <md-icon class="icon-white">&#xE313;</md-icon>
+    </button>
+    <md-menu-content>
+        <md-menu-item>
+            <md-button ng-click="backTlPesquisa()">
+                <md-icon>&#xE8B6;</md-icon> Buscar relatórios
+            </md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>
+</md-menu-bar>
+</div>
+</md-toolbar>
+</md-toolbar>
+        </div>
+    </div>
+    <div flex>
+
+    </div>
+</div>

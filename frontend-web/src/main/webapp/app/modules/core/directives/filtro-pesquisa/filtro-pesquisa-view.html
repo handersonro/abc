@@ -1,0 +1,59 @@
+<div>
+    <md-toolbar class="md-primmary" layout="row" layout-align="end center" data-ng-show="!filtroPesquisar">
+        <h2 class="md-title" style="padding-left: 20px" flex>{{parametros.titulo | translate}}</h2>
+        <md-button data-ng-click="toggleFiltro('pesquisa-autoComplete')"
+                   name="abre-filtro"
+                   id="abre-filtro"
+                   title="{{parametros.hint.pesquisar | translate}}"
+                   class="md-icon-button">
+            <div class="material-icons">&#xE8B6;</div>
+        </md-button>
+    </md-toolbar>
+    <md-toolbar class="md-primmary" layout="row" layout-padding layout-align="center center" data-ng-show="filtroPesquisar">
+        <div layout="column" flex>
+            <div layout="row" layout-align="start center" flex style="min-height: 150px;">
+                <div layout="column" flex style="height : 120px">
+                    <md-input-container>
+                        <div  layout="row" layout-align="center top" flex class="filtro-autocomplete">
+                            <md-autocomplete flex
+                                md-search-text="parametros.textoAutoComplete"
+                                md-items="item in autocomplete()"
+                                key-bind="{enter: 'setBlur()'}"
+                                md-no-cache
+                                md-item-text="item.nome.trim() || item.trim()"
+                                md-min-length="3"
+                                md-floating-label="{{'label.pesquisar' | translate}}"
+                                md-delay="300"
+                                md-input-name="pesquisa-autoComplete"
+                                md-input-id="pesquisa-autoComplete">
+                                <md-item-template>
+                                    <span md-highlight-text="parametros.textoAutoComplete" md-highlight-flags="^i">{{item.nome || item}}</span>
+                                </md-item-template>
+                                <md-not-found>
+                                    {{'label.nenhum.registro.encontrado' | translate}}
+                                </md-not-found>
+                            </md-autocomplete>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="column" flex="5">
+                    <md-button ng-click="consultar(pesquisa-autoComplete)"
+                               title="{{parametros.hint.pesquisar | translate}}"
+                               class="md-icon-button"
+                               name="pesquisa-botao"
+                               id="pesquisa-botao">
+                        <div class="material-icons">&#xE8B6;</div>
+                    </md-button>
+                    <md-button data-ng-click="filtroPesquisar=!filtroPesquisar"
+                               title="{{parametros.hint.voltar | translate}}"
+                               class="md-icon-button"
+                               name="fecha-filtro"
+                               id="fecha-filtro">
+                        <div class="material-icons">&#xE15E;</div>
+                    </md-button>
+                </div>
+            </div>
+            <ng-transclude></ng-transclude>
+        </div>
+    </md-toolbar>
+</div>
