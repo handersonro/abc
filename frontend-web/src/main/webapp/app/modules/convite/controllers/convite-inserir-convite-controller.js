@@ -4,8 +4,11 @@
         .controller('ConviteInserirConviteController', ConviteInserirConviteController);
 
     /* @ngInject */
-    function ConviteInserirConviteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog){
+    function ConviteInserirConviteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, ConviteRestService){
+        var vm = this;
 
+
+        vm.procurarLocal = ConviteRestService.obterLocais;
         ///////////////////////////////////
     $scope.title = "Pesquisar convite";
     $scope.autoridade = 'Fulano da Silva Mendes';
@@ -84,14 +87,17 @@
         $scope.telaCadastro = false;
     }
    $scope.carregarListConvite = function(){
-       $http
-            .get('modules/convite/data/list-convite.json')
-            .success (function(data){
-                $scope.listaConvites = data;
-            })
-            .error(function(){
-                 alert('Não fooi possivel carregar os dados')
-            });
+
+        ConviteRestService
+            .obterListaConvite({})
+            .then(
+                function(data){
+                    $scope.listaConvites = data;
+                },
+                function(error){
+
+                }
+            );
    };
     $scope.carregarListConvite();
 

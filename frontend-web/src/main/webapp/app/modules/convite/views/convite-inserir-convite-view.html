@@ -89,21 +89,31 @@
                 </md-input-container>
             </div>
             <div layout="row" layout-xs="column">
-                <md-input-container flex="50" class="md-icon-float md-block">
-                    <label>
-                        Local do evento
-                    </label>
-                    <md-icon>
-                        &#xE55F;
-                    </md-icon>
-                    <input name="text" type="text" ng-model="filtro.localEvento" md-maxlength="50"
-                    />
-                    <div ng-messages="formParticipante.email.$error">
-                        <div ng-message="md-maxlength">
-                            Mínimo ou igual à 50 caracter
-                        </div>
-                    </div>
-                </md-input-container>
+                <div class="" flex="50" layout="row" layout-align="center center">
+
+
+                    <!-- <input name="text" type="text" ng-model="filtro.localEvento" md-maxlength="50"/> -->
+
+                    <md-autocomplete
+                          flex
+                          md-no-cache="true"
+                          md-selected-item="selectedItem"
+                          md-input-name="local"
+                          md-search-text="vm.textoLocal"
+                          md-items="item in vm.procurarLocal(vm.textoLocal)"
+                          md-item-text="item.local"
+                          md-min-length="1"
+                          placeholder="Local do evento">
+                        <md-item-template>
+                          <span md-highlight-text="vm.textoLocal" md-highlight-flags="^i">{{item.local}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                          No states matching "{{vm.textoLocal}}" were found.
+                        </md-not-found>
+                      </md-autocomplete>
+
+
+                </div>
                 <md-input-container class="md-icon-float md-block" flex>
                     <label>
                         Validado
