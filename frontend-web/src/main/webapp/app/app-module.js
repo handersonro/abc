@@ -20,6 +20,7 @@
             'sisagmApp.login',
             'sisagmApp.pessoas',
             'sisagmApp.convite',
+            'sisagmApp.audiencia',
             'menu',
 
 
