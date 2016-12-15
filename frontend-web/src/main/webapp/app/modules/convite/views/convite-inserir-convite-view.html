@@ -108,7 +108,7 @@
                           <span md-highlight-text="vm.textoLocal" md-highlight-flags="^i">{{item.local}}</span>
                         </md-item-template>
                         <md-not-found>
-                          No states matching "{{vm.textoLocal}}" were found.
+                          Nenhum local de evento "{{vm.textoLocal}}" foi encontrado
                         </md-not-found>
                       </md-autocomplete>
 
@@ -122,8 +122,8 @@
                         &#xE834;
                     </md-icon>
                     <md-select ng-model="filtro.validado">
-                        <md-option ng-repeat="item in lista" value="{{item.nome}}">
-                            {{item.nome}}
+                        <md-option ng-repeat="item in listaConvites" value="{{item.validado}}">
+                            {{item.validado}}
                         </md-option>
                     </md-select>
                 </md-input-container>
