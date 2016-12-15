@@ -5,18 +5,26 @@
 
     /* @ngInject */
     function PessoasInserirParticipanteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog){
-
+        var vm = this;
         ///////////////////////////////////
         $scope.title = "Pesquisar participante";
         $scope.routeName = 'routeName';
         $scope.tbResultado = false;
         $scope.telaCadastro = false;
         $scope.telaPesquisa = true;
-        $scope.limpar = function(){
-            $scope.nome= "";
-            $scope.cargo= "";
-            $scope.email= "";
-            $scope.tel = "";
+        vm.filtro = {
+              nome: '',
+              cargo: '',
+              email: ''
+        };
+        vm.participante = {
+              nome: '',
+              cargo: '',
+              email: ''
+        };
+        vm.limpar = function(){
+            vm.filtro ={};
+            vm.participante ={};
         }
         $scope.pesquisar = function(){
             $scope.tbResultado = true;
@@ -24,10 +32,10 @@
         $scope.editar = function(item){
             $scope.title = "Editar participante";
             console.log(item);
-            $scope.nome= item.nome;
-            $scope.cargo= item.cargo;
-            $scope.email= item.email;
-            $scope.tel = item.tel;
+            vm.participante.nome= item.nome;
+            vm.participante.cargo= item.cargo;
+            vm.participante.email= item.email;
+            
             $scope.tbResultado = false;
             $scope.telaPesquisa = false;
             $scope.telaCadastro = true;
@@ -49,7 +57,7 @@
             $scope.tbResultado = false;
             $scope.telaPesquisa = false;
             $scope.telaCadastro = true;
-            $scope.limpar();
+            vm.limpar();
         }
         $scope.backTlPesquisa = function(){
             $scope.title = "Pesquisar participante";

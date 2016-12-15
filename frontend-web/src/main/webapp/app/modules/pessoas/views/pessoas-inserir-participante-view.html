@@ -20,7 +20,7 @@
                   Nome
               </label>
               <md-icon>&#xE8A6;</md-icon>
-              <input type="text" ng-model="search.nome" name="nome" md-maxlength="50"/>
+              <input type="text" ng-model="vm.filtro.nome" name="nome" md-maxlength="50"/>
               <div ng-messages="formPesquisaRemetente.nome.$error">
                 <div ng-message="md-maxlength">Mínimo ou igual à 50 caracter</div>
               </div>
@@ -30,7 +30,7 @@
                   E-mail
               </label>
               <md-icon>&#xE0BE;</md-icon>
-              <input type="text" ng-model="email"  md-maxlength="50" />
+              <input type="text" ng-model="vm.filtro.email"  md-maxlength="50" />
               <div ng-messages="formPesquisaRemetente.nome.$error">
                 <div ng-message="md-maxlength">Mínimo ou igual à 50 caracter</div>
               </div>
@@ -43,7 +43,7 @@
                   Cargo
               </label>
               <md-icon>&#xE8F8;</md-icon>
-              <input name="cargo" type="text" ng-model="search.cargo" md-maxlength="250"/>
+              <input name="cargo" type="text" ng-model="vm.filtro.cargo" md-maxlength="250"/>
               <div ng-messages="formPesquisaRemetente.cargo.$error">
                 <div ng-message="md-maxlength">Mínimo ou igual à 250 caracter</div>
               </div>
@@ -52,9 +52,11 @@
         <!-- conteudo -->
         <!-- footer button-->
         <section class="md-padding action" layout="row" layout-align="end center" layout-wrap>
-          <md-button class="md-raised md-primary" ng-click="pesquisar()" >
+            <md-button class="md-raised md-primary" ng-click="pesquisar()" >
               <md-icon>&#xE8B6;</md-icon> Pesquisar
             </md-button>
+            <md-button class="md-raised" ng-click="vm.limpar()"><md-icon>&#xE5D5;</md-icon> Limpar</md-button>
+            <md-button class="md-raised" ng-click="backTlPesquisa()"><md-icon>&#xE5CD;</md-icon> Cancelar</md-button>
         </section>
             <!-- footer button-->
       </form>
@@ -121,7 +123,7 @@
                         Nome
                     </label>
                     <md-icon>&#xE8A6;</md-icon>
-                    <input type="text" ng-model="dado.nome" name="nome" md-maxlength="50" required/>
+                    <input type="text" ng-model="vm.participante.nome" name="nome" md-maxlength="50" required/>
                     <div ng-messages="formParticipante.nome.$error">
                         <div ng-message="required">Campo obrigatório</div>
                         <div ng-message="md-maxlength">Mínimo ou igual à 50 caracter</div>
@@ -132,7 +134,7 @@
                         E-mail
                     </label>
                     <md-icon>&#xE0BE;</md-icon>
-                    <input name="email" type="text" ng-model="dado.email"  md-maxlength="50" required/>
+                    <input name="email" type="text" ng-model="vm.participante.email"  md-maxlength="50" required/>
                     <div ng-messages="formParticipante.email.$error">
                         <div ng-message="md-maxlength">Mínimo ou igual à 50 caracter</div>
                     </div>
@@ -144,15 +146,15 @@
                         Cargo
                     </label>
                     <md-icon>&#xE8F8;</md-icon>
-                    <input name="cargo" type="text" ng-model="cargo" md-maxlength="250"/>
+                    <input name="cargo" type="text" ng-model="vm.participante.cargo" md-maxlength="250"/>
                     <div ng-messages="formParticipante.cargo.$error">
                         <div ng-message="md-maxlength">Mínimo ou igual à 250 caracter</div>
                     </div>
                 </md-input-container>
             </div>
             <section class="md-padding action" layout="row" layout-align="end center" layout-wrap>
-                <md-button class="md-raised md-primary" ng-disabled="!nome.length > 0 || !email.length > 0" ng-click="salvar()"><md-icon>&#xE161;</md-icon> Salvar</md-button>
-                <md-button class="md-raised" ng-click="limpar()"><md-icon>&#xE5D5;</md-icon> Limpar</md-button>
+                <md-button class="md-raised md-primary" ng-click="salvar()"><md-icon>&#xE161;</md-icon> Salvar</md-button>
+                <md-button class="md-raised" ng-click="vm.limpar()"><md-icon>&#xE5D5;</md-icon> Limpar</md-button>
                 <md-button class="md-raised" ng-click="backTlPesquisa()"><md-icon>&#xE5CD;</md-icon> Cancelar</md-button>
             </section>
         </form>
