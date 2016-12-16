@@ -21,6 +21,7 @@
             'sisagmApp.pessoas',
             'sisagmApp.convite',
             'sisagmApp.audiencia',
+            'sisagmApp.relatorio',
             'menu',
 
 
