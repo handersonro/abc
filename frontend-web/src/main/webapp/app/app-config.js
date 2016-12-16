@@ -29,7 +29,7 @@
             });
 
         $httpProvider.interceptors.push('httpMessageHandleInterceptor');
-        $httpProvider.interceptors.push('daLoaderHttpInterceptor');
+        //$httpProvider.interceptors.push('daLoaderHttpInterceptor');
 
         $httpProvider.defaults.useXDomain = true;
         //$cookiesProvider.defaults.path = '/';

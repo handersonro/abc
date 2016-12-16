@@ -22,9 +22,6 @@
             'sisagmApp.convite',
             'menu',
 
-
-            'da-loader',
-            'da-infinity-scroll',
             '$alerts',
 
 
