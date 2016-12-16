@@ -31,22 +31,23 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <div layout="row" layout-xs="column">
-                                <md-input-container flex>
-                                    <label>
-                                        Data inicial
-                                    </label>
-                                    <md-datepicker ng-model="filtro.dataInicialEven">
-                                    </md-datepicker>
+                          <div layout-gt-xs="row">
+                                <md-input-container flex-gt-xs>
+                                  <label>
+                                      Data inicial
+                                  </label>
+                                  <md-datepicker ng-model="filtro.dataInicialEven">
+                                  </md-datepicker>
                                 </md-input-container>
-                                <md-input-container flex>
-                                    <label>
-                                        Data final
-                                    </label>
-                                    <md-datepicker ng-model="filtro.dataFimEven">
-                                    </md-datepicker>
+
+                                <md-input-container>
+                                  <label>
+                                      Data final
+                                  </label>
+                                  <md-datepicker ng-model="filtro.dataFimEven">
+                                  </md-datepicker>
                                 </md-input-container>
-                            </div>
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -58,15 +59,23 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <div layout="row" layout-xs="column">
-                                <md-input-container flex="100">
-                                    <label>
-                                        Cadastramento
-                                    </label>
-                                    <md-datepicker  ng-model="filtro.dataInicialCad">
-                                    </md-datepicker>
+                          <div layout-gt-xs="row">
+                                <md-input-container flex-gt-xs>
+                                  <label>
+                                      Data inicial
+                                  </label>
+                                  <md-datepicker ng-model="filtro.dataInicialCad">
+                                  </md-datepicker>
                                 </md-input-container>
-                            </div>
+
+                                <md-input-container>
+                                  <label>
+                                      Data final
+                                  </label>
+                                  <md-datepicker ng-model="filtro.dataFimCad">
+                                  </md-datepicker>
+                                </md-input-container>
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -103,12 +112,12 @@
                           md-items="item in vm.procurarLocal(vm.textoLocal)"
                           md-item-text="item.local"
                           md-min-length="1"
-                          placeholder="Local do evento">
+                          md-floating-label="Local do evento">
                         <md-item-template>
                           <span md-highlight-text="vm.textoLocal" md-highlight-flags="^i">{{item.local}}</span>
                         </md-item-template>
                         <md-not-found>
-                          No states matching "{{vm.textoLocal}}" were found.
+                          Nenhum local de evento "{{vm.textoLocal}}" foi encontrado
                         </md-not-found>
                       </md-autocomplete>
 
@@ -122,8 +131,8 @@
                         &#xE834;
                     </md-icon>
                     <md-select ng-model="filtro.validado">
-                        <md-option ng-repeat="item in lista" value="{{item.nome}}">
-                            {{item.nome}}
+                        <md-option ng-repeat="item in listaConvites" value="{{item.validado}}">
+                            {{item.validado}}
                         </md-option>
                     </md-select>
                 </md-input-container>
@@ -167,6 +176,12 @@
                         &#xE5D5;
                     </md-icon>
                     Limpar
+                </md-button>
+                <md-button class="md-raised" ng-click="backTlPesquisa()">
+                    <md-icon>
+                        &#xE5CD;
+                    </md-icon>
+                    Cancelar
                 </md-button>
             </section>
             <!-- footer button-->

@@ -5,7 +5,7 @@
 
     /* @ngInject */
     function PessoasInserirRemetenteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog){
-
+        var vm = this;
         ///////////////////////////////////
         $scope.title = "Pesquisar remetente";
         $scope.usuario = "Fulano da Silva";
@@ -14,24 +14,33 @@
         $scope.telaCadastro = false;
         $scope.telaVisualizacao = false;
         $scope.telaPesquisa = true;
-
-        $scope.limpar = function(){
-            console.log('limpar');
-            $scope.nome= "";
-            $scope.cargo= "";
-            $scope.email= "";
-            $scope.tel = "";
+        vm.filtro = {
+              nome: '',
+              cargo: '',
+              email: '',
+              tel: ''
+        };
+        vm.remetente = {
+          nome: '',
+          cargo: '',
+          email: '',
+          tel: ''
+        };
+        vm.limpar = function(){
+            vm.filtro ={};
+            vm.remetente ={};
         }
         $scope.pesquisar = function(){
             $scope.tbResultado = true;
         }
         $scope.editar = function(item){
             $scope.title = "Editar remetente";
-            console.log(item);
-            $scope.nome= item.nome;
-            $scope.cargo= item.cargo;
-            $scope.email= item.email;
-            $scope.tel = item.tel;
+
+            vm.remetente.nome = item.nome;
+            vm.remetente.cargo= item.cargo;
+            vm.remetente.email= item.email;
+            vm.remetente.tel = item.tel;
+
             $scope.tbResultado = false;
             $scope.telaPesquisa = false;
             $scope.telaVisualizacao = false;
@@ -55,10 +64,9 @@
             $scope.telaPesquisa = false;
             $scope.telaVisualizacao = false;
             $scope.telaCadastro = true;
-            $scope.limpar();
+            vm.limpar();
         }
         $scope.backTlPesquisa = function(){
-            console.log('teste realizado ')
             $scope.title = "Pesquisar remetente";
             $scope.telaPesquisa = true;
             $scope.telaCadastro = false;

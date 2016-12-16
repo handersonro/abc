@@ -15,7 +15,8 @@ body{
 }
 .header-info{
     background: #f8f8f8;
-    border-bottom: 2px solid rgb(139,195,74)
+    border-bottom: 2px solid rgb(139,195,74);
+    font-size:13px;
 }
 .md-conteudo{
     padding-top: 60px;
@@ -111,8 +112,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6dc238', end
 .panel-title h3{
     padding: 0;
     margin: 0;
+    font-size: 16px;
 }
 .bg-panel-default{
     background-color: #f8f8f8;
-    border-bottom: 1px solid #d2d2d2;
+    border-bottom: 2px solid rgb(139,195,74);
 }

@@ -11,7 +11,7 @@
         vm.procurarLocal = ConviteRestService.obterLocais;
         ///////////////////////////////////
     $scope.title = "Pesquisar convite";
-    $scope.autoridade = 'Fulano da Silva Mendes';
+    $scope.autoridade = 'Ministro';
     $scope.tbResultado = false;
     $scope.telaCadastro = false;
     $scope.telaPesquisa = true;

@@ -51,7 +51,7 @@
     </button>
     <md-menu-content>
         <md-menu-item>
-            <md-button ng-click="backTlPesquisa()">
+            <md-button ui-sref="app.private.audiencia.inserir-audiencia">
                 <md-icon>&#xE8B6;</md-icon> Buscar audiências
             </md-button>
         </md-menu-item>
@@ -63,8 +63,13 @@
     </button>
     <md-menu-content>
         <md-menu-item>
-            <md-button ng-click="backTlPesquisa()">
-                <md-icon>&#xE8B6;</md-icon> Buscar relatórios
+            <md-button ng-click="backTlPesquisa()" ui-sref="app.private.relatorio.inserir-relatorio">
+                <md-icon>&#xE8B6;</md-icon> Relatório de audiência
+            </md-button>
+        </md-menu-item>
+        <md-menu-item>
+            <md-button ng-click="backTlPesquisa()" ui-sref="app.private.relatorio.inserir-relatorio-convite">
+                <md-icon>&#xE8B6;</md-icon> Relatório de convite
             </md-button>
         </md-menu-item>
     </md-menu-content>
