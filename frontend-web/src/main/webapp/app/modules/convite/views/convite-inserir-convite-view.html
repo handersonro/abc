@@ -31,22 +31,23 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <div layout="row" layout-xs="column">
-                                <md-input-container flex>
-                                    <label>
-                                        Data inicial
-                                    </label>
-                                    <md-datepicker ng-model="filtro.dataInicialEven">
-                                    </md-datepicker>
+                          <div layout-gt-xs="row">
+                                <md-input-container flex-gt-xs>
+                                  <label>
+                                      Data inicial
+                                  </label>
+                                  <md-datepicker ng-model="filtro.dataInicialEven">
+                                  </md-datepicker>
                                 </md-input-container>
-                                <md-input-container flex>
-                                    <label>
-                                        Data final
-                                    </label>
-                                    <md-datepicker ng-model="filtro.dataFimEven">
-                                    </md-datepicker>
+
+                                <md-input-container>
+                                  <label>
+                                      Data final
+                                  </label>
+                                  <md-datepicker ng-model="filtro.dataFimEven">
+                                  </md-datepicker>
                                 </md-input-container>
-                            </div>
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -58,15 +59,23 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <div layout="row" layout-xs="column">
-                                <md-input-container flex="100">
-                                    <label>
-                                        Cadastramento
-                                    </label>
-                                    <md-datepicker  ng-model="filtro.dataInicialCad">
-                                    </md-datepicker>
+                          <div layout-gt-xs="row">
+                                <md-input-container flex-gt-xs>
+                                  <label>
+                                      Data inicial
+                                  </label>
+                                  <md-datepicker ng-model="filtro.dataInicialCad">
+                                  </md-datepicker>
                                 </md-input-container>
-                            </div>
+
+                                <md-input-container>
+                                  <label>
+                                      Data final
+                                  </label>
+                                  <md-datepicker ng-model="filtro.dataFimCad">
+                                  </md-datepicker>
+                                </md-input-container>
+                          </div>
                         </div>
                     </div>
                 </div>

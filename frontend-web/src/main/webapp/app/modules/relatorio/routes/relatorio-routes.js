@@ -34,6 +34,14 @@
                 templateUrl: MODULE_PATH+'views/relatorio-inserir-relatorio-view.html',
                 resolve: {
                 }
+            })
+            .state(STATE_PATH+MODULE_NAME+'.inserir-relatorio-convite', {
+                url: '/inserir-relatorio-convite',
+                controller: 'RelatorioInserirRelatorioConviteController',
+                controllerAs: 'vm',
+                templateUrl: MODULE_PATH+'views/relatorio-inserir-relatorio-convite-view.html',
+                resolve: {
+                }
             });
     }
 })();
