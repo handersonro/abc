@@ -384,21 +384,23 @@
                 </md-input-container>
             </div>
             <div layout="row" layout-xs="column">
-                <md-input-container class="md-icon-float md-block" flex>
-                    <label>
-                        Local do evento
-                    </label>
-                    <md-icon>
-                        &#xE55F;
-                    </md-icon>
-                    <input name="text" type="text" ng-model="convite.localEvento" required md-maxlength="50"
-                    />
-                    <div ng-messages="formParticipante.email.$error">
-                        <div ng-message="md-maxlength">
-                            Mínimo ou igual à 50 caracter
-                        </div>
-                    </div>
-                </md-input-container>
+              <md-autocomplete
+                    flex
+                    md-no-cache="true"
+                    md-selected-item="selectedItem"
+                    md-input-name="local"
+                    md-search-text="convite.textoLocal"
+                    md-items="item in vm.procurarLocal(vm.textoLocal)"
+                    md-item-text="item.local"
+                    md-min-length="1"
+                    md-floating-label="Local do evento">
+                  <md-item-template>
+                    <span md-highlight-text="vm.textoLocal" md-highlight-flags="^i">{{item.local}}</span>
+                  </md-item-template>
+                  <md-not-found>
+                    Nenhum local de evento "{{vm.textoLocal}}" foi encontrado
+                  </md-not-found>
+                </md-autocomplete>
             </div>
             <div class="row">
                 <md-input-container class="md-block" flex-xs="100">
