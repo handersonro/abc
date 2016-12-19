@@ -13,9 +13,7 @@
         $scope.telaCadastro = false;
         $scope.telaPesquisa = true;
         vm.filtro = {
-              nome: '',
-              cargo: '',
-              email: ''
+          
         };
         vm.participante = {
               nome: '',
@@ -35,7 +33,7 @@
             vm.participante.nome= item.nome;
             vm.participante.cargo= item.cargo;
             vm.participante.email= item.email;
-            
+
             $scope.tbResultado = false;
             $scope.telaPesquisa = false;
             $scope.telaCadastro = true;
