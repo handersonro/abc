@@ -59,7 +59,7 @@
             $scope.telaVisualizacao = true;
         }
         $scope.cadastro = function(){
-            $scope.title = "Cadastrar remetente";
+            $scope.title = "Inlcuir remetente";
             $scope.tbResultado = false;
             $scope.telaPesquisa = false;
             $scope.telaVisualizacao = false;
