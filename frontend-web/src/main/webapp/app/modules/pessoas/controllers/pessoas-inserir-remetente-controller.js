@@ -4,7 +4,7 @@
         .controller('PessoasInserirRemetenteController', PessoasInserirRemetenteController);
 
     /* @ngInject */
-    function PessoasInserirRemetenteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog){
+    function PessoasInserirRemetenteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, AlertsService){
         var vm = this;
         ///////////////////////////////////
         $scope.title = "Pesquisar remetente";
@@ -75,6 +75,7 @@
 
         }
         $scope.salvar = function(){
+            AlertsService.success('Registro incluído com sucesso.');
             $scope.title = "Pesquisar remetente";
             $scope.telaPesquisa = true;
             $scope.telaCadastro = false;

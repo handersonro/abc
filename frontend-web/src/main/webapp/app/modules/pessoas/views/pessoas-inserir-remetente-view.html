@@ -26,7 +26,7 @@
                     E-mail
                 </label>
                 <md-icon>&#xE0BE;</md-icon>
-                <input type="text" ng-model="vm.filtro.email" md-maxlength="50"  maxlength="50" />
+                <input type="email" ng-model="vm.filtro.email" md-maxlength="50"  maxlength="50" />
             </md-input-container>
         </div>
         <div layout="row" layout-xs="column">
@@ -43,7 +43,7 @@
                     Telefone
                 </label>
                 <md-icon>&#xE0CF;</md-icon>
-                <input type="text" ng-model="vm.filtro.tel"  md-maxlength="12" maxlength="12"/>
+                <input type="number" ng-model="vm.filtro.tel"  md-maxlength="12" maxlength="12"/>
             </md-input-container>
         </div>
         <!-- conteudo -->
@@ -131,7 +131,7 @@
                         E-mail
                     </label>
                     <md-icon>&#xE0BE;</md-icon>
-                    <input type="text" ng-model="vm.remetente.email" required  maxlength="50" />
+                    <input type="email" ng-model="vm.remetente.email"  md-maxlength="50"/>
                 </md-input-container>
             </div>
             <div layout="row" layout-xs="column">
@@ -140,7 +140,10 @@
                       Cargo
                   </label>
                   <md-icon>&#xE8F8;</md-icon>
-                  <input type="text" ng-model="vm.remetente.cargo" required md-maxlength="250" maxlength="250" />
+                  <input name="cargo" type="text" ng-model="vm.remetente.cargo" required md-maxlength="250" maxlength="250" />
+                  <div ng-messages="formRemetente.cargo.$error">
+                      <div ng-message="required">Campo obrigatório</div>
+                  </div>
               </md-input-container>
 
                 <md-input-container flex class="md-icon-float md-block">
@@ -148,7 +151,10 @@
                         Telefone
                     </label>
                     <md-icon>&#xE0CF;</md-icon>
-                    <input type="text" ng-model="vm.remetente.tel"  required md-maxlength="12" maxlength="12"/>
+                    <input name="telefone" type="number" ng-model="vm.remetente.tel"  required md-maxlength="12" maxlength="12"/>
+                    <div ng-messages="formRemetente.telefone.$error">
+                        <div ng-message="required">Campo obrigatório</div>
+                    </div>
                 </md-input-container>
             </div>
 

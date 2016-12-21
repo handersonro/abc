@@ -4,7 +4,7 @@
         .controller('ConviteInserirConviteController', ConviteInserirConviteController);
 
     /* @ngInject */
-    function ConviteInserirConviteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, ConviteRestService){
+    function ConviteInserirConviteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, AlertsService, ConviteRestService){
         var vm = this;
 
 
@@ -81,7 +81,7 @@
 
     }
     $scope.salvar = function(convite){
-        console.log($scope.convite);
+        AlertsService.success('Registro incluído com sucesso.');
         $scope.title = "Pesquisar convite";
         $scope.telaPesquisa = true;
         $scope.telaCadastro = false;

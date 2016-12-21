@@ -4,7 +4,7 @@
         .controller('AudienciaInserirAudienciaController', AudienciaInserirAudienciaController);
 
     /* @ngInject */
-    function AudienciaInserirAudienciaController($scope, $mdDialog, $timeout, ConviteRestService){
+    function AudienciaInserirAudienciaController($scope, $mdDialog, $timeout, AlertsService, ConviteRestService){
         var vm = this;
         vm.procurarLocal = ConviteRestService.obterLocais;
         ///////////////////////////////////
@@ -39,6 +39,14 @@
             vm.telaPesquisa = true;
             vm.telaCadastro = false;
             vm.tbResultado = false;
+        }
+        vm.salvar = function(){
+            AlertsService.success('Registro incluído com sucesso.');
+            vm.title = "Pesquisar audiência";
+            vm.telaPesquisa = true;
+            vm.telaCadastro = false;
+            vm.tbResultado = false;
+
         }
         vm.pesquisar = function(){
           vm.tbResultado = true;

@@ -4,7 +4,7 @@
         .controller('PessoasInserirParticipanteController', PessoasInserirParticipanteController);
 
     /* @ngInject */
-    function PessoasInserirParticipanteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog){
+    function PessoasInserirParticipanteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, AlertsService){
         var vm = this;
         ///////////////////////////////////
         $scope.title = "Pesquisar participante";
@@ -13,7 +13,7 @@
         $scope.telaCadastro = false;
         $scope.telaPesquisa = true;
         vm.filtro = {
-          
+
         };
         vm.participante = {
               nome: '',
@@ -66,6 +66,7 @@
 
         }
         $scope.salvar = function(){
+            AlertsService.success('Registro incluído com sucesso.');
             $scope.title = "Pesquisar participante";
             $scope.telaPesquisa = true;
             $scope.telaCadastro = false;
