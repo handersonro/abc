@@ -42,6 +42,14 @@
                 templateUrl: MODULE_PATH+'views/pessoas-inserir-remetente-view.html',
                 resolve: {
                 }
+            })
+            .state(STATE_PATH+MODULE_NAME+'.pesquisar-remetente', {
+                url: '/pesquisar-remetente',
+                controller: 'PessoasPesquisarRemetenteController',
+                controllerAs: 'vm',
+                templateUrl: MODULE_PATH+'views/pessoas-pesquisar-remetente-view.html',
+                resolve: {
+                }
             });
     }
 })();

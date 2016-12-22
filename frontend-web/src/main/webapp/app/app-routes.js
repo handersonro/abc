@@ -34,6 +34,6 @@
                }
            });
 
-        $urlRouterProvider.otherwise('/private');
+        $urlRouterProvider.otherwise('/public/login/entrar');
     }
 })();

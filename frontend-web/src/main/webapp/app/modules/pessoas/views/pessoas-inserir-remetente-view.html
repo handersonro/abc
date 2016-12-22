@@ -1,130 +1,19 @@
 <div id="title">
     <md-toolbar class=" md-toolbar-tools">
-        <h1 class="md-toolbar-tools">{{title}}</h1>
-        <md-button class="md-icon-button   hide-xs hide-sm hide-md" ng-click="cadastro()" ng-if="!telaCadastro">
-            <md-tooltip md-direction="left">
-                Incluir
-            </md-tooltip>
-            <md-icon class="icon-white">&#xE145;</md-icon>
-        </md-button>
+        <h1 class="md-toolbar-tools">{{vm.title}}</h1>
     </md-toolbar>
 </div>
 <md-content class="box">
-    <!-- TELA DE BUSCA -->
-    <div class="md-padding" ng-if="telaPesquisa">
-        <!-- conteudo -->
-        <div layout="row" layout-xs="column">
-            <md-input-container flex=50 class="md-icon-float md-block">
-                <label>
-                    Nome
-                </label>
-                <md-icon>&#xE8A6;</md-icon>
-                <input type="text" ng-model="vm.filtro.nome" name="nome" md-maxlength="50" maxlength="50" />
-            </md-input-container>
-            <md-input-container flex=50 class="md-icon-float md-block">
-                <label>
-                    E-mail
-                </label>
-                <md-icon>&#xE0BE;</md-icon>
-                <input type="email" ng-model="vm.filtro.email" md-maxlength="50"  maxlength="50" />
-            </md-input-container>
-        </div>
-        <div layout="row" layout-xs="column">
-          <md-input-container flex="70" class=" md-icon-float md-block">
-              <label>
-                  Cargo
-              </label>
-              <md-icon>&#xE8F8;</md-icon>
-              <input type="text" ng-model="vm.filtro.cargo" md-maxlength="250" maxlength="250" />
-          </md-input-container>
-
-            <md-input-container flex class="md-icon-float md-block">
-                <label>
-                    Telefone
-                </label>
-                <md-icon>&#xE0CF;</md-icon>
-                <input type="number" ng-model="vm.filtro.tel"  md-maxlength="12" maxlength="12"/>
-            </md-input-container>
-        </div>
-        <!-- conteudo -->
-        <!-- footer button-->
-        <section class="md-padding action" layout="row" layout-align="end center" layout-wrap>
-            <md-button class="md-raised md-primary" ng-click="pesquisar()">
-                <md-icon>&#xE8B6;</md-icon> Pesquisar
-            </md-button>
-            <md-button class="md-raised" ng-click="vm.limpar()"><md-icon>&#xE5D5;</md-icon> Limpar</md-button>
-            <md-button class="md-raised" ng-click="backTlPesquisa()"><md-icon>&#xE5CD;</md-icon> Cancelar</md-button>
-        </section>
-        <!-- footer button-->
-    </div>
-    <!-- resultado da busca -->
-    <div class="md-padding" ng-if="tbResultado">
-        <!-- tabela css angular material -->
-        <div class="table-responsive-vertical shadow-z-1">
-            <!-- Table starts here -->
-            <table id="table" class="table table-hover table-mc-light-green">
-                <thead>
-                    <tr>
-                        <th class="text-center">Ações</th>
-                        <th>Nome</th>
-                        <th>Cargo</th>
-                        <th>E-mail</th>
-                        <th>Telefone</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="item in lista | filter:search">
-                        <td class="text-center">
-                            <md-menu>
-                              <md-button class="md-icon-button" aria-label="Favorite" ng-click="appCtrl.openMenu($mdOpenMenu, $event)">
-                                <md-tooltip md-direction="left">
-                                    Ações
-                                </md-tooltip>
-                                   <md-icon class="icon-white">&#xE8B8;</md-icon>
-                              </md-button>
-
-                                <md-menu-content width="1">
-                                    <md-menu-item>
-                                        <md-button ng-click="editar(item)" title="{{item.nome}}">
-                                            <md-icon>&#xE22B;</md-icon>
-                                            Editar
-                                        </md-button>
-                                    </md-menu-item>
-                                    <md-menu-item>
-                                        <md-button ng-click="showConfirm($event)">
-                                            <md-icon>&#xE92B;</md-icon>
-                                            Remover
-                                        </md-button>
-                                    </md-menu-item>
-                                </md-menu-content>
-                            </md-menu>
-                        </td>
-                        <td>{{ item.nome }}</td>
-                        <td>{{ item.cargo }}</td>
-                        <td>{{ item.email }}</td>
-                        <td>{{ item.tel }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <!-- tabela css angular material -->
-    </div>
-    <!-- resultado da busca -->
-    <!-- TELA DE BUSCA -->
-    <!-- TELA DE CADASTRO -->
-    <div class="md-padding" ng-if="telaCadastro">
-        <form name="formRemetente">
+    <div class="md-padding">
+        <form name="formRemetente" novalidate ng-submit="vm.salvar()">
             <div layout="row" layout-xs="column">
                 <md-input-container flex=50 class="md-icon-float md-block">
                     <label>
                         Nome
                     </label>
                     <md-icon>&#xE8A6;</md-icon>
-                    <input type="text" ng-model="vm.remetente.nome" name="nome" required md-maxlength="50" maxlength="50" />
-                    <div ng-messages="formRemetente.nome.$error">
-                        <div ng-message="required">Campo obrigatório</div>
-                    </div>
+                    <input type="text" ng-model="vm.remetente.nome" name="nome" ng-required="true" md-maxlength="50" maxlength="50" />
+                    <custom-validator-messages input-name="nome" ></custom-validator-messages>
                 </md-input-container>
                 <md-input-container flex=50 class="md-icon-float md-block">
                     <label>
@@ -151,7 +40,7 @@
                         Telefone
                     </label>
                     <md-icon>&#xE0CF;</md-icon>
-                    <input name="telefone" type="number" ng-model="vm.remetente.tel"  required md-maxlength="12" maxlength="12"/>
+                    <input name="telefone" type="text" ng-model="vm.remetente.tel" mask="(99) 9?9999-9999" required="true" />
                     <div ng-messages="formRemetente.telefone.$error">
                         <div ng-message="required">Campo obrigatório</div>
                     </div>
@@ -159,43 +48,10 @@
             </div>
 
             <section class="md-padding action" layout="row" layout-align="end center" layout-wrap>
-                <md-button class="md-raised md-primary" ng-click="salvar()"><md-icon>&#xE161;</md-icon> Salvar</md-button>
+                <md-button class="md-raised md-primary" ng-disabled="vm.showBtnSalvar()" type="submit"><md-icon>&#xE161;</md-icon> Salvar</md-button>
                 <md-button class="md-raised" ng-click="vm.limpar()"><md-icon>&#xE5D5;</md-icon> Limpar</md-button>
-                <md-button class="md-raised" ng-click="backTlPesquisa()"><md-icon>&#xE5CD;</md-icon> Cancelar</md-button>
+                <md-button class="md-raised" ui-sref="app.public.home.pagina-inicial" type="submit"><md-icon>&#xE5CD;</md-icon> Cancelar</md-button>
             </section>
         </form>
     </div>
-    <!-- TELA DE CADASTRO -->
-    <!-- TELA DE VISUALIZAÇÃO -->
-    <div class="md-padding" ng-if="telaVisualizacao">
-        <!-- conteudo -->
-        <div layout="row" layout-xs="column" >
-            <dl flex=70>
-                <dt>Nome</dt>
-                <dd>{{nome}}</dd>
-            </dl>
-            <dl flex>
-                <dt>Cargo</dt>
-                <dd>{{cargo}}</dd>
-            </dl>
-        </div>
-        <div layout="row" layout-xs="column">
-            <dl flex=70>
-                <dt>E-mail</dt>
-                <dd>{{email}}</dd>
-            </dl>
-            <dl flex>
-                <dt>Telefone</dt>
-                <dd>{{tel}}</dd>
-            </dl>
-
-        </div>
-        <!-- conteudo -->
-        <!-- footer button-->
-        <section class="md-padding action" layout="row" layout-align="end center" layout-wrap>
-            <md-button class="md-raised md-primary" ng-click="backTlPesquisa()"><md-icon>&#xE314;</md-icon>Voltar</md-button>
-        </section>
-        <!-- footer button-->
-    </div>
-    <!-- TELA DE VISUALIZAÇÃO -->
 </md-content>

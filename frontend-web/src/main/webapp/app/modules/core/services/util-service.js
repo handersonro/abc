@@ -3,10 +3,10 @@
 
     angular
         .module('sisagmApp.core.services')
-        .service('UtilService', UtilService);
+        .service('UtilsService', UtilsService);
 
     /* @ngInject */
-    function UtilService(DataService, $q, $mdDialog, $filter, AlertsManager) {
+    function UtilsService(DataService, $q, $mdDialog, $filter, AlertsManager) {
         var service = this;
 
         service.abrirDialogAlterarStatus = abrirDialogAlterarStatus;

@@ -5,6 +5,9 @@ body{
 .error404 h2{
     color: #333
 }
+.text-center{
+  text-align: center;
+}
 .error404 h2 i{
     font-size: 40px;
     padding: 10px;
@@ -89,6 +92,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6dc238', end
 .menu-bar-item button{
     font-size: 16px !important;
 }
+
 @media only screen and (max-width: 1263px) {
    ul.nav.navbar-nav {
         margin-left: 0;

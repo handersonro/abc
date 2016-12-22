@@ -8,6 +8,8 @@
             'restangular',
             'ngTable',
             'ngMdIcons',
+            'ngMask',
+            'ngMessages',
             'pascalprecht.translate',
             'ncy-angular-breadcrumb',
 
@@ -18,6 +20,7 @@
             'sisagmApp.private',
             'sisagmApp.public',
             'sisagmApp.login',
+            'sisagmApp.home',
             'sisagmApp.pessoas',
             'sisagmApp.convite',
             'sisagmApp.audiencia',

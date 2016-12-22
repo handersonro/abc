@@ -1,5 +1,4 @@
-<div ng-messages="form[inputName].$error" ng-show="form.$submitted">
-    <div ng-repeat="(key, value) in form[inputName].$error" >
-        <div ng-message-exp="key">{{ concatDefaultStringMsg(key) | translate }}</div>
-    </div>
+<div ng-messages="form[inputName].$error" md-auto-hide="false" ng-show="form[inputName].$touched">
+    <div ng-message="required">{{ concatDefaultStringMsg('required') | translate }}</div>
+    <div ng-message="min">Min is 400</div>
 </div>
