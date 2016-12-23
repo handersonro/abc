@@ -1,33 +1,30 @@
 (function(){
     angular
-        .module('sisagmApp.pessoas.controllers')
-        .controller('PessoasPesquisarRemetenteController', PessoasPesquisarRemetenteController);
+        .module('sisagmApp.login.controllers')
+        .controller('PessoasPesquisarParticipanteController', PessoasPesquisarParticipanteController);
 
     /* @ngInject */
-    function PessoasPesquisarRemetenteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, AlertsService, $state){
+    function PessoasPesquisarParticipanteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, AlertsService){
         var vm = this;
+        vm.tbResultado = false;
+        vm.editar = editar;
+        vm.filtro = {};
+        vm.title = "Pesquisar participante";
+
         ///////////////////////////////////
-        vm.title = "Pesquisar remetente";
-        $scope.tbResultado = false;
-        vm.filtro = {
-              nome: '',
-              cargo: '',
-              email: '',
-              tel: ''
-        };
+
+
+
         vm.limpar = function(){
             vm.filtro ={};
         }
-        $scope.pesquisar = function(){
-            $scope.tbResultado = true;
+        vm.pesquisar = function(){
+            vm.tbResultado = true;
         }
-        vm.editar = function(remetente){
-            $state.go('app.private.pessoas.editar-remetente', {remetente: remetente});
+        function editar (participante){
+            $state.go('app.private.pessoas.editar-participante', {participante: participante});
         }
-        vm.showSalvar = showSalvar;
-        function showSalvar(){
-          return $scope.formRemetente.$invalid;
-        }
+
 
         $scope.carregaLista = function(){
             $http

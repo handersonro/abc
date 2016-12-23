@@ -68,7 +68,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="item in lista | filter:search">
+                    <tr ng-repeat="item in lista">
                         <td class="text-center">
                             <md-menu>
                               <md-button class="md-icon-button" aria-label="Favorite" ng-click="appCtrl.openMenu($mdOpenMenu, $event)">
@@ -80,7 +80,7 @@
 
                                 <md-menu-content width="1">
                                     <md-menu-item>
-                                        <md-button ng-click="editar(item)" title="{{item.nome}}">
+                                        <md-button ng-click="vm.editar(item)" title="{{item.nome}}">
                                             <md-icon>&#xE22B;</md-icon>
                                             Editar
                                         </md-button>

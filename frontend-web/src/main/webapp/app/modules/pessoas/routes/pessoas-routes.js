@@ -27,12 +27,31 @@
                     callback: null
                 }
             })
+            .state(STATE_PATH+MODULE_NAME+'.pesquisar-participante', {
+                url: '/pesquisar-participante',
+                controller: 'PessoasPesquisarParticipanteController',
+                controllerAs: 'vm',
+                templateUrl: MODULE_PATH+'views/pessoas-pesquisar-participante-view.html',
+                resolve: {
+                }
+            })
             .state(STATE_PATH+MODULE_NAME+'.inserir-participante', {
                 url: '/inserir-participante',
                 controller: 'PessoasInserirParticipanteController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/pessoas-inserir-participante-view.html',
                 resolve: {
+                }
+            })
+            .state(STATE_PATH+MODULE_NAME+'.editar-participante', {
+                url: '/editar-participante',
+                controller: 'PessoasEditarParticipanteController',
+                controllerAs: 'vm',
+                templateUrl: MODULE_PATH+'views/pessoas-inserir-participante-view.html',
+                resolve: {
+                },
+                params: {
+                    participante: null
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.inserir-remetente', {
@@ -49,6 +68,17 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/pessoas-pesquisar-remetente-view.html',
                 resolve: {
+                }
+            })
+            .state(STATE_PATH+MODULE_NAME+'.editar-remetente', {
+                url: '/editar-remetente',
+                controller: 'PessoasEditarRemetenteController',
+                controllerAs: 'vm',
+                templateUrl: MODULE_PATH+'views/pessoas-inserir-remetente-view.html',
+                resolve: {
+                },
+                params: {
+                    remetente: null
                 }
             });
     }

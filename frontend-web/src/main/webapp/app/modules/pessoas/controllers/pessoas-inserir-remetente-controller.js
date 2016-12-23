@@ -4,26 +4,20 @@
         .controller('PessoasInserirRemetenteController', PessoasInserirRemetenteController);
 
     /* @ngInject */
-    function PessoasInserirRemetenteController($scope, $timeout, $http, AlertsService){
+    function PessoasInserirRemetenteController($scope, $timeout, $http, $state, $stateParams, AlertsService){
         var vm = this;
         ///////////////////////////////////
         vm.title = "Incluir remetente";
         vm.showBtnSalvar = showBtnSalvar;
-        vm.remetente = {
-          nome: '',
-          cargo: '',
-          email: '',
-          tel: ''
-        };
+        vm.remetente = {};
         vm.limpar = function(){
-            vm.remetente ={};
+            $state.go('app.private.pessoas.inserir-remetente', {}, {reload: true});
         }
 
         vm.salvar = function(){
           AlertsService.success('Registro incluído com sucesso.');
-          vm.remetente = {};
+          $state.go('app.private.pessoas.inserir-remetente', {}, {reload: true});
         }
-
 
         function showBtnSalvar(){
           return $scope.formRemetente.$invalid;

@@ -30,9 +30,7 @@
                   </label>
                   <md-icon>&#xE8F8;</md-icon>
                   <input name="cargo" type="text" ng-model="vm.remetente.cargo" required md-maxlength="250" maxlength="250" />
-                  <div ng-messages="formRemetente.cargo.$error">
-                      <div ng-message="required">Campo obrigatório</div>
-                  </div>
+                  <custom-validator-messages input-name="cargo" ></custom-validator-messages>
               </md-input-container>
 
                 <md-input-container flex class="md-icon-float md-block">
@@ -41,9 +39,7 @@
                     </label>
                     <md-icon>&#xE0CF;</md-icon>
                     <input name="telefone" type="text" ng-model="vm.remetente.tel" mask="(99) 9?9999-9999" required="true" />
-                    <div ng-messages="formRemetente.telefone.$error">
-                        <div ng-message="required">Campo obrigatório</div>
-                    </div>
+                    <custom-validator-messages input-name="telefone" ></custom-validator-messages>
                 </md-input-container>
             </div>
 
