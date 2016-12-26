@@ -8,6 +8,6 @@
 
     "msg.error.required": "O campo é de preenchimento obrigatório.",
     "msg.error.md-maxlength": "O limite máximo de caracteres foi excedido.",
-    "msg.error.minlength": "É necessário informar ao menos 4 caracteres."
-
+    "msg.error.minlength": "É necessário informar ao menos 4 caracteres.",
+    "A13.4": "O início do evento deve ser anterior ao término."
 }

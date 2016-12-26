@@ -35,6 +35,10 @@
       return $scope.formConvite.$invalid;
     }
     function salvar(){
+        if(vm.dataInicioEvento > vm.dataFimEvento){
+            return AlertsService.success($filter('translate')('A13.4'));
+        }
+
         AlertsService.success('Registro incluído com sucesso.');
         $state.go('app.private.convite.inserir-convite', {}, {reload: true});
     }

@@ -37,24 +37,12 @@
             //withCredentials: true
         });
 
+        $mdDateLocaleProvider.formatDate = function(date) {
+            return moment(date).format('DD-MM-YYYY');
+        };
         $mdDateLocaleProvider.parseDate = function(dateString) {
-            var regex_data = /^(\d{2})[-\/](\d{2})[-\/](\d{4})$/.exec(dateString);
-            if(regex_data){
-                var dia = regex_data[1];
-                var mes = regex_data[2] - 1;
-                var ano = regex_data[3];
-                var montaData = new Date(ano, mes, dia);
-
-                var isDataValida = (montaData.getDate() == dia &&
-                montaData.getMonth() == mes &&
-                montaData.getFullYear() == ano);
-
-                if(isDataValida){
-                    return montaData;
-                }
-
-            }
-            return undefined;
+            var m = moment(dateString, 'DD-MM-YYYY', true);
+            return m.isValid() ? m.toDate() : new Date(NaN);
         };
 
 
