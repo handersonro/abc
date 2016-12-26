@@ -1,0 +1,216 @@
+<div id="title">
+    <md-toolbar class=" md-toolbar-tools">
+        <h1 class="md-toolbar-tools">
+            {{vm.title}}
+        </h1>
+    </md-toolbar>
+</div>
+<md-content class="box">
+    <div class="md-padding header-info" layout="row" layout-xs="column"  layout-align="end center">
+        <strong>Autoridade: &nbsp;</strong> {{vm.autoridade}}
+    </div>
+  <div class="md-padding">
+      <form name="formPesquisaAudiencia">
+          <!-- conteudo -->
+          <div class="panel">
+              <div class="panel-title bg-panel-default">
+                  <h3>
+                      Cadastro entre
+                  </h3>
+              </div>
+              <div class="panel-body">
+                  <div layout="row" layout-xs="column"  layout-align="left center">
+                    <md-input-container flex="50">
+                        <label>
+                            Data inicial
+                        </label>
+                        <md-datepicker  ng-model="vm.filtro.dataInicial">
+                        </md-datepicker>
+                    </md-input-container>
+                    <md-input-container >
+                        <label>
+                            Data final
+                        </label>
+                        <md-datepicker  ng-model="vm.filtro.dataFinal">
+                        </md-datepicker>
+                    </md-input-container>
+                  </div>
+              </div>
+          </div>
+
+          <div layout="row" layout-xs="column">
+              <md-input-container flex class="md-icon-float md-block">
+                  <label>
+                      Solicitante
+                  </label>
+                  <md-icon>
+                      &#xE8A6;
+                  </md-icon>
+                  <input name="solicitante" type="text" ng-model="vm.filtro.solicitante" md-maxlength="50"
+                  />
+                  <div ng-messages="formPesquisaAudiencia.solicitante.$error">
+                      <div ng-message="md-maxlength">
+                          Mínimo ou igual à 50 caracter
+                      </div>
+                  </div>
+              </md-input-container>
+          </div>
+          <div layout="row" layout-xs="column">
+              <div flex="50" layout="row" layout-align="center center">
+                  <md-autocomplete
+                        flex
+                        md-no-cache="true"
+                        md-selected-item="vm.filtro.selectedItem"
+                        md-input-name="local"
+                        md-search-text="vm.textoLocal"
+                        md-items="item in vm.procurarLocal(vm.textoLocal)"
+                        md-item-text="item.local"
+                        md-min-length="1"
+                        md-input-maxlength="150"
+                        md-floating-label="Local do evento">
+                      <md-item-template>
+                        <span md-highlight-text="vm.textoLocal" md-highlight-flags="^i">{{item.local}}</span>
+                      </md-item-template>
+                      <md-not-found>
+                        Nenhum local de evento "{{vm.textoLocal}}" foi encontrado
+                      </md-not-found>
+                    </md-autocomplete>
+              </div>
+              <md-input-container class="md-icon-float md-block" flex>
+                  <label>
+                      Validado?
+                  </label>
+                  <md-icon>
+                      &#xE834;
+                  </md-icon>
+                  <md-select ng-model="vm.filtro.validado">
+                      <md-option ng-repeat="item in vm.validacoes" value="{{item.validado}}">
+                          {{item.validado}}
+                      </md-option>
+                  </md-select>
+              </md-input-container>
+          </div>
+          <div layout="row" layout-xs="column">
+              <md-input-container flex="50" flex-xs="100" class="md-block">
+                  <label>
+                      Observação
+                  </label>
+                  <textarea ng-model="vm.filtro.observacao" rows="3" md-maxlength="255" maxlength="255" md-select-on-focus>
+                  </textarea>
+              </md-input-container>
+              <md-input-container class="md-block" flex flex-xs="100">
+                  <label>
+                      Despacho
+                  </label>
+                  <textarea ng-model="vm.filtro.despacho" md-maxlength="150" maxlength="150" rows="3" md-select-on-focus>
+                  </textarea>
+              </md-input-container>
+          </div>
+          <div class="row">
+              <md-input-container class="md-block" flex-xs="100">
+                  <label>
+                      Assunto
+                  </label>
+                  <textarea ng-model="vm.filtro.assunto" md-maxlength="255" maxlength="255" rows="3" md-select-on-focus>
+                  </textarea>
+              </md-input-container>
+          </div>
+          <!-- footer button-->
+          <section class="md-padding action" layout="row" layout-align="end center"
+          layout-wrap>
+              <md-button class="md-raised md-primary" ng-click="vm.pesquisar()">
+                  <md-icon>
+                      &#xE8B6;
+                  </md-icon>
+                  Pesquisar
+              </md-button>
+              <md-button class="md-raised" ng-click="vm.limpar()">
+                  <md-icon>
+                      &#xE5D5;
+                  </md-icon>
+                  Limpar
+              </md-button>
+              <md-button class="md-raised" ui-sref="app.public.home.pagina-inicial">
+                  <md-icon>
+                      &#xE5CD;
+                  </md-icon>
+                  Cancelar
+              </md-button>
+          </section>
+          <!-- footer button-->
+      </form>
+  </div>
+  <!-- resultado da pesquisa-->
+  <div class="md-padding" ng-show="vm.tbResultado">
+      <div class="table-responsive-vertical shadow-z-1">
+          <!-- Table starts here -->
+          <table id="table" class="table table-hover table-mc-green">
+              <thead>
+                  <tr>
+                      <th class="text-center">
+                          Ações
+                      </th>
+                      <th>
+                          Solicitante
+                      </th>
+                      <th>
+                          Data de cadastro
+                      </th>
+                      <th>
+                          Local
+                      </th>
+                      <th>
+                          Assunto
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr ng-repeat="item in listaConvites">
+                      <td class="text-center">
+                          <md-menu>
+                            <md-button class="md-icon-button" aria-label="Favorite" ng-click="appCtrl.openMenu($mdOpenMenu, $event)">
+                              <md-tooltip md-direction="left">
+                                  Ações
+                              </md-tooltip>
+                                 <md-icon class="icon-white">&#xE8B8;</md-icon>
+                            </md-button>
+                              <md-menu-content width="1">
+                                  <md-menu-item>
+                                      <md-button ng-click="vm.editar(item)" title="{{item.nome}}">
+                                          <md-icon>
+                                              &#xE22B;
+                                          </md-icon>
+                                          Editar
+                                      </md-button>
+                                  </md-menu-item>
+                                  <md-menu-item>
+                                      <md-button ng-click="vm.showConfirm($event)">
+                                          <md-icon>
+                                              &#xE92B;
+                                          </md-icon>
+                                          Remover
+                                      </md-button>
+                                  </md-menu-item>
+                              </md-menu-content>
+                          </md-menu>
+                      </td>
+                      <td>
+                          {{ item.solicitante }}
+                      </td>
+                      <td>
+                          {{ item.dataCadastro }}
+                      </td>
+                      <td>
+                          {{ item.localEvento }}
+                      </td>
+                      <td>
+                          {{ item.assunto }}
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+      <!-- tabela css angular material -->
+  </div>
+  <!-- resultado da busca -->
+</md-content>

@@ -1,50 +1,48 @@
 (function(){
-    RelatorioInserirRelatorioConviteController.$inject = ["$scope", "$mdDialog", "$timeout", "ConviteRestService"];
     angular
-        .module('sisagmApp.relatorio.controllers')
-        .controller('RelatorioInserirRelatorioConviteController', RelatorioInserirRelatorioConviteController);
+        .module('sisagmApp.audiencia.controllers')
+        .controller('AudienciaPesquisarAudienciaController', AudienciaPesquisarAudienciaController);
 
     /* @ngInject */
-    function RelatorioInserirRelatorioConviteController($scope, $mdDialog, $timeout, ConviteRestService){
+    function AudienciaPesquisarAudienciaController($scope, $mdDialog, $timeout, AlertsService, $state, ConviteRestService, $filter, UsuarioRestService){
         var vm = this;
         vm.procurarLocal = ConviteRestService.obterLocais;
-        ///////////////////////////////////
-        vm.title = "Relatório de convite";
-        vm.autoridade = "Ministro";
-        vm.telaPesquisa = true;
+        vm.procurarUsuario = UsuarioRestService.obterUsuarios;
+        vm.title = "Pesquisar audiencia";
         vm.tbResultado = false;
-        vm.telaCadastro = false;
-        vm.tipoEvento=[
-          {evento : 'Nacional'},
-          {evento : 'Internacional'}
-        ];
-        vm.tiposSaida = [
-            {tipo: 'PDF'},
-            {tipo: 'WORD'}
-        ];
-        vm.ordenacoes = [
-            {ordenacao: 'Data de cadastro'},
-            {ordenacao: 'Nome do solicitante'},
-            {ordenacao: 'Assunto'}
-        ];
-        vm.direcoes = [
-            {direcao: 'Crescente'},
-            {ordenacao: 'Decrescente'}
-        ];
+        vm.validacoes = {};
+        vm.autoridade = "Ministro";
+        vm.pesquisar = pesquisar;
+        vm.editar = editar;
+        vm.listaAutoridades = {};
+        vm.filtro = {};
+        inicializar();
+        function inicializar(){
+            vm.listaAutoridades = [
+                {autoridade: "Ministro do turismo"},
+                {autoridade: "Secretário executivo"},
+                {autoridade: "Secretário Nacional de Estruturação do Turismo"},
+                {autoridade: "Secretário Nacional de Qualificação e Promoção do Turismo"}
+            ];
+            vm.validacoes=[
+              {validado : 'Sim'},
+              {validado : 'Não'},
+              {validado : 'Indiferente'}
+            ];
+
+        }
+        ///////////////////////////////////
 
         vm.limpar = function(){
           vm.filtro = {};
-          vm.audiencia = {};
         }
-        vm.backTlPesquisa = function(){
-            vm.title = "Relatório de convite";
-            vm.telaPesquisa = true;
-            vm.telaCadastro = false;
-            vm.tbResultado = false;
+        function editar (audiencia){
+            $state.go('app.private.audiencia.editar-audiencia', {audiencia: audiencia});
         }
-        vm.gerarRelatorio = function(){
-          vm.tbResultado = true;
+        function pesquisar (){
+            vm.tbResultado = true;
         }
+
         vm.carregarListConvite = function(){
 
              ConviteRestService
@@ -59,7 +57,6 @@
                  );
         };
         vm.carregarListConvite();
-
         function debounce(func, wait, context) {
           var timer;
 
@@ -81,8 +78,8 @@
               .textContent('Tem certeza que deseja remover esse registro?')
               .ariaLabel('Lucky day')
               .targetEvent(ev)
-              .ok('Sim')
-              .cancel('Não');
+              .ok('Ok')
+              .cancel('Cancelar');
 
             $mdDialog.show(confirm).then(function() {
               $scope.status = 'You decided to get rid of your debt.';
