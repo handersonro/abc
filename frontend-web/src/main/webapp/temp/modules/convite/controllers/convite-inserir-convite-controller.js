@@ -1,4 +1,5 @@
 (function(){
+  ConviteInserirConviteController.$inject = ["$scope", "$timeout", "$mdSidenav", "$log", "$http", "$mdDialog", "$state", "AlertsService", "ConviteRestService"];
     angular
         .module('sisagmApp.convite.controllers')
         .controller('ConviteInserirConviteController', ConviteInserirConviteController);

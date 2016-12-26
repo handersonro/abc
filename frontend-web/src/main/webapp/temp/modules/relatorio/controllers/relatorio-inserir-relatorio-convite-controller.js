@@ -1,50 +1,50 @@
 (function(){
+    RelatorioInserirRelatorioConviteController.$inject = ["$scope", "$mdDialog", "$timeout", "ConviteRestService"];
     angular
-        .module('sisagmApp.audiencia.controllers')
-        .controller('AudienciaInserirAudienciaController', AudienciaInserirAudienciaController);
+        .module('sisagmApp.relatorio.controllers')
+        .controller('RelatorioInserirRelatorioConviteController', RelatorioInserirRelatorioConviteController);
 
     /* @ngInject */
-    function AudienciaInserirAudienciaController($scope, $mdDialog, $timeout, AlertsService, ConviteRestService, $filter, UsuarioRestService){
+    function RelatorioInserirRelatorioConviteController($scope, $mdDialog, $timeout, ConviteRestService){
         var vm = this;
         vm.procurarLocal = ConviteRestService.obterLocais;
-        vm.procurarUsuario = UsuarioRestService.obterUsuarios;
-        vm.title = "Incluir audiencia";
-        vm.autoridade = "Ministro";
-        vm.showBtnSalvar = showBtnSalvar;
-        vm.salvar = salvar;
-        vm.listaAutoridades = {};
-        vm.audiencia = {};
-        inicializar();
-        function inicializar(){
-            if(vm.dataInicio > vm.dataFim){
-                return AlertsService.success($filter('translate')('A13.4'));
-            }
-            vm.listaAutoridades = [
-                {autoridade: "Ministro do turismo"},
-                {autoridade: "Secretário executivo"},
-                {autoridade: "Secretário Nacional de Estruturação do Turismo"},
-                {autoridade: "Secretário Nacional de Qualificação e Promoção do Turismo"}
-            ];
-
-        }
         ///////////////////////////////////
+        vm.title = "Relatório de convite";
+        vm.autoridade = "Ministro";
+        vm.telaPesquisa = true;
+        vm.tbResultado = false;
+        vm.telaCadastro = false;
+        vm.tipoEvento=[
+          {evento : 'Nacional'},
+          {evento : 'Internacional'}
+        ];
+        vm.tiposSaida = [
+            {tipo: 'PDF'},
+            {tipo: 'WORD'}
+        ];
+        vm.ordenacoes = [
+            {ordenacao: 'Data de cadastro'},
+            {ordenacao: 'Nome do solicitante'},
+            {ordenacao: 'Assunto'}
+        ];
+        vm.direcoes = [
+            {direcao: 'Crescente'},
+            {ordenacao: 'Decrescente'}
+        ];
 
         vm.limpar = function(){
+          vm.filtro = {};
           vm.audiencia = {};
         }
-
-        function showBtnSalvar(){
-          return $scope.formAudiencia.$invalid;
+        vm.backTlPesquisa = function(){
+            vm.title = "Relatório de convite";
+            vm.telaPesquisa = true;
+            vm.telaCadastro = false;
+            vm.tbResultado = false;
         }
-        function salvar(){
-            if(vm.audiencia.dataInicio > vm.audiencia.dataFim){
-                return AlertsService.success($filter('translate')('A13.4'));
-            }
-
-            AlertsService.success('Registro incluído com sucesso.');
-            $state.go('app.private.audiencia.inserir-audiencia', {}, {reload: true});
+        vm.gerarRelatorio = function(){
+          vm.tbResultado = true;
         }
-
         vm.carregarListConvite = function(){
 
              ConviteRestService
@@ -59,6 +59,7 @@
                  );
         };
         vm.carregarListConvite();
+
         function debounce(func, wait, context) {
           var timer;
 

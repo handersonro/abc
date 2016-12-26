@@ -1,6 +1,7 @@
 (function(){
     'use strict';
 
+    ConviteRestService.$inject = ["$q", "$http"];
     angular
         .module('sisagmApp.convite.controllers')
         .service('ConviteRestService', ConviteRestService);

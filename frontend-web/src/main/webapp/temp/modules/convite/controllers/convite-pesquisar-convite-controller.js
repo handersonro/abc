@@ -1,55 +1,59 @@
 (function(){
+  ConvitePesquisarConviteController.$inject = ["$scope", "$timeout", "$mdSidenav", "$log", "$http", "$mdDialog", "$state", "AlertsService", "ConviteRestService"];
     angular
         .module('sisagmApp.convite.controllers')
-        .controller('ConviteInserirConviteController', ConviteInserirConviteController);
+        .controller('ConvitePesquisarConviteController', ConvitePesquisarConviteController);
 
     /* @ngInject */
-    function ConviteInserirConviteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, AlertsService, ConviteRestService){
+    function ConvitePesquisarConviteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, AlertsService, ConviteRestService){
     var vm = this;
-    vm.title = "Incluir convite";
+    vm.title = "Pesquisar convite";
     vm.autoridade = 'Ministro';
-    vm.convite = {};
-    vm.validacoes = {};
-    vm.showBtnSalvar = showBtnSalvar;
-    vm.salvar = salvar;
+    vm.tbResultado = false;
+    vm.pesquisar = pesquisar;
+    vm.editar = editar;
+    vm.filtro = {};
     vm.limpar = limpar;
-
+    vm.tipoEvento={};
+    vm.validacoes={};
     vm.procurarLocal = ConviteRestService.obterLocais;
     inicializar();
     ///////////////////////////////////
-    function inicializar(){
-        vm.convite = {
-              dataInicioEvento: '',
-              dataFimEvento: '',
-              dataCadastramento: '',
-              remetente: '',
-              descricao: '',
-              tipoEvento: '',
-              pais: '',
-              cidade: '',
-              localEvento: '',
-              observacao: '',
-              despacho: ''
-        };
+    function inicializar (){
+        vm.tipoEvento=[
+          {evento : 'Nacional'},
+          {evento : 'Internacional'}
+        ];
         vm.validacoes=[
           {validado : 'Sim'},
           {validado : 'Não'},
           {validado : 'Indiferente'}
         ];
     }
-    function showBtnSalvar(){
-      return $scope.formConvite.$invalid;
+    function pesquisar (){
+        vm.tbResultado = true;
     }
-    function salvar(){
-        if(vm.dataInicioEvento > vm.dataFimEvento){
-            return AlertsService.success($filter('translate')('A13.4'));
-        }
+    function editar (convite){
+        $state.go('app.private.convite.editar-convite', {convite: convite});
+    }
 
-        AlertsService.success('Registro incluído com sucesso.');
-        $state.go('app.private.convite.inserir-convite', {}, {reload: true});
-    }
+    vm.carregarListConvite = function(){
+
+        ConviteRestService
+            .obterListaConvite({})
+            .then(
+                function(data){
+                    vm.listaConvites = data;
+                },
+                function(error){
+
+                }
+            );
+   };
+    vm.carregarListConvite();
+
     function limpar(){
-        $state.go('app.private.convite.inserir-convite', {}, {reload: true});
+        vm.filtro = {};
     }
     function debounce(func, wait, context) {
       var timer;

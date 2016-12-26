@@ -1,4 +1,5 @@
 (function(){
+    AudienciaInserirAudienciaController.$inject = ["$scope", "$mdDialog", "$timeout", "AlertsService", "ConviteRestService", "$filter", "UsuarioRestService"];
     angular
         .module('sisagmApp.audiencia.controllers')
         .controller('AudienciaInserirAudienciaController', AudienciaInserirAudienciaController);
