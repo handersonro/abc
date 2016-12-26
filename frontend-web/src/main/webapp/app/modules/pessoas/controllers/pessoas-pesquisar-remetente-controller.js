@@ -6,25 +6,31 @@
     /* @ngInject */
     function PessoasPesquisarRemetenteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, AlertsService, $state){
         var vm = this;
+
+        vm.limpar = limpar;
+        vm.showSalvar = showSalvar;
+        vm.pesquisar = pesquisar;
+        vm.editar = editar;
+
         ///////////////////////////////////
         vm.title = "Pesquisar remetente";
-        $scope.tbResultado = false;
+        vm.tbResultado = false;
         vm.filtro = {
               nome: '',
               cargo: '',
               email: '',
               tel: ''
         };
-        vm.limpar = function(){
+        function limpar (){
             vm.filtro ={};
         }
-        $scope.pesquisar = function(){
-            $scope.tbResultado = true;
+        function pesquisar(){
+            vm.tbResultado = true;
         }
-        vm.editar = function(remetente){
+        function editar (remetente){
             $state.go('app.private.pessoas.editar-remetente', {remetente: remetente});
         }
-        vm.showSalvar = showSalvar;
+
         function showSalvar(){
           return $scope.formRemetente.$invalid;
         }
@@ -59,17 +65,6 @@
             });
         };
         /*DIALOG*/
-
-        /**
-        * Supplies a function that will continue to operate until the
-        * time is up.
-        */
-        $scope.toggleLeft = buildDelayedToggler('left');
-        $scope.toggleRight = buildToggler('right');
-        $scope.isOpenRight = function(){
-            return $mdSidenav('right').isOpen();
-        };
-
         function debounce(func, wait, context) {
             var timer;
 
@@ -82,32 +77,6 @@
                     func.apply(context, args);
                 }, wait || 10);
             };
-        }
-
-        /**
-        * Build handler to open/close a SideNav; when animation finishes
-        * report completion in console
-        */
-        function buildDelayedToggler(navID) {
-            return debounce(function() {
-                // Component lookup should always be available since we are not using `ng-if`
-                $mdSidenav(navID)
-                .toggle()
-                .then(function () {
-                    $log.debug("toggle " + navID + " is done");
-                });
-            }, 200);
-        }
-
-        function buildToggler(navID) {
-            return function() {
-                // Component lookup should always be available since we are not using `ng-if`
-                $mdSidenav(navID)
-                .toggle()
-                .then(function () {
-                    $log.debug("toggle " + navID + " is done");
-                });
-            }
         }
     }
 })();

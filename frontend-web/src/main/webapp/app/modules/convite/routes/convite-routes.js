@@ -34,6 +34,25 @@
                 templateUrl: MODULE_PATH+'views/convite-inserir-convite-view.html',
                 resolve: {
                 }
+            })
+            .state(STATE_PATH+MODULE_NAME+'.editar-convite', {
+                url: '/editar-convite',
+                controller: 'ConviteEditarConviteController',
+                controllerAs: 'vm',
+                templateUrl: MODULE_PATH+'views/convite-inserir-convite-view.html',
+                resolve: {
+                },
+                params: {
+                    convite: null
+                }
+            })
+            .state(STATE_PATH+MODULE_NAME+'.pesquisar-convite', {
+                url: '/pesquisar-convite',
+                controller: 'ConvitePesquisarConviteController',
+                controllerAs: 'vm',
+                templateUrl: MODULE_PATH+'views/convite-pesquisar-convite-view.html',
+                resolve: {
+                }
             });
     }
 })();

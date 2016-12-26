@@ -43,7 +43,7 @@
         <!-- conteudo -->
         <!-- footer button-->
         <section class="md-padding action" layout="row" layout-align="end center" layout-wrap>
-            <md-button class="md-raised md-primary" ng-click="pesquisar()">
+            <md-button class="md-raised md-primary" ng-click="vm.pesquisar()">
                 <md-icon>&#xE8B6;</md-icon> Pesquisar
             </md-button>
             <md-button class="md-raised" ng-click="vm.limpar()"><md-icon>&#xE5D5;</md-icon> Limpar</md-button>
@@ -52,7 +52,7 @@
         <!-- footer button-->
     </div>
     <!-- resultado da busca -->
-    <div class="md-padding" ng-show="tbResultado">
+    <div class="md-padding" ng-show="vm.tbResultado">
         <!-- tabela css angular material -->
         <div class="table-responsive-vertical shadow-z-1">
             <!-- Table starts here -->
