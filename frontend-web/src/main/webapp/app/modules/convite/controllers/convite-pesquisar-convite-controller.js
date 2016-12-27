@@ -4,7 +4,7 @@
         .controller('ConvitePesquisarConviteController', ConvitePesquisarConviteController);
 
     /* @ngInject */
-    function ConvitePesquisarConviteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, AlertsService, ConviteRestService){
+    function ConvitePesquisarConviteController($scope, $timeout, $log, $http, $mdDialog, $state, AlertsService, ConviteRestService){
     var vm = this;
     vm.title = "Pesquisar convite";
     vm.autoridade = 'Ministro';
@@ -67,6 +67,24 @@
         }, wait || 10);
       };
     }
+    /*DIALOG*/
+    vm.showConfirm = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+        var confirm = $mdDialog.confirm()
+          .title('Atenção')
+          .textContent('Tem certeza que deseja remover esse registro?')
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Ok')
+          .cancel('Cancelar');
+
+        $mdDialog.show(confirm).then(function() {
+          $scope.status = 'You decided to get rid of your debt.';
+        }, function() {
+          $scope.status = 'You decided to keep your debt.';
+        });
+    };
+    /*DIALOG*/
 
     /**
      * Build handler to open/close a SideNav; when animation finishes

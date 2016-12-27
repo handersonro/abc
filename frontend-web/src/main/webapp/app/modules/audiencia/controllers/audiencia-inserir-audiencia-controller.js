@@ -8,7 +8,7 @@
         var vm = this;
         vm.procurarLocal = ConviteRestService.obterLocais;
         vm.procurarUsuario = UsuarioRestService.obterUsuarios;
-        vm.title = "Incluir audiencia";
+        vm.title = "Incluir audiência";
         vm.autoridade = "Ministro";
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
@@ -20,8 +20,8 @@
                 return AlertsService.success($filter('translate')('A13.4'));
             }
             vm.listaAutoridades = [
-                {autoridade: "Ministro do turismo"},
-                {autoridade: "Secretário executivo"},
+                {autoridade: "Ministro do Turismo"},
+                {autoridade: "Secretário Executivo"},
                 {autoridade: "Secretário Nacional de Estruturação do Turismo"},
                 {autoridade: "Secretário Nacional de Qualificação e Promoção do Turismo"}
             ];

@@ -34,6 +34,25 @@
                 templateUrl: MODULE_PATH+'views/audiencia-inserir-audiencia-view.html',
                 resolve: {
                 }
+            })
+            .state(STATE_PATH+MODULE_NAME+'.editar-audiencia', {
+                url: '/editar-audiencia',
+                controller: 'AudienciaEditarAudienciaController',
+                controllerAs: 'vm',
+                templateUrl: MODULE_PATH+'views/audiencia-inserir-audiencia-view.html',
+                resolve: {
+                },
+                params: {
+                    audiencia: null
+                }
+            })
+            .state(STATE_PATH+MODULE_NAME+'.pesquisar-audiencia', {
+                url: '/pesquisar-audiencia',
+                controller: 'AudienciaPesquisarAudienciaController',
+                controllerAs: 'vm',
+                templateUrl: MODULE_PATH+'views/audiencia-pesquisar-audiencia-view.html',
+                resolve: {
+                }
             });
     }
 })();

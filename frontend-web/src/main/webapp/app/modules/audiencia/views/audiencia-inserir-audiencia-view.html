@@ -9,7 +9,7 @@
     <div class="md-padding">
         <form name="formAudiencia" ng-submit="vm.salvar()">
             <div layout="row" layout-xs="column">
-                <md-input-container flex>
+                <md-input-container flex ng-if="!vm.isEdicao">
                     <label>
                         Data inicial
                     </label>
@@ -17,7 +17,7 @@
                     </md-datepicker>
                     <custom-validator-messages input-name="dataInicial" ></custom-validator-messages>
                 </md-input-container>
-                <md-input-container flex>
+                <md-input-container flex ng-if="!vm.isEdicao">
                     <label>
                         Data final
                     </label>
@@ -50,7 +50,7 @@
                           flex
                           md-input-maxlength="150"
                           md-no-cache="true"
-                          md-selected-item="vm.audiencia.selectedItem"
+                          md-selected-item="vm.audiencia.localEvento"
                           md-input-name="local"
                           md-search-text="vm.textoLocal"
                           md-items="item in vm.procurarLocal(vm.textoLocal)"
@@ -72,7 +72,7 @@
                       flex="50"
                       md-input-maxlength="150"
                       md-no-cache="true"
-                      md-selected-item="vm.audiencia.userSelecionado"
+                      md-selected-item="vm.audiencia.usuario"
                       md-input-name="usuario"
                       md-search-text="vm.textoUsuario"
                       md-items="item in vm.procurarUsuario(vm.textoUsuario)"
@@ -145,7 +145,7 @@
                     </md-icon>
                     Limpar
                 </md-button>
-                <md-button class="md-raised" ng-click="vm.backTlPesquisa()">
+                <md-button class="md-raised" ui-sref="app.public.home.pagina-inicial">
                     <md-icon>
                         &#xE5CD;
                     </md-icon>
