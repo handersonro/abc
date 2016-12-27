@@ -42,6 +42,22 @@
                 templateUrl: MODULE_PATH+'views/relatorio-inserir-relatorio-convite-view.html',
                 resolve: {
                 }
+            })
+            .state(STATE_PATH+MODULE_NAME+'.inserir-relatorio-reunioes', {
+                url: '/inserir-relatorio-reunioes',
+                controller: 'RelatorioInserirRelatorioReunioesController',
+                controllerAs: 'vm',
+                templateUrl: MODULE_PATH+'views/relatorio-inserir-relatorio-reunioes-view.html',
+                resolve: {
+                }
+            })
+            .state(STATE_PATH+MODULE_NAME+'.inserir-relatorio-auditoria', {
+                url: '/inserir-relatorio-auditoria',
+                controller: 'RelatorioInserirRelatorioAuditoriaController',
+                controllerAs: 'vm',
+                templateUrl: MODULE_PATH+'views/relatorio-inserir-relatorio-auditoria-view.html',
+                resolve: {
+                }
             });
     }
 })();

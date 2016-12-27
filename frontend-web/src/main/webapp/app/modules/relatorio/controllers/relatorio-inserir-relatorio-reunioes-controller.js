@@ -1,31 +1,54 @@
 (function(){
     angular
         .module('sisagmApp.relatorio.controllers')
-        .controller('RelatorioInserirRelatorioController', RelatorioInserirRelatorioController);
+        .controller('RelatorioInserirRelatorioReunioesController', RelatorioInserirRelatorioReunioesController);
 
     /* @ngInject */
-    function RelatorioInserirRelatorioController($scope, $mdDialog, $timeout, ConviteRestService){
+    function RelatorioInserirRelatorioReunioesController($scope, $mdDialog, $timeout, ConviteRestService, UsuarioRestService){
         var vm = this;
         vm.procurarLocal = ConviteRestService.obterLocais;
-        ///////////////////////////////////
-        vm.title = "Relatório de audiência";
+        vm.procurarUsuario = UsuarioRestService.obterUsuarios;
+        vm.title = "Relatório de reuniões";
         vm.autoridade = "Ministro";
-        vm.tiposSaida = [
-            {tipo: 'PDF'},
-            {tipo: 'WORD'}
-        ];
-        vm.ordenacoes = [
-            {ordenacao: 'Data de cadastro'},
-            {ordenacao: 'Nome do solicitante'},
-            {ordenacao: 'Assunto'}
-        ];
-        vm.direcoes = [
-            {direcao: 'Crescente'},
-            {direcao: 'Decrescente'}
-        ];
+        vm.tipoEvento = {};
+        vm.tiposSaida = {};
+        vm.ordenacoes = {};
+        vm.direcoes = {};
+        vm.reuniao = {};
+        inicializar();
+        ///////////////////////////////////
+        function inicializar(){
+            vm.tipoEvento=[
+              {evento : 'Nacional'},
+              {evento : 'Internacional'}
+            ];
+            vm.tiposSaida = [
+                {tipo: 'PDF'},
+                {tipo: 'WORD'}
+            ];
+            vm.ordenacoes = [
+                {ordenacao: 'Data da reunião'},
+                {ordenacao: 'Local da reunião'},
+                {ordenacao: 'Assunto pauta da reunião'}
+            ];
+            vm.direcoes = [
+                {direcao: 'Crescente'},
+                {direcao: 'Decrescente'}
+            ];
+        }
+
 
         vm.limpar = function(){
-         
+          vm.reuniao = {};
+        }
+        vm.backTlPesquisa = function(){
+            vm.title = "Relatório de convite";
+            vm.telaPesquisa = true;
+            vm.telaCadastro = false;
+            vm.tbResultado = false;
+        }
+        vm.gerarRelatorio = function(){
+
         }
         vm.carregarListConvite = function(){
 

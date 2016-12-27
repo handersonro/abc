@@ -9,7 +9,7 @@
   <div class="md-padding header-info" layout="row" layout-xs="column"  layout-align="end center">
     <strong>Autoridade: &nbsp;</strong> {{vm.autoridade}}
   </div>
-  <div class="md-padding" ng-if="vm.telaPesquisa">
+  <div class="md-padding">
       <form name="formPesquisaRelatorioAudiencia">
           <!-- conteudo -->
           <div layout="row" layout-xs="column">
@@ -57,6 +57,9 @@
                       </div>
                   </div>
               </md-input-container>
+          </div>
+          <div layout="row" layout-align="start">
+              <md-checkbox ng-model="myForm.$invalid">Inverter cargo solicitante</md-checkbox>
           </div>
           <div layout="row" layout-xs="column">
               <div flex="50" layout="row" layout-align="center center">
@@ -149,8 +152,8 @@
                     &#xE152;
                 </md-icon>
                 <md-select ng-model="vm.filtro.direcao">
-                  <md-option ng-repeat="item in vm.ordenacoes" value="{{item.ordenacao}}">
-                    {{item.ordenacao}}
+                  <md-option ng-repeat="item in vm.direcoes" value="{{item.direcao}}">
+                    {{item.direcao}}
                   </md-option>
                 </md-select>
               </md-input-container>
@@ -170,7 +173,7 @@
                   </md-icon>
                   Limpar
               </md-button>
-              <md-button class="md-raised" ng-click="vm.backTlPesquisa()">
+              <md-button class="md-raised" ui-sref="app.public.home.pagina-inicial">
                   <md-icon>
                       &#xE5CD;
                   </md-icon>

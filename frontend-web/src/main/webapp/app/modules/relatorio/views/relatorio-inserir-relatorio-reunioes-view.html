@@ -26,7 +26,7 @@
                                 <label>
                                     Data inicial
                                 </label>
-                                <md-datepicker ng-model="vm.filtro.dataInicialEven">
+                                <md-datepicker ng-model="vm.reuniao.dataInicialEven">
                                 </md-datepicker>
                               </md-input-container>
 
@@ -34,7 +34,7 @@
                                 <label>
                                     Data final
                                 </label>
-                                <md-datepicker ng-model="vm.filtro.dataFimEven">
+                                <md-datepicker ng-model="vm.reuniao.dataFimEven">
                                 </md-datepicker>
                               </md-input-container>
                         </div>
@@ -54,7 +54,7 @@
                                 <label>
                                     Data inicial
                                 </label>
-                                <md-datepicker ng-model="vm.filtro.dataInicialCad">
+                                <md-datepicker ng-model="vm.reuniao.dataInicialCad">
                                 </md-datepicker>
                               </md-input-container>
 
@@ -62,7 +62,7 @@
                                 <label>
                                     Data final
                                 </label>
-                                <md-datepicker ng-model="vm.filtro.dataFimCad">
+                                <md-datepicker ng-model="vm.reuniao.dataFimCad">
                                 </md-datepicker>
                               </md-input-container>
                         </div>
@@ -71,110 +71,58 @@
               </div>
           </div>
           <div layout-gt-xs="row">
-              <md-input-container flex-gt-xs class="md-icon-float md-block">
-                  <label>
-                      Remetente
-                  </label>
-                  <md-icon>
-                      &#xE8A6;
-                  </md-icon>
-                  <input name="remetente" type="text" ng-model="vm.filtro.remetente" md-maxlength="50"
-                  />
-                  <div ng-messages="formPesquisaAudiencia.remetente.$error">
-                      <div ng-message="md-maxlength">
-                          Mínimo ou igual à 50 caracter
-                      </div>
-                  </div>
-              </md-input-container>
-              <md-input-container class="md-block md-icon-float" flex-gt-sm>
-                <label>Evento</label>
-                <md-icon class="md-datepicker-calendar-icon ng-scope" aria-label="md-calendar" md-svg-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgM2gtMVYxaC0ydjJIOFYxSDZ2Mkg1Yy0xLjExIDAtMS45OS45LTEuOTkgMkwzIDE5YzAgMS4xLjg5IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMTZINVY4aDE0djExek03IDEwaDV2NUg3eiIvPjwvc3ZnPg==" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"></path></svg></md-icon>
-                <md-select ng-model="vm.filtro.tipoSaida">
-                  <md-option ng-repeat="item in vm.tipoEvento" value="{{item.evento}}">
-                    {{item.evento}}
-                  </md-option>
-                </md-select>
-              </md-input-container>
-          </div>
-          <div layout="row">
-            <md-input-container flex="50">
-              <label>
-                  País
-              </label>
-              <md-icon>
-                &#xE55B;
-              </md-icon>
-              <input type="text" ng-model="vm.filtro.pais" name="pais" md-maxlength="150"/>
-
-            </md-input-container>
-
-            <md-input-container flex="50">
-              <label>
-                  Cidade
-              </label>
-              <md-icon>
-                  &#xE7F1;
-              </md-icon>
-              <input name="cidade" type="text" ng-model="vm.filtro.cidade" md-maxlength="150"/>
-            </md-input-container>
+              <md-autocomplete
+                    flex
+                    md-input-maxlength="50"
+                    md-no-cache="true"
+                    md-selected-item="vm.reuniao.participante"
+                    md-input-name="usuario"
+                    md-search-text="vm.textoUsuario"
+                    md-items="item in vm.procurarUsuario(vm.textoUsuario)"
+                    md-item-text="item.usuario"
+                    md-min-length="1"
+                    md-floating-label="Participante">
+                  <md-item-template>
+                    <span md-highlight-text="vm.textoUsuario" md-highlight-flags="^i">{{item.usuario}}</span>
+                  </md-item-template>
+                  <md-not-found>
+                    Nenhum usuário "{{vm.textoUsuario}}" foi encontrado
+                  </md-not-found>
+              </md-autocomplete>
           </div>
           <div layout="row" layout-xs="column">
-              <div flex="50" layout="row" layout-align="center center">
-                  <md-autocomplete
-                        flex
-                        md-no-cache="true"
-                        md-selected-item="vm.filtro.selectedItem"
-                        md-input-name="local"
-                        md-search-text="vm.textoLocal"
-                        md-items="item in vm.procurarLocal(vm.textoLocal)"
-                        md-item-text="item.local"
-                        md-min-length="1"
-                        md-input-maxlength="150"
-                        md-floating-label="Local do evento">
-                      <md-item-template>
-                        <span md-highlight-text="vm.textoLocal" md-highlight-flags="^i">{{item.local}}</span>
-                      </md-item-template>
-                      <md-not-found>
-                        Nenhum local de evento "{{vm.textoLocal}}" foi encontrado
-                      </md-not-found>
-                    </md-autocomplete>
-              </div>
-              <md-input-container class="md-icon-float md-block" flex>
-                  <label>
-                      Validado
-                  </label>
-                  <md-icon>
-                      &#xE834;
-                  </md-icon>
-                  <md-select ng-model="vm.filtro.validado" md-maxlength="255" maxlength="255">
-                      <md-option ng-repeat="item in listaConvites" value="{{item.validado}}">
-                          {{item.validado}}
-                      </md-option>
-                  </md-select>
-              </md-input-container>
-          </div>
-          <div layout="row" layout-xs="column">
-              <md-input-container flex="50" flex-xs="100" class="md-block">
-                  <label>
-                      Observação
-                  </label>
-                  <textarea ng-model="vm.filtro.observacao" rows="3" md-maxlength="255" maxlength="255" md-select-on-focus>
-                  </textarea>
-              </md-input-container>
               <md-input-container class="md-block" flex flex-xs="100">
                   <label>
                       Despacho
                   </label>
-                  <textarea ng-model="vm.filtro.despacho" md-maxlength="150" maxlength="150" rows="3" md-select-on-focus>
+                  <textarea ng-model="vm.reuniao.despacho" md-maxlength="150" maxlength="150" rows="3" md-select-on-focus>
+                  </textarea>
+              </md-input-container>
+          </div>
+          <div layout="row" layout-xs="column">
+               <md-input-container flex flex-xs="100">
+                  <label>
+                      Local  da reunião
+                  </label>
+                  <textarea ng-model="vm.reuniao.localReuniao" rows="3" md-maxlength="150" maxlength="150" md-select-on-focus>
+                  </textarea>
+              </md-input-container>
+          </div>
+          <div layout="row" layout-xs="column">
+              <md-input-container flex flex-xs="100">
+                  <label>
+                      Assunto
+                  </label>
+                  <textarea ng-model="vm.reuniao.assunto" rows="3" md-maxlength="255" maxlength="255" md-select-on-focus>
                   </textarea>
               </md-input-container>
           </div>
           <div class="row">
               <md-input-container class="md-block" flex-xs="100">
                   <label>
-                      Descrição
+                      Pauta da reunião
                   </label>
-                  <textarea ng-model="vm.filtro.descricao" md-maxlength="255" maxlength="255" rows="3" md-select-on-focus>
+                  <textarea ng-model="vm.reuniao.pautaReuniao" md-maxlength="255" maxlength="255" rows="3" md-select-on-focus>
                   </textarea>
               </md-input-container>
           </div>

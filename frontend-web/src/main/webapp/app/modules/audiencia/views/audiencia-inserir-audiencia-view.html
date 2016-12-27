@@ -78,7 +78,7 @@
                       md-items="item in vm.procurarUsuario(vm.textoUsuario)"
                       md-item-text="item.usuario"
                       md-min-length="1"
-                      md-floating-label="Vincular usuário">
+                      md-floating-label="Vincular participante">
                     <md-item-template>
                       <span md-highlight-text="vm.textoUsuario" md-highlight-flags="^i">{{item.usuario}}</span>
                     </md-item-template>
@@ -105,6 +105,16 @@
             <div class="row">
                 <md-input-container class="md-block" flex-xs="100">
                     <label>
+                        Assunto
+                    </label>
+                    <textarea name="txaAssunto" ng-model="vm.audiencia.assunto" md-maxlength="255" rows="3" md-select-on-focus required>
+                    </textarea>
+                    <custom-validator-messages input-name="txaAssunto" ></custom-validator-messages>
+                </md-input-container>
+            </div>
+            <div class="row">
+                <md-input-container class="md-block" flex-xs="100">
+                    <label>
                         Despacho
                     </label>
                     <textarea ng-model="vm.audiencia.despacho" md-maxlength="150" rows="3" md-select-on-focus>
@@ -121,16 +131,7 @@
                     <custom-validator-messages input-name="txaObservacao" ></custom-validator-messages>
                 </md-input-container>
             </div>
-            <div class="row">
-                <md-input-container class="md-block" flex-xs="100">
-                    <label>
-                        Assunto
-                    </label>
-                    <textarea name="txaAssunto" ng-model="vm.audiencia.assunto" md-maxlength="255" rows="3" md-select-on-focus required>
-                    </textarea>
-                    <custom-validator-messages input-name="txaAssunto" ></custom-validator-messages>
-                </md-input-container>
-            </div>
+
             <section class="md-padding action" layout="row" layout-align="end center"
             layout-wrap>
                 <md-button class="md-raised md-primary" ng-disabled="vm.showBtnSalvar()" type="submit">

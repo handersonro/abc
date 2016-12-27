@@ -85,7 +85,7 @@
                 </md-radio-group>
             </div>
             <div layout="row" layout-xs="column">
-                <md-input-container flex class="md-icon-float md-block" >
+                <md-input-container flex class="md-icon-float md-block" ng-if="vm.convite.tipoEvento === 'Evento internacional'">
                     <label>
                         País
                     </label>
@@ -95,7 +95,7 @@
                     <input type="text" ng-model="vm.convite.pais" name="pais" required md-maxlength="150"/>
                     <custom-validator-messages input-name="pais" ></custom-validator-messages>
                 </md-input-container>
-                <md-input-container flex class="md-icon-float md-block">
+                <md-input-container flex class="md-icon-float md-block" ng-if="vm.convite.tipoEvento === 'Evento internacional'">
                     <label>
                         Cidade
                     </label>
@@ -106,7 +106,7 @@
                     <custom-validator-messages input-name="cidade" ></custom-validator-messages>
                 </md-input-container>
             </div>
-            <div layout="row" layout-xs="column">
+            <div layout="row" layout-xs="column" ng-if="vm.convite.tipoEvento === 'Evento nacional'">
               <md-autocomplete
                     flex
                     md-no-cache="true"

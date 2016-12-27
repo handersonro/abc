@@ -36,58 +36,108 @@
                         </md-button>
                     </md-menu-item>
                 </md-menu-content>
-</md-menu>
-<md-menu>
-    <button ng-click="$mdOpenMenu()">
-        Convites   <md-icon class="icon-white">&#xE313;</md-icon>
-    </button>
-    <md-menu-content>
-        <md-menu-item>
-            <md-button ui-sref="app.private.convite.pesquisar-convite" class="item-menu">
-                <md-icon>&#xE8B6;</md-icon> Pesquisar convite
-            </md-button>
-        </md-menu-item>
-        <md-menu-item>
-            <md-button ui-sref="app.private.convite.inserir-convite" class="item-menu">
-                <md-icon>&#xE145;</md-icon> Incluir convite
-            </md-button>
-        </md-menu-item>
-    </md-menu-content>
-</md-menu>
-<md-menu>
-    <button ng-click="$mdOpenMenu()">
-        Audiências   <md-icon class="icon-white">&#xE313;</md-icon>
-    </button>
-    <md-menu-content>
-        <md-menu-item >
-            <md-button ui-sref="app.private.audiencia.pesquisar-audiencia" class="item-menu">
-                <md-icon>&#xE8B6;</md-icon> Buscar audiências
-            </md-button>
-        </md-menu-item>
-        <md-menu-item>
-            <md-button ui-sref="app.private.audiencia.inserir-audiencia" class="item-menu">
-                <md-icon>&#xE145;</md-icon> Incluir audiências
-            </md-button>
-        </md-menu-item>
-    </md-menu-content>
-</md-menu>
-<md-menu>
-    <button ng-click="$mdOpenMenu()">
-        Relatórios   <md-icon class="icon-white">&#xE313;</md-icon>
-    </button>
-    <md-menu-content>
-        <md-menu-item>
-            <md-button ng-click="backTlPesquisa()" ui-sref="app.private.relatorio.inserir-relatorio" class="item-menu">
-                <md-icon>&#xE8B6;</md-icon> Relatório de audiência
-            </md-button>
-        </md-menu-item>
-        <md-menu-item>
-            <md-button ng-click="backTlPesquisa()" ui-sref="app.private.relatorio.inserir-relatorio-convite" class="item-menu">
-                <md-icon>&#xE8B6;</md-icon> Relatório de convite
-            </md-button>
-        </md-menu-item>
-    </md-menu-content>
-</md-menu>
+            </md-menu>
+            <md-menu>
+                <button ng-click="$mdOpenMenu()">
+                    Convites   <md-icon class="icon-white">&#xE313;</md-icon>
+                </button>
+                <md-menu-content>
+                    <md-menu-item>
+                        <md-button ui-sref="app.private.convite.pesquisar-convite" class="item-menu">
+                            <md-icon>&#xE8B6;</md-icon> Pesquisar convite
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ui-sref="app.private.convite.inserir-convite" class="item-menu">
+                            <md-icon>&#xE145;</md-icon> Incluir convite
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+            <md-menu>
+                <button ng-click="$mdOpenMenu()">
+                    Audiências   <md-icon class="icon-white">&#xE313;</md-icon>
+                </button>
+                <md-menu-content>
+                    <md-menu-item >
+                        <md-button ui-sref="app.private.audiencia.pesquisar-audiencia" class="item-menu">
+                            <md-icon>&#xE8B6;</md-icon> Buscar audiências
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ui-sref="app.private.audiencia.inserir-audiencia" class="item-menu">
+                            <md-icon>&#xE145;</md-icon> Incluir audiências
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+            <md-menu>
+                <button ng-click="$mdOpenMenu()">
+                    Reunião   <md-icon class="icon-white">&#xE313;</md-icon>
+                </button>
+                <md-menu-content>
+                    <md-menu-item>
+                        <md-button ui-sref="app.private.reuniao.pesquisar-reuniao" class="item-menu">
+                            <md-icon>&#xE8B6;</md-icon> Pesquisar reunião
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ui-sref="app.private.reuniao.inserir-reuniao" class="item-menu">
+                            <md-icon>&#xE145;</md-icon> Incluir reunião
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+            <md-menu>
+                <button ng-click="$mdOpenMenu()">
+                    Autoridade   <md-icon class="icon-white">&#xE313;</md-icon>
+                </button>
+                <md-menu-content>
+                    <md-menu-item>
+                        <md-button ui-sref="app.private.autoridade.pesquisar-autoridade" class="item-menu">
+                            <md-icon>&#xE8B6;</md-icon> Pesquisar autoridade
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ui-sref="app.private.autoridade.inserir-autoridade" class="item-menu">
+                            <md-icon>&#xE145;</md-icon> Incluir autoridade
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+            <md-menu>
+                <button ng-click="$mdOpenMenu()">
+                    Relatórios   <md-icon class="icon-white">&#xE313;</md-icon>
+                </button>
+                <md-menu-content>
+                    <md-menu-item>
+                        <md-button ui-sref="app.private.relatorio.inserir-relatorio" class="item-menu">
+                            <md-icon>&#xE8B6;</md-icon> Relatório de audiência
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ui-sref="app.private.relatorio.inserir-relatorio-auditoria" class="item-menu">
+                            <md-icon>&#xE8B6;</md-icon> Relatório de auditoria
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="backTlPesquisa()" ui-sref="app.private.relatorio.inserir-relatorio-convite" class="item-menu">
+                            <md-icon>&#xE8B6;</md-icon> Relatório de convite
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ui-sref="app.private.relatorio.inserir-relatorio-reunioes" class="item-menu">
+                            <md-icon>&#xE8B6;</md-icon> Relatório de reuniões
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button class="item-menu">
+                            <md-icon>&#xE8B6;</md-icon> Relatório lista de remetentes
+                        </md-button>
+                    </md-menu-item>
+
+                </md-menu-content>
+            </md-menu>
 </md-menu-bar>
 </div>
 </md-toolbar>

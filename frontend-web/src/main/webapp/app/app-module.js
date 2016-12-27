@@ -23,7 +23,9 @@
             'sisagmApp.home',
             'sisagmApp.pessoas',
             'sisagmApp.convite',
+            'sisagmApp.reuniao',
             'sisagmApp.audiencia',
+            'sisagmApp.autoridade',
             'sisagmApp.relatorio',
             'menu',
 

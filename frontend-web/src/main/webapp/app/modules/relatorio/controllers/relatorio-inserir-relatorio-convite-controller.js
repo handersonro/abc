@@ -7,42 +7,45 @@
     function RelatorioInserirRelatorioConviteController($scope, $mdDialog, $timeout, ConviteRestService){
         var vm = this;
         vm.procurarLocal = ConviteRestService.obterLocais;
-        ///////////////////////////////////
         vm.title = "Relatório de convite";
         vm.autoridade = "Ministro";
-        vm.telaPesquisa = true;
-        vm.tbResultado = false;
-        vm.telaCadastro = false;
-        vm.tipoEvento=[
-          {evento : 'Nacional'},
-          {evento : 'Internacional'}
-        ];
-        vm.tiposSaida = [
-            {tipo: 'PDF'},
-            {tipo: 'WORD'}
-        ];
-        vm.ordenacoes = [
-            {ordenacao: 'Data de cadastro'},
-            {ordenacao: 'Nome do solicitante'},
-            {ordenacao: 'Assunto'}
-        ];
-        vm.direcoes = [
-            {direcao: 'Crescente'},
-            {ordenacao: 'Decrescente'}
-        ];
+        vm.tipoEvento = {};
+        vm.tiposSaida = {};
+        vm.ordenacoes = {};
+        vm.direcoes = {};
+        inicializar();
+        ///////////////////////////////////
+        function inicializar(){
+            vm.tipoEvento=[
+              {evento : 'Nacional'},
+              {evento : 'Internacional'}
+            ];
+            vm.tiposSaida = [
+                {tipo: 'PDF'},
+                {tipo: 'WORD'}
+            ];
+            vm.ordenacoes = [
+                {ordenacao: 'Data de cadastro'},
+                {ordenacao: 'Data do evento'},
+                {ordenacao: 'Descrição'},
+                {ordenacao: 'Local do evento'},
+                {ordenacao: 'Nome do remetente'}
+            ];
+            vm.direcoes = [
+                {direcao: 'Crescente'},
+                {direcao: 'Decrescente'}
+            ];
+        }
+
 
         vm.limpar = function(){
-          vm.filtro = {};
-          vm.audiencia = {};
+
         }
         vm.backTlPesquisa = function(){
             vm.title = "Relatório de convite";
-            vm.telaPesquisa = true;
-            vm.telaCadastro = false;
-            vm.tbResultado = false;
+
         }
         vm.gerarRelatorio = function(){
-          vm.tbResultado = true;
         }
         vm.carregarListConvite = function(){
 

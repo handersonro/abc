@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module('sisagmApp.login.controllers')
+        .module('sisagmApp.pessoas.controllers')
         .controller('PessoasPesquisarParticipanteController', PessoasPesquisarParticipanteController);
 
     /* @ngInject */

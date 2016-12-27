@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module('sisagmApp.pessoas.controllers')
+        .module('sisagmApp.convite.controllers')
         .controller('ConviteEditarConviteController', ConviteEditarConviteController);
 
     /* @ngInject */
