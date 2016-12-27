@@ -68,14 +68,15 @@
                   <thead>
                     <tr>
                       <th class="text-center">Ações</th>
-                      <th>Nome</th>
-                      <th>Cargo</th>
+                      <th>Nome<paginacao-sorting dto="vm.dto" field-name="nome"></paginacao-sorting></th>
+                      <th>Cargo<paginacao-sorting dto="vm.dto" field-name="cargo"></paginacao-sorting></th>
                       <th>E-mail</th>
                       <th>Telefone</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="item in lista">
+
+                    <tr dir-paginate="item in vm.dto.list | itemsPerPage: vm.dto.pageSize" current-page="vm.dto.currentPage" total-items="vm.dto.totalResults">
                       <td class="text-center">
                             <md-menu>
                               <md-button class="md-icon-button" aria-label="Favorite" ng-click="appCtrl.openMenu($mdOpenMenu, $event)">
@@ -109,8 +110,11 @@
                   </tbody>
                 </table>
         </div>
+        <dir-pagination-controls layout layout-align="center" boundary-links="true" on-page-change="vm.changePage(newPageNumber)" template-url="modules/core/directives/paginacao/paginacao-view.html" layout-align="center center" class="dir-pagination-controls">
+        </dir-pagination-controls>
         <!-- tabela css angular material -->
     </div>
+
     <!-- resultado da busca -->
     <!-- TELA DE BUSCA -->
 </md-content>

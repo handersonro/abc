@@ -10,6 +10,7 @@
             'ngMdIcons',
             'ngMask',
             'ngMessages',
+            'textAngular',
             'pascalprecht.translate',
             'ncy-angular-breadcrumb',
 
