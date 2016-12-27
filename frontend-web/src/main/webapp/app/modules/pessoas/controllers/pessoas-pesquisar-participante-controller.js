@@ -4,12 +4,16 @@
         .controller('PessoasPesquisarParticipanteController', PessoasPesquisarParticipanteController);
 
     /* @ngInject */
-    function PessoasPesquisarParticipanteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, AlertsService){
+    function PessoasPesquisarParticipanteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, AlertsService, DTO){
         var vm = this;
+        var _itens = [];
         vm.tbResultado = false;
         vm.editar = editar;
         vm.filtro = {};
+        vm.dto = new DTO();
         vm.title = "Pesquisar participante";
+
+        vm.changePage = changePage;
 
         ///////////////////////////////////
 
@@ -28,10 +32,12 @@
             $http
             .get('modules/pessoas/data/list-pessoas.json')
             .success (function(data){
-                $scope.lista = data;
+                _itens = data;
+                vm.dto.totalResults = data.length;
+                vm.dto.list = _itens.slice(0, vm.dto.pageSize);
             })
             .error(function(){
-                alert('Não fooi possivel carregar os dados')
+                alert('Não fooi possivel carregar os dados');
             });
         };
         $scope.carregaLista();
@@ -104,5 +110,12 @@
                 });
             }
         }
+
+        function changePage(page){
+            console.log('aeaueauh', ((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+            vm.dto.currentPage = page;
+            vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+        }
+        $scope.changePage = changePage;
     }
 })();
