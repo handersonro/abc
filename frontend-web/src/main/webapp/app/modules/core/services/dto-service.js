@@ -9,7 +9,7 @@
         return function(){
             var dto = {
                 "currentPage": 1,
-                "pageSize": 2,
+                "pageSize": 20,
                 "order": "id",
                 "orderDirection": "ASC",
                 "filter": {},

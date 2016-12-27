@@ -126,3 +126,60 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6dc238', end
     margin: 0px;
     display: block;
 }
+/*EDIÇÃO DE TEXTAREA - COMPONENTE*/
+.btn-group {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.btn-group, .btn-group-vertical {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+.btn-group-vertical>.btn, .btn-group>.btn {
+    position: relative;
+    float: left;
+}
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+button.btn.btn-default {
+    border: 1px solid rgb(139,195,74);
+    margin: 0 4px;
+    color: #333;
+}
+button.btn.btn-default:hover {
+    border: 1px solid rgb(139,195,74);
+    background-color: rgb(139,195,74);
+    margin: 0 4px;
+    color: #fff;
+}
+.ta-scroll-window > .ta-bind {
+    border-bottom: 1px solid rgba(0,0,5,0.12);
+}
+.ta-scroll-window > .ta-bind:focus {
+    border-bottom: 2px solid rgb(139,195,74);
+}

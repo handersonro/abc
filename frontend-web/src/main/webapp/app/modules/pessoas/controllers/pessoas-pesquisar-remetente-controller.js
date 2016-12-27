@@ -4,14 +4,15 @@
         .controller('PessoasPesquisarRemetenteController', PessoasPesquisarRemetenteController);
 
     /* @ngInject */
-    function PessoasPesquisarRemetenteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, AlertsService, $state){
+    function PessoasPesquisarRemetenteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, AlertsService, $state, DTO){
         var vm = this;
-
+        var _itens = [];
         vm.limpar = limpar;
         vm.showSalvar = showSalvar;
         vm.pesquisar = pesquisar;
         vm.editar = editar;
-
+        vm.dto = new DTO();
+        vm.changePage = changePage;
         ///////////////////////////////////
         vm.title = "Pesquisar remetente";
         vm.tbResultado = false;
@@ -39,10 +40,12 @@
             $http
             .get('modules/pessoas/data/list-pessoas.json')
             .success (function(data){
-                $scope.lista = data;
+                _itens = data;
+                vm.dto.totalResults = data.length;
+                vm.dto.list = _itens.slice(0, vm.dto.pageSize);
             })
             .error(function(){
-                alert('Não fooi possivel carregar os dados')
+                alert('Não fooi possivel carregar os dados');
             });
         };
         $scope.carregaLista();
@@ -78,5 +81,11 @@
                 }, wait || 10);
             };
         }
+        function changePage(page){
+            console.log('aeaueauh', ((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+            vm.dto.currentPage = page;
+            vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+        }
+        $scope.changePage = changePage;
     }
 })();
