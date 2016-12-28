@@ -4,8 +4,10 @@
         .controller('AutoridadePesquisarAutoridadeController', AutoridadePesquisarAutoridadeController);
 
     /* @ngInject */
-    function AutoridadePesquisarAutoridadeController($scope, $timeout, $log, $http, $mdDialog, $state, AlertsService, UsuarioRestService, ConviteRestService){
+    function AutoridadePesquisarAutoridadeController($scope, $timeout, $log, $http, $mdDialog, $state, AlertsService, UsuarioRestService, ConviteRestService, DTO){
     var vm = this;
+    var _itens = [];
+    vm.dto = new DTO();
     vm.title = "Pesquisar autoridade";
     vm.autoridade = 'Ministro';
     vm.tbResultado = false;
@@ -34,19 +36,23 @@
     }
 
     vm.carregarListConvite = function(){
-
-        ConviteRestService
-            .obterListaConvite({})
-            .then(
-                function(data){
-                    vm.listaConvites = data;
-                },
-                function(error){
-
-                }
-            );
-   };
+    	$http
+    	.get('modules/convite/data/list-convite.json')
+    	.success (function(data){
+    		_itens = data;
+    		vm.dto.totalResults = data.length;
+    		vm.dto.list = _itens.slice(0, vm.dto.pageSize);
+    	})
+    	.error(function(){
+    		alert('Não fooi possivel carregar os dados');
+    	});
+    };
     vm.carregarListConvite();
+    function changePage(page){
+    	vm.dto.currentPage = page;
+    	vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+    }
+    $scope.changePage = changePage;
 
     function limpar(){
         vm.filtro = {};

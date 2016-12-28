@@ -94,21 +94,21 @@
                 </md-input-container>
             </div>
             <div layout="row" layout-xs="column">
-                <md-input-container flex flex-xs="100">
-                    <label>
-                        Assunto
-                    </label>
-                    <textarea ng-model="vm.reuniao.assunto" rows="3" md-maxlength="255" maxlength="255" required md-select-on-focus>
-                    </textarea>
+                <md-input-container>
+                    <h3 class="toolbar-edit-textarea">
+                    	Assunto
+                    </h3>
+                <div text-angular ng-model="vm.reuniao.assunto" layout="column" required name="assunto"></div>
+                <custom-validator-messages input-name="assunto" ></custom-validator-messages>
                 </md-input-container>
             </div>
             <div class="row">
-                <md-input-container class="md-block" flex-xs="100">
-                    <label>
-                        Pauta da reunião
-                    </label>
-                    <textarea ng-model="vm.reuniao.pautaReuniao" md-maxlength="255" maxlength="255" rows="3" required md-select-on-focus>
-                    </textarea>
+                <md-input-container>
+                    <h3 class="toolbar-edit-textarea">
+                    	Pauta da reunião
+                    </h3>
+                    <div text-angular ng-model="vm.reuniao.pautaReuniao" layout="column" required name="pautaReuniao"></div>
+                    <custom-validator-messages input-name="pautaReuniao" ></custom-validator-messages>
                 </md-input-container>
             </div>
             <section class="md-padding action" layout="row" layout-align="end center"

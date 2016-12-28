@@ -4,8 +4,10 @@
         .controller('ReuniaoPesquisarReuniaoController', ReuniaoPesquisarReuniaoController);
 
     /* @ngInject */
-    function ReuniaoPesquisarReuniaoController($scope, $timeout, $log, $http, $mdDialog, $state, AlertsService, UsuarioRestService, ConviteRestService){
+    function ReuniaoPesquisarReuniaoController($scope, $timeout, $log, $http, $mdDialog, $state, AlertsService, UsuarioRestService, ConviteRestService, DTO){
     var vm = this;
+    var _itens = [];
+    vm.dto = new DTO();
     vm.title = "Pesquisar reunião";
     vm.autoridade = 'Ministro';
     vm.tbResultado = false;
@@ -26,6 +28,7 @@
             {autoridade: "Secretário Nacional de Qualificação e Promoção do Turismo"}
         ];
     }
+
     function pesquisar (){
         vm.tbResultado = true;
     }
@@ -34,19 +37,23 @@
     }
 
     vm.carregarListConvite = function(){
-
-        ConviteRestService
-            .obterListaConvite({})
-            .then(
-                function(data){
-                    vm.listaConvites = data;
-                },
-                function(error){
-
-                }
-            );
-   };
+    	$http
+    	.get('modules/convite/data/list-convite.json')
+    	.success (function(data){
+    		_itens = data;
+    		vm.dto.totalResults = data.length;
+    		vm.dto.list = _itens.slice(0, vm.dto.pageSize);
+    	})
+    	.error(function(){
+    		alert('Não fooi possivel carregar os dados');
+    	});
+    };
     vm.carregarListConvite();
+    function changePage(page){
+    	vm.dto.currentPage = page;
+    	vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+    }
+    $scope.changePage = changePage;
 
     function limpar(){
         vm.filtro = {};

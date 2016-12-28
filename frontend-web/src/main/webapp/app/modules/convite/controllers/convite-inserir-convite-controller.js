@@ -21,7 +21,7 @@
         vm.convite = {
               dataInicioEvento: '',
               dataFimEvento: '',
-              dataCadastramento: '',
+              dataCadastramento: new Date(),
               remetente: '',
               descricao: '',
               tipoEvento: '',
@@ -31,6 +31,7 @@
               observacao: '',
               despacho: ''
         };
+        console.log(vm.convite.dataCadastramento);
         vm.validacoes=[
           {validado : 'Sim'},
           {validado : 'Não'},

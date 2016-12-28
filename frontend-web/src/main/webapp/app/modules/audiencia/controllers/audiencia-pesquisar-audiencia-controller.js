@@ -4,8 +4,10 @@
         .controller('AudienciaPesquisarAudienciaController', AudienciaPesquisarAudienciaController);
 
     /* @ngInject */
-    function AudienciaPesquisarAudienciaController($scope, $mdDialog, $timeout, AlertsService, $state, ConviteRestService, $filter, UsuarioRestService){
+    function AudienciaPesquisarAudienciaController($scope, $mdDialog, $http, $timeout, AlertsService, $state, ConviteRestService, $filter, UsuarioRestService, DTO){
         var vm = this;
+        var _itens = [];
+        vm.dto = new DTO();
         vm.procurarLocal = ConviteRestService.obterLocais;
         vm.procurarUsuario = UsuarioRestService.obterUsuarios;
         vm.title = "Pesquisar audiencia";
@@ -42,21 +44,20 @@
         function pesquisar (){
             vm.tbResultado = true;
         }
-
         vm.carregarListConvite = function(){
-
-             ConviteRestService
-                 .obterListaConvite({})
-                 .then(
-                     function(data){
-                         $scope.listaConvites = data;
-                     },
-                     function(error){
-
-                     }
-                 );
+            $http
+            .get('modules/convite/data/list-convite.json')
+            .success (function(data){
+                _itens = data;
+                vm.dto.totalResults = data.length;
+                vm.dto.list = _itens.slice(0, vm.dto.pageSize);
+            })
+            .error(function(){
+                alert('Não fooi possivel carregar os dados');
+            });
         };
-        vm.carregarListConvite();
+       vm.carregarListConvite();
+
         function debounce(func, wait, context) {
           var timer;
 
@@ -88,5 +89,10 @@
             });
         };
         /*DIALOG*/
+        function changePage(page){
+            vm.dto.currentPage = page;
+            vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+        }
+        $scope.changePage = changePage;
     }
 })();
