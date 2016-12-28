@@ -171,6 +171,10 @@ button.btn.btn-default {
     margin: 0 4px;
     color: #333;
 }
+div#toolbarWC,div#toolbarCC {
+    border: 1px solid rgb(139,195,74);
+    margin: 0 4px;
+}
 button.btn.btn-default:hover {
     border: 1px solid rgb(139,195,74);
     background-color: rgb(139,195,74);

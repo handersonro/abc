@@ -43,29 +43,7 @@
                 <input type="text" ng-model="vm.audiencia.solicitante" name="solicitante" required md-maxlength="50" maxlength="50"/>
               </md-input-container>
           </div>
-            <div layout-gt-xs="row">
 
-                    <md-autocomplete
-                          required
-                          flex
-                          md-input-maxlength="150"
-                          md-no-cache="true"
-                          md-selected-item="vm.audiencia.localEvento"
-                          md-input-name="local"
-                          md-search-text="vm.textoLocal"
-                          md-items="item in vm.procurarLocal(vm.textoLocal)"
-                          md-item-text="item.local"
-                          md-min-length="1"
-                          md-floating-label="Local da audiência">
-                        <md-item-template>
-                          <span md-highlight-text="vm.textoLocal" md-highlight-flags="^i">{{item.local}}</span>
-                        </md-item-template>
-                        <md-not-found>
-                          Nenhum local de evento "{{vm.textoLocal}}" foi encontrado
-                        </md-not-found>
-                      </md-autocomplete>
-
-            </div>
             <div layout="row">
                 <md-autocomplete
                       required
@@ -102,16 +80,41 @@
                       <custom-validator-messages input-name="autoridade" ></custom-validator-messages>
                   </md-input-container>
             </div>
-            <div class="row">
-                <md-input-container class="md-block" flex-xs="100">
-                    <label>
-                        Assunto
-                    </label>
-                    <textarea name="txaAssunto" ng-model="vm.audiencia.assunto" md-maxlength="255" rows="3" md-select-on-focus required>
-                    </textarea>
-                    <custom-validator-messages input-name="txaAssunto" ></custom-validator-messages>
-                </md-input-container>
-            </div>
+            <div layout-gt-xs="row">
+              <md-autocomplete
+                    required
+                    flex
+                    md-input-maxlength="150"
+                    md-no-cache="true"
+                    md-selected-item="vm.audiencia.localEvento"
+                    md-input-name="local"
+                    md-search-text="vm.textoLocal"
+                    md-items="item in vm.procurarLocal(vm.textoLocal)"
+                    md-item-text="item.local"
+                    md-min-length="1"
+                    md-floating-label="Local da audiência">
+                  <md-item-template>
+                    <span md-highlight-text="vm.textoLocal" md-highlight-flags="^i">{{item.local}}</span>
+                  </md-item-template>
+                  <md-not-found>
+                    Nenhum local de evento "{{vm.textoLocal}}" foi encontrado
+                  </md-not-found>
+                </md-autocomplete>
+              </div>
+            <md-input-container>
+                <h3 class="toolbar-edit-textarea">
+                	Assunto
+                </h3>
+                <div text-angular ng-model="vm.audiencia.assunto" layout="column" required name="textDescricao"></div>
+                <custom-validator-messages input-name="textDescricao" ></custom-validator-messages>
+            </md-input-container>
+            <md-input-container>
+                <h3 class="toolbar-edit-textarea">
+                	Observação
+                </h3>
+                <div text-angular ng-model="vm.audiencia.observacao" layout="column" required name="txaObservacao"></div>
+                <custom-validator-messages input-name="txaObservacao" ></custom-validator-messages>
+            </md-input-container>
             <div class="row">
                 <md-input-container class="md-block" flex-xs="100">
                     <label>
@@ -121,17 +124,6 @@
                     </textarea>
                 </md-input-container>
             </div>
-            <div class="row">
-                <md-input-container class="md-block" flex-xs="100">
-                    <label>
-                        Observação
-                    </label>
-                    <textarea name="txaObservacao" ng-model="vm.audiencia.observacao" md-maxlength="255" rows="3" md-select-on-focus required>
-                    </textarea>
-                    <custom-validator-messages input-name="txaObservacao" ></custom-validator-messages>
-                </md-input-container>
-            </div>
-
             <section class="md-padding action" layout="row" layout-align="end center"
             layout-wrap>
                 <md-button class="md-raised md-primary" ng-disabled="vm.showBtnSalvar()" type="submit">
