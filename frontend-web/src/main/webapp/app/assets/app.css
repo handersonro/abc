@@ -178,8 +178,22 @@ button.btn.btn-default:hover {
     color: #fff;
 }
 .ta-scroll-window > .ta-bind {
-    border-bottom: 1px solid rgba(0,0,5,0.12);
+    border: 1px solid rgba(0,0,5,0.12);
+    background-color: #f8f8f8;
 }
 .ta-scroll-window > .ta-bind:focus {
     border-bottom: 2px solid rgb(139,195,74);
+}
+.ng-scope.ng-isolate-scope.ta-toolbar.btn-toolbar {
+    background: #f8f8f8;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+.toolbar-edit-textarea{
+    text-align: center;
+    color: #fff;
+    margin: 0;
+    font-size: 20px;
+    padding: 9px;
+    background-color: #8bc34a;
 }

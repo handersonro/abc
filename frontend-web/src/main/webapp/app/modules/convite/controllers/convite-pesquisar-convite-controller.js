@@ -4,8 +4,10 @@
         .controller('ConvitePesquisarConviteController', ConvitePesquisarConviteController);
 
     /* @ngInject */
-    function ConvitePesquisarConviteController($scope, $timeout, $log, $http, $mdDialog, $state, AlertsService, ConviteRestService){
+    function ConvitePesquisarConviteController($scope, $timeout, $log, $http, $mdDialog, $state, AlertsService, ConviteRestService, DTO){
     var vm = this;
+    var _itens = [];
+    vm.dto = new DTO();
     vm.title = "Pesquisar convite";
     vm.autoridade = 'Ministro';
     vm.tbResultado = false;
@@ -29,6 +31,9 @@
           {validado : 'Indiferente'}
         ];
     }
+    function limpar(){
+        vm.filtro = {};
+    }
     function pesquisar (){
         vm.tbResultado = true;
     }
@@ -37,23 +42,24 @@
     }
 
     vm.carregarListConvite = function(){
+        $http
+        .get('modules/convite/data/list-convite.json')
+        .success (function(data){
+            _itens = data;
+            vm.dto.totalResults = data.length;
+            vm.dto.list = _itens.slice(0, vm.dto.pageSize);
+        })
+        .error(function(){
+            alert('Não fooi possivel carregar os dados');
+        });
+    };
+   vm.carregarListConvite();
+   /*exemplo
 
-        ConviteRestService
-            .obterListaConvite({})
-            .then(
-                function(data){
-                    vm.listaConvites = data;
-                },
-                function(error){
+   */
 
-                }
-            );
-   };
-    vm.carregarListConvite();
 
-    function limpar(){
-        vm.filtro = {};
-    }
+
     function debounce(func, wait, context) {
       var timer;
 
@@ -111,6 +117,12 @@
           });
       }
     }
+    function changePage(page){
+        console.log('aeaueauh', ((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+        vm.dto.currentPage = page;
+        vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+    }
+    $scope.changePage = changePage;
   }
 
 

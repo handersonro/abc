@@ -3,7 +3,7 @@
      "id":1,
      "nome": "Fulano da Silva",
      "cargo": "Web Developer",
-     "email": "fulano@gmail.com",    
+     "email": "fulano@gmail.com",
      "dataNascimento": "18/07/1980",
      "sexo": "Masculino",
      "mae": "Maria Elena da Silva",
@@ -16,7 +16,7 @@
      "id":2,
      "nome": "Armando Nogueira",
      "cargo": "Arquiteto de Sistemas",
-     "email": "armando@gmail.com",    
+     "email": "armando@gmail.com",
      "dataNascimento": "20/04/1970",
      "sexo": "Masculino",
      "mae": "Joselina Moreira",
@@ -28,8 +28,8 @@
     {
      "id":3,
      "nome": "Paulo Cunha ",
-     "cargo": "Funcionário Público",    
-     "email": "pauloCunha@gmail.com",    
+     "cargo": "Funcionário Público",
+     "email": "pauloCunha@gmail.com",
      "dataNascimento": "20/04/1970",
      "sexo": "Masculino",
      "mae": "Eleni Maria da Graça",
@@ -42,7 +42,7 @@
      "id":4,
      "nome": "Maria de Lurdes ",
      "cargo": "Secretária de Gabinete",
-     "email": "mariaLu@gmail.com",    
+     "email": "mariaLu@gmail.com",
      "dataNascimento": "07/11/1976",
      "sexo": "Feminino",
      "mae": "Maria de Almeida Lurdes Oliveira",
@@ -54,8 +54,8 @@
     {
      "id":5,
      "nome": "Sandra Cassias ",
-     "cargo": "Recursos Humanos",    
-     "email": "sandra@gmail.com",    
+     "cargo": "Recursos Humanos",
+     "email": "sandra@gmail.com",
      "dataNascimento": "05/06/1972",
      "sexo": "Feminino",
      "mae": "Filomena da Silva",
@@ -64,6 +64,6 @@
      "telefoneC":"(61) 8899-0104",
      "facebook":"@sandraC"
     }
-    
-    
+
+
 ]
