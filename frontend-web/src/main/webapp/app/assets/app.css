@@ -2,8 +2,21 @@ body{
     background-color: #dedede;
     height:auto;
 }
+.padding-auto{
+    margin-bottom:40px;
+}
+.logo-padding-left{
+    padding-left: 20px;
+}
+.cabecalho-logo-menuh{
+    width: 80%;
+    margin: 0 auto;
+}
 .error404 h2{
     color: #333
+}
+.text-center{
+  text-align: center;
 }
 .error404 h2 i{
     font-size: 40px;
@@ -15,7 +28,8 @@ body{
 }
 .header-info{
     background: #f8f8f8;
-    border-bottom: 2px solid rgb(139,195,74)
+    border-bottom: 2px solid rgb(139,195,74);
+    font-size:13px;
 }
 .md-conteudo{
     padding-top: 60px;
@@ -57,7 +71,7 @@ body{
 }
 
 #title .md-toolbar-tools{
-    height:50px;
+    height:49px;
 }
 #title h1{
     color: #fff;
@@ -69,12 +83,12 @@ body{
 }
 .md-toolbar-tools{
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6dc238+0,5cb02c+100 */
-background: #6dc238; /* Old browsers */
-background: -moz-linear-gradient(top, #6dc238 0%, #5cb02c 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top, #6dc238 0%,#5cb02c 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom, #6dc238 0%,#5cb02c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6dc238', endColorstr='#5cb02c',GradientType=0 ); /* IE6-9 */
-    border-bottom: 1px solid #2b662a;
+    background: #6dc238; /* Old browsers */
+    background: -moz-linear-gradient(top, #6dc238 0%, #5cb02c 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #6dc238 0%,#5cb02c 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #6dc238 0%,#5cb02c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6dc238', endColorstr='#5cb02c',GradientType=0 ); /* IE6-9 */
+    /*border-bottom: 1px solid #2b662a;*/
 }
 .menu-bar{
     background-color: #fff;
@@ -83,18 +97,20 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6dc238', end
 /*Menu bar*/
 .menu-bar-item{
     padding: 12px 20px;
-    font-size: 16px !important;
+    font-size: 14px !important;
 }
 .menu-bar-item button{
-    font-size: 16px !important;
+    font-size: 14px !important;
 }
-@media only screen and (max-width: 1263px) {
-   ul.nav.navbar-nav {
-        margin-left: 0;
-    }
+
+@media only screen and (max-width: 960px) {
     .md-conteudo{
-        padding-top: 0px;
+        padding-top: 17px;
     }
+}
+@media only screen and (min-width: 1920px) {
+
+
 }
 .panel{
     margin: 10px;
@@ -111,8 +127,88 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6dc238', end
 .panel-title h3{
     padding: 0;
     margin: 0;
+    font-size: 16px;
 }
 .bg-panel-default{
     background-color: #f8f8f8;
-    border-bottom: 1px solid #d2d2d2;
+    border-bottom: 2px solid rgb(139,195,74);
+}
+.item-menu span.ng-scope {
+    margin: 0px;
+    display: block;
+}
+/*EDIÇÃO DE TEXTAREA - COMPONENTE*/
+.btn-group {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.btn-group, .btn-group-vertical {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+.btn-group-vertical>.btn, .btn-group>.btn {
+    position: relative;
+    float: left;
+}
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+button.btn.btn-default {
+    border: 1px solid rgb(139,195,74);
+    margin: 0 4px;
+    color: #333;
+    cursor: pointer;
+}
+div#toolbarWC,div#toolbarCC {
+    border: 1px solid rgb(139,195,74);
+    margin: 0 4px;
+}
+button.btn.btn-default:hover {
+    border: 1px solid rgb(139,195,74);
+    background-color: rgb(139,195,74);
+    margin: 0 4px;
+    color: #fff;
+}
+.ta-scroll-window > .ta-bind {
+    border: 1px solid rgba(0,0,5,0.12);
+    background-color: #f8f8f8;
+}
+.ta-scroll-window > .ta-bind:focus {
+    border-bottom: 2px solid rgb(139,195,74);
+}
+.ng-scope.ng-isolate-scope.ta-toolbar.btn-toolbar {
+    background: #f8f8f8;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+.toolbar-edit-textarea{
+    color: #fff;
+    margin: 0;
+    font-size: 20px;
+    padding: 9px;
+    background-color: #8bc34a;
 }

@@ -30,11 +30,8 @@
                     </div>
                 </md-input-container>
                 <div layout="row" layout-align="center center">
-                    <md-button class="md-raised md-warn" type="submit" ng-click="showAlert()" ng-disabled="!item.login.length > 0 || !item.senha.length > 0">
-                        Entrar
-                    </md-button>
                     <md-button class="md-raised md-primary" type="submit" ng-click="logar(item)" ng-disabled="!item.login.length > 0 || !item.senha.length > 0"
-                        href="#remetente">
+                        ui-sref="app.public.home.pagina-inicial">
                         Entrar
                     </md-button>
                 </div>

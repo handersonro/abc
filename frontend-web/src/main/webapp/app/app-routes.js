@@ -13,61 +13,27 @@
                abstract: true,
                templateUrl: 'app-view.html',
                resolve:  {
-                    /* @ngInject */
-                   /*'endpoint': function(CASService, $q, Restangular, AlertsManager){
-                        var retorno = $q.defer();
-
-                        CASService.endPointBackend('sisagm.backend.url').then(
-                            function(urlEndpoint){
-                                Restangular.setBaseUrl(urlEndpoint.nome);
-                                retorno.resolve();
-                            },
-                            function(error){
-                                AlertsManager.addError('Não foi possível recuperar o endpoint');
-                                retorno.resolve();
-                            }
-                        );
-
-                        return retorno.promise;
-                   },*/
-
-                    /* @ngInject */
-                   /*'checkConnection': function($q, Restangular, app, Usuario, endpoint, AlertsManager, CASService){
-                        var retorno = $q.defer();
-
-                        CASService.usuarioAutenticado().then(
-                            function(informacoesUsuario){
-                                Usuario.informacoesUsuario = informacoesUsuario;
-                                retorno.resolve();
-                            },
-                            function(error){
-                                AlertsManager.addError('Não foi possível encontrar o backend');
-                                retorno.reject();
-                            }
-                        );
-
-                        return retorno.promise;
-                   },*/
-                   /* @ngInject */
-                  /*'sincronizarUsuario': function($q, checkConnection,CASService){
-                       var retorno = $q.defer();
-
-                       CASService.sincronizarUsuario().then(
-                           function(){
-                               retorno.resolve();
-                           },
-                           function(error){
-                               AlertsManager.addError('Não foi possível sincronizar o usuário');
-                               retorno.reject();
-                           }
-                       );
-
-                       return retorno.promise;
-                  }*/
+                //    /* @ngInject */
+                //    'endpoint': function($q, Restangular, AlertsManager, EndpointFrontend){
+                //        var retorno = $q.defer();
+                   //
+                //        EndpointFrontend.one('locator/endpoint/backend').customGET('sisagm.url.backend').then(
+                //            function(urlEndpoint){
+                //                Restangular.setBaseUrl(urlEndpoint.nome);
+                //                retorno.resolve();
+                //            },
+                //            function(error){
+                //                AlertsManager.addError('Não foi possível recuperar o endpoint');
+                //                retorno.resolve();
+                //            }
+                //        );
+                   //
+                //        return retorno.promise;
+                //    }
 
                }
            });
 
-        $urlRouterProvider.otherwise('/private');
+        $urlRouterProvider.otherwise('/public/login/entrar');
     }
 })();

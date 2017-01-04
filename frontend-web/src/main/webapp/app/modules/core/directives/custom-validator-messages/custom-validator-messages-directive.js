@@ -20,8 +20,6 @@
             compile: function (elem, attrs) {
                 return {
                     pre: function(scope, element, attrs, formController){
-                    },
-                    post: function(scope, element, attrs, formController){
                         scope.form = formController;
                         scope.concatDefaultStringMsg = function (sufix) {
                             if(attrs.hasOwnProperty('overwriteMessage')){
@@ -32,6 +30,9 @@
 
                             return DEFAULT_PREFIX + sufix;
                         };
+                    },
+                    post: function(scope, element, attrs, formController){
+
                     }
                 };
             }

@@ -8,6 +8,10 @@
             'restangular',
             'ngTable',
             'ngMdIcons',
+            'ngMask',
+            'ngMessages',
+            'textAngular',
+            'ngMaterialDatePicker',
             'pascalprecht.translate',
             'ncy-angular-breadcrumb',
 
@@ -18,13 +22,15 @@
             'sisagmApp.private',
             'sisagmApp.public',
             'sisagmApp.login',
+            'sisagmApp.home',
             'sisagmApp.pessoas',
             'sisagmApp.convite',
+            'sisagmApp.reuniao',
+            'sisagmApp.audiencia',
+            'sisagmApp.autoridade',
+            'sisagmApp.relatorio',
             'menu',
 
-
-            'da-loader',
-            'da-infinity-scroll',
             '$alerts',
 
 

@@ -4,10 +4,10 @@
         .controller('PrivateController', PrivateController);
 
     /* @ngInject */
-    function PrivateController($scope, menuService, $mdDialog, Restangular, $state, $timeout, Usuario, LoaderService, $translate){
+    function PrivateController($scope, menuService, $mdDialog, Restangular, $state, $timeout, Usuario, $translate){
         $scope.login = Usuario.getLogin().login;
 
-        $scope.loader = LoaderService;
+        //$scope.loader = LoaderService;
 
         $scope.toggleMenu = menuService.toggleMenu;
 

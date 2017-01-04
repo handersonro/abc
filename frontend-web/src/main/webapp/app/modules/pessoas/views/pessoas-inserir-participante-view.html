@@ -1,161 +1,52 @@
 <div id="title">
     <md-toolbar class=" md-toolbar-tools">
-        <h1 class="md-toolbar-tools">{{title}}</h1>
-        <md-button class="md-icon-button   hide-xs hide-sm hide-md" ng-click="cadastro()" ng-if="!telaCadastro">
-            <md-tooltip md-direction="left">
-                Cadastrar
-            </md-tooltip>
-            <md-icon class="icon-white">&#xE145;</md-icon>
-        </md-button>
+        <h1 class="md-toolbar-tools">{{vm.title}}</h1>
     </md-toolbar>
 </div>
 <md-content class="box">
-    <!-- TELA DE BUSCA -->
-    <div class="md-padding" ng-if="telaPesquisa">
-      <form name="formPesquisaRemetente">
-        <!-- conteudo -->
-        <div layout="row" layout-xs="column">
-          <md-input-container flex=50 class="md-icon-float md-block">
-              <label>
-                  Nome
-              </label>
-              <md-icon>&#xE8A6;</md-icon>
-              <input type="text" ng-model="search.nome" name="nome" md-maxlength="50"/>
-              <div ng-messages="formPesquisaRemetente.nome.$error">
-                <div ng-message="md-maxlength">Mínimo ou igual à 50 caracter</div>
-              </div>
-          </md-input-container>
-          <md-input-container flex class="md-icon-float md-block">
-              <label>
-                  E-mail
-              </label>
-              <md-icon>&#xE0BE;</md-icon>
-              <input type="text" ng-model="email"  md-maxlength="50" />
-              <div ng-messages="formPesquisaRemetente.nome.$error">
-                <div ng-message="md-maxlength">Mínimo ou igual à 50 caracter</div>
-              </div>
-          </md-input-container>
-        </div>
-        <div layout="row" layout-xs="column">
+    <div class="md-padding">
+            <form name="formParticipante" ng-submit="vm.salvar()">
+                <!-- conteudo -->
+                <div layout="row" layout-xs="column">
+                    <md-input-container flex=50 class="md-icon-float md-block">
+                        <label>
+                            Nome
+                        </label>
+                        <md-icon>&#xE8A6;</md-icon>
+                        <input type="text" ng-model="vm.participante.nome" name="nome" md-maxlength="50" required/>
+                        <custom-validator-messages input-name="nome" ></custom-validator-messages>
+                    </md-input-container>
+                    <md-input-container flex class="md-icon-float md-block">
+                        <label>
+                            E-mail
+                        </label>
+                        <md-icon>&#xE0BE;</md-icon>
+                        <input name="email" type="email" ng-model="vm.participante.email"  md-maxlength="50"/>
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column">
+                  <md-input-container flex="70" class=" md-icon-float md-block">
+                      <label>
+                          Cargo
+                      </label>
+                      <md-icon>&#xE8F8;</md-icon>
+                      <input name="cargo" type="text" ng-model="vm.participante.cargo" required md-maxlength="250" maxlength="250" />
+                      <custom-validator-messages input-name="cargo" ></custom-validator-messages>
+                  </md-input-container>
 
-          <md-input-container flex  class=" md-icon-float md-block">
-              <label>
-                  Cargo
-              </label>
-              <md-icon>&#xE8F8;</md-icon>
-              <input name="cargo" type="text" ng-model="search.cargo" md-maxlength="250"/>
-              <div ng-messages="formPesquisaRemetente.cargo.$error">
-                <div ng-message="md-maxlength">Mínimo ou igual à 250 caracter</div>
-              </div>
-          </md-input-container>
+                    <md-input-container flex class="md-icon-float md-block">
+                        <label>
+                            Telefone
+                        </label>
+                        <md-icon>&#xE0CF;</md-icon>
+                        <input name="telefone" type="text" ng-model="vm.participante.tel" mask="(99) 9?9999-9999"/>
+                    </md-input-container>
+                </div>
+                <section class="md-padding action" layout="row" layout-align="end center" layout-wrap>
+                    <md-button class="md-raised md-primary" type="submit" ng-disabled="vm.showBtnSalvar()"><md-icon>&#xE161;</md-icon> Salvar</md-button>
+                    <md-button class="md-raised" ng-click="vm.limpar()"><md-icon>&#xE5D5;</md-icon> Limpar</md-button>
+                    <md-button class="md-raised" ui-sref="app.public.home.pagina-inicial" type="submit"><md-icon>&#xE5CD;</md-icon> Cancelar</md-button>
+                </section>
+            </form>
         </div>
-        <!-- conteudo -->
-        <!-- footer button-->
-        <section class="md-padding action" layout="row" layout-align="end center" layout-wrap>
-          <md-button class="md-raised md-primary" ng-click="pesquisar()" >
-              <md-icon>&#xE8B6;</md-icon> Pesquisar
-            </md-button>
-        </section>
-            <!-- footer button-->
-      </form>
-    </div>
-    <!-- resultado da busca -->
-    <div class="md-padding" ng-if="tbResultado">
-        <!-- tabela css angular material -->
-        <div class="table-responsive-vertical shadow-z-1">
-            <!-- Table starts here -->
-            <table id="table" class="table table-hover table-mc-light-blue">
-                  <thead>
-                    <tr>
-                      <th class="text-center">Ações</th>
-                      <th>Nome</th>
-                      <th>Cargo</th>
-                      <th>E-mail</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr ng-repeat="item in lista | filter:search">
-                      <td class="text-center">
-                            <md-menu>
-                              <md-button class="md-icon-button" aria-label="Favorite" ng-click="appCtrl.openMenu($mdOpenMenu, $event)">
-                                <md-tooltip md-direction="left">
-                                    Ações
-                                </md-tooltip>
-                                   <md-icon class="icon-white">&#xE8B8;</md-icon>
-                              </md-button>
-
-                              <md-menu-content width="1">
-                                <md-menu-item>
-                                  <md-button ng-click="editar(item)" title="{{item.nome}}">
-                                    <md-icon>&#xE22B;</md-icon>
-                                    Editar
-                                  </md-button>
-                                </md-menu-item>
-                                <md-menu-item>
-                                  <md-button ng-click="showConfirm($event)">
-                                    <md-icon>&#xE92B;</md-icon>
-                                    Remover
-                                  </md-button>
-                                </md-menu-item>
-                              </md-menu-content>
-                            </md-menu>
-                      </td>
-                      <td>{{ item.nome }}</td>
-                      <td>{{ item.cargo }}</td>
-                      <td>{{ item.email }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-        </div>
-        <!-- tabela css angular material -->
-    </div>
-    <!-- resultado da busca -->
-    <!-- TELA DE BUSCA -->
-    <!-- TELA DE CADASTRO -->
-    <div class="md-padding" ng-if="telaCadastro">
-        <form name="formParticipante">
-            <!-- conteudo -->
-            <div layout="row" layout-xs="column">
-                <md-input-container flex=50 class="md-icon-float md-block">
-                    <label>
-                        Nome
-                    </label>
-                    <md-icon>&#xE8A6;</md-icon>
-                    <input type="text" ng-model="dado.nome" name="nome" md-maxlength="50" required/>
-                    <div ng-messages="formParticipante.nome.$error">
-                        <div ng-message="required">Campo obrigatório</div>
-                        <div ng-message="md-maxlength">Mínimo ou igual à 50 caracter</div>
-                    </div>
-                </md-input-container>
-                <md-input-container flex class="md-icon-float md-block">
-                    <label>
-                        E-mail
-                    </label>
-                    <md-icon>&#xE0BE;</md-icon>
-                    <input name="email" type="text" ng-model="dado.email"  md-maxlength="50" required/>
-                    <div ng-messages="formParticipante.email.$error">
-                        <div ng-message="md-maxlength">Mínimo ou igual à 50 caracter</div>
-                    </div>
-                </md-input-container>
-            </div>
-            <div layout="row" layout-xs="column">
-                <md-input-container flex  class=" md-icon-float md-block">
-                    <label>
-                        Cargo
-                    </label>
-                    <md-icon>&#xE8F8;</md-icon>
-                    <input name="cargo" type="text" ng-model="cargo" md-maxlength="250"/>
-                    <div ng-messages="formParticipante.cargo.$error">
-                        <div ng-message="md-maxlength">Mínimo ou igual à 250 caracter</div>
-                    </div>
-                </md-input-container>
-            </div>
-            <section class="md-padding action" layout="row" layout-align="end center" layout-wrap>
-                <md-button class="md-raised md-primary" ng-disabled="!nome.length > 0 || !email.length > 0" ng-click="salvar()"><md-icon>&#xE161;</md-icon> Salvar</md-button>
-                <md-button class="md-raised" ng-click="limpar()"><md-icon>&#xE5D5;</md-icon> Limpar</md-button>
-                <md-button class="md-raised" ng-click="backTlPesquisa()"><md-icon>&#xE5CD;</md-icon> Cancelar</md-button>
-            </section>
-        </form>
-    </div>
-    <!-- TELA DE CADASTRO -->
-</md-content>
+    </md-content>

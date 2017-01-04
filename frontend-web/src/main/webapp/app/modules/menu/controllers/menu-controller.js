@@ -1,7 +1,7 @@
  angular.module('menu.controllers')
 
-.controller('MenuController', ['$rootScope','$log','$state','$timeout','$location','menuService','$scope',
-      function ($rootScope, $log, $state, $timeout, $location, menuService, $scope) {
+.controller('MenuController', ['$rootScope','$log','$state','$timeout','$mdSidenav','$location','menuService','$scope',
+      function ($rootScope, $log, $state, $timeout, $mdSidenav, $location, menuService, $scope) {
         $scope.selectItem = menuService.selectItem;
         $scope.sections = menuService.sections;
         $scope.selectSection = menuService.selectSection;
@@ -15,4 +15,13 @@
         $scope.sectionDecoratingToggle = menuService.sectionDecoratingToggle;
         $scope.setIsOpen = menuService.setIsOpen;
         $scope.getIsOpen = menuService.getIsOpen;
+
+        $scope.toggleLeft = buildToggler('left');
+        $scope.toggleRight = buildToggler('right');
+
+        function buildToggler(componentId) {
+          return function() {
+            $mdSidenav(componentId).toggle();
+          }
+        }
       }]);
