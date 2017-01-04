@@ -20,7 +20,8 @@
                         E-mail
                     </label>
                     <md-icon>&#xE0BE;</md-icon>
-                    <input type="email" ng-model="vm.remetente.email"  md-maxlength="50"/>
+                    <input name="email" type="email" ng-model="vm.remetente.email"  md-maxlength="50" required/>
+                    <custom-validator-messages input-name="email" ></custom-validator-messages>
                 </md-input-container>
             </div>
             <div layout="row" layout-xs="column">

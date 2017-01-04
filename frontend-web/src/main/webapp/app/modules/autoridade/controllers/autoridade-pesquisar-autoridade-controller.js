@@ -4,7 +4,7 @@
         .controller('AutoridadePesquisarAutoridadeController', AutoridadePesquisarAutoridadeController);
 
     /* @ngInject */
-    function AutoridadePesquisarAutoridadeController($scope, $timeout, $log, $http, $mdDialog, $state, AlertsService, UsuarioRestService, ConviteRestService, DTO){
+    function AutoridadePesquisarAutoridadeController($scope, $timeout, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, UsuarioRestService, ConviteRestService, DTO){
     var vm = this;
     var _itens = [];
     vm.dto = new DTO();
@@ -30,6 +30,9 @@
     }
     function pesquisar (){
         vm.tbResultado = true;
+        $location.hash('result-pesquisa');
+        // call $anchorScroll()
+        $anchorScroll();
     }
     function editar (autoridade){
         $state.go('app.private.autoridade.editar-autoridade', {autoridade: autoridade});

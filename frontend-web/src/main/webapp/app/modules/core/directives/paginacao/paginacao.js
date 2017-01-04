@@ -19,7 +19,7 @@
     /**
      * Config
      */
-    var moduleName = 'sisagmApp.core.directives';
+    var moduleName = 'sisagmApp.directives';
     var DEFAULT_ID = '__default';
 
     /**

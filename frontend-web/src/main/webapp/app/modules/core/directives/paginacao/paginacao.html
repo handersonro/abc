@@ -1,0 +1,5 @@
+<md-button data-ng-if="boundaryLinks" data-ng-click="setCurrent(1)" data-ng-disabled="pagination.current == 1" class="ng-binding md-raised dir-pagination-item">&laquo;</md-button>
+<md-button data-ng-if="directionLinks" data-ng-click="setCurrent(pagination.current - 1)" data-ng-disabled="pagination.current == 1" class="ng-binding md-raised dir-pagination-item">‹</md-button>
+<md-button data-ng-repeat="pageNumber in pages track by $index" data-ng-click="setCurrent(pageNumber)" data-ng-disabled="pageNumber == '...'" data-ng-class="{'md-primary' : pagination.current == pageNumber}" class="ng-binding md-raised dir-pagination-item">{{ pageNumber }}</md-button>
+<md-button data-ng-if="directionLinks" data-ng-click="setCurrent(pagination.current + 1)" data-ng-disabled="pagination.current == pagination.last" class="ng-binding md-raised dir-pagination-item">›</md-button>
+<md-button data-ng-if="boundaryLinks" data-ng-click="setCurrent(pagination.last)" data-ng-disabled="pagination.current == pagination.last" class="ng-binding md-raised dir-pagination-item">&raquo;</md-button>

@@ -2,6 +2,16 @@ body{
     background-color: #dedede;
     height:auto;
 }
+.padding-auto{
+    margin-bottom:40px;
+}
+.logo-padding-left{
+    padding-left: 20px;
+}
+.cabecalho-logo-menuh{
+    width: 80%;
+    margin: 0 auto;
+}
 .error404 h2{
     color: #333
 }
@@ -98,7 +108,7 @@ body{
         padding-top: 17px;
     }
 }
-@media only screen and (max-width: 1263px) {
+@media only screen and (min-width: 1920px) {
 
 
 }
@@ -171,6 +181,7 @@ button.btn.btn-default {
     border: 1px solid rgb(139,195,74);
     margin: 0 4px;
     color: #333;
+    cursor: pointer;
 }
 div#toolbarWC,div#toolbarCC {
     border: 1px solid rgb(139,195,74);
@@ -195,7 +206,6 @@ button.btn.btn-default:hover {
     border-right: 1px solid #ccc;
 }
 .toolbar-edit-textarea{
-    text-align: center;
     color: #fff;
     margin: 0;
     font-size: 20px;

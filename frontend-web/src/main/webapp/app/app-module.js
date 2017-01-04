@@ -11,6 +11,7 @@
             'ngMask',
             'ngMessages',
             'textAngular',
+            'ngMaterialDatePicker',
             'pascalprecht.translate',
             'ncy-angular-breadcrumb',
 

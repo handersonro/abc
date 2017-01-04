@@ -18,24 +18,35 @@
             <div layout="row" layout-xs="column">
                 <md-input-container flex>
                     <label>
-                        Data inicial
+                        Data início
                     </label>
-                    <md-datepicker name="dataInicial"  ng-model="vm.convite.dataInicio" required>
-                    </md-datepicker>
-                    <custom-validator-messages input-name="dataInicial" ></custom-validator-messages>
+                    <input mdc-datetime-picker date="true" time="true" type="text" name="idDataInicio" short-time="true"
+                            min-date="minDate"
+                            required
+                            format="DD/MM/YYYY HH:mm a"
+                            ng-model="vm.convite.dataInicio">
+                    <custom-validator-messages input-name="idDataInicio" ></custom-validator-messages>
                 </md-input-container>
                 <md-input-container flex>
                     <label>
                         Data final
                     </label>
-                    <md-datepicker name="dataFim"  ng-model="vm.convite.dataFim" required></md-datepicker>
-                    <custom-validator-messages input-name="dataFim" ></custom-validator-messages>
+                    <input mdc-datetime-picker date="true" time="true" type="text" name="idDataFim" short-time="true"
+                            min-date="minDate"
+                            required
+                            format="DD/MM/YYYY HH:mm a"
+                            ng-model="vm.convite.dataFim">
+                    <custom-validator-messages input-name="idDataFim" ></custom-validator-messages>
                 </md-input-container>
                 <md-input-container flex>
                     <label>
                         Data de cadastro
                     </label>
-                    <md-datepicker name="dataCadastramento" ng-model="vm.convite.dataCadastramento" required></md-datepicker>
+                    <input mdc-datetime-picker date="true" time="true" type="text" name="dataCadastramento" short-time="true"
+                            min-date="minDate"
+                            required
+                            format="DD/MM/YYYY HH:mm a"
+                            ng-model="vm.convite.dataCadastramento">
                     <custom-validator-messages input-name="dataCadastramento" ></custom-validator-messages>
                 </md-input-container>
             </div>
@@ -49,15 +60,6 @@
                     </md-icon>
                     <input type="text" ng-model="vm.convite.remetente" name="remetente" required md-maxlength="50"/>
                     <custom-validator-messages input-name="remetente" ></custom-validator-messages>
-                </md-input-container>
-            </div>
-            <div class="row">
-                <md-input-container>
-                    <h3 class="toolbar-edit-textarea">
-                        Descrição
-                    </h3>
-                    <div text-angular ng-model="vm.convite.descricao" layout="column" required name="textDescricao"></div>
-                    <custom-validator-messages input-name="textDescricao" ></custom-validator-messages>
                 </md-input-container>
             </div>
             <div class="row">
@@ -76,7 +78,7 @@
                         País
                     </label>
                     <md-icon>
-                      &#xE55B;
+                        &#xE55B;
                     </md-icon>
                     <input type="text" ng-model="vm.convite.pais" name="pais" required md-maxlength="150"/>
                     <custom-validator-messages input-name="pais" ></custom-validator-messages>
@@ -93,33 +95,24 @@
                 </md-input-container>
             </div>
             <div layout="row" layout-xs="column" ng-if="vm.convite.tipoEvento === 'Evento nacional'">
-              <md-autocomplete
-                    flex
-                    md-no-cache="true"
-                    md-selected-item="vm.convite.localEvento"
-                    md-input-name="local"
-                    md-search-text="vm.convite.textoLocal"
-                    md-items="item in vm.procurarLocal(vm.convite.textoLocal)"
-                    md-item-text="item.local"
-                    md-min-length="1"
-                    required="true"
-                    md-floating-label="Local do evento">
-                  <md-item-template>
-                    <span md-highlight-text="vm.textoLocal" md-highlight-flags="^i">{{item.local}}</span>
-                  </md-item-template>
-                  <md-not-found>
-                    Nenhum local de evento "{{vm.convite.textoLocal}}" foi encontrado
-                  </md-not-found>
+                <md-autocomplete
+                        flex
+                        md-no-cache="true"
+                        md-selected-item="vm.convite.localEvento"
+                        md-input-name="local"
+                        md-search-text="vm.convite.textoLocal"
+                        md-items="item in vm.procurarLocal(vm.convite.textoLocal)"
+                        md-item-text="item.local"
+                        md-min-length="1"
+                        required="true"
+                        md-floating-label="Local do evento">
+                    <md-item-template>
+                        <span md-highlight-text="vm.textoLocal" md-highlight-flags="^i">{{item.local}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        Nenhum local de evento "{{vm.convite.textoLocal}}" foi encontrado
+                    </md-not-found>
                 </md-autocomplete>
-            </div>
-            <div class="row">
-                <md-input-container>
-                    <h3 class="toolbar-edit-textarea">
-                        Observação
-                    </h3>
-                    <div text-angular ng-model="vm.convite.descricao" layout="column" required name="txaObservacao"></div>
-                    <custom-validator-messages input-name="txaObservacao" ></custom-validator-messages>
-                </md-input-container>
             </div>
             <div class="row">
                 <md-input-container class="md-block" flex-xs="100">
@@ -128,6 +121,24 @@
                     </label>
                     <textarea ng-model="vm.convite.despacho" md-maxlength="150" rows="3" md-select-on-focus>
                     </textarea>
+                </md-input-container>
+            </div>
+            <div class="row">
+                <md-input-container>
+                    <h3 class="toolbar-edit-textarea">
+                        Descrição
+                    </h3>
+                    <div text-angular ng-model="vm.convite.descricao" layout="column" required name="textDescricao"></div>
+                    <custom-validator-messages input-name="textDescricao" ></custom-validator-messages>
+                </md-input-container>
+            </div>
+            <div class="row">
+                <md-input-container>
+                    <h3 class="toolbar-edit-textarea">
+                        Observação
+                    </h3>
+                    <div text-angular ng-model="vm.convite.descricao" layout="column" required name="txaObservacao"></div>
+                    <custom-validator-messages input-name="txaObservacao" ></custom-validator-messages>
                 </md-input-container>
             </div>
             <section class="md-padding action" layout="row" layout-align="end center"

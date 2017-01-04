@@ -10,7 +10,7 @@
     <div class="md-padding">
         <form name="formPesquisaAutoridade">
             <div layout="row" layout-xs="column">
-                <md-input-container flex=50 class="md-icon-float md-block">
+                <md-input-container flex="50" flex-xs="100" class="md-icon-float md-block">
                     <label>
                         Descrição da autoridade
                     </label>
@@ -51,7 +51,7 @@
         </form>
     </div>
     <!-- resultado da busca -->
-    <div class="md-padding" ng-show="vm.tbResultado">
+    <div id="result-pesquisa" class="md-padding" ng-show="vm.tbResultado">
         <div class="table-responsive-vertical shadow-z-1">
             <!-- Table starts here -->
             <table id="table" class="table table-hover table-mc-green">

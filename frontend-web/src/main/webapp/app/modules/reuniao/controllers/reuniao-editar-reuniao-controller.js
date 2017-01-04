@@ -20,12 +20,6 @@
         inicializar();
         ///////////////////////////////////
         function inicializar(){
-            vm.listaAutoridades = [
-                {autoridade: "Ministro do Turismo"},
-                {autoridade: "Secretário Executivo"},
-                {autoridade: "Secretário Nacional de Estruturação do Turismo"},
-                {autoridade: "Secretário Nacional de Qualificação e Promoção do Turismo"}
-            ];
         }
 
         function limpar(){
@@ -40,8 +34,5 @@
         function showBtnSalvar(){
           return $scope.formReuniao.$invalid;
         }
-
-
-
     }
 })();

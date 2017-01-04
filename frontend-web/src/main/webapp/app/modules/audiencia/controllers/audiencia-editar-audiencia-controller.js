@@ -20,13 +20,6 @@
             if(vm.dataInicio > vm.dataFim){
                 return AlertsService.success($filter('translate')('A13.4'));
             }
-            vm.listaAutoridades = [
-                {autoridade: "Ministro do Turismo"},
-                {autoridade: "Secretário Executivo"},
-                {autoridade: "Secretário Nacional de Estruturação do Turismo"},
-                {autoridade: "Secretário Nacional de Qualificação e Promoção do Turismo"}
-            ];
-
         }
         ///////////////////////////////////
 

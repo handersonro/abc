@@ -24,7 +24,8 @@
     "angular-breadcrumb": "^0.4.1",
     "moment": "~2.14.1",
     "ngMask": "angular-mask#^3.1.1",
-    "textAngular": "^1.5.16"
+    "textAngular": "^1.5.16",
+    "angular-material-datetime-picker" : "http://sturespgitlab01.mtur.gov.br/componentes-angularjs/ngc-datepicker.git"
   },
   "devDependencies": {},
   "resolutions": {

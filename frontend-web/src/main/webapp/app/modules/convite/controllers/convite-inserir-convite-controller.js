@@ -19,8 +19,8 @@
     ///////////////////////////////////
     function inicializar(){
         vm.convite = {
-              dataInicioEvento: '',
-              dataFimEvento: '',
+              dataInicio: '',
+              dataFim: '',
               dataCadastramento: new Date(),
               remetente: '',
               descricao: '',

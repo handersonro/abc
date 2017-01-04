@@ -4,11 +4,12 @@
         .controller('PessoasPesquisarParticipanteController', PessoasPesquisarParticipanteController);
 
     /* @ngInject */
-    function PessoasPesquisarParticipanteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, AlertsService, DTO){
+    function PessoasPesquisarParticipanteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, DTO){
         var vm = this;
         var _itens = [];
         vm.tbResultado = false;
         vm.editar = editar;
+        vm.pesquisar = pesquisar;
         vm.filtro = {};
         vm.dto = new DTO();
         vm.title = "Pesquisar participante";
@@ -20,8 +21,11 @@
         vm.limpar = function(){
             vm.filtro ={};
         }
-        vm.pesquisar = function(){
+        function pesquisar (){
             vm.tbResultado = true;
+            $location.hash('result-pesquisa');
+            // call $anchorScroll()
+            $anchorScroll();
         }
         function editar (participante){
             $state.go('app.private.pessoas.editar-participante', {participante: participante});

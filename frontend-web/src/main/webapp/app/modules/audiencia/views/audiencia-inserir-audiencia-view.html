@@ -6,6 +6,9 @@
     </md-toolbar>
 </div>
 <md-content class="box">
+    <div class="md-padding header-info" layout="row" layout-xs="column"  layout-align="end center">
+        <strong>Autoridade: &nbsp;</strong> {{vm.autoridade}}
+    </div>
     <div class="md-padding">
         <form name="formAudiencia" ng-submit="vm.salvar()">
             <div layout="row" layout-xs="column">
@@ -13,74 +16,69 @@
                     <label>
                         Data inicial
                     </label>
-                    <md-datepicker name="dataInicial"  ng-model="vm.audiencia.dataInicio" required>
-                    </md-datepicker>
+                    <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                            min-date="minDate"
+                            required
+                            name="dataInicial"
+                            format="DD/MM/YYYY HH:mm a"
+                            ng-model="vm.audiencia.dataInicio">
                     <custom-validator-messages input-name="dataInicial" ></custom-validator-messages>
                 </md-input-container>
                 <md-input-container flex ng-if="!vm.isEdicao">
                     <label>
                         Data final
                     </label>
-                    <md-datepicker name="dataFim"  ng-model="vm.audiencia.dataFim" required></md-datepicker>
+                    <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                            min-date="minDate"
+                            required
+                            name="dataFim"
+                            format="DD/MM/YYYY HH:mm a"
+                            ng-model="vm.audiencia.dataFim">
                     <custom-validator-messages input-name="dataFim" ></custom-validator-messages>
                 </md-input-container>
                 <md-input-container flex>
                     <label>
                         Data de cadastro
                     </label>
-                    <md-datepicker name="dataCadastramento" ng-model="vm.audiencia.dataCadastramento" required></md-datepicker>
+                    <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                            min-date="minDate"
+                            required
+                            name="dataCadastramento"
+                            format="DD/MM/YYYY HH:mm a"
+                            ng-model="vm.audiencia.dataCadastramento">
                     <custom-validator-messages input-name="dataCadastramento" ></custom-validator-messages>
                 </md-input-container>
             </div>
-          <div layout-gt-xs="row">
-              <md-input-container class="md-icon-float md-block" flex-gt-xs >
-                <label>
-                    Solicitante
-                </label>
-                <md-icon>
-                    &#xE8A6;
-                </md-icon>
-                <input type="text" ng-model="vm.audiencia.solicitante" name="solicitante" required md-maxlength="50" maxlength="50"/>
-              </md-input-container>
-          </div>
 
-            <div layout="row">
-                <md-autocomplete
-                      required
-                      flex="50"
-                      md-input-maxlength="150"
-                      md-no-cache="true"
-                      md-selected-item="vm.audiencia.usuario"
-                      md-input-name="usuario"
-                      md-search-text="vm.textoUsuario"
-                      md-items="item in vm.procurarUsuario(vm.textoUsuario)"
-                      md-item-text="item.usuario"
-                      md-min-length="1"
-                      md-floating-label="Vincular participante">
-                    <md-item-template>
-                      <span md-highlight-text="vm.textoUsuario" md-highlight-flags="^i">{{item.usuario}}</span>
-                    </md-item-template>
-                    <md-not-found>
-                      Nenhum usuário "{{vm.textoUsuario}}" foi encontrado
-                    </md-not-found>
-                    <custom-validator-messages input-name="usuario" ></custom-validator-messages>
-                </md-autocomplete>
-                  <md-input-container class="md-icon-float md-block" flex>
-                      <label>
-                          Vincular autoridade
-                      </label>
-                      <md-icon>
-                          &#xE8A6;
-                      </md-icon>
-                      <md-select name="autoridade" ng-model="vm.audiencia.autoridade" required>
-                          <md-option ng-repeat="item in vm.listaAutoridades" value="{{item.autoridade}}">
-                              {{item.autoridade}}
-                          </md-option>
-                      </md-select>
-                      <custom-validator-messages input-name="autoridade" ></custom-validator-messages>
-                  </md-input-container>
-            </div>
-            <div layout-gt-xs="row">
+          <md-input-container class="md-icon-float md-block" flex>
+            <label>
+                Solicitante
+            </label>
+            <md-icon>
+                &#xE8A6;
+            </md-icon>
+            <input type="text" ng-model="vm.audiencia.solicitante" name="solicitante" required md-maxlength="50" maxlength="50"/>
+          </md-input-container>
+          <md-input-container class="md-icon-float md-block padding-auto" flex>
+              <md-chips
+                        flex
+                        ng-model="vm.usuarios"
+                        md-transform-chip="vm.transformChip($chip)"
+                        md-require-match="true">
+                    <md-autocomplete
+                        md-selected-item="vm.selectedItem"
+                        md-search-text="vm.searchText"
+                        md-items="item in vm.querySearch(vm.searchText)"
+                        md-item-text="item.name"
+                        md-floating-label="Vincular participante">
+                      <span md-highlight-text="searchText">{{item.name}}</span>
+                    </md-autocomplete>
+                    <md-chip-template>
+                      <span>{{$chip.name}}</span>
+                    </md-chip-template>
+              </md-chips>
+          </md-input-container>
+          <md-input-container class="md-icon-float md-block" flex>
               <md-autocomplete
                     required
                     flex
@@ -100,7 +98,16 @@
                     Nenhum local de evento "{{vm.textoLocal}}" foi encontrado
                   </md-not-found>
                 </md-autocomplete>
-              </div>
+            </md-input-container>
+            <div class="row">
+                <md-input-container class="md-block" flex-xs="100">
+                    <label>
+                        Despacho
+                    </label>
+                    <textarea ng-model="vm.audiencia.despacho" md-maxlength="150" rows="3" md-select-on-focus>
+                    </textarea>
+                </md-input-container>
+            </div>
             <md-input-container>
                 <h3 class="toolbar-edit-textarea">
                 	Assunto
@@ -115,15 +122,7 @@
                 <div text-angular ng-model="vm.audiencia.observacao" layout="column" required name="txaObservacao"></div>
                 <custom-validator-messages input-name="txaObservacao" ></custom-validator-messages>
             </md-input-container>
-            <div class="row">
-                <md-input-container class="md-block" flex-xs="100">
-                    <label>
-                        Despacho
-                    </label>
-                    <textarea ng-model="vm.audiencia.despacho" md-maxlength="150" rows="3" md-select-on-focus>
-                    </textarea>
-                </md-input-container>
-            </div>
+
             <section class="md-padding action" layout="row" layout-align="end center"
             layout-wrap>
                 <md-button class="md-raised md-primary" ng-disabled="vm.showBtnSalvar()" type="submit">

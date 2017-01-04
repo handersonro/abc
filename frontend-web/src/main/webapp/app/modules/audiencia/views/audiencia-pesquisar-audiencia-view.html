@@ -24,15 +24,19 @@
                         <label>
                             Data inicial
                         </label>
-                        <md-datepicker  ng-model="vm.filtro.dataInicial">
-                        </md-datepicker>
+                        <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                min-date="minDate"
+                                format="DD/MM/YYYY HH:mm a"
+                                ng-model="vm.filtro.dataInicial">
                     </md-input-container>
-                    <md-input-container >
+                    <md-input-container flex>
                         <label>
                             Data final
                         </label>
-                        <md-datepicker  ng-model="vm.filtro.dataFinal">
-                        </md-datepicker>
+                        <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                min-date="minDate"
+                                format="DD/MM/YYYY HH:mm a"
+                                ng-model="vm.filtro.dataFinal">
                     </md-input-container>
                   </div>
               </div>
@@ -141,7 +145,7 @@
       </form>
   </div>
   <!-- resultado da pesquisa-->
-  <div class="md-padding" ng-show="vm.tbResultado">
+  <div id="result-pesquisa" class="md-padding" ng-show="vm.tbResultado">
       <div class="table-responsive-vertical shadow-z-1">
           <!-- Table starts here -->
           <table id="table" class="table table-hover table-mc-green">

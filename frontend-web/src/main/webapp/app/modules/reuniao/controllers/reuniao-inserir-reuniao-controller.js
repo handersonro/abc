@@ -4,7 +4,7 @@
         .controller('ReuniaoInserirReuniaoController', ReuniaoInserirReuniaoController);
 
     /* @ngInject */
-    function ReuniaoInserirReuniaoController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state,  AlertsService, UsuarioRestService, ConviteRestService){
+    function ReuniaoInserirReuniaoController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $q, AlertsService, ConviteRestService){
     var vm = this;
     vm.title = "Incluir reunião";
     vm.autoridade = 'Ministro';
@@ -14,17 +14,22 @@
     vm.salvar = salvar;
     vm.limpar = limpar;
     vm.listaAutoridades = {};
-    vm.procurarUsuario = UsuarioRestService.obterUsuarios;
+    vm.readonly = false;
+    vm.selectedItem = null;
+    vm.searchText = null;
+    vm.querySearch = querySearch;
+    vm.vegetables = loadVegetables();
+    vm.usuarios = [];
+    vm.numberChips = [];
+    vm.numberChips2 = [];
+    vm.listSistemas = [];
+    vm.numberBuffer = '';
+    vm.autocompleteDemoRequireMatch = true;
+    vm.transformChip = transformChip;
     vm.procurarLocal = ConviteRestService.obterLocais;
     inicializar();
     ///////////////////////////////////
     function inicializar(){
-        vm.listaAutoridades = [
-            {autoridade: "Ministro do Turismo"},
-            {autoridade: "Secretário Executivo"},
-            {autoridade: "Secretário Nacional de Estruturação do Turismo"},
-            {autoridade: "Secretário Nacional de Qualificação e Promoção do Turismo"}
-        ];
     }
     function showBtnSalvar(){
       return $scope.formReuniao.$invalid;
@@ -78,6 +83,59 @@
           });
       }
     }
+    /*CHIP*/
+    function transformChip(chip) {
+          // If it is an object, it's already a known chip
+          if (angular.isObject(chip)) {
+            return chip;
+          }
+
+          // Otherwise, create a new one
+          return { name: chip, type: 'new' }
+        }
+        function querySearch (query) {
+            var resolve = $q.defer();
+            resolve.resolve(query ? vm.vegetables.filter(createFilterFor(query)) : []);
+            return resolve.promise;
+        }
+        function createFilterFor(query) {
+          var lowercaseQuery = angular.lowercase(query);
+
+
+          return function filterFn(vegetable) {
+            return (vegetable._lowername.indexOf(lowercaseQuery) === 0);
+          };
+
+        }
+        function loadVegetables() {
+          var veggies = [
+            {
+              'name': 'Paulo Júnior de Jesus Peres'
+            },
+            {
+              'name': 'Júlio Nascimento'
+            },
+            {
+              'name': 'Amanda Amorim Neto'
+            },
+            {
+                'name': 'Bruno Azevedo Amaral'
+            },
+            {
+              'name': 'Camila Ribeiro'
+            },
+            {
+              'name': 'Danilo Cabaré'
+            }
+
+          ];
+
+          return veggies.map(function (veg) {
+            veg._lowername = veg.name.toLowerCase();
+            return veg;
+          });
+        }
+    /*CHIP*/
   }
 
 

@@ -12,20 +12,24 @@
   <div class="md-padding">
       <form name="formPesquisaRelatorioAudiencia">
           <!-- conteudo -->
-          <div layout="row" layout-xs="column">
+          <div layout="row" layout-xs="column"  layout-align="left center">
             <md-input-container flex="50">
                 <label>
                     Data inicial
                 </label>
-                <md-datepicker  ng-model="vm.filtro.dataInicial">
-                </md-datepicker>
+                <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                        min-date="minDate"
+                        format="DD/MM/YYYY HH:mm a"
+                        ng-model="vm.filtro.dataInicial">
             </md-input-container>
-            <md-input-container >
+            <md-input-container flex>
                 <label>
                     Data final
                 </label>
-                <md-datepicker  ng-model="vm.filtro.dataFinal">
-                </md-datepicker>
+                <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                        min-date="minDate"
+                        format="DD/MM/YYYY HH:mm a"
+                        ng-model="vm.filtro.dataFinal">
             </md-input-container>
           </div>
           <div layout="row" layout-xs="column">

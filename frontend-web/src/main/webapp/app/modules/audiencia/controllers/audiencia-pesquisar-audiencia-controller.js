@@ -4,7 +4,7 @@
         .controller('AudienciaPesquisarAudienciaController', AudienciaPesquisarAudienciaController);
 
     /* @ngInject */
-    function AudienciaPesquisarAudienciaController($scope, $mdDialog, $http, $timeout, AlertsService, $state, ConviteRestService, $filter, UsuarioRestService, DTO){
+    function AudienciaPesquisarAudienciaController($scope, $mdDialog, $http, $timeout, AlertsService, $filter, $location, $anchorScroll, $state, ConviteRestService, UsuarioRestService, DTO){
         var vm = this;
         var _itens = [];
         vm.dto = new DTO();
@@ -43,6 +43,9 @@
         }
         function pesquisar (){
             vm.tbResultado = true;
+            $location.hash('result-pesquisa');
+            // call $anchorScroll()
+            $anchorScroll();
         }
         vm.carregarListConvite = function(){
             $http

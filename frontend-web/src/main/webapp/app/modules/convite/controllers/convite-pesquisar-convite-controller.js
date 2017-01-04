@@ -4,7 +4,7 @@
         .controller('ConvitePesquisarConviteController', ConvitePesquisarConviteController);
 
     /* @ngInject */
-    function ConvitePesquisarConviteController($scope, $timeout, $log, $http, $mdDialog, $state, AlertsService, ConviteRestService, DTO){
+    function ConvitePesquisarConviteController($scope, $timeout, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, ConviteRestService, DTO){
     var vm = this;
     var _itens = [];
     vm.dto = new DTO();
@@ -36,6 +36,9 @@
     }
     function pesquisar (){
         vm.tbResultado = true;
+        $location.hash('result-pesquisa');
+        // call $anchorScroll()
+        $anchorScroll();
     }
     function editar (convite){
         $state.go('app.private.convite.editar-convite', {convite: convite});

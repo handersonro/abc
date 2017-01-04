@@ -4,7 +4,7 @@
         .controller('PessoasPesquisarRemetenteController', PessoasPesquisarRemetenteController);
 
     /* @ngInject */
-    function PessoasPesquisarRemetenteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, AlertsService, $state, DTO){
+    function PessoasPesquisarRemetenteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, DTO){
         var vm = this;
         var _itens = [];
         vm.limpar = limpar;
@@ -25,8 +25,11 @@
         function limpar (){
             vm.filtro ={};
         }
-        function pesquisar(){
+        function pesquisar (){
             vm.tbResultado = true;
+            $location.hash('result-pesquisa');
+            // call $anchorScroll()
+            $anchorScroll();
         }
         function editar (remetente){
             $state.go('app.private.pessoas.editar-remetente', {remetente: remetente});
