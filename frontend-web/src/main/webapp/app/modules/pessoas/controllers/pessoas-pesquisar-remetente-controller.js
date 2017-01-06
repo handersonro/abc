@@ -4,7 +4,7 @@
         .controller('PessoasPesquisarRemetenteController', PessoasPesquisarRemetenteController);
 
     /* @ngInject */
-    function PessoasPesquisarRemetenteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, DTO){
+    function PessoasPesquisarRemetenteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, DTO, RemetenteService){
         var vm = this;
         var _itens = [];
         vm.limpar = limpar;
@@ -17,20 +17,25 @@
         vm.title = "Pesquisar remetente";
         vm.tbResultado = false;
         vm.filtro = {
-              nome: '',
-              cargo: '',
-              email: '',
-              tel: ''
+            noRemetente: '',
+            noCargo: '',
+            noEmail: '',
+            nuTelefone: ''
         };
         function limpar (){
             vm.filtro ={};
         }
+
         function pesquisar (){
-            vm.tbResultado = true;
-            $location.hash('result-pesquisa');
-            // call $anchorScroll()
-            $anchorScroll();
+
+            $state.params.filtro.filtros.noRemetente = vm.filtro.noRemetente;
+            $state.params.filtro.filtros.noCargo = vm.filtro.noCargo;
+            $state.params.filtro.filtros.noEmail = vm.filtro.noEmail;
+            $state.params.filtro.filtros.nuTelefone = vm.filtro.nuTelefone.replace(/[^0-9]/g,'');
+            $state.params.filtro.currentPage = 1;
+            getMoreInfinityScrollData($state.params.filtro.currentPage);
         }
+
         function editar (remetente){
             $state.go('app.private.pessoas.editar-remetente', {remetente: remetente});
         }
@@ -39,19 +44,24 @@
           return $scope.formRemetente.$invalid;
         }
 
-        $scope.carregaLista = function(){
-            $http
-            .get('modules/pessoas/data/list-pessoas.json')
-            .success (function(data){
-                _itens = data;
-                vm.dto.totalResults = data.length;
-                vm.dto.list = _itens.slice(0, vm.dto.pageSize);
-            })
-            .error(function(){
-                alert('Não fooi possivel carregar os dados');
+        function getMoreInfinityScrollData(pageNumber){
+            $state.params.filtro.currentPage = pageNumber;
+
+            var promiseLoadMoreData = RemetenteService.consultarComFiltroSemLoader($state.params.filtro);
+
+            promiseLoadMoreData.then(function(data) {
+                    vm.tbResultado = true;
+
+                    $location.hash('result-pesquisa');
+
+                    vm.dto.totalResults = data.list.length;
+                    vm.dto.list = data.list;
+                    $anchorScroll();
+                    adicionarRemetenteNaTabela(data);
             });
-        };
-        $scope.carregaLista();
+
+            return promiseLoadMoreData;
+        }
 
         /*DIALOG*/
         $scope.showConfirm = function(ev) {
