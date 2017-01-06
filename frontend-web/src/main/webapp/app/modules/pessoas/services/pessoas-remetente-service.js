@@ -18,8 +18,8 @@
         return {
             obterPorId: Restangular.one('pessoa/fisica').customGET,
             salvar: Restangular.one('remetentes').customPOST,
-            editar: Restangular.one('pessoa/fisica').customPUT,
-            excluirPorId: Restangular.one('pessoa/fisica/').customDELETE,
+            editar: Restangular.one('remetentes').customPUT,
+            excluirPorId: Restangular.one('remetentes').customDELETE,
             consultarComFiltro: Restangular.one('remetentes/', 'pesquisar').customPOST,
             consultarComFiltroSemLoader: Restangular.one('remetentes/', 'pesquisar').withHttpConfig({'da-loader': false}).customPOST,
             validaCpfReceita: Restangular.one('receitafederal/').customGET

@@ -57,14 +57,13 @@
                     vm.dto.totalResults = data.list.length;
                     vm.dto.list = data.list;
                     $anchorScroll();
-                    adicionarRemetenteNaTabela(data);
             });
 
             return promiseLoadMoreData;
         }
 
         /*DIALOG*/
-        $scope.showConfirm = function(ev) {
+        $scope.showConfirm = function(ev,remetente) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
             .title('Atenção')
@@ -75,6 +74,13 @@
             .cancel('Cancelar');
 
             $mdDialog.show(confirm).then(function() {
+                RemetenteService.excluirPorId(remetente.id).then(
+                    function (sucesso) {
+                        AlertsService.success('Remetente removido com sucesso.');
+                        var index = vm.dto.list.indexOf(remetente);
+                        vm.dto.list.splice(index,1);
+                    }
+                );
                 $scope.status = 'You decided to get rid of your debt.';
             }, function() {
                 $scope.status = 'You decided to keep your debt.';
