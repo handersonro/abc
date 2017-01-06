@@ -112,6 +112,13 @@ body{
 
 
 }
+a.md-fab.md-mini.md-acoes.md-button.md-ink-ripple{
+    background: transparent !important;
+    box-shadow: none !important;
+}
+.md-acoes md-icon.ng-scope.material-icons{
+    color:#fff;
+}
 .panel{
     margin: 10px;
     border: 1px solid #d2d2d2;
