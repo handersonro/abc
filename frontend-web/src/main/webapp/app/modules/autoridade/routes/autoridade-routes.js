@@ -35,6 +35,14 @@
                 resolve: {
                 }
             })
+            .state(STATE_PATH+MODULE_NAME+'.vincular-autoridade', {
+                url: '/vincular-autoridade',
+                controller: 'AutoridadeVincularAutoridadeController',
+                controllerAs: 'vm',
+                templateUrl: MODULE_PATH+'views/autoridade-vincular-autoridade-view.html',
+                resolve: {
+                }
+            })
             .state(STATE_PATH+MODULE_NAME+'.editar-autoridade', {
                 url: '/editar-autoridade',
                 controller: 'AutoridadeEditarAutoridadeController',
