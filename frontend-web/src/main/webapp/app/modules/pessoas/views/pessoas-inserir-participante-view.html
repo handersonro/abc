@@ -5,7 +5,7 @@
 </div>
 <md-content class="box">
     <div class="md-padding">
-            <form name="formParticipante" ng-submit="vm.salvar()">
+            <form name="formParticipante" ng-submit="!formRemetente.$invalid && vm.salvar(vm.participante)">
                 <!-- conteudo -->
                 <div layout="row" layout-xs="column">
                     <md-input-container flex=50 class="md-icon-float md-block">
