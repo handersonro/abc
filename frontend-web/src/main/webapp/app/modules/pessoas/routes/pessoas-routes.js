@@ -67,6 +67,13 @@
                 controller: 'PessoasPesquisarRemetenteController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/pessoas-pesquisar-remetente-view.html',
+                params: {
+                    filtro: {
+                        filtros: { noRemetente : '', noCargo : '' , noEmail : '' , nuTelefone : ''},
+                        currentPage: 1,
+                        pageSize: 10
+                    }
+                },
                 resolve: {
                 }
             })
