@@ -1,0 +1,75 @@
+<div id="title">
+    <md-toolbar class=" md-toolbar-tools">
+        <h1 class="md-toolbar-tools">
+            {{vm.title}}
+        </h1>
+    </md-toolbar>
+</div>
+<md-content class="box">
+<!-- TELA DE CADASTRO -->
+    <div class="md-padding">
+
+        <form name="formVincularAutoridade" ng-submit="vm.salvar()">
+            <!-- conteudo -->
+            <div layout="row">
+                <md-input-container flex class="md-icon-float md-block">
+                    <label>
+                        Autoridade
+                    </label>
+                    <md-icon>&#xE85E;</md-icon>
+                    <md-select ng-model="vm.vincular.autoridade" required>
+                        <md-option ng-repeat="item in vm.listAutoridades" value="{{item.autoridade}}" >
+                            {{item.autoridade}}
+                        </md-option>
+                    </md-select>
+                    <custom-validator-messages input-name="email" ></custom-validator-messages>
+                </md-input-container>
+                <md-autocomplete
+                        flex
+                        required
+                        md-input-name="usuario"
+                        md-no-cache="true"
+                        md-selected-item="vm.filtro.selectedItem"
+                        md-input-name="local"
+                        md-search-text="vm.usuario"
+                        md-items="item in vm.procurarUsuario(vm.usuario)"
+                        md-item-text="item.usuario"
+                        md-min-length="1"
+                        md-input-maxlength="150"
+                        md-floating-label="Usuário">
+                    <md-item-template>
+                        <span md-highlight-text="vm.usuario" md-highlight-flags="^i">{{item.usuario}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        Nenhum usuário "{{vm.usuario}}" foi encontrado
+                    </md-not-found>
+                    <custom-validator-messages input-name="usuario" ></custom-validator-messages>
+                </md-autocomplete>
+
+
+            </div>
+            <section class="md-padding action" layout="row" layout-align="end center"
+            layout-wrap>
+                <md-button class="md-raised md-primary" ng-disabled="vm.showBtnSalvar()" type="submit">
+                    <md-icon>
+                        &#xE161;
+                    </md-icon>
+                    Salvar
+                </md-button>
+                <md-button class="md-raised" ng-click="vm.limpar()">
+                    <md-icon>
+                        &#xE5D5;
+                    </md-icon>
+                    Limpar
+                </md-button>
+                <md-button class="md-raised" ui-sref="app.public.home.pagina-inicial">
+                    <md-icon>
+                        &#xE5CD;
+                    </md-icon>
+                    Cancelar
+                </md-button>
+            </section>
+        </form>
+    </div>
+    <!-- TELA DE CADASTRO -->
+</md-content>
