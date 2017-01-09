@@ -12,7 +12,7 @@
 <!-- TELA DE CADASTRO -->
     <div class="md-padding">
 
-        <form name="formConvite" ng-submit="vm.salvar()">
+        <form name="formConvite" ng-submit="vm.salvar(vm.convite)">
             <!-- conteudo -->
 
             <div layout="row" layout-xs="column">
@@ -24,7 +24,7 @@
                             min-date="minDate"
                             required
                             format="DD/MM/YYYY HH:mm a"
-                            ng-model="vm.convite.dataInicio">
+                            ng-model="vm.convite.dtInicioEvento">
                     <custom-validator-messages input-name="idDataInicio" ></custom-validator-messages>
                 </md-input-container>
                 <md-input-container flex>
@@ -35,7 +35,7 @@
                             min-date="minDate"
                             required
                             format="DD/MM/YYYY HH:mm a"
-                            ng-model="vm.convite.dataFim">
+                            ng-model="vm.convite.dataFimEvento">
                     <custom-validator-messages input-name="idDataFim" ></custom-validator-messages>
                 </md-input-container>
                 <md-input-container flex>
@@ -46,11 +46,30 @@
                             min-date="minDate"
                             required
                             format="DD/MM/YYYY HH:mm a"
-                            ng-model="vm.convite.dataCadastramento">
-                    <custom-validator-messages input-name="dataCadastramento" ></custom-validator-messages>
+                            ng-model="vm.convite.dtCadastro">
+                    <custom-validator-messages input-name="dtCadastro" ></custom-validator-messages>
                 </md-input-container>
             </div>
             <div layout="row" layout-xs="column">
+                <!--<md-autocomplete
+                        flex
+                        md-no-cache="true"
+                        md-selected-item="vm.convite.remetente"
+                        md-input-name="remetente"
+                        md-search-text="vm.convite.remetenteLocal"
+                        md-items="item in vm.procurarRemetente(vm.convite.remetenteLocal)"
+                        md-item-text="item.noRemetente"
+                        md-min-length="3"
+                        required="true"
+                        md-floating-label="Remetente"
+                        md-icon="&#xE8A6">
+                    <md-item-template>
+                        <span md-highlight-text="vm.remetenteLocal" md-highlight-flags="^i">{{item.noRemetente}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        Nenhum local de evento "{{vm.convite.textoLocal}}" foi encontrado
+                    </md-not-found>
+                </md-autocomplete>-->
                 <md-input-container flex class="md-icon-float md-block">
                     <label>
                         Remetente
@@ -95,19 +114,20 @@
                 </md-input-container>
             </div>
             <div layout="row" layout-xs="column" ng-if="vm.convite.tipoEvento === 'Evento nacional'">
+
                 <md-autocomplete
                         flex
                         md-no-cache="true"
-                        md-selected-item="vm.convite.localEvento"
-                        md-input-name="local"
+                        md-selected-item="vm.convite.idLocalidade"
+                        md-input-name="noLocalidade"
                         md-search-text="vm.convite.textoLocal"
                         md-items="item in vm.procurarLocal(vm.convite.textoLocal)"
-                        md-item-text="item.local"
-                        md-min-length="1"
+                        md-item-text="item.localidadesUf"
+                        md-min-length="3"
                         required="true"
                         md-floating-label="Local do evento">
                     <md-item-template>
-                        <span md-highlight-text="vm.textoLocal" md-highlight-flags="^i">{{item.local}}</span>
+                        <span md-highlight-text="vm.textoLocal" md-highlight-flags="^i">{{item.localidadesUf}}</span>
                     </md-item-template>
                     <md-not-found>
                         Nenhum local de evento "{{vm.convite.textoLocal}}" foi encontrado
@@ -137,7 +157,7 @@
                     <h3 class="toolbar-edit-textarea">
                         Observação
                     </h3>
-                    <div text-angular ng-model="vm.convite.descricao" layout="column" required name="txaObservacao"></div>
+                    <div text-angular ng-model="vm.convite.observacao" layout="column" required name="txaObservacao"></div>
                     <custom-validator-messages input-name="txaObservacao" ></custom-validator-messages>
                 </md-input-container>
             </div>
