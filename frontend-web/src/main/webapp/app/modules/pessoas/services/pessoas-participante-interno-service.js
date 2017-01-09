@@ -16,7 +16,9 @@
     /* @ngInject */
     function ParticipanteInternoService(Restangular) {
         return {
-            salvar: Restangular.one('participantes/interno').customPOST
+            salvar: Restangular.one('participantes/interno').customPOST,
+            consultarComFiltro: Restangular.one('participantes/interno/', 'pesquisar').customPOST,
+            consultarComFiltroSemLoader: Restangular.one('participantes/interno/', 'pesquisar').withHttpConfig({'da-loader': false}).customPOST,
         };
     }
 })();

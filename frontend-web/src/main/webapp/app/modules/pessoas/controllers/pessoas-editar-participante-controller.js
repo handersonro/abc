@@ -4,7 +4,7 @@
         .controller('PessoasEditarParticipanteController', PessoasEditarParticipanteController);
 
     /* @ngInject */
-    function PessoasEditarParticipanteController($scope, $timeout, $http, AlertsService, $stateParams, $state){
+    function PessoasEditarParticipanteController($scope, $timeout, $http, AlertsService, $stateParams, $state, ParticipanteInternoService, ParticipanteExternoService){
         var vm = this;
         vm.title = "Editar participante";
         vm.participante = $stateParams.participante;
@@ -21,8 +21,23 @@
         }
 
         function salvar(){
-          AlertsService.success('Registro alterado com sucesso.');
-          $state.go('app.private.pessoas.pesquisar-participante');
+            participante.nuTelefone = remetente.nuTelefone.replace(/[^0-9]/g, '');
+
+            console.log(participante);
+
+            ParticipanteInternoService.editar(participante).then(
+                function (retorno) {
+                    AlertsService.success('Registro alterado com sucesso.');
+                    $state.go('app.private.pessoas.pesquisar-participante');
+                }
+            );
+
+/*            ParticipanteExternoService.editar(participante).then(
+                function (retorno) {
+                    AlertsService.success('Registro alterado com sucesso.');
+                    $state.go('app.private.pessoas.pesquisar-participante');
+                }
+            );*/
         }
 
         function showBtnSalvar(){
