@@ -49,7 +49,8 @@
 
             var promiseLoadMoreData = RemetenteService.consultarComFiltroSemLoader($state.params.filtro);
 
-            promiseLoadMoreData.then(function(data) {
+            promiseLoadMoreData.then(
+                function(data) {
                     vm.tbResultado = true;
 
                     $location.hash('result-pesquisa');
@@ -57,7 +58,12 @@
                     vm.dto.totalResults = data.list.length;
                     vm.dto.list = data.list;
                     $anchorScroll();
-            });
+                },function (error) {
+                    vm.tbResultado = false;
+                    vm.dto.totalResults = 0;
+                    vm.dto.list = [];
+                }
+            );
 
             return promiseLoadMoreData;
         }
