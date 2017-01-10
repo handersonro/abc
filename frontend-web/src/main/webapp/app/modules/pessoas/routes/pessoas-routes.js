@@ -96,6 +96,17 @@
                 params: {
                     remetente: null
                 }
-            });
+            })
+            .state(STATE_PATH+MODULE_NAME+'.help', {
+            url: '/help',
+            controller: 'PessoasEditarRemetenteController',
+            controllerAs: 'vm',
+            templateUrl: MODULE_PATH+'views/pessoas-help.html',
+            resolve: {
+            },
+            params: {
+                remetente: null
+            }
+        });
     }
 })();
