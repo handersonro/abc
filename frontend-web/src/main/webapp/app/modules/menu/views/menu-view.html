@@ -1,12 +1,13 @@
-<div layout-xs="column" layout-sm="column" layout-md="row" layout-lg="row"  class="menu-bar">
+<div layout="row" class="menu-bar">
+    <div flex></div>
     <div class="md-padding show-xs show-sm hide-md hide-lg hide-gt-lg" layout="row" layout-align="center center">
         <h1>SISAGM</H1>
         <span flex></span>
         <md-button class="md-fab md-mini md-primary" aria-label="More" ng-click="toggleLeft()">
-           <md-icon>&#xE8FE;</md-icon>
+            <md-icon>&#xE8FE;</md-icon>
         </md-button>
     </div>
-    <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop md-whiteframe="4">
+    <md-sidenav class="md-sidenav-left hide-md hide-lg hide-gt-lg" md-component-id="left" md-disable-backdrop md-whiteframe="4">
         <md-card>
             <img src="assets/img/logo-sisagm-xs.png" class="md-card-image" alt="Washed Out">
             <md-toolbar class="md-theme-indigo">
@@ -114,16 +115,12 @@
           </md-content>
 
     </md-sidenav>
-    <div flex>
-
-    </div>
-    <div flex="80"  class="hide-xs hide-sm">
+    <div flex="80" class="menu-container hide-xs hide-sm">
         <div>
             <!--<md-toolbar class="md-menu-toolbar hide-xs hide-sm hide-md ">-->
             <md-toolbar class="md-menu-toolbar ">
                 <md-toolbar class="md-menu-toolbar">
                     <div layout="row" layout-align="center center">
-                        <h1 class="logo-padding-left show-gt-lg hide-gt-sm hide-gt-md hide-gt-xs">SISAGM</H1>
                         <span flex></span>
                         <md-menu-bar class="menu-bar-item">
                             <md-menu>
@@ -266,7 +263,5 @@
             </md-toolbar>
         </div>
     </div>
-    <div flex>
-
-    </div>
+    <div flex> </div>
 </div>
