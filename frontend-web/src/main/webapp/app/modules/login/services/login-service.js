@@ -19,7 +19,9 @@
     /* @ngInject */
     function LoginService(Restangular) {
         return {
-            autenticar: Restangular.one('autenticar/logar').customPOST
+            autenticar: Restangular.one('autenticar/logar').customPOST,
+            current: Restangular.one('autenticar/account').get
+
         };
     }
 })();
