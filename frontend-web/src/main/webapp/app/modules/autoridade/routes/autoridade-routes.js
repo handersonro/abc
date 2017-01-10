@@ -59,6 +59,15 @@
                 controller: 'AutoridadePesquisarAutoridadeController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/autoridade-pesquisar-autoridade-view.html',
+                params: {
+                    filtro: {
+                        filtros: { noAutoridade : '', noEmail : ''},
+                        currentPage: 1,
+                        pageSize: 20,
+                        sortFields: 'id',
+                        sortDirections: 'asc'
+                    }
+                },
                 resolve: {
                 }
             });

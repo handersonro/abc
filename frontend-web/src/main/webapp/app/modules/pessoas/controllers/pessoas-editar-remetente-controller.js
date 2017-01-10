@@ -24,8 +24,6 @@
 
             remetente.nuTelefone = remetente.nuTelefone.replace(/[^0-9]/g,'');
 
-            console.log(remetente);
-
             RemetenteService.editar(remetente).then(
                 function (retorno) {
                     AlertsService.success('Registro alterado com sucesso.');
