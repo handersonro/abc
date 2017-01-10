@@ -2,7 +2,7 @@
     <md-toolbar class=" md-toolbar-tools">
         <h1 class="md-toolbar-tools">{{vm.title}}</h1>
         <span flex></span>
-        <md-button class="md-fab md-mini md-acoes" aria-label="Use Android" ui-sref="app.private.pessoas.help">
+        <md-button class="md-fab md-mini md-acoes" aria-label="Use Android" ng-click="vm.help($event)">
             <md-tooltip md-direction="left">
                 Ajuda
             </md-tooltip>
