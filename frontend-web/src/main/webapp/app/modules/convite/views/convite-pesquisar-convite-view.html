@@ -259,13 +259,12 @@
                             {{ item.remetente }}
                         </td>
                         <td>
-                            {{ item.dataCadastro }}
+                            {{ item.dataCadastro | date : 'dd/MM/yyyy HH:mm a'}}
                         </td>
                         <td>
                             {{ item.localEvento }}
                         </td>
-                        <td>
-                            {{ item.dataEventoInicio }} à {{ item.dataEventoFim }}
+                            {{ item.dataEventoInicio | date : 'dd/MM/yyyy HH:mm a' }} à {{ item.dataEventoFim | date : 'dd/MM/yyyy HH:mm a' }}
                         </td>
                         <td>
                             {{ item.validado }}

@@ -16,10 +16,24 @@ md-toast.ng-scope._md.md-md-danger-theme-theme.md-top.md-left.md-right{
     -moz-border-radius: 8px;
     border-radius: 8px;
 }
+md-toast.ng-scope._md.md-md-danger-theme-theme.md-bottom{
+    background-color: red;
+    color: #fff;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
 md-toast.ng-scope._md.md-md-warning-theme-theme.md-top.md-left.md-right{
     background-color: #eb8f00;
     color: #fff;
     margin: 5px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+md-toast.ng-scope._md.md-md-warning-theme-theme.md-bottom{
+    background-color: #eb8f00;
+    color: #fff;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
@@ -35,8 +49,12 @@ md-toast.ng-scope._md.md-md-success-theme-theme.md-top.md-left.md-right{
     -moz-border-radius: 8px;
     border-radius: 8px;
 }
-md-toast.ng-scope._md.md-success-theme.md-top.md-left.md-right{
-
+md-toast.ng-scope._md.md-md-success-theme-theme.md-bottom{
+    background-color: rgb(139,195,74);
+    color: #fff;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
 }
 md-toast.md-top{
     position: fixed;
