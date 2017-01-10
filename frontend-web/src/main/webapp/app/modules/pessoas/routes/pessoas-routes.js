@@ -78,7 +78,9 @@
                     filtro: {
                         filtros: { noRemetente : '', noCargo : '' , noEmail : '' , nuTelefone : ''},
                         currentPage: 1,
-                        pageSize: 10
+                        pageSize: 20,
+                        sortFields: 'id',
+                        sortDirections: 'asc'
                     }
                 },
                 resolve: {
