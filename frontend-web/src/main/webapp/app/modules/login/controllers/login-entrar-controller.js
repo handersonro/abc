@@ -12,10 +12,28 @@
         function logar () {
             LoginService.autenticar(vm.user)
                 .then(
+
+
+
+
                 function(retorno){
-                    AlertsService.success("Usuário Logado")
+
+                    console.log(retorno.id_token);
+                    console.log(LoginService.current());
+                    console.log(LoginService);
+
+                    LoginService.current().setDefaultHeaders({'Authorization': 'Basic ' + retorno.id_token }).then(function(retorno2){
+                        console.log(retorno2);
+                    })
+
+
+
+
+
                 }).catch(function (retorno) {
-                    AlertsService.success(retorno.data.mensagens[0].msg)
+                    if(retorno.data != null){
+                        AlertsService.error(retorno.data.mensagens!= null ?  retorno.data.mensagens[0].msg: '');
+                    }
                 });
         }
     }
