@@ -16,6 +16,12 @@
         ///////////////////////////////////
         function inicializar(){
             vm.participante = {};
+            vm.filtro = {
+                noRemetente: '',
+                noCargo: '',
+                noEmail: '',
+                nuTelefone: ''
+            };
         }
         function limpar(){
             $state.go('app.private.pessoas.inserir-participante', {}, {reload: true});

@@ -21,23 +21,27 @@
         }
 
         function salvar(){
-            participante.nuTelefone = remetente.nuTelefone.replace(/[^0-9]/g, '');
-
-            console.log(participante);
-
-            ParticipanteInternoService.editar(participante).then(
-                function (retorno) {
-                    AlertsService.success('Registro alterado com sucesso.');
-                    $state.go('app.private.pessoas.pesquisar-participante');
-                }
-            );
-
-/*            ParticipanteExternoService.editar(participante).then(
+            vm.participanteVO ={
+                id:vm.participante.id,
+                nuTelefone:vm.participante.tel != undefined ? vm.participante.tel.replace(/[^0-9]/g, '') : '',
+                noParticianteExterno:vm.participante.nome,
+                noCargo:vm.participante.cargo,
+                noEmail:vm.participante.email
+            };
+            console.log(vm.participanteVO);
+/*            ParticipanteInternoService.editar(vm.participante).then(
                 function (retorno) {
                     AlertsService.success('Registro alterado com sucesso.');
                     $state.go('app.private.pessoas.pesquisar-participante');
                 }
             );*/
+
+            ParticipanteExternoService.editar(vm.participanteVO).then(
+                function (retorno) {
+                    AlertsService.success('Registro alterado com sucesso.');
+                    $state.go('app.private.pessoas.pesquisar-participante');
+                }
+            );
         }
 
         function showBtnSalvar(){
