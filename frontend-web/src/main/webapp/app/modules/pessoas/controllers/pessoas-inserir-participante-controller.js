@@ -24,21 +24,21 @@
           return $scope.formParticipante.$invalid;
         }
         function salvar(participante){
-            var participanteInterno = montaParticipanteInterno(participante);
+/*            var participanteInterno = montaParticipanteInterno(participante);
             ParticipanteInternoService.salvar(participanteInterno).then(
                 function (retorno) {
                     AlertsService.success('Registro incluído com sucesso.');
                     $state.go('app.private.pessoas.inserir-participante', {}, {reload: true});
                 }
-            );
+            );*/
 
-/*            var participanteExterno = montaParticipanteExterno(participante);
+            var participanteExterno = montaParticipanteExterno(participante);
             ParticipanteExternoService.salvar(participanteExterno).then(
                 function (retorno) {
                     AlertsService.success('Registro incluído com sucesso.');
                     $state.go('app.private.pessoas.inserir-participante', {}, {reload: true});
                 }
-            );*/
+            );
         }
         function montaParticipanteInterno(participante){
             var participanteInterno = {};

@@ -16,13 +16,11 @@
     /* @ngInject */
     function RemetenteService(Restangular) {
         return {
-            obterPorId: Restangular.one('pessoa/fisica').customGET,
+            obterPorId: Restangular.one('remetentes').customGET,
             salvar: Restangular.one('remetentes').customPOST,
             editar: Restangular.one('remetentes').customPUT,
             excluirPorId: Restangular.one('remetentes').customDELETE,
-            consultarComFiltro: Restangular.one('remetentes/', 'pesquisar').customPOST,
             consultarComFiltroSemLoader: Restangular.one('remetentes/', 'pesquisar').withHttpConfig({'da-loader': false}).customPOST,
-            validaCpfReceita: Restangular.one('receitafederal/').customGET
         };
     }
 })();

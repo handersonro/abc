@@ -32,6 +32,13 @@
                 controller: 'PessoasPesquisarParticipanteController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/pessoas-pesquisar-participante-view.html',
+                params: {
+                    filtro: {
+                        filtros: { noParticipanteInterno : '', noCargo : '' , noEmail : '' , nuTelefone : ''},
+                        currentPage: 1,
+                        pageSize: 10
+                    }
+                },
                 resolve: {
                 }
             })
@@ -71,7 +78,9 @@
                     filtro: {
                         filtros: { noRemetente : '', noCargo : '' , noEmail : '' , nuTelefone : ''},
                         currentPage: 1,
-                        pageSize: 10
+                        pageSize: 20,
+                        sortFields: 'id',
+                        sortDirections: 'asc'
                     }
                 },
                 resolve: {

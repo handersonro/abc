@@ -4,12 +4,15 @@
         .controller('PessoasInserirRemetenteController', PessoasInserirRemetenteController);
 
     /* @ngInject */
-    function PessoasInserirRemetenteController($scope, $timeout, $http, $state, $stateParams, AlertsService, RemetenteService){
+    function PessoasInserirRemetenteController($scope, $timeout, $http, $state, $mdDialog, $stateParams, AlertsService, RemetenteService){
         var vm = this;
         ///////////////////////////////////
         vm.title = "Incluir remetente";
         vm.showBtnSalvar = showBtnSalvar;
         vm.remetente = {};
+        vm.help = help;
+        vm.status = '  ';
+        vm.customFullscreen = false;
         vm.limpar = function(){
             $state.go('app.private.pessoas.inserir-remetente', {}, {reload: true});
         }
@@ -32,6 +35,20 @@
         function showBtnSalvar(){
           return $scope.formRemetente.$invalid;
         }
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: PessoasInserirRemetenteController,
+                templateUrl: '/modules/pessoas/help/modal-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
 
         $scope.carregaLista = function(){
             $http

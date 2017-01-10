@@ -2,7 +2,7 @@
     <md-toolbar class=" md-toolbar-tools">
         <h1 class="md-toolbar-tools">{{vm.title}}</h1>
         <span flex></span>
-        <md-button class="md-fab md-mini md-acoes" aria-label="Use Android" ui-sref="app.private.pessoas.help">
+        <md-button class="md-fab md-mini md-acoes" aria-label="Use Android" ng-click="vm.help($event)">
             <md-tooltip md-direction="left">
                 Ajuda
             </md-tooltip>
@@ -14,7 +14,7 @@
     <div class="md-padding">
         <form name="formRemetente" novalidate ng-submit="!formRemetente.$invalid && vm.salvar(vm.remetente)">
             <div layout="row" layout-xs="column">
-                <md-input-container flex=50 class="md-icon-float md-block">
+                <md-input-container flex="50" flex-xs="100" class="md-icon-float md-block">
                     <label>
                         Nome
                     </label>
@@ -22,7 +22,7 @@
                     <input type="text" ng-model="vm.remetente.noRemetente" name="nome" ng-required="true" md-maxlength="50" maxlength="50" />
                     <custom-validator-messages input-name="nome" ></custom-validator-messages>
                 </md-input-container>
-                <md-input-container flex=50 class="md-icon-float md-block">
+                <md-input-container flex="50" flex-xs="100" class="md-icon-float md-block">
                     <label>
                         E-mail
                     </label>
@@ -32,7 +32,7 @@
                 </md-input-container>
             </div>
             <div layout="row" layout-xs="column">
-              <md-input-container flex="70" class=" md-icon-float md-block">
+              <md-input-container flex="70" flex-xs="100" class=" md-icon-float md-block">
                   <label>
                       Cargo
                   </label>

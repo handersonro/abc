@@ -4,7 +4,7 @@
         .controller('PessoasPesquisarParticipanteController', PessoasPesquisarParticipanteController);
 
     /* @ngInject */
-    function PessoasPesquisarParticipanteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, DTO){
+    function PessoasPesquisarParticipanteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, DTO, ParticipanteInternoService){
         var vm = this;
         var _itens = [];
         vm.tbResultado = false;
@@ -22,11 +22,29 @@
             vm.filtro ={};
         }
         function pesquisar (){
-            vm.tbResultado = true;
-            $location.hash('result-pesquisa');
-            // call $anchorScroll()
-            $anchorScroll();
+            $state.params.filtro.filtros = {};
+            $state.params.filtro.filtros.noParticipanteInterno = vm.filtro.nome;
+            $state.params.filtro.filtros.noCargo = vm.filtro.cargo;
+            $state.params.filtro.filtros.noEmail = vm.filtro.email;
+            $state.params.filtro.filtros.nuTelefone = vm.filtro.tel.replace(/[^0-9]/g,'');
+            $state.params.filtro.currentPage = 1;
+            getMoreInfinityScrollData($state.params.filtro.currentPage);
         }
+
+        function getMoreInfinityScrollData(pageNumber){
+            $state.params.filtro.currentPage = pageNumber;
+            var promiseLoadMoreData = ParticipanteInternoService.consultarComFiltroSemLoader($state.params.filtro);
+            promiseLoadMoreData.then(function(data){
+                vm.tbResultado = true;
+                $location.hash('result-pesquisa');
+                $anchorScroll();
+
+                vm.dto.totalResults = data.totalResults;
+                vm.dto.list = data.slice(0, vm.dto.pageSize);
+            });
+            return promiseLoadMoreData;
+        }
+
         function editar (participante){
             $state.go('app.private.pessoas.editar-participante', {participante: participante});
         }
@@ -44,7 +62,7 @@
                 alert('Não fooi possivel carregar os dados');
             });
         };
-        $scope.carregaLista();
+        //$scope.carregaLista();
 
         /*DIALOG*/
         $scope.showConfirm = function(ev) {

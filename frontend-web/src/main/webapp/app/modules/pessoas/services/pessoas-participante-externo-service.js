@@ -16,7 +16,9 @@
     /* @ngInject */
     function ParticipanteExternoService(Restangular) {
         return {
-            salvar: Restangular.one('participantes/externo').customPOST
+            salvar: Restangular.one('participantes/externo').customPOST,
+            consultarComFiltro: Restangular.one('participantes/externo/', 'pesquisar').customPOST,
+            consultarComFiltroSemLoader: Restangular.one('participantes/externo/', 'pesquisar').withHttpConfig({'da-loader': false}).customPOST,
         };
     }
 })();
