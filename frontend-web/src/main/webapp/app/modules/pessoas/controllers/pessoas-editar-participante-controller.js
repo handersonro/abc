@@ -11,7 +11,8 @@
 
         vm.limpar = limpar;
         vm.showBtnSalvar = showBtnSalvar;
-        vm.salvar = salvar;
+        vm.salvarParticipanteExterno = salvarParticipanteExterno;
+        vm.salvarParticipanteInterno = salvarParticipanteInterno;
 
 
         ///////////////////////////////////
@@ -20,7 +21,7 @@
             vm.participante ={};
         }
 
-        function salvar(){
+        function salvarParticipanteInterno(){
             vm.participanteVO ={
                 id:vm.participante.id,
                 nuTelefone:vm.participante.tel != undefined ? vm.participante.tel.replace(/[^0-9]/g, '') : '',
@@ -28,14 +29,23 @@
                 noCargo:vm.participante.cargo,
                 noEmail:vm.participante.email
             };
-            console.log(vm.participanteVO);
-/*            ParticipanteInternoService.editar(vm.participante).then(
-                function (retorno) {
-                    AlertsService.success('Registro alterado com sucesso.');
-                    $state.go('app.private.pessoas.pesquisar-participante');
-                }
-            );*/
+            ParticipanteInternoService.editar(vm.participanteVO).then(
+                 function (retorno) {
+                     AlertsService.success('Registro alterado com sucesso.');
+                     $state.go('app.private.pessoas.pesquisar-participante');
+                 }
+             );
+        }
 
+        function salvarParticipanteExterno(){
+            vm.participanteVO ={
+                id:vm.participante.id,
+                noParticianteExterno:vm.participante.nome,
+                noCargo:vm.participante.cargo,
+                noEmail:vm.participante.email,
+                pessoa:vm.participante.pessoa
+            };
+            console.log(vm.participanteVO);
             ParticipanteExternoService.editar(vm.participanteVO).then(
                 function (retorno) {
                     AlertsService.success('Registro alterado com sucesso.');

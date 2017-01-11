@@ -29,6 +29,9 @@
             vm.filtro ={};
         }
         function pesquisar (){
+            vm.tbResultado = false;
+            vm.dto.list = [];
+            vm.dto.totalResults = 0;
             $state.params.filtro.filtros.noParticianteExterno = vm.filtro.nome;
             $state.params.filtro.filtros.noCargo = vm.filtro.cargo;
             $state.params.filtro.filtros.noEmail = vm.filtro.email;
@@ -41,12 +44,7 @@
             $state.params.filtro.currentPage = pageNumber;
             var promiseLoadMoreData = ParticipanteExternoService.consultarComFiltroSemLoader($state.params.filtro);
             promiseLoadMoreData.then(function(data){
-                vm.tbResultado = true;
-                $location.hash('result-pesquisa');
-                $anchorScroll();
-
                 vm.dto.totalResults = data.list.length;
-
                 angular.forEach(data.list, function (value, key){
                     vm.dto.list.push(
                         {
@@ -54,9 +52,17 @@
                             nome: value.noParticianteExterno,
                             cargo: value.noCargo,
                             email: value.noEmail,
+                            pessoa:{
+                                id: value.pessoa.id,
+                                flPessoaAtivo: value.pessoa.id
+                            }
                         }
                     );
                 });
+
+                $location.hash('result-pesquisa');
+                $anchorScroll();
+                vm.tbResultado = true;
             },function (error) {
                     vm.tbResultado = false;
                     vm.dto.totalResults = 0;
@@ -100,8 +106,7 @@
                 ParticipanteExternoService.excluirPorId(participante.id).then(
                     function (sucesso){
                         AlertsService.success('Remetente removido com sucesso.');
-                        var index = vm.dto.list.indexOf(remetente);
-                        vm.dto.list.splice(index,1);
+                        pesquisar();
                     }
                 );
                 $scope.status = 'You decided to get rid of your debt.';

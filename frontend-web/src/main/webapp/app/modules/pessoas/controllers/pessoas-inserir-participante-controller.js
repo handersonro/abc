@@ -10,7 +10,8 @@
         vm.participante = {};
         vm.showBtnSalvar = showBtnSalvar;
         vm.limpar = limpar;
-        vm.salvar = salvar;
+        vm.salvarParticipanteExterno = salvarParticipanteExterno;
+        vm.salvarParticipanteInterno = salvarParticipanteInterno;
 
         inicializar();
         ///////////////////////////////////
@@ -29,17 +30,9 @@
         function showBtnSalvar(){
           return $scope.formParticipante.$invalid;
         }
-        function salvar(participante){
-/*            var participanteInterno = montaParticipanteInterno(participante);
+        function salvarParticipanteInterno(participante){
+            var participanteInterno = montaParticipanteInterno(participante);
             ParticipanteInternoService.salvar(participanteInterno).then(
-                function (retorno) {
-                    AlertsService.success('Registro incluído com sucesso.');
-                    $state.go('app.private.pessoas.inserir-participante', {}, {reload: true});
-                }
-            );*/
-
-            var participanteExterno = montaParticipanteExterno(participante);
-            ParticipanteExternoService.salvar(participanteExterno).then(
                 function (retorno) {
                     AlertsService.success('Registro incluído com sucesso.');
                     $state.go('app.private.pessoas.inserir-participante', {}, {reload: true});
@@ -55,6 +48,15 @@
             participanteInterno.nuTelefone = participante.tel.replace(/[^0-9]/g,'');
             participanteInterno.pessoa = pessoa;
             return participanteInterno;
+        }
+        function salvarParticipanteExterno(participante){
+            var participanteExterno = montaParticipanteExterno(participante);
+            ParticipanteExternoService.salvar(participanteExterno).then(
+                function (retorno) {
+                    AlertsService.success('Registro incluído com sucesso.');
+                    $state.go('app.private.pessoas.inserir-participante', {}, {reload: true});
+                }
+            );
         }
         function montaParticipanteExterno(participante){
             var participanteExterno = {};
