@@ -17,6 +17,7 @@
     function AutoridadeService(Restangular) {
         return {
             obterPorId: Restangular.one('autoridades').customGET,
+            obterTodasAutoridades: Restangular.all('autoridades').getList(),
             salvar: Restangular.one('autoridades').customPOST,
             editar: Restangular.one('autoridades').customPUT,
             excluirPorId: Restangular.one('autoridades').customDELETE,

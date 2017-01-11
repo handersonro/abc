@@ -4,7 +4,7 @@
         .controller('AutoridadeVincularAutoridadeController', AutoridadeVincularAutoridadeController);
 
     /* @ngInject */
-    function AutoridadeVincularAutoridadeController($scope, $timeout,$log, $q,$state, UsuarioRestService, AlertsService){
+    function AutoridadeVincularAutoridadeController($scope, $timeout,$log, $q,$state, UsuarioRestService, AlertsService,AutoridadeService){
     var vm = this;
 
     vm.listAutoridades = {};
@@ -18,20 +18,16 @@
     inicializar();
     ///////////////////////////////////
     function inicializar(){
-        vm.listAutoridades = [
-            {
-                autoridade: 'Ministro do Turismo'
-            },
-            {
-                autoridade: 'Secretário Executivo',
-            },
-            {
-                autoridade: 'Ministro Nacional de Estruturação do Turismo',
-            },
-            {
-                autoridade: 'Secretário Nacional de Qualificação e Promoção do Turismo'
+        vm.listAutoridades = [];
+
+        AutoridadeService.obterTodasAutoridades.then(
+            function (resultados) {
+                resultados.forEach(function (item, index) {
+                    vm.listAutoridades.push(item);
+                });
             }
-        ];
+        );
+
     }
     function showBtnSalvar(){
       return $scope.formVincularAutoridade.$invalid;

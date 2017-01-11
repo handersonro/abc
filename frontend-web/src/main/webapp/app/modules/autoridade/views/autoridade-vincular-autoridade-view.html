@@ -18,8 +18,8 @@
                     </label>
                     <md-icon>&#xE85E;</md-icon>
                     <md-select ng-model="vm.vincular.autoridade" required>
-                        <md-option ng-repeat="item in vm.listAutoridades" value="{{item.autoridade}}" >
-                            {{item.autoridade}}
+                        <md-option ng-repeat="item in vm.listAutoridades" value="{{item}}">
+                            {{item.noAutoridade}}
                         </md-option>
                     </md-select>
                     <custom-validator-messages input-name="email" ></custom-validator-messages>

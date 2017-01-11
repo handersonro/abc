@@ -18,22 +18,15 @@
         noEmail: ''
     };
     vm.limpar = limpar;
-    vm.listaAutoridades = {};
     vm.procurarUsuario = UsuarioRestService.obterUsuarios;
     vm.procurarLocal = ConviteRestService.obterLocais;
     inicializar();
     ///////////////////////////////////
     function inicializar (){
-        vm.listaAutoridades = [
-            {autoridade: "Ministro do Turismo"},
-            {autoridade: "Secretário Executivo"},
-            {autoridade: "Secretário Nacional de Estruturação do Turismo"},
-            {autoridade: "Secretário Nacional de Qualificação e Promoção do Turismo"}
-        ];
+
     }
     function pesquisar (){
 
-        console.log($state.params.filtro.filtros);
         $state.params.filtro.filtros.noAutoridade = vm.filtro.noAutoridade;
         $state.params.filtro.filtros.noEmail = vm.filtro.noEmail;
         $state.params.filtro.currentPage = 1;
@@ -53,7 +46,7 @@
     
                 $location.hash('result-pesquisa');
     
-                vm.dto.totalResults = data.list.length;
+                vm.dto.totalResults = data.totalResults;
                 vm.dto.list = data.list;
                 $anchorScroll();
             }, function (error) {
@@ -73,6 +66,8 @@
     function changePage(page){
     	vm.dto.currentPage = page;
     	vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+
+        getMoreInfinityScrollData(vm.dto.currentPage);
     }
     $scope.changePage = changePage;
 

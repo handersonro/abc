@@ -20,7 +20,7 @@
             salvar: Restangular.one('remetentes').customPOST,
             editar: Restangular.one('remetentes').customPUT,
             excluirPorId: Restangular.one('remetentes').customDELETE,
-            consultarComFiltroSemLoader: Restangular.one('remetentes/', 'pesquisar').withHttpConfig({'da-loader': false}).customPOST,
+            consultarComFiltroSemLoader: Restangular.one('remetentes/', 'pesquisar').withHttpConfig({'da-loader': false}).customPOST
         };
     }
 })();
