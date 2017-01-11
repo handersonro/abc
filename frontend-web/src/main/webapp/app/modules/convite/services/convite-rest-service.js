@@ -10,7 +10,8 @@
         return {
             salvar: Restangular.one('eventos').customPOST,
             obterLocais: Restangular.one('eventos/localidades').customGET,
-            obterRemetentes: Restangular.one('eventos/remetentes').customGET
+            obterRemetentes: Restangular.one('eventos/remetentes').customGET,
+            consultarComFiltroSemLoader: Restangular.one('eventos/', 'pesquisar').withHttpConfig({'da-loader': false}).customPOST
         };
     }
 

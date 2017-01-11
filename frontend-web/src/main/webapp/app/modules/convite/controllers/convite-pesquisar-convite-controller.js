@@ -21,7 +21,7 @@
     inicializar();
     ///////////////////////////////////
     function inicializar (){
-        vm.tipoEvento=[
+        vm.flEventoInternacional=[
           {evento : 'Nacional'},
           {evento : 'Internacional'}
         ];
@@ -30,16 +30,43 @@
           {validado : 'Não'},
           {validado : 'Indiferente'}
         ];
+
+        vm.filtro = {
+            idLocalidade: '',
+            observacao: '',
+        };
+
     }
     function limpar(){
         vm.filtro = {};
     }
-    function pesquisar (){
-        vm.tbResultado = true;
-        $location.hash('result-pesquisa');
-        // call $anchorScroll()
-        $anchorScroll();
-    }
+
+        function pesquisar (){
+            $state.params.filtro.filtros = {};
+            $state.params.filtro.filtros.idLocalidade = vm.filtro.idLocalidade;
+            $state.params.filtro.filtros.observacao = vm.filtro.observacao;
+            $state.params.filtro.currentPage = 1;
+            getMoreInfinityScrollData($state.params.filtro.currentPage);
+        }
+
+        function getMoreInfinityScrollData(pageNumber){
+            $state.params.filtro.currentPage = pageNumber;
+            var promiseLoadMoreData = ConviteRestService.consultarComFiltroSemLoader($state.params.filtro);
+            promiseLoadMoreData.then(function(data){
+                vm.tbResultado = true;
+                $location.hash('result-pesquisa');
+                $anchorScroll();
+
+                vm.dto.totalResults = data.totalResults;
+                vm.dto.list = data.slice(0, vm.dto.pageSize);
+            });
+            return promiseLoadMoreData;
+        }
+
+
+
+
+
     function editar (convite){
         $state.go('app.private.convite.editar-convite', {convite: convite});
     }

@@ -13,10 +13,11 @@
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
         vm.limpar = limpar;
+        vm.tipoEvento = {};
 
 
-         vm.procurarLocal = ConviteRestService.obterLocais;
-         vm.procurarRemetente = ConviteRestService.obterRemetentes;
+        vm.procurarLocal = ConviteRestService.obterLocais;
+        vm.procurarRemetente = ConviteRestService.obterRemetentes;
         inicializar();
         ///////////////////////////////////
         function inicializar() {
@@ -27,6 +28,7 @@
                 remetente: '',
                 descricao: '',
                 tipoEvento: '',
+                flEventoInternacional: '',
                 pais: '',
                 cidade: '',
                 idLocalidade: '',
@@ -38,6 +40,7 @@
                 {validado: 'Não'},
                 {validado: 'Indiferente'}
             ];
+
         }
 
         function showBtnSalvar() {
@@ -46,13 +49,17 @@
 
         function salvar(convite) {
             console.log(vm.convite);
-            convite.tipoEvento = 2;
-
+            var tipoEvento = {id: 2};
             if (convite.dataInicioEvento > convite.dataFimEvento) {
                 return AlertsService.success($filter('translate')('A13.4'));
             }
 
-            delete remetente;
+            vm.convite.tipoEvento = tipoEvento;
+            if(vm.convite.flEventoInternacional =='Evento nacional'){
+                vm.convite.flEventoInternacional = false;
+            }else{
+                vm.convite.flEventoInternacional = true;
+            }
             ConviteRestService.salvar(convite).then(
                 function (retorno) {
                     console.log(convite + 'No salvar');
