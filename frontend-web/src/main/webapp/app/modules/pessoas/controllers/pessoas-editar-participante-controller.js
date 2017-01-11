@@ -11,7 +11,8 @@
 
         vm.limpar = limpar;
         vm.showBtnSalvar = showBtnSalvar;
-        vm.salvar = salvar;
+        vm.salvarParticipanteExterno = salvarParticipanteExterno;
+        vm.salvarParticipanteInterno = salvarParticipanteInterno;
 
 
         ///////////////////////////////////
@@ -20,24 +21,37 @@
             vm.participante ={};
         }
 
-        function salvar(){
-            participante.nuTelefone = remetente.nuTelefone.replace(/[^0-9]/g, '');
+        function salvarParticipanteInterno(){
+            vm.participanteVO ={
+                id:vm.participante.id,
+                nuTelefone:vm.participante.tel != undefined ? vm.participante.tel.replace(/[^0-9]/g, '') : '',
+                noParticianteExterno:vm.participante.nome,
+                noCargo:vm.participante.cargo,
+                noEmail:vm.participante.email
+            };
+            ParticipanteInternoService.editar(vm.participanteVO).then(
+                 function (retorno) {
+                     AlertsService.success('Registro alterado com sucesso.');
+                     $state.go('app.private.pessoas.pesquisar-participante');
+                 }
+             );
+        }
 
-            console.log(participante);
-
-            ParticipanteInternoService.editar(participante).then(
+        function salvarParticipanteExterno(){
+            vm.participanteVO ={
+                id:vm.participante.id,
+                noParticianteExterno:vm.participante.nome,
+                noCargo:vm.participante.cargo,
+                noEmail:vm.participante.email,
+                pessoa:vm.participante.pessoa
+            };
+            console.log(vm.participanteVO);
+            ParticipanteExternoService.editar(vm.participanteVO).then(
                 function (retorno) {
                     AlertsService.success('Registro alterado com sucesso.');
                     $state.go('app.private.pessoas.pesquisar-participante');
                 }
             );
-
-/*            ParticipanteExternoService.editar(participante).then(
-                function (retorno) {
-                    AlertsService.success('Registro alterado com sucesso.');
-                    $state.go('app.private.pessoas.pesquisar-participante');
-                }
-            );*/
         }
 
         function showBtnSalvar(){

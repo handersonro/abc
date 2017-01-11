@@ -55,7 +55,7 @@
 
                     $location.hash('result-pesquisa');
 
-                    vm.dto.totalResults = data.list.length;
+                    vm.dto.totalResults = data.totalResults;
                     vm.dto.list = data.list;
                     $anchorScroll();
                 },function (error) {
@@ -107,9 +107,10 @@
             };
         }
         function changePage(page){
-            console.log('aeaueauh', ((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
             vm.dto.currentPage = page;
             vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+
+            getMoreInfinityScrollData(vm.dto.currentPage);
         }
         $scope.changePage = changePage;
     }

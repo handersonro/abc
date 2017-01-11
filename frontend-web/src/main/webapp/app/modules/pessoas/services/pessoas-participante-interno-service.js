@@ -19,6 +19,8 @@
             salvar: Restangular.one('participantes/interno').customPOST,
             consultarComFiltro: Restangular.one('participantes/interno/', 'pesquisar').customPOST,
             consultarComFiltroSemLoader: Restangular.one('participantes/interno/', 'pesquisar').withHttpConfig({'da-loader': false}).customPOST,
+            editar: Restangular.one('participantes/interno').customPUT,
+            excluirPorId: Restangular.one('participantes/interno').customDELETE,
         };
     }
 })();

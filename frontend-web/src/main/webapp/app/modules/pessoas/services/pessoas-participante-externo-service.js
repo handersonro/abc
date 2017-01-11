@@ -19,6 +19,8 @@
             salvar: Restangular.one('participantes/externo').customPOST,
             consultarComFiltro: Restangular.one('participantes/externo/', 'pesquisar').customPOST,
             consultarComFiltroSemLoader: Restangular.one('participantes/externo/', 'pesquisar').withHttpConfig({'da-loader': false}).customPOST,
+            editar: Restangular.one('participantes/externo').customPUT,
+            excluirPorId: Restangular.one('participantes/externo').customDELETE,
         };
     }
 })();
