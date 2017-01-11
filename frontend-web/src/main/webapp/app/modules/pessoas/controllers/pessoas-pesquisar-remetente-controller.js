@@ -27,7 +27,6 @@
         }
 
         function pesquisar (){
-
             $state.params.filtro.filtros.noRemetente = vm.filtro.noRemetente;
             $state.params.filtro.filtros.noCargo = vm.filtro.noCargo;
             $state.params.filtro.filtros.noEmail = vm.filtro.noEmail;

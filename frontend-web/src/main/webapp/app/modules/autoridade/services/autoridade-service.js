@@ -21,7 +21,8 @@
             salvar: Restangular.one('autoridades').customPOST,
             editar: Restangular.one('autoridades').customPUT,
             excluirPorId: Restangular.one('autoridades').customDELETE,
-            consultarComFiltroSemLoader: Restangular.one('autoridades/', 'pesquisar').withHttpConfig({'da-loader': false}).customPOST
+            consultarComFiltroSemLoader: Restangular.one('autoridades/', 'pesquisar').withHttpConfig({'da-loader': false}).customPOST,
+            vincularUsuarioAutoridade: Restangular.one('usuarios/vincularAutoridade').customPOST
         };
     }
 })();
