@@ -5,6 +5,6 @@
 
     /* @ngInject */
     function configDev(RestangularProvider){
-		RestangularProvider.setBaseUrl('http://sturdeswildfly01:8080/sisagm/api');
+		RestangularProvider.setBaseUrl('http://localhost:8080/sisagm/api/');
     }
 })();
