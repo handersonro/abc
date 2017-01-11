@@ -6,13 +6,14 @@
     </md-toolbar>
 </div>
 <md-content class="box">
-    <div class="md-padding header-info" layout="row" layout-xs="column" layout-align="end center">
+    <div class="md-padding header-info" layout="row" layout-xs="column"  layout-align="end center">
         <strong>Autoridade: &nbsp;</strong> {{vm.autoridade}}
     </div>
     <!-- TELA DE BUSCA -->
     <div class="md-padding">
+        <form name="formPesquisaConvite">
             <!-- conteudo -->
-            <div layout="row" layout-xs="column" layout-align="space-around center">
+            <div layout="row" layout-xs="column"  layout-align="space-around center">
                 <div flex="50" flex-xs="100">
                     <div class="panel">
                         <div class="panel-title bg-panel-default">
@@ -21,26 +22,26 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <div layout-gt-xs="row">
+                          <div layout-gt-xs="row">
                                 <md-input-container flex-gt-xs>
-                                    <label>
-                                        Data inicial
-                                    </label>
-                                    <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
-                                           min-date="minDate"
-                                           format="DD/MM/YYYY HH:mm a"
-                                           ng-model="vm.filtro.dataEventoInicio">
+                                  <label>
+                                      Data inicial
+                                  </label>
+                                  <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                          min-date="minDate"
+                                          format="DD/MM/YYYY HH:mm a"
+                                          ng-model="vm.filtro.dataInicio">
                                 </md-input-container>
                                 <md-input-container>
-                                    <label>
-                                        Data final
-                                    </label>
-                                    <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
-                                           min-date="minDate"
-                                           format="DD/MM/YYYY HH:mm a"
-                                           ng-model="vm.filtro.dataEventoFim">
+                                  <label>
+                                      Data final
+                                  </label>
+                                  <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                          min-date="minDate"
+                                          format="DD/MM/YYYY HH:mm a"
+                                          ng-model="vm.filtro.dataFim">
                                 </md-input-container>
-                            </div>
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -52,27 +53,27 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <div layout-gt-xs="row">
+                          <div layout-gt-xs="row">
                                 <md-input-container flex-gt-xs>
-                                    <label>
-                                        Data inicial
-                                    </label>
-                                    <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
-                                           min-date="minDate"
-                                           format="DD/MM/YYYY HH:mm a"
-                                           ng-model="vm.filtro.dataCadInicial">
+                                  <label>
+                                      Data inicial
+                                  </label>
+                                  <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                          min-date="minDate"
+                                          format="DD/MM/YYYY HH:mm a"
+                                          ng-model="vm.filtro.dataCadInicial">
                                 </md-input-container>
 
                                 <md-input-container>
-                                    <label>
-                                        Data final
-                                    </label>
-                                    <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
-                                           min-date="minDate"
-                                           format="DD/MM/YYYY HH:mm a"
-                                           ng-model="vm.filtro.dataCadFinal">
+                                  <label>
+                                      Data final
+                                  </label>
+                                  <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                          min-date="minDate"
+                                          format="DD/MM/YYYY HH:mm a"
+                                          ng-model="vm.filtro.dataCadFinal">
                                 </md-input-container>
-                            </div>
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -94,42 +95,35 @@
                     </div>
                 </md-input-container>
                 <md-input-container class="md-block md-icon-float" flex-gt-sm>
-                    <label>Evento</label>
-                    <md-icon class="md-datepicker-calendar-icon ng-scope" aria-label="md-calendar"
-                             md-svg-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgM2gtMVYxaC0ydjJIOFYxSDZ2Mkg1Yy0xLjExIDAtMS45OS45LTEuOTkgMkwzIDE5YzAgMS4xLjg5IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMTZINVY4aDE0djExek03IDEwaDV2NUg3eiIvPjwvc3ZnPg=="
-                             aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit=""
-                             preserveAspectRatio="xMidYMid meet" focusable="false">
-                            <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"></path>
-                        </svg>
-                    </md-icon>
-                    <md-select ng-model="vm.filtro.tipoSaida">
-                        <md-option ng-repeat="item in vm.flEventoInternacional" value="{{item.evento}}">
-                            {{item.evento}}
-                        </md-option>
-                    </md-select>
+                  <label>Evento</label>
+                  <md-icon class="md-datepicker-calendar-icon ng-scope" aria-label="md-calendar" md-svg-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgM2gtMVYxaC0ydjJIOFYxSDZ2Mkg1Yy0xLjExIDAtMS45OS45LTEuOTkgMkwzIDE5YzAgMS4xLjg5IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMTZINVY4aDE0djExek03IDEwaDV2NUg3eiIvPjwvc3ZnPg==" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"></path></svg></md-icon>
+                  <md-select ng-model="vm.filtro.tipoSaida">
+                    <md-option ng-repeat="item in vm.tipoEvento" value="{{item.evento}}">
+                      {{item.evento}}
+                    </md-option>
+                  </md-select>
                 </md-input-container>
             </div>
 
             <div layout="row" layout-xs="column">
                 <div class="" flex="50" layout="row" layout-align="center center">
+
                     <md-autocomplete
                             flex
                             md-no-cache="true"
                             md-selected-item="vm.convite.idLocalidade"
                             md-input-name="noLocalidade"
-                            md-search-text="vm.convite.textoLocal"
-                            md-items="item in vm.procurarLocal(vm.convite.textoLocal)"
+                            md-search-text="textoLocal"
+                            md-items="item in vm.procurarLocal(textoLocal)"
                             md-item-text="item.localidadesUf"
                             md-min-length="3"
                             required="true"
                             md-floating-label="Local do evento">
                         <md-item-template>
-                            <span md-highlight-text="vm.textoLocal"
-                                  md-highlight-flags="^i">{{item.localidadesUf}}</span>
+                            <span md-highlight-text="textoLocal" md-highlight-flags="^i">{{item.localidadesUf}}</span>
                         </md-item-template>
                         <md-not-found>
-                            Nenhum local de evento "{{vm.convite.textoLocal}}" foi encontrado
+                            Nenhum local de evento "{{textoLocal}}" foi encontrado
                         </md-not-found>
                     </md-autocomplete>
 
@@ -175,14 +169,29 @@
                 </md-input-container>
             </div>
             <!-- footer button-->
-            <section class="md-padding action" layout="row" layout-align="end center" layout-wrap>
+            <section class="md-padding action" layout="row" layout-align="end center"
+            layout-wrap>
                 <md-button class="md-raised md-primary" ng-click="vm.pesquisar()">
-                    <md-icon>&#xE8B6;</md-icon> Pesquisar
+                    <md-icon>
+                        &#xE8B6;
+                    </md-icon>
+                    Pesquisar
                 </md-button>
-                <md-button class="md-raised" ng-click="vm.limpar()"><md-icon>&#xE5D5;</md-icon> Limpar</md-button>
-                <md-button class="md-raised" ui-sref="app.public.home.pagina-inicial" type="submit"><md-icon>&#xE5CD;</md-icon> Cancelar</md-button>
+                <md-button class="md-raised" ng-click="vm.limpar()">
+                    <md-icon>
+                        &#xE5D5;
+                    </md-icon>
+                    Limpar
+                </md-button>
+                <md-button class="md-raised" ui-sref="app.public.home.pagina-inicial">
+                    <md-icon>
+                        &#xE5CD;
+                    </md-icon>
+                    Cancelar
+                </md-button>
             </section>
             <!-- footer button-->
+        </form>
     </div>
     <!-- resultado da busca -->
     <div id="result-pesquisa" class="md-padding" ng-show="vm.tbResultado">
@@ -190,95 +199,73 @@
             <!-- Table starts here -->
             <table id="table" class="table table-hover table-mc-green">
                 <thead>
-                <tr>
-                    <th class="text-center">
-                        Ações
-                    </th>
-                    <th>
-                        Remetente
-                        <paginacao-sorting dto="vm.dto" field-name="remetente"></paginacao-sorting>
-                    </th>
-                    <th>
-                        Data do cadastro
-                        <paginacao-sorting dto="vm.dto" field-name="dataCadastro"></paginacao-sorting>
-                    </th>
-                    <th>
-                        Local
-                        <paginacao-sorting dto="vm.dto" field-name="local"></paginacao-sorting>
-                    </th>
-                    <th>
-                        Data do evento
-                        <paginacao-sorting dto="vm.dto" field-name="dataEvento"></paginacao-sorting>
-                    </th>
-                    <th>
-                        Validado
-                        <paginacao-sorting dto="vm.dto" field-name="validado"></paginacao-sorting>
-                    </th>
-                    <th>
-                        Descrição
-                        <paginacao-sorting dto="vm.dto" field-name="descricao"></paginacao-sorting>
-                    </th>
-                </tr>
+                    <tr>
+                        <th class="text-center">
+                            Ações
+                        </th>
+                        <th>
+                            Remetente<paginacao-sorting dto="vm.dto" field-name="remetente"></paginacao-sorting>
+                        </th>
+                        <th>
+                            Data do cadastro<paginacao-sorting dto="vm.dto" field-name="dataCadastro"></paginacao-sorting>
+                        </th>
+                        <th>
+                            Local<paginacao-sorting dto="vm.dto" field-name="local"></paginacao-sorting>
+                        </th>
+                        <th>
+                            Data do evento<paginacao-sorting dto="vm.dto" field-name="dataEvento"></paginacao-sorting>
+                        </th>
+                        <!--<th>
+                            Validado<paginacao-sorting dto="vm.dto" field-name="validado"></paginacao-sorting>
+                        </th>-->
+                        <th>
+                            Descrição<paginacao-sorting dto="vm.dto" field-name="descricao"></paginacao-sorting>
+                        </th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr dir-paginate="item in vm.dto.list | itemsPerPage: vm.dto.pageSize" current-page="vm.dto.currentPage"
-                    total-items="vm.dto.totalResults">
-                    <td class="text-center">
-                        <md-menu>
-                            <md-button class="md-icon-button" aria-label="Favorite"
-                                       ng-click="appCtrl.openMenu($mdOpenMenu, $event)">
+                {{vm.dto.list}}
+                    <tr dir-paginate="item in vm.dto.list | itemsPerPage: vm.dto.pageSize" current-page="vm.dto.currentPage" total-items="vm.dto.totalResults">
+                        <td class="text-center">
+                            <md-menu>
+                              <md-button class="md-icon-button" aria-label="Favorite" ng-click="appCtrl.openMenu($mdOpenMenu, $event)">
                                 <md-tooltip md-direction="left">
                                     Ações
                                 </md-tooltip>
-                                <md-icon class="icon-white">&#xE8B8;</md-icon>
-                            </md-button>
-                            <md-menu-content width="1">
-                                <md-menu-item>
-                                    <md-button ng-click="vm.editar(item)" title="{{item.nome}}">
-                                        <md-icon>
-                                            &#xE22B;
-                                        </md-icon>
-                                        Editar
-                                    </md-button>
-                                </md-menu-item>
-                                <md-menu-item>
-                                    <md-button ng-click="vm.showConfirm($event)">
-                                        <md-icon>
-                                            &#xE92B;
-                                        </md-icon>
-                                        Remover
-                                    </md-button>
-                                </md-menu-item>
-                            </md-menu-content>
-                        </md-menu>
-                    </td>
-                    <td>
-                        {{ item.remetente }}
-                    </td>
-                    <td>
-                        {{ item.dataCadastro | date : 'dd/MM/yyyy HH:mm a'}}
-                    </td>
-                    <td>
-                        {{ item.localEvento }}
-                    </td>
-                    {{ item.dataEventoInicio | date : 'dd/MM/yyyy HH:mm a' }} à {{ item.dataEventoFim | date :
-                    'dd/MM/yyyy HH:mm a' }}
-                    </td>
-                    <td>
-                        {{ item.validado }}
-                    </td>
-                    <td>
-                        {{ item.descricao }}
-                    </td>
-                </tr>
+                                   <md-icon class="icon-white">&#xE8B8;</md-icon>
+                              </md-button>
+                                <md-menu-content width="1">
+                                    <md-menu-item>
+                                        <md-button ng-click="vm.editar(item)" title="{{item.nome}}">
+                                            <md-icon>
+                                                &#xE22B;
+                                            </md-icon>
+                                            Editar
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="vm.showConfirm($event)">
+                                            <md-icon>
+                                                &#xE92B;
+                                            </md-icon>
+                                            Remover
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </td>
+                        <td>{{ item.remetente.noRemetente }}</td>
+                        <td>{{ item.dataCadastro | date : 'dd/MM/yyyy HH:mm a'}}</td>
+                        <td>{{ item.localEvento }}</td>
+                        <td>{{ item.dataEventoInicio | date : 'dd/MM/yyyy HH:mm a' }} à {{ item.dataEventoFim | date : 'dd/MM/yyyy HH:mm a' }}</td>
+                        <!--<td>{{ item.validado }}</td>-->
+                        <td>{{ item.descricao }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
-        <dir-pagination-controls layout layout-align="center" boundary-links="true"
-                                 on-page-change="vm.changePage(newPageNumber)"
-                                 template-url="modules/core/directives/paginacao/paginacao-view.html"
-                                 layout-align="center center" class="dir-pagination-controls">
-        </dir-pagination-controls>
+        <dir-pagination-controls layout layout-align="center" boundary-links="true" on-page-change="vm.changePage(newPageNumber)" template-url="modules/core/directives/paginacao/paginacao-view.html" layout-align="center center" class="dir-pagination-controls">
+    </dir-pagination-controls>
         <!-- tabela css angular material -->
     </div>
     <!-- resultado da busca -->

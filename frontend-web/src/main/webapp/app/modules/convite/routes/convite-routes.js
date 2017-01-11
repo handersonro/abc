@@ -51,6 +51,15 @@
                 controller: 'ConvitePesquisarConviteController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/convite-pesquisar-convite-view.html',
+                params: {
+                    filtro: {
+                        filtros: { noObservacao : '', noDespacho: '', tipoEvento: ''},
+                        currentPage: 1,
+                        pageSize: 20,
+                        sortFields: 'id',
+                        sortDirections: 'asc'
+                    }
+                },
                 resolve: {
                 }
             });

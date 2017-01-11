@@ -18,6 +18,7 @@
 
         vm.procurarLocal = ConviteRestService.obterLocais;
         vm.procurarRemetente = ConviteRestService.obterRemetentes;
+        vm.procurarPaises = ConviteRestService.obterPaises;
         inicializar();
         ///////////////////////////////////
         function inicializar() {
@@ -29,11 +30,12 @@
                 descricao: '',
                 tipoEvento: '',
                 flEventoInternacional: '',
-                pais: '',
-                cidade: '',
+                idPais: '',
+                idUf: '',
+                noCidadeInternacional: '',
                 idLocalidade: '',
-                observacao: '',
-                despacho: ''
+                noObservacao: '',
+                noDespacho: ''
             };
             vm.validacoes = [
                 {validado: 'Sim'},
@@ -43,24 +45,32 @@
 
         }
 
+
         function showBtnSalvar() {
             return $scope.formConvite.$invalid;
         }
 
         function salvar(convite) {
-            console.log(vm.convite);
-            var tipoEvento = {id: 2};
-            if (convite.dataInicioEvento > convite.dataFimEvento) {
+            var tipoEvento = {id: 2,noTipoEvento: 'CONVITE'};
+
+            if (vm.convite.dataInicioEvento > vm.convite.dataFimEvento) {
                 return AlertsService.success($filter('translate')('A13.4'));
             }
 
             vm.convite.tipoEvento = tipoEvento;
+            vm.convite.idLocalidade = vm.convite.idLocalidade.id;
+            //vm.convite.idUf = vm.convite.idLocalidade.uf.id;
+
+            vm.convite.flEventoAtivo = true;
             if(vm.convite.flEventoInternacional =='Evento nacional'){
-                vm.convite.flEventoInternacional = false;
-            }else{
-                vm.convite.flEventoInternacional = true;
+                vm.convite.flEventoInternacional = 0;
+                vm.convite.idPais = 1;
+            }else if(vm.convite.flEventoInternacional =='Evento internacional'){
+                vm.convite.flEventoInternacional = 1;
+                vm.convite.idPais = vm.convite.idPais.id;
             }
-            ConviteRestService.salvar(convite).then(
+
+            ConviteRestService.salvar(vm.convite).then(
                 function (retorno) {
                     console.log(convite + 'No salvar');
                     AlertsService.success('Registro incluído com sucesso.');
@@ -76,6 +86,20 @@
         function obterLocais(localEvento) {
             var retorno = $q.defer();
             $http.get('evento/localidades?noLocalidade=' + localEvento)
+                .success(function (data) {
+                    retorno.resolve(data);
+                })
+                .error(function () {
+                    retorno.reject(alert('Não fooi possivel carregar os dados'));
+                });
+            return retorno.promise;
+        }
+        /**
+         * Obterm os paises da base do
+         * */
+        function obterPaises(noPais) {
+            var retorno = $q.defer();
+            $http.get('evento/paises?noPais=' + noPais)
                 .success(function (data) {
                     retorno.resolve(data);
                 })
