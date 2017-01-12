@@ -21,6 +21,7 @@
                         md-input-name="local"
                         md-search-text="noUsuario"
                         md-items="item in vm.procurarUsuario(noUsuario)"
+                        md-selected-item-change="vm.vincularAutoridade(item)"
                         md-item-text="item.noUsuario"
                         md-min-length="3"
                         md-match-case-insensitive="true"
@@ -40,7 +41,7 @@
                     </label>
                     <md-icon>&#xE85E;</md-icon>
                     <md-select ng-model="vm.vincular.autoridade" required ng-disabled="!vm.usuario.noUsuario.length > 0">
-                        <md-option ng-repeat="item in vm.listAutoridades" value="{{item}}">
+                        <md-option ng-repeat="item in vm.listAutoridades" value="{{item}}" ng-selected="item.selected == true" >
                             {{item.noAutoridade}}
                         </md-option>
                     </md-select>

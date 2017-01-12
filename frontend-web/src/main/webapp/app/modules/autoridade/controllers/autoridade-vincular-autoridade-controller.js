@@ -16,6 +16,7 @@
         vm.limpar = limpar;
         vm.noRemetente = '';
         vm.procurarUsuario = buscarRemetentePeloNome;
+        vm.vincularAutoridade = vincularAutoridade;
 
         inicializar();
         ///////////////////////////////////
@@ -24,6 +25,7 @@
             AutoridadeService.obterTodasAutoridades.then(
                 function (resultados) {
                     resultados.forEach(function (item, index) {
+                        item['selected'] = false;
                         vm.listAutoridades.push(item);
                     });
                 }
@@ -65,7 +67,18 @@
             return retorno.promise;
         }
 
-    }
+        function vincularAutoridade(usuario) {
+            angular.forEach(vm.listAutoridades, function(item, key) {
 
+                if(item.id == usuario.autoridade.id){
+                    console.log(item.id + '==' + usuario.autoridade.id);
+                    item['selected'] = true;
+                    console.log(item);
+                }
+            });
+
+            vm.vincular.autoridade = usuario.autoridade;
+        }
+    }
 
 })();
