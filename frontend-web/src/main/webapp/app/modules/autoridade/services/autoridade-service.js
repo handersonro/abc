@@ -14,10 +14,16 @@
 
 
     /* @ngInject */
-    function AutoridadeService(Restangular) {
+    function AutoridadeService(Restangular,$http,baseURL) {
+
+        function buscaRemetentePeloNome(noUsuario){
+            return $http.get(baseURL+ 'usuarios?noUsuario=' + noUsuario);
+        }
+
         return {
             obterPorId: Restangular.one('autoridades').customGET,
             obterTodasAutoridades: Restangular.all('autoridades').getList(),
+            obterRemetentesPeloNome: buscaRemetentePeloNome,
             salvar: Restangular.one('autoridades').customPOST,
             editar: Restangular.one('autoridades').customPUT,
             excluirPorId: Restangular.one('autoridades').customDELETE,

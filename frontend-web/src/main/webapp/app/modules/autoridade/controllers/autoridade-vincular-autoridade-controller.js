@@ -55,7 +55,7 @@
         }
         function buscarRemetentePeloNome(noUsuario) {
             var retorno = $q.defer();
-            $http.get('http://localhost:8080/sisagm/api/usuarios?noUsuario=' + noUsuario)
+            AutoridadeService.obterRemetentesPeloNome(noUsuario)
                 .success(function (data) {
                     retorno.resolve(data);
                 })
