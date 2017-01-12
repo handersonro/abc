@@ -45,7 +45,6 @@
                 noEmail:vm.participante.email,
                 pessoa:vm.participante.pessoa
             };
-            console.log(vm.participanteVO);
             ParticipanteExternoService.editar(vm.participanteVO).then(
                 function (retorno) {
                     AlertsService.success('Registro alterado com sucesso.');
