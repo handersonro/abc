@@ -14,28 +14,19 @@
                 .then(
                     function(retorno){
                         $localStorage.authenticationToken = retorno.id_token;
-                        account();
+                        $state.go('app.public.home.pagina-inicial');
+
                     }).catch(function (retorno) {
                 if(retorno.data != null){
-                    console.log( retorno.data.mensagens[0].msg)
                     AlertsService.error(retorno.data.mensagens!= null ?  retorno.data.mensagens[0].msg: '');
                 }
             });
         }
 
-        function account() {
-
-            UsuarioLogado.obterUsuario().then(                    function(retorno){
-
-
-
-                console.log(retorno)
-                }
-                );
-            // $http({method: 'GET', url: 'http://localhost:8080/sisagm/api/autenticar/account', headers: {
-            //     'Authorization': 'Bearer '+ retorno.id_token}
-            // });
-
-        }
+        // function account() {
+        //     UsuarioLogado.obterUsuario().then(function(retorno){
+        //         }
+        //     );
+        // }
     }
 })();

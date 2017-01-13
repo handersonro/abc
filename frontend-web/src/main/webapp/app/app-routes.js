@@ -13,6 +13,12 @@
                abstract: true,
                templateUrl: 'app-view.html',
                resolve:  {
+                   authorize: ['Auth',
+                       function (Auth) {
+                           return Auth.authorize();
+                       }
+                   ]
+
                 //    /* @ngInject */
                 //    'endpoint': function($q, Restangular, AlertsManager, EndpointFrontend){
                 //        var retorno = $q.defer();

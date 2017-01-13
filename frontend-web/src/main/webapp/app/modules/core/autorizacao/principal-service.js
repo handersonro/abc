@@ -68,7 +68,7 @@
             }
 
             // retrieve the identity data from the server, update the identity object, and then resolve.
-            UsuarioLogado.get()
+            UsuarioLogado.obterUsuario()
                 .then(getUsuarioLogadoThen)
                 .catch(getUsuarioLogadoCatch);
 
