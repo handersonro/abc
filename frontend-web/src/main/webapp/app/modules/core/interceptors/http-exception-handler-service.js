@@ -3,11 +3,19 @@
     .module('$alerts')
     .factory('httpMessageHandleInterceptor', httpMessageHandleInterceptor);
 
-    function httpMessageHandleInterceptor($q, $log, $rootScope){
+    function httpMessageHandleInterceptor($q, $log, $rootScope,$localStorage, $sessionStorage){
         return {
             // optional method
             'request': function(config) {
-                // do something on success
+
+                config.headers = config.headers || {};
+                var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
+                if (token) {
+                    console.log('AUTENTICADO')
+                    config.headers.Authorization = 'Bearer ' + token;
+                }
+
+
                 return config;
             },
 

@@ -21,7 +21,6 @@
         return {
             autenticar: Restangular.one('autenticar/logar').customPOST,
             current: Restangular.one('autenticar/account').get
-
         };
     }
 })();

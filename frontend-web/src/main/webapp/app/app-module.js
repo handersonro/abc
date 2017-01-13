@@ -30,7 +30,7 @@
             'sisagmApp.autoridade',
             'sisagmApp.relatorio',
             'menu',
-
+            'ngStorage',
             '$alerts',
 
 
