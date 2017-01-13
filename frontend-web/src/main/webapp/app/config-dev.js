@@ -1,10 +1,11 @@
 (function(){
     angular
         .module('sisagmApp')
+        .constant('baseURL','http://sturdeswildfly01:8080/sisagm/api/')
         .config(configDev);
 
     /* @ngInject */
-    function configDev(RestangularProvider){
-		RestangularProvider.setBaseUrl('http://localhost:8080/sisagm/api/');
+    function configDev(RestangularProvider,baseURL){
+		RestangularProvider.setBaseUrl(baseURL);
     }
 })();

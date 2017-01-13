@@ -44,7 +44,7 @@
             $state.params.filtro.currentPage = pageNumber;
             var promiseLoadMoreData = ParticipanteExternoService.consultarComFiltroSemLoader($state.params.filtro);
             promiseLoadMoreData.then(function(data){
-                vm.dto.totalResults = data.list.length;
+                vm.dto.totalResults = data.totalResults;
                 angular.forEach(data.list, function (value, key){
                     vm.dto.list.push(
                         {
@@ -169,6 +169,8 @@
         function changePage(page){
             vm.dto.currentPage = page;
             vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+
+            getMoreInfinityScrollData(vm.dto.currentPage);
         }
         $scope.changePage = changePage;
     }

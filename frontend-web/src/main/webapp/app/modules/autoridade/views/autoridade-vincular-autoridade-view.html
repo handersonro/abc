@@ -12,40 +12,41 @@
         <form name="formVincularAutoridade" ng-submit="vm.salvar()">
             <!-- conteudo -->
             <div layout="row">
-                <md-input-container flex class="md-icon-float md-block">
-                    <label>
-                        Autoridade
-                    </label>
-                    <md-icon>&#xE85E;</md-icon>
-                    <md-select ng-model="vm.vincular.autoridade" required>
-                        <md-option ng-repeat="item in vm.listAutoridades" value="{{item}}">
-                            {{item.noAutoridade}}
-                        </md-option>
-                    </md-select>
-                    <custom-validator-messages input-name="email" ></custom-validator-messages>
-                </md-input-container>
                 <md-autocomplete
                         flex
                         required
                         md-input-name="usuario"
                         md-no-cache="true"
-                        md-selected-item="vm.filtro.selectedItem"
+                        md-selected-item="vm.usuario"
                         md-input-name="local"
-                        md-search-text="vm.usuario"
-                        md-items="item in vm.procurarUsuario(vm.usuario)"
-                        md-item-text="item.usuario"
-                        md-min-length="1"
+                        md-search-text="noUsuario"
+                        md-items="item in vm.procurarUsuario(noUsuario)"
+                        md-selected-item-change="vm.vincularAutoridade(item)"
+                        md-item-text="item.noUsuario"
+                        md-min-length="3"
+                        md-match-case-insensitive="true"
                         md-input-maxlength="150"
                         md-floating-label="Usuário">
                     <md-item-template>
-                        <span md-highlight-text="vm.usuario" md-highlight-flags="^i">{{item.usuario}}</span>
+                        <span md-highlight-text="noUsuario" md-highlight-flags="^i">{{item.noUsuario}}</span>
                     </md-item-template>
                     <md-not-found>
-                        Nenhum usuário "{{vm.usuario}}" foi encontrado
+                        Nenhum usuário "{{noUsuario}}" foi encontrado
                     </md-not-found>
                     <custom-validator-messages input-name="usuario" ></custom-validator-messages>
                 </md-autocomplete>
-
+                <md-input-container flex class="md-icon-float md-block">
+                    <label>
+                        Autoridade
+                    </label>
+                    <md-icon>&#xE85E;</md-icon>
+                    <md-select ng-model="vm.vincular.autoridade" required ng-disabled="!vm.usuario.noUsuario.length > 0">
+                        <md-option ng-repeat="item in vm.listAutoridades" value="{{item}}" ng-selected="item.selected == true" >
+                            {{item.noAutoridade}}
+                        </md-option>
+                    </md-select>
+                    <custom-validator-messages input-name="email" ></custom-validator-messages>
+                </md-input-container>
 
             </div>
             <section class="md-padding action" layout="row" layout-align="end center"
