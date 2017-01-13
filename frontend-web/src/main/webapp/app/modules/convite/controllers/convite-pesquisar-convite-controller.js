@@ -1,6 +1,35 @@
 (function () {
     angular
         .module('sisagmApp.convite.controllers')
+        /*@ngInject*/
+        .config( function($mdDateLocaleProvider){
+            $mdDateLocaleProvider.parseDate = function(date) {
+                var regex_data = /^(\d{2})[-\/](\d{2})[-\/](\d{4})$/.exec(date);
+
+                var isDataValida = false;
+                var montaData;
+
+                if(regex_data){
+                    var dia = regex_data[1];
+                    var mes = regex_data[2] - 1;
+                    var ano = regex_data[3];
+                    montaData = new Date(ano, mes, dia);
+
+                    isDataValida = (
+                        montaData.getDate() == dia &&
+                        montaData.getMonth() == mes &&
+                        montaData.getFullYear() == ano
+                    );
+                }
+
+                if(isDataValida){
+                    return montaData;
+                }else {
+                    return date;
+                }
+
+            };
+        })
         .controller('ConvitePesquisarConviteController', ConvitePesquisarConviteController);
 
     /* @ngInject */
@@ -15,6 +44,7 @@
         vm.editar = editar;
         vm.filtro = {};
         vm.limpar = limpar;
+        vm.dasabilitaCampo = dasabilitaCampo;
         vm.tipoEvento = {};
         vm.validacoes = {};
          vm.procurarLocal = ConviteRestService.obterLocais;
@@ -34,7 +64,15 @@
             vm.filtro = {
                 noObservacao: '',
                 tipoEvento: '',
-                noDespacho: ''
+                noDespacho: '',
+                idLocalidade: '',
+                remetente: '',
+                descricao: '',
+                flEventoInternacional: '',
+                dtInicioEvento:'',
+                dtFimEvento:'',
+                dataCadInicial:'',
+                dataCadFinal:''
             };
 
         }
@@ -45,15 +83,47 @@
 
        function pesquisar() {
            var tipoEvento = {id: 2,noTipoEvento: 'CONVITE'};
-           vm.convite.tipoEvento = tipoEvento;
+
+            vm.convite.tipoEvento = tipoEvento;
+            vm.flEventoInternacional = vm.filtro.tipoSaida;
+            var dataCadInicial = new Date(vm.filtro.dataCadInicial).getTime();
+            var dataCadFinal = new Date(vm.filtro.dataCadFinal).getTime();
+
+            if(vm.filtro.validado ==="Indiferente"){
+                vm.filtro.validado = "INDIFERENTE";
+            }else if(vm.filtro.validado ==="Sim"){
+                vm.filtro.validado = "SIM";
+            }else if(vm.filtro.validado ==="Não"){
+                vm.filtro.validado = "NAO";
+            }
+
+            if(vm.filtro.tipoSaida ==="Internacional"){
+                vm.filtro.tipoSaida = true;
+            }else if(vm.filtro.tipoSaida ==="Nacional"){
+                vm.filtro.tipoSaida = false;
+            }
 
             $state.params.filtro.filtros.noObservacao = vm.filtro.noObservacao;
             $state.params.filtro.filtros.noDespacho = vm.filtro.noDespacho;
             $state.params.filtro.filtros.tipoEvento = vm.convite.tipoEvento;
+            $state.params.filtro.filtros.idLocalidade = vm.filtro.idLocalidade;
+            $state.params.filtro.filtros.remetente = vm.filtro.remetente;
+            $state.params.filtro.filtros.descricao = vm.filtro.descricao;
+            $state.params.filtro.filtros.dtInicioEvento = vm.filtro.dtInicioEvento;
+            $state.params.filtro.filtros.dtFimEvento = vm.filtro.dtFimEvento;
+            $state.params.filtro.filtros.dataCadInicial = dataCadInicial;
+            $state.params.filtro.filtros.dataCadFinal   = dataCadFinal;
+            $state.params.filtro.filtros.flEventoInternacional = vm.filtro.flEventoInternacional;
+            $state.params.filtro.filtros.conviteValidacaoEnum = vm.filtro.validado;
+            $state.params.filtro.filtros.flEventoInternacional = vm.filtro.tipoSaida;
             $state.params.filtro.currentPage = 1;
+
             getMoreInfinityScrollData($state.params.filtro.currentPage);
         }
 
+        function dasabilitaCampo() {
+            console.log('Teste');
+        }
 
         function getMoreInfinityScrollData(pageNumber){
             $state.params.filtro.currentPage = pageNumber;
@@ -114,7 +184,7 @@
         }
 
         /*DIALOG*/
-        vm.showConfirm = function (ev) {
+        $scope.showConfirm = function(ev,convite) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
                 .title('Atenção')
@@ -124,9 +194,16 @@
                 .ok('Ok')
                 .cancel('Cancelar');
 
-            $mdDialog.show(confirm).then(function () {
+            $mdDialog.show(confirm).then(function() {
+                ConviteRestService.excluirPorId(convite.id).then(
+                    function (sucesso) {
+                        AlertsService.success('Remetente removido com sucesso.');
+                        var index = vm.dto.list.indexOf(convite);
+                        vm.dto.list.splice(index,1);
+                    }
+                );
                 $scope.status = 'You decided to get rid of your debt.';
-            }, function () {
+            }, function() {
                 $scope.status = 'You decided to keep your debt.';
             });
         };

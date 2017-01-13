@@ -39,13 +39,14 @@
                 url: '/editar-convite',
                 controller: 'ConviteEditarConviteController',
                 controllerAs: 'vm',
-                templateUrl: MODULE_PATH+'views/convite-inserir-convite-view.html',
+                templateUrl: MODULE_PATH+'views/convite-editar-convite-view.html',
                 resolve: {
                 },
                 params: {
                     convite: null
                 }
             })
+
             .state(STATE_PATH+MODULE_NAME+'.pesquisar-convite', {
                 url: '/pesquisar-convite',
                 controller: 'ConvitePesquisarConviteController',
@@ -53,10 +54,10 @@
                 templateUrl: MODULE_PATH+'views/convite-pesquisar-convite-view.html',
                 params: {
                     filtro: {
-                        filtros: { noObservacao : '', noDespacho: '', tipoEvento: ''},
+                        filtros: { noObservacao : '', noDespacho: '', tipoEvento: '', idLocalidade : '',remetente:'',descricao:'',flEventoInternacional:'',dtInicioEvento:'',dtFimEvento:'',dataCadInicial:'',dataCadFinal:'',conviteValidacaoEnum:''},
                         currentPage: 1,
                         pageSize: 20,
-                        sortFields: 'id',
+                        sortFields: 'remetente',
                         sortDirections: 'asc'
                     }
                 },

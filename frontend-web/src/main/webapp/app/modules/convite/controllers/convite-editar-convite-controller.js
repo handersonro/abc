@@ -10,6 +10,8 @@
         vm.autoridade = "Ministro";
         vm.convite = $stateParams.convite;
 
+
+
         vm.limpar = limpar;
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
@@ -31,16 +33,19 @@
             vm.convite = {};
         }
 
-        function salvar(){
-          AlertsService.success('Registro alterado com sucesso.');
-          $state.go('app.private.convite.pesquisar-convite');
+        function salvar(convite){
+
+            ConviteRestService.editar(convite).then(
+                function (retorno) {
+                    AlertsService.success('Registro alterado com sucesso.');
+                    $state.go('app.private.pessoas.pesquisar-remetente');
+                }
+            );
         }
 
         function showBtnSalvar(){
           return $scope.formConvite.$invalid;
         }
-
-
 
     }
 })();
