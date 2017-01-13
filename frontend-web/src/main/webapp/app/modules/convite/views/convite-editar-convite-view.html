@@ -76,16 +76,16 @@
             <div class="row">
                 <md-radio-group ng-model="vm.convite.flEventoInternacional">
                     <md-input-container>
-                        <md-radio-button value="Evento nacional" class="md-primary">Evento nacional</md-radio-button>
+                        <md-radio-button value="false" class="md-primary">Evento nacional</md-radio-button>
                     </md-input-container>
                     <md-input-container>
-                        <md-radio-button value="Evento internacional" class="md-primary">Evento internacional</md-radio-button>
+                        <md-radio-button value="true" class="md-primary">Evento internacional</md-radio-button>
                     </md-input-container>
                 </md-radio-group>
             </div>
             <div layout="row" layout-xs="column">
 
-                <md-autocomplete ng-if="vm.convite.flEventoInternacional === 'Evento internacional'"
+                <md-autocomplete ng-if="vm.convite.flEventoInternacional === true"
                         flex
                         md-no-cache="true"
                         md-selected-item="vm.convite.idPais"
@@ -105,7 +105,7 @@
                 </md-autocomplete>
 
 
-                <md-input-container flex class="md-icon-float md-block" ng-if="vm.convite.flEventoInternacional === 'Evento internacional'">
+                <md-input-container flex class="md-icon-float md-block" ng-if="vm.convite.flEventoInternacional === true">
                     <label>
                         Cidade
                     </label>
@@ -116,12 +116,12 @@
                     <custom-validator-messages input-name="cidade" ></custom-validator-messages>
                 </md-input-container>
             </div>
-            <div layout="row" layout-xs="column" ng-if="vm.convite.flEventoInternacional === 'Evento nacional'">
+            <div layout="row" layout-xs="column" ng-if="vm.convite.flEventoInternacional === false">
 
                 <md-autocomplete
                         flex
                         md-no-cache="true"
-                        md-selected-item="vm.convite.idLocalidade"
+                        md-selected-item="vm.convite.noLocalEvento || vm.convite.idLocalidade"
                         md-input-name="noLocalidade"
                         md-search-text="textoLocal"
                         md-items="item in vm.procurarLocal(textoLocal)"

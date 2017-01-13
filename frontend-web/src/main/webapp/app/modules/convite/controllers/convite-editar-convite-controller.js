@@ -10,7 +10,7 @@
         vm.autoridade = "Ministro";
         vm.convite = $stateParams.convite;
 
-
+        console.log(vm.convite);
 
         vm.limpar = limpar;
         vm.showBtnSalvar = showBtnSalvar;
