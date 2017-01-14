@@ -3,7 +3,7 @@
     .module('$alerts')
     .factory('httpMessageHandleInterceptor', httpMessageHandleInterceptor);
 
-    function httpMessageHandleInterceptor($q, $log, $rootScope,$localStorage, $sessionStorage){
+    function httpMessageHandleInterceptor($q, $log, $rootScope,$localStorage, $sessionStorage,$injector){
         return {
             // optional method
             'request': function(config) {
@@ -33,6 +33,15 @@
             // optional method
             'responseError': function(rejection) {
                 var exceptions = rejection && rejection.data && rejection.data.erros || [];
+                if (rejection.status === 401) {
+                    delete $localStorage.authenticationToken;
+                    delete $sessionStorage.authenticationToken;
+                    var Principal = $injector.get('Principal');
+                    if (Principal.isAuthenticated()) {
+                        var Auth = $injector.get('Auth');
+                        Auth.authorize(true);
+                    }
+                }
                 if( exceptions.length ){
                     for( var i in exceptions ){
                         $rootScope.$broadcast('responseErrorEvent', { type: exceptions[i].type, msg: exceptions[i].msg });
