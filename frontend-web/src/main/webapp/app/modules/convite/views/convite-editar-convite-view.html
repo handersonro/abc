@@ -49,6 +49,21 @@
                             ng-model="vm.convite.dtCadastro">
                     <custom-validator-messages input-name="dtCadastro" ></custom-validator-messages>
                 </md-input-container>
+                {{vm.convite.stValido}}
+                <md-input-container class="md-icon-float md-block" flex>
+                    <label>
+                        Validado
+                    </label>
+                    <md-icon>
+                        &#xE834;
+                    </md-icon>
+
+                    <md-select ng-model="vm.convite.validado">
+                        <md-option ng-repeat="item in vm.validacoes" value="{{item.validado}}">
+                            {{item.validado}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
             </div>
             <div layout="row" layout-xs="column">
 
@@ -86,7 +101,6 @@
 
             </div>
             <div layout="row" layout-xs="column">
-
                 <md-autocomplete ng-if="vm.convite.flEventoInternacional === 'Evento internacional'"
                         flex
                         md-no-cache="true"
