@@ -27,35 +27,35 @@
                     callback: null
                 }
             })
-            .state(STATE_PATH+MODULE_NAME+'.inserir-relatorio', {
-                url: '/inserir-relatorio',
-                controller: 'RelatorioInserirRelatorioController',
+            .state(STATE_PATH+MODULE_NAME+'.emitir-relatorio', {
+                url: '/emitir-relatorio',
+                controller: 'RelatorioEmitirRelatorioController',
                 controllerAs: 'vm',
-                templateUrl: MODULE_PATH+'views/relatorio-inserir-relatorio-view.html',
+                templateUrl: MODULE_PATH+'views/relatorio-emitir-relatorio-view.html',
                 resolve: {
                 }
             })
-            .state(STATE_PATH+MODULE_NAME+'.inserir-relatorio-convite', {
-                url: '/inserir-relatorio-convite',
-                controller: 'RelatorioInserirRelatorioConviteController',
+            .state(STATE_PATH+MODULE_NAME+'.emitir-relatorio-convite', {
+                url: '/emitir-relatorio-convite',
+                controller: 'RelatorioEmitirRelatorioConviteController',
                 controllerAs: 'vm',
-                templateUrl: MODULE_PATH+'views/relatorio-inserir-relatorio-convite-view.html',
+                templateUrl: MODULE_PATH+'views/relatorio-emitir-relatorio-convite-view.html',
                 resolve: {
                 }
             })
-            .state(STATE_PATH+MODULE_NAME+'.inserir-relatorio-reunioes', {
-                url: '/inserir-relatorio-reunioes',
-                controller: 'RelatorioInserirRelatorioReunioesController',
+            .state(STATE_PATH+MODULE_NAME+'.emitir-relatorio-reunioes', {
+                url: '/emitir-relatorio-reunioes',
+                controller: 'RelatorioEmitirRelatorioReunioesController',
                 controllerAs: 'vm',
-                templateUrl: MODULE_PATH+'views/relatorio-inserir-relatorio-reunioes-view.html',
+                templateUrl: MODULE_PATH+'views/relatorio-emitir-relatorio-reunioes-view.html',
                 resolve: {
                 }
             })
-            .state(STATE_PATH+MODULE_NAME+'.inserir-relatorio-auditoria', {
-                url: '/inserir-relatorio-auditoria',
-                controller: 'RelatorioInserirRelatorioAuditoriaController',
+            .state(STATE_PATH+MODULE_NAME+'.emitir-relatorio-auditoria', {
+                url: '/emitir-relatorio-auditoria',
+                controller: 'RelatorioEmitirRelatorioAuditoriaController',
                 controllerAs: 'vm',
-                templateUrl: MODULE_PATH+'views/relatorio-inserir-relatorio-auditoria-view.html',
+                templateUrl: MODULE_PATH+'views/relatorio-emitir-relatorio-auditoria-view.html',
                 resolve: {
                 }
             });

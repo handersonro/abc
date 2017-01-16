@@ -4,12 +4,12 @@
         .controller('AudienciaPesquisarAudienciaController', AudienciaPesquisarAudienciaController);
 
     /* @ngInject */
-    function AudienciaPesquisarAudienciaController($scope, $mdDialog, $http, $timeout, AlertsService, $filter, $location, $anchorScroll, $state, ConviteRestService, UsuarioRestService, DTO){
+    function AudienciaPesquisarAudienciaController($scope, $mdDialog, $http, $timeout, AlertsService, $filter, $location, $anchorScroll, $state, DTO){
         var vm = this;
         var _itens = [];
         vm.dto = new DTO();
-        vm.procurarLocal = ConviteRestService.obterLocais;
-        vm.procurarUsuario = UsuarioRestService.obterUsuarios;
+        vm.procurarLocal = null;//ConviteRestService.obterLocais;
+        vm.procurarUsuario = null;//UsuarioRestService.obterUsuarios;
         vm.title = "Pesquisar audiencia";
         vm.tbResultado = false;
         vm.validacoes = {};

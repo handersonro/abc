@@ -1,18 +1,20 @@
 (function(){
     angular
         .module('sisagmApp.relatorio.controllers')
-        .controller('RelatorioInserirRelatorioConviteController', RelatorioInserirRelatorioConviteController);
+        .controller('RelatorioEmitirRelatorioReunioesController', RelatorioEmitirRelatorioReunioesController);
 
     /* @ngInject */
-    function RelatorioInserirRelatorioConviteController($scope, $mdDialog, $timeout, ConviteRestService){
+    function RelatorioEmitirRelatorioReunioesController($scope, $mdDialog, $timeout, EventoService){
         var vm = this;
-        vm.procurarLocal = ConviteRestService.obterLocais;
-        vm.title = "Relatório de convite";
+        vm.procurarLocal = null;//ConviteRestService.obterLocais;
+        vm.procurarUsuario = EventoService.obterUsuarios;
+        vm.title = "Relatório de reuniões";
         vm.autoridade = "Ministro";
         vm.tipoEvento = {};
         vm.tiposSaida = {};
         vm.ordenacoes = {};
         vm.direcoes = {};
+        vm.reuniao = {};
         inicializar();
         ///////////////////////////////////
         function inicializar(){
@@ -25,11 +27,9 @@
                 {tipo: 'WORD'}
             ];
             vm.ordenacoes = [
-                {ordenacao: 'Data de cadastro'},
-                {ordenacao: 'Data do evento'},
-                {ordenacao: 'Descrição'},
-                {ordenacao: 'Local do evento'},
-                {ordenacao: 'Nome do remetente'}
+                {ordenacao: 'Data da reunião'},
+                {ordenacao: 'Local da reunião'},
+                {ordenacao: 'Assunto pauta da reunião'}
             ];
             vm.direcoes = [
                 {direcao: 'Crescente'},
@@ -39,17 +39,21 @@
 
 
         vm.limpar = function(){
-
+          vm.reuniao = {};
         }
         vm.backTlPesquisa = function(){
             vm.title = "Relatório de convite";
-
+            vm.telaPesquisa = true;
+            vm.telaCadastro = false;
+            vm.tbResultado = false;
         }
         vm.gerarRelatorio = function(){
+
         }
         vm.carregarListConvite = function(){
 
-             ConviteRestService
+            console.log('carregarListConvite >>>>>>>>>>>>>>>>')
+             /*ConviteRestService
                  .obterListaConvite({})
                  .then(
                      function(data){
@@ -58,7 +62,7 @@
                      function(error){
 
                      }
-                 );
+                 );*/
         };
         vm.carregarListConvite();
 
