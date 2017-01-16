@@ -276,3 +276,7 @@ button.btn.btn-default:hover {
     padding: 9px;
     background-color: #8bc34a;
 }
+
+.hidden{
+    display: none !important;
+}

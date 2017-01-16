@@ -16,7 +16,6 @@
 
         function linkFunc(scope, element, attrs) {
             var authority = attrs.hasAuthority.replace(/\s+/g, '');
-            console.log('CHAMOU A DIV2',authority)
 
             var setVisible = function () {
                     element.removeClass('hidden');
