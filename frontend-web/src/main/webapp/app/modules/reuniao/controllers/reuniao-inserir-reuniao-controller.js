@@ -30,19 +30,46 @@
         inicializar();
         ///////////////////////////////////
         function inicializar() {
-            vm.reuniao.dtCadastro = new Date();
+            vm.reuniao = {
+                dtInicioEvento: '',
+                dtFimEvento: '',
+                dtCadastro: new Date(),
+                noDespacho:'',
+                noLocalEvento:'',
+                noAssunto:'',
+                noPauta:'',
+                usuarios:''
+            };
         }
+
+
 
         function showBtnSalvar() {
             return $scope.formReuniao.$invalid;
         }
 
         function salvar(reuniao) {
+            var tipoEvento = {id: 3,noTipoEvento: 'REUNIAO'};
+
+            reuniao.usuarios = vm.usuarios;
+
             if (vm.dataInicio > vm.dataFim) {
                 return AlertsService.success($filter('translate')('A13.4'));
             }
-            AlertsService.success('Registro incluído com sucesso.');
-            $state.go('app.private.reuniao.inserir-reuniao', {}, {reload: true});
+
+            vm.reuniao.tipoEvento = tipoEvento;
+            vm.reuniao.flEventoAtivo = true;
+
+            ConviteRestService.salvar(vm.reuniao).then(
+                function (retorno) {
+                    console.log(reuniao + 'No salvar');
+                    AlertsService.success('Registro incluído com sucesso.');
+                    $state.go('app.private.reuniao.inserir-reuniao', {}, {reload: true});
+                }
+            );
+            console.log(vm.reuniao);
+
+            console.log(vm.usuarios);
         }
 
         function limpar() {
@@ -100,11 +127,30 @@
             return {name: chip, type: 'new'}
         }
 
+        /**
+         * Obterm as Participantes apartir do terceiro caracter pesquisado
+         * */
         function querySearch (query) {
             var resolve = $q.defer();
-            resolve.resolve(query ? vm.vegetables.filter(createFilterFor(query)) : []);
+
+
+                ReuniaoService.buscaParticipantePeloNome(query)
+                    .success(function (data) {
+                        console.log(data);
+                        resolve.resolve(data);
+                    })
+                    .error(function () {
+                        retorno.reject(alert('Não fooi possivel carregar os dados'));
+                    });
+
+
+            //resolve.resolve(query ? vm.vegetables.filter(createFilterFor(query)) : []);
+            console.log(resolve.promise);
             return resolve.promise;
         }
+
+
+
         function createFilterFor(query) {
             var lowercaseQuery = angular.lowercase(query);
 
