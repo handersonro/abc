@@ -7,13 +7,13 @@
     function SisagmHeaderController($scope, $mdMedia, $timeout, $rootScope, $state,$localStorage, $sessionStorage,Principal){
         var vm = this;
         vm.isAuthenticated = Principal.isAuthenticated();
-        Principal.hasAuthority('ADMINISTRADOR').then(function(account) {
+        Principal.hasAuthority('AUDIENCIA').then(function(account) {
             console.log(account)
         })
 
         Principal.identity().then(function(account) {
             vm.currentAccount = account;
-            console.log(account);
+            // console.log(account);
 
         });
         vm.logout = logout;
