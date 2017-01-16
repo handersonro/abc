@@ -32,7 +32,7 @@
             }
 
             for (var i = 0; i < authorities.length; i++) {
-                if (_identity.authorities.indexOf(authorities[i]) !== -1) {
+                if (_identity.authorities.map(function(e) { return e.perfil; }).indexOf(authorities[i]) !== -1) {
                     return true;
                 }
             }
@@ -46,7 +46,7 @@
             }
 
             return this.identity().then(function(_id) {
-                return _id.authorities && _id.authorities.indexOf(authority) !== -1;
+                return _id.authorities && _id.authorities.map(function(e) { return e.perfil; }).indexOf(authority) !== -1;
             }, function(){
                 return false;
             });
