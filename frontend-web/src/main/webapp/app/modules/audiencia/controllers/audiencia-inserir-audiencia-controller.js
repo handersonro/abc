@@ -52,10 +52,10 @@
             }
 
             audiencia.tipoEvento = {id: 1,noTipoEvento: 'AUDIENCIA'};
-            audiencia.idUf = audiencia.localidade.uf.id;
-            audiencia.nuRegiao = audiencia.localidade.uf.nuRegiao;
-            audiencia.noLocalEvento = audiencia.localidade.noLocalidade;
-            audiencia.idLocalidade = audiencia.localidade.id;
+            audiencia.idUf = vm.localidade.uf.id;
+            audiencia.nuRegiao = vm.localidade.uf.nuRegiao;
+            audiencia.noLocalEvento = vm.localidade.noLocalidade;
+            audiencia.idLocalidade = vm.localidade.id;
             audiencia.flEventoAtivo = true;
             audiencia.flEventoInternacional = false;
             audiencia.idPais = 1;
@@ -67,6 +67,8 @@
             });
 
             audiencia.pessoas = pessoas;
+
+            console.log(audiencia);
 
             EventoService.salvar(audiencia).then(
                 function (retorno) {

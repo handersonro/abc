@@ -51,6 +51,15 @@
                 controller: 'AudienciaPesquisarAudienciaController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/audiencia-pesquisar-audiencia-view.html',
+                params: {
+                    filtro: {
+                        filtros: {},
+                        currentPage: 1,
+                        pageSize: 20,
+                        sortFields: 'id',
+                        sortDirections: 'asc'
+                    }
+                },
                 resolve: {
                 }
             });

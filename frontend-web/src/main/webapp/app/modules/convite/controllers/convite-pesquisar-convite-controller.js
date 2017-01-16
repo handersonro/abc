@@ -107,7 +107,7 @@
             $state.params.filtro.filtros.noDespacho = vm.filtro.noDespacho;
             $state.params.filtro.filtros.tipoEvento = vm.convite.tipoEvento;
             $state.params.filtro.filtros.idLocalidade = vm.filtro.idLocalidade;
-            $state.params.filtro.filtros.remetente = vm.filtro.remetente;
+            $state.params.filtro.filtros.noRemetente = vm.filtro.remetente;
             $state.params.filtro.filtros.descricao = vm.filtro.descricao;
             $state.params.filtro.filtros.dtInicioEvento = vm.filtro.dtInicioEvento;
             $state.params.filtro.filtros.dtFimEvento = vm.filtro.dtFimEvento;

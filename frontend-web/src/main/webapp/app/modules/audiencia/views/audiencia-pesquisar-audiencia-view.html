@@ -7,7 +7,7 @@
 </div>
 <md-content class="box">
     <div class="md-padding header-info" layout="row" layout-xs="column"  layout-align="end center">
-        <strong>Autoridade: &nbsp;</strong> {{vm.autoridade}}
+        <strong>Autoridade: &nbsp;</strong> {{vm.autoridade.noAutoridade}}
     </div>
   <div class="md-padding">
       <form name="formPesquisaAudiencia">
@@ -27,7 +27,7 @@
                         <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
                                 min-date="minDate"
                                 format="DD/MM/YYYY HH:mm a"
-                                ng-model="vm.filtro.dataInicial">
+                                ng-model="vm.filtro.dataCadInicial">
                     </md-input-container>
                     <md-input-container flex>
                         <label>
@@ -36,7 +36,7 @@
                         <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
                                 min-date="minDate"
                                 format="DD/MM/YYYY HH:mm a"
-                                ng-model="vm.filtro.dataFinal">
+                                ng-model="vm.filtro.dataCadFinal">
                     </md-input-container>
                   </div>
               </div>
@@ -44,19 +44,41 @@
 
           <div layout="row" layout-xs="column">
               <md-input-container flex class="md-icon-float md-block">
-                  <label>
+                  <!--<label>
                       Solicitante
-                  </label>
+                  </label>-->
                   <md-icon>
                       &#xE8A6;
                   </md-icon>
-                  <input name="solicitante" type="text" ng-model="vm.filtro.solicitante" md-maxlength="50"
+                  <md-autocomplete
+                          flex
+                          required
+                          md-input-name="remetente"
+                          md-no-cache="true"
+                          md-selected-item="vm.filtro.remetente"
+                          md-input-name="local"
+                          md-search-text="noRemetente"
+                          md-items="item in vm.buscarRemetentePeloNome(noRemetente)"
+                          md-item-text="item.noRemetente"
+                          md-min-length="3"
+                          md-match-case-insensitive="true"
+                          md-input-maxlength="50"
+                          md-floating-label="Solicitante">
+                      <md-item-template>
+                          <span md-highlight-text="noRemetente" md-highlight-flags="^i">{{item.noRemetente}}</span>
+                      </md-item-template>
+                      <md-not-found>
+                          Nenhum usuário "{{noRemetente}}" foi encontrado
+                      </md-not-found>
+                      <custom-validator-messages input-name="usuario" ></custom-validator-messages>
+                  </md-autocomplete>
+                  <!--<input name="solicitante" type="text" ng-model="vm.filtro.solicitante" md-maxlength="50"
                   />
                   <div ng-messages="formPesquisaAudiencia.solicitante.$error">
                       <div ng-message="md-maxlength">
                           Mínimo ou igual à 50 caracter
                       </div>
-                  </div>
+                  </div>-->
               </md-input-container>
           </div>
           <div layout="row" layout-xs="column">
@@ -64,19 +86,19 @@
                   <md-autocomplete
                         flex
                         md-no-cache="true"
-                        md-selected-item="vm.filtro.selectedItem"
+                        md-selected-item="vm.filtro.localidade"
                         md-input-name="local"
-                        md-search-text="vm.textoLocal"
-                        md-items="item in vm.procurarLocal(vm.textoLocal)"
-                        md-item-text="item.local"
-                        md-min-length="1"
+                        md-search-text="nomeLocal"
+                        md-items="item in vm.procurarLocal(nomeLocal)"
+                        md-item-text="item.localidadesUf"
+                        md-min-length="3"
                         md-input-maxlength="150"
                         md-floating-label="Local do evento">
                       <md-item-template>
-                        <span md-highlight-text="vm.textoLocal" md-highlight-flags="^i">{{item.local}}</span>
+                        <span md-highlight-text="nomeLocal" md-highlight-flags="^i">{{item.localidadesUf}}</span>
                       </md-item-template>
                       <md-not-found>
-                        Nenhum local de evento "{{vm.textoLocal}}" foi encontrado
+                        Nenhum local de evento "{{nomeLocal}}" foi encontrado
                       </md-not-found>
                     </md-autocomplete>
               </div>
@@ -99,14 +121,14 @@
                   <label>
                       Observação
                   </label>
-                  <textarea ng-model="vm.filtro.observacao" rows="3" md-maxlength="255" maxlength="255" md-select-on-focus>
+                  <textarea ng-model="vm.filtro.noObservacao" rows="3" md-maxlength="255" maxlength="255" md-select-on-focus>
                   </textarea>
               </md-input-container>
               <md-input-container class="md-block" flex flex-xs="100">
                   <label>
                       Despacho
                   </label>
-                  <textarea ng-model="vm.filtro.despacho" md-maxlength="150" maxlength="150" rows="3" md-select-on-focus>
+                  <textarea ng-model="vm.filtro.noDespacho" md-maxlength="150" maxlength="150" rows="3" md-select-on-focus>
                   </textarea>
               </md-input-container>
           </div>
@@ -115,7 +137,7 @@
                   <label>
                       Assunto
                   </label>
-                  <textarea ng-model="vm.filtro.assunto" md-maxlength="255" maxlength="255" rows="3" md-select-on-focus>
+                  <textarea ng-model="vm.filtro.noAssunto" md-maxlength="255" maxlength="255" rows="3" md-select-on-focus>
                   </textarea>
               </md-input-container>
           </div>
@@ -180,7 +202,7 @@
                             </md-button>
                               <md-menu-content width="1">
                                   <md-menu-item>
-                                      <md-button ng-click="vm.editar(item)" title="{{item.nome}}">
+                                      <md-button ng-click="vm.editar(item)" title="{{item.noAssunto}}">
                                           <md-icon>
                                               &#xE22B;
                                           </md-icon>
@@ -199,16 +221,16 @@
                           </md-menu>
                       </td>
                       <td>
-                          {{ item.solicitante }}
+                          {{ item.remetente.noRemetente }}
                       </td>
                       <td>
-                          {{ item.dataCadastro }}
+                          {{ item.dtCadastro | date : 'dd/MM/yyyy HH:mm a'}}
                       </td>
                       <td>
-                          {{ item.localEvento }}
+                          {{ item.noLocalEvento }}
                       </td>
                       <td>
-                          {{ item.assunto }}
+                          <span ta-bind ng-model="item.noAssunto"></span>
                       </td>
                   </tr>
               </tbody>
