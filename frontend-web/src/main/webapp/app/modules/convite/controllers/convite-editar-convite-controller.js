@@ -10,13 +10,21 @@
         vm.autoridade = "Ministro";
         vm.convite = $stateParams.convite;
 
-        console.log(vm.convite);
-
         vm.limpar = limpar;
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
         vm.validacoes = {};
         vm.procurarLocal = ConviteRestService.obterLocais;
+
+
+        if(vm.convite.flEventoInternacional == false){
+            $scope.flEventoInternacional = vm.convite.flEventoInternacional = 'Evento nacional';
+        }
+
+        if(vm.convite.flEventoInternacional == true){
+            $scope.flEventoInternacional = vm.convite.flEventoInternacional = 'Evento internacional';
+        }
+
 
         inicializar();
         ///////////////////////////////////

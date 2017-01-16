@@ -73,19 +73,21 @@
                     </md-not-found>
                 </md-autocomplete>
             </div>
+
             <div class="row">
                 <md-radio-group ng-model="vm.convite.flEventoInternacional">
-                    <md-input-container>
-                        <md-radio-button value="false" class="md-primary">Evento nacional</md-radio-button>
+                    <md-input-container >
+                        <md-radio-button value="Evento nacional" ng-class="{'md-checked':vm.convite.flEventoInternacional == 'Evento nacional'}" class="md-primary">Evento nacional</md-radio-button>
                     </md-input-container>
                     <md-input-container>
-                        <md-radio-button value="true" class="md-primary">Evento internacional</md-radio-button>
+                        <md-radio-button value="Evento internacional" ng-class="{'md-checked':vm.convite.flEventoInternacional == 'Evento internacional'}" class="md-primary">Evento internacional</md-radio-button>
                     </md-input-container>
                 </md-radio-group>
+
             </div>
             <div layout="row" layout-xs="column">
 
-                <md-autocomplete ng-if="vm.convite.flEventoInternacional === true"
+                <md-autocomplete ng-if="vm.convite.flEventoInternacional === 'Evento internacional'"
                         flex
                         md-no-cache="true"
                         md-selected-item="vm.convite.idPais"
@@ -105,7 +107,7 @@
                 </md-autocomplete>
 
 
-                <md-input-container flex class="md-icon-float md-block" ng-if="vm.convite.flEventoInternacional === true">
+                <md-input-container flex class="md-icon-float md-block" ng-if="vm.convite.flEventoInternacional === 'Evento internacional'">
                     <label>
                         Cidade
                     </label>
@@ -116,7 +118,7 @@
                     <custom-validator-messages input-name="cidade" ></custom-validator-messages>
                 </md-input-container>
             </div>
-            <div layout="row" layout-xs="column" ng-if="vm.convite.flEventoInternacional === false">
+            <div layout="row" layout-xs="column" ng-if="vm.convite.flEventoInternacional === 'Evento nacional'">
 
                 <md-autocomplete
                         flex
