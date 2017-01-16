@@ -6,50 +6,24 @@
         .service('UsuarioRestService', UsuarioRestService);
 
     /* @ngInject */
-    function UsuarioRestService($q, $http){
+    function UsuarioRestService($q, $http, Restangular, baseURL){
         var service = this;
 
         service.obterListaUsuario = obterListaUsuario;
-        service.obterUsuarios = obterUsuarios;
+        service.obterParticipanteExterno = obterParticipanteExterno;
+        service.obterRemetentesPeloNome = buscaRemetentePeloNome;
 
         ////////////////////////////
-        function obterUsuarios(dto){
+        function obterParticipanteExterno(noParticipante){
             var retorno = $q.defer();
 
-            retorno.resolve(
-                [
-                    {
-                        id: 1,
-                        usuario: 'Amanda Silva Mendes'
-                    },
-                    {
-                        id: 2,
-                        usuario: 'Maria Madalena'
-                    },
-                    {
-                        id: 3,
-                        usuario: 'José Ricardo'
-                    },
-                    {
-                        id: 4,
-                        usuario: 'João Araújo'
-                    },
-                    {
-                        id: 5,
-                        usuario: 'Marcelo dos Santos'
-                    },
-                    {
-                        id: 6,
-                        usuario: 'Bruno Medeiros'
-                    },
-                    {
-                        id: 7,
-                        usuario: 'Zilma dos Reis'
-                    }
-                ]
-            );
+            retorno = $http.get(baseURL+'participantes/externo?noParticipante='+noParticipante);
 
-            return retorno.promise;
+            return retorno;
+        }
+
+        function buscaRemetentePeloNome(noUsuario){
+            return $http.get(baseURL+ 'remetentes?noRemetente=' + noUsuario);
         }
 
         function obterListaUsuario(dto){
