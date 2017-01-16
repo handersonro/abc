@@ -61,7 +61,7 @@
         function montaParticipanteExterno(participante){
             var participanteExterno = {};
             var pessoa = {flPessoaAtivo: true};
-            participanteExterno.noParticianteExterno = participante.nome;
+            participanteExterno.noParticipanteExterno = participante.nome;
             participanteExterno.noCargo = participante.cargo;
             if(participante.email != undefined){
                 participanteExterno.noEmail = participante.email;

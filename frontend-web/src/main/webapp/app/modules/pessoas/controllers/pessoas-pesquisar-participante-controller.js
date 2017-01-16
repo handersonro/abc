@@ -32,7 +32,7 @@
             vm.tbResultado = false;
             vm.dto.list = [];
             vm.dto.totalResults = 0;
-            $state.params.filtro.filtros.noParticianteExterno = vm.filtro.nome;
+            $state.params.filtro.filtros.noParticipanteExterno = vm.filtro.nome;
             $state.params.filtro.filtros.noCargo = vm.filtro.cargo;
             $state.params.filtro.filtros.noEmail = vm.filtro.email;
             $state.params.filtro.filtros.nuTelefone = vm.filtro.tel.replace(/[^0-9]/g,'');
@@ -49,7 +49,7 @@
                     vm.dto.list.push(
                         {
                             id: value.id,
-                            nome: value.noParticianteExterno,
+                            nome: value.noParticipanteExterno,
                             cargo: value.noCargo,
                             email: value.noEmail,
                             pessoa:{
