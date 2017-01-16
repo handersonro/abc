@@ -4,16 +4,15 @@
         .controller('AudienciaEditarAudienciaController', AudienciaEditarAudienciaController);
 
     /* @ngInject */
-    function AudienciaEditarAudienciaController($scope, $mdDialog, $timeout, $stateParams, $state, AlertsService, EventoService){
+    function AudienciaEditarAudienciaController($scope, $mdDialog, $timeout, $stateParams, $q, $state, AlertsService, EventoService){
         var vm = this;
         vm.isEdicao = true;
         vm.buscaParticipanteExterno = buscaParticipanteExterno;
         vm.title = "Editar audiência";
         vm.audiencia = $stateParams.audiencia;
 
-        console.log(vm.audiencia);
         vm.remetente =  vm.audiencia.remetente;
-        vm.participantes = vm.audiencia.participantes;
+        vm.participantes = [];
 
         vm.autoridade = {noAutoridade : 'Ministro'};
         vm.showBtnSalvar = showBtnSalvar;
@@ -28,6 +27,13 @@
                 .success(function (data) {
                     vm.localidade = data;
                 });
+
+            vm.audiencia.pessoas.forEach(function (pessoa) {
+                EventoService.obterParticipanteExternoPorId(pessoa.id)
+                    .success(function (data) {
+                        vm.participantes.push(data);
+                    });
+            });
         }
         ///////////////////////////////////
 
@@ -50,12 +56,13 @@
             audiencia.idLocalidade = vm.localidade.id;
             audiencia.remetente = vm.remetente;
 
-            pessoas = [];
+            var pessoas = [];
 
             vm.participantes.forEach(function (usuario) {
                 pessoas.push(usuario.pessoa);
             });
 
+            console.log(pessoas);
             audiencia.pessoas = pessoas;
 
             console.log(audiencia);

@@ -60,7 +60,7 @@
             audiencia.flEventoInternacional = false;
             audiencia.idPais = 1;
             audiencia.remetente = vm.remetente;
-            pessoas = [];
+            var pessoas = [];
 
             vm.participantes.forEach(function (usuario) {
                 pessoas.push(usuario.pessoa);

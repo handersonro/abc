@@ -41,6 +41,10 @@
             return $http.get(baseURL+'eventos/localidades?idLocalidade='+id);
         }
 
+        function obterParticipanteExternoPorId(id) {
+            return $http.get(baseURL+'participantes/externo/'+id);
+        }
+
         return {
             obterPorId: Restangular.one('eventos').customGET,
             salvar: Restangular.one('eventos').customPOST,
@@ -53,7 +57,8 @@
             obterParticipanteExterno: obterParticipanteExterno,
             obterRemetentesPeloNome: buscaRemetentePeloNome,
             obterListaUsuario: obterListaUsuario,
-            obterLocalidadePeloId: obterLocalidadePeloId
+            obterLocalidadePeloId: obterLocalidadePeloId,
+            obterParticipanteExternoPorId: obterParticipanteExternoPorId
         };
 
     }

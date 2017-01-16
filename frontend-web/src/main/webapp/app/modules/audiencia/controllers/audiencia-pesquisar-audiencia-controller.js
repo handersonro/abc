@@ -104,19 +104,6 @@
             return promiseLoadMoreData;
         }
 
-        /*vm.carregarListConvite = function(){
-         $http
-         .get('modules/convite/data/list-convite.json')
-         .success (function(data){
-         _itens = data;
-         vm.dto.totalResults = data.length;
-         vm.dto.list = _itens.slice(0, vm.dto.pageSize);
-         })
-         .error(function(){
-         alert('Não fooi possivel carregar os dados');
-         });
-         };
-         vm.carregarListConvite();*/
         function debounce(func, wait, context) {
             var timer;
 
