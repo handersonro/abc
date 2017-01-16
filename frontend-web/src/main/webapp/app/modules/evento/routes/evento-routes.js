@@ -41,10 +41,22 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/recusar-view.html',
                 resolve: {
-                },
-                params: {
-                    reuniao: null
+                }
+            }).state(STATE_PATH+MODULE_NAME+'.confirmacao-nao-permitida', {
+                url: '/confirmacao-nao-permitida',
+                controller: 'EventoController',
+                controllerAs: 'vm',
+                templateUrl: MODULE_PATH+'views/confirmacao-nao-permitida-view.html',
+                resolve: {
+                }
+             }).state(STATE_PATH+MODULE_NAME+'.recusar-nao-permitida', {
+                url: '/recusar-nao-permitida',
+                controller: 'EventoController',
+                controllerAs: 'vm',
+                templateUrl: MODULE_PATH+'views/recusar-nao-permitida-view.html',
+                resolve: {
                 }
             });
+
     }
 })();
