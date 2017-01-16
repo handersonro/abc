@@ -4,23 +4,22 @@
         .controller('AudienciaInserirAudienciaController', AudienciaInserirAudienciaController);
 
     /* @ngInject */
-    function AudienciaInserirAudienciaController($scope, $mdDialog, $timeout, AlertsService, ConviteRestService, $filter, $q, UsuarioRestService){
+    function AudienciaInserirAudienciaController($scope, $mdDialog, $timeout, AlertsService, $filter, $q, EventoService){
         var vm = this;
         vm.readonly = false;
         vm.selectedItem = null;
         vm.searchText = null;
-        vm.querySearch = querySearch;
-        vm.vegetables = loadVegetables();
-        vm.usuarios = [];
+        vm.buscaParticipanteExterno = buscaParticipanteExterno;
+        vm.participantes = [];
         vm.numberChips = [];
         vm.numberChips2 = [];
         vm.listSistemas = [];
         vm.numberBuffer = '';
         vm.autocompleteDemoRequireMatch = true;
         vm.transformChip = transformChip;
+        vm.buscarRemetentePeloNome = buscarRemetentePeloNome;
 
-        vm.procurarLocal = ConviteRestService.obterLocais;
-        vm.procurarUsuario = UsuarioRestService.obterUsuarios;
+        vm.procurarLocal = EventoService.obterLocais;
 
         vm.title = "Incluir audiência";
         vm.autoridade = {noAutoridade : 'Ministro'};
@@ -53,52 +52,30 @@
             }
 
             audiencia.tipoEvento = {id: 1,noTipoEvento: 'AUDIENCIA'};
-            audiencia.idLocalidade = audiencia.idLocalidade.id;
+            audiencia.idUf = audiencia.localidade.uf.id;
+            audiencia.nuRegiao = audiencia.localidade.uf.nuRegiao;
+            audiencia.noLocalEvento = audiencia.localidade.noLocalidade;
+            audiencia.idLocalidade = audiencia.localidade.id;
             audiencia.flEventoAtivo = true;
-            audiencia.flEventoInternacional = 1;
+            audiencia.flEventoInternacional = false;
             audiencia.idPais = 1;
+            audiencia.remetente = vm.remetente;
+            pessoas = [];
 
-            audiencia.remetente = {id:'42',noRemetente:'John McQueide',noCargo:'Desenv',noEmail:'john@turismo.gov.br',nuTelefone:'16514654954',pessoa:{id:'213',flPessoaAtivo:'true'}}
+            vm.participantes.forEach(function (usuario) {
+                pessoas.push(usuario.pessoa);
+            });
 
-            console.log(audiencia);
+            audiencia.pessoas = pessoas;
 
-            ConviteRestService.salvar(audiencia).then(
+            EventoService.salvar(audiencia).then(
                 function (retorno) {
-                    console.log(audiencia + 'No salvar');
                     AlertsService.success('Registro incluído com sucesso.');
                     $state.go('app.private.audiencia.inserir-audiencia', {}, {reload: true});
                 }
             );
-
         }
 
-        vm.carregarListConvite = function(){
-
-            ConviteRestService
-                .obterListaConvite({})
-                .then(
-                    function(data){
-                        $scope.listaConvites = data;
-                    },
-                    function(error){
-
-                    }
-                );
-        };
-        //vm.carregarListConvite();
-        function debounce(func, wait, context) {
-            var timer;
-
-            return function debounced() {
-                var context = $scope,
-                    args = Array.prototype.slice.call(arguments);
-                $timeout.cancel(timer);
-                timer = $timeout(function() {
-                    timer = undefined;
-                    func.apply(context, args);
-                }, wait || 10);
-            };
-        }
         /*DIALOG*/
         vm.showConfirm = function(ev) {
             // Appending dialog to document.body to cover sidenav in docs app
@@ -127,48 +104,31 @@
             // Otherwise, create a new one
             return { name: chip, type: 'new' }
         }
-        function querySearch (query) {
-            var resolve = $q.defer();
-            resolve.resolve(query ? vm.vegetables.filter(createFilterFor(query)) : []);
-            return resolve.promise;
-        }
-        function createFilterFor(query) {
-            var lowercaseQuery = angular.lowercase(query);
+        function buscaParticipanteExterno (noParticipante) {
+            var retorno = $q.defer();
 
+            EventoService.obterParticipanteExterno(noParticipante)
+                .success(function (data) {
+                    retorno.resolve(data);
+                })
+                .error(function () {
+                    retorno.reject(alert('Não foi possível carregar os dados'));
+                });
 
-            return function filterFn(vegetable) {
-                return (vegetable._lowername.indexOf(lowercaseQuery) === 0);
-            };
-
-        }
-        function loadVegetables() {
-            var veggies = [
-                {
-                    'name': 'Paulo Júnior de Jesus Peres'
-                },
-                {
-                    'name': 'Júlio Nascimento'
-                },
-                {
-                    'name': 'Amanda Amorim Neto'
-                },
-                {
-                    'name': 'Bruno Azevedo Amaral'
-                },
-                {
-                    'name': 'Camila Ribeiro'
-                },
-                {
-                    'name': 'Danilo Cabaré'
-                }
-
-            ];
-
-            return veggies.map(function (veg) {
-                veg._lowername = veg.name.toLowerCase();
-                return veg;
-            });
+            return retorno.promise;
         }
         /*CHIPS*/
+
+        function buscarRemetentePeloNome(noUsuario) {
+            var retorno = $q.defer();
+            EventoService.obterRemetentesPeloNome(noUsuario)
+                .success(function (data) {
+                    retorno.resolve(data);
+                })
+                .error(function () {
+                    retorno.reject(alert('Não foi possivel carregar os dados'));
+                });
+            return retorno.promise;
+        }
     }
 })();

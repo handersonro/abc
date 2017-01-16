@@ -51,72 +51,74 @@
             </div>
 
             <md-input-container class="md-icon-float md-block" flex>
-                <label>
+                <!--<label>
                     Solicitante
-                </label>
+                </label>-->
                 <md-icon>
                     &#xE8A6;
                 </md-icon>
-                <input type="text" ng-model="vm.audiencia.remetente" name="solicitante" required md-maxlength="50"
-                       maxlength="50"/>
+                <md-autocomplete
+                        flex
+                        required
+                        md-input-name="remetente"
+                        md-no-cache="true"
+                        md-selected-item="vm.remetente"
+                        md-input-name="local"
+                        md-search-text="noRemetente"
+                        md-items="item in vm.buscarRemetentePeloNome(noRemetente)"
+                        md-item-text="item.noRemetente"
+                        md-min-length="3"
+                        md-match-case-insensitive="true"
+                        md-input-maxlength="150"
+                        md-floating-label="Solicitante">
+                    <md-item-template>
+                        <span md-highlight-text="noRemetente" md-highlight-flags="^i">{{item.noRemetente}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        Nenhum usuário "{{noRemetente}}" foi encontrado
+                    </md-not-found>
+                    <custom-validator-messages input-name="usuario" ></custom-validator-messages>
+                </md-autocomplete>
             </md-input-container>
             <md-input-container class="md-icon-float md-block padding-auto" flex>
                 <md-chips
                         flex
-                        ng-model="vm.usuarios"
+                        ng-model="vm.participantes"
                         md-transform-chip="vm.transformChip($chip)"
                         md-require-match="true">
                     <md-autocomplete
                             md-selected-item="vm.selectedItem"
-                            md-search-text="vm.searchText"
-                            md-items="item in vm.querySearch(vm.searchText)"
-                            md-item-text="item.name"
+                            md-search-text="vm.noParticipanteExterno"
+                            md-items="item in vm.buscaParticipanteExterno(vm.noParticipanteExterno)"
+                            md-item-text="item.noParticipanteExterno"
+                            md-min-length="3"
                             md-floating-label="Vincular participante">
-                        <span md-highlight-text="searchText">{{item.name}}</span>
+                        <span md-highlight-text="searchText">{{item.noParticipanteExterno}}</span>
                     </md-autocomplete>
                     <md-chip-template>
-                        <span>{{$chip.name}}</span>
+                        <span>{{$chip.noParticipanteExterno}}</span>
                     </md-chip-template>
                 </md-chips>
             </md-input-container>
             <md-input-container class="md-icon-float md-block" flex>
                 <md-autocomplete
                         flex
-                        md-input-maxlength="150"
                         md-no-cache="true"
-                        md-selected-item="vm.audiencia.idLocalidade"
-                        md-input-name="local"
-                        md-search-text="textoLocal"
-                        md-items="item in vm.procurarLocal(textoLocal)"
+                        md-input-maxlength="150"
+                        md-selected-item="vm.audiencia.localidade"
+                        md-input-name="noLocalidade"
+                        md-search-text="nomeLocal"
+                        md-items="item in vm.procurarLocal(nomeLocal)"
                         md-item-text="item.localidadesUf"
                         md-min-length="3"
                         md-floating-label="Local da audiência">
                     <md-item-template>
-                        <span md-highlight-text="textoLocal" md-highlight-flags="^i">{{item.localidadesUf}}</span>
+                        <span md-highlight-text="nomeLocal" md-highlight-flags="^i">{{item.localidadesUf}}</span>
                     </md-item-template>
                     <md-not-found>
-                        Nenhum local de evento "{{textoLocal}}" foi encontrado
+                        Nenhum local de evento "{{nomeLocal}}" foi encontrado
                     </md-not-found>
                 </md-autocomplete>
-                <!--<md-autocomplete
-                        required
-                        flex
-                        md-input-maxlength="150"
-                        md-no-cache="true"
-                        md-selected-item="vm.audiencia.localEvento"
-                        md-input-name="local"
-                        md-search-text="vm.textoLocal"
-                        md-items="item in vm.procurarLocal(vm.textoLocal)"
-                        md-item-text="item.local"
-                        md-min-length="1"
-                        md-floating-label="Local da audiência">
-                    <md-item-template>
-                        <span md-highlight-text="vm.textoLocal" md-highlight-flags="^i">{{item.local}}</span>
-                    </md-item-template>
-                    <md-not-found>
-                        Nenhum local de evento "{{vm.textoLocal}}" foi encontrado
-                    </md-not-found>
-                </md-autocomplete>-->
             </md-input-container>
             <div class="row">
                 <md-input-container class="md-block" flex-xs="100">

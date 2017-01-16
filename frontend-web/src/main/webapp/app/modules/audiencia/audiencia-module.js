@@ -1,7 +1,7 @@
 (function(){
     "use strict";
 
-    angular.module('sisagmApp.audiencia.controllers', [] );
+    angular.module('sisagmApp.audiencia.controllers', ['sisagmApp.evento'] );
     angular.module('sisagmApp.audiencia.services', ['sisagmApp.core.services'] );
     angular.module('sisagmApp.audiencia.routes', [] );
 

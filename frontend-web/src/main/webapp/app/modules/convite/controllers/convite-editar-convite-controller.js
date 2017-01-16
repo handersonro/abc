@@ -10,13 +10,35 @@
         vm.autoridade = "Ministro";
         vm.convite = $stateParams.convite;
 
-        console.log(vm.convite);
-
         vm.limpar = limpar;
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
         vm.validacoes = {};
         vm.procurarLocal = ConviteRestService.obterLocais;
+        vm.procurarRemetente = ConviteRestService.obterRemetentes;
+        vm.procurarPaises = ConviteRestService.obterPaises;
+
+        if(vm.convite.flEventoInternacional == false){
+            vm.convite.flEventoInternacional = 'Evento nacional';
+        }
+
+        if(vm.convite.flEventoInternacional == true){
+            vm.convite.flEventoInternacional = 'Evento internacional';
+        }
+
+
+        if(vm.convite.conviteValidacaoEnum == 'NAO'){
+            vm.convite.validado = 'Não';
+        }
+
+        if(vm.convite.conviteValidacaoEnum == 'SIM'){
+            vm.convite.validado = 'Sim';
+        }
+
+        if(vm.convite.conviteValidacaoEnum == 'INDIFERENTE'){
+            vm.convite.validado = 'Indiferente';
+        }
+
 
         inicializar();
         ///////////////////////////////////
@@ -28,7 +50,7 @@
               {validado : 'Indiferente'}
             ];
         }
-
+        console.log(vm.convite);
         function limpar(){
             vm.convite = {};
         }

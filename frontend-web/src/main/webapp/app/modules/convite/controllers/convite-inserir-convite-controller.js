@@ -59,7 +59,7 @@
 
             vm.convite.tipoEvento = tipoEvento;
             vm.convite.idLocalidade = vm.convite.idLocalidade.id;
-            //vm.convite.idUf = vm.convite.idLocalidade.uf.id;
+            vm.convite.noLocalEvento = vm.convite.idLocalidade.localidadesUf;
 
             vm.convite.flEventoAtivo = true;
             if(vm.convite.flEventoInternacional =='Evento nacional'){
