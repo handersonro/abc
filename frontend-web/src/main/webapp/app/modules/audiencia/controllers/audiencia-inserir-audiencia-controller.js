@@ -4,7 +4,7 @@
         .controller('AudienciaInserirAudienciaController', AudienciaInserirAudienciaController);
 
     /* @ngInject */
-    function AudienciaInserirAudienciaController($scope, $mdDialog, $timeout, AlertsService, ConviteRestService, $filter, $q, UsuarioRestService){
+    function AudienciaInserirAudienciaController($scope, $mdDialog, $timeout, AlertsService, $filter, $q, EventoService){
         var vm = this;
         vm.readonly = false;
         vm.selectedItem = null;
@@ -19,7 +19,7 @@
         vm.transformChip = transformChip;
         vm.buscarRemetentePeloNome = buscarRemetentePeloNome;
 
-        vm.procurarLocal = ConviteRestService.obterLocais;
+        vm.procurarLocal = EventoService.obterLocais;
 
         vm.title = "Incluir audiência";
         vm.autoridade = {noAutoridade : 'Ministro'};
@@ -68,7 +68,7 @@
 
             audiencia.pessoas = pessoas;
 
-            ConviteRestService.salvar(audiencia).then(
+            EventoService.salvar(audiencia).then(
                 function (retorno) {
                     AlertsService.success('Registro incluído com sucesso.');
                     $state.go('app.private.audiencia.inserir-audiencia', {}, {reload: true});
@@ -107,7 +107,7 @@
         function buscaParticipanteExterno (noParticipante) {
             var retorno = $q.defer();
 
-            UsuarioRestService.obterParticipanteExterno(noParticipante)
+            EventoService.obterParticipanteExterno(noParticipante)
                 .success(function (data) {
                     retorno.resolve(data);
                 })
@@ -121,7 +121,7 @@
 
         function buscarRemetentePeloNome(noUsuario) {
             var retorno = $q.defer();
-            UsuarioRestService.obterRemetentesPeloNome(noUsuario)
+            EventoService.obterRemetentesPeloNome(noUsuario)
                 .success(function (data) {
                     retorno.resolve(data);
                 })
