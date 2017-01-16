@@ -11,7 +11,6 @@
                 config.headers = config.headers || {};
                 var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
                 if (token) {
-                    console.log('AUTENTICADO')
                     config.headers.Authorization = 'Bearer ' + token;
                 }
 
@@ -33,7 +32,11 @@
             // optional method
             'responseError': function(rejection) {
                 var exceptions = rejection && rejection.data && rejection.data.erros || [];
+                if (!(rejection.status === 401 && (rejection.data === '' || (rejection.data.path && rejection.data.path.indexOf('/api/account') === 0 )))) {
+                    // $rootScope.$emit('turismoApp.httpError', rejection);
+                }
                 if (rejection.status === 401) {
+
                     delete $localStorage.authenticationToken;
                     delete $sessionStorage.authenticationToken;
                     var Principal = $injector.get('Principal');
@@ -42,6 +45,7 @@
                         Auth.authorize(true);
                     }
                 }
+
                 if( exceptions.length ){
                     for( var i in exceptions ){
                         $rootScope.$broadcast('responseErrorEvent', { type: exceptions[i].type, msg: exceptions[i].msg });

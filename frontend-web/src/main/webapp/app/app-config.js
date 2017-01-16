@@ -29,10 +29,7 @@
             });
 
         $httpProvider.interceptors.push('httpMessageHandleInterceptor');
-        // $httpProvider.interceptors.push('errorHandlerInterceptor');
-        // $httpProvider.interceptors.push('authExpiredInterceptor');
-        // $httpProvider.interceptors.push('authInterceptor');
-        // $httpProvider.interceptors.push('notificationInterceptor');
+
         //$httpProvider.interceptors.push('daLoaderHttpInterceptor');
 
         $httpProvider.defaults.useXDomain = true;

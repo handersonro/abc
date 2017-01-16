@@ -75,7 +75,7 @@
             return deferred.promise;
 
             function getUsuarioLogadoThen (account) {
-                _identity = account.data;
+                _identity = account;
                 _authenticated = true;
                 deferred.resolve(_identity);
             }
