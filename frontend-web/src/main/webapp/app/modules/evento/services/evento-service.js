@@ -5,23 +5,16 @@
     'use strict';
     /**
      * @ngdoc function
-     * @name sisagmApp.reuniao.services:ReuniaoService
-     * @description # ReuniaoService Serviço para Reunião
+     * @name sisagmApp.reuniao.services:EventoService
+     * @description # EventoService Serviço para Evento
      */
     angular
-        .module('sisagmApp.reuniao.services')
-        .factory('ReuniaoService', ReuniaoService);
+        .module('sisagmApp.evento.services')
+        .factory('EventoService', EventoService);
 
 
     /* @ngInject */
     function EventoService(Restangular,$http,baseURL) {
 
-        function buscar(noParticipante) {
-            return $http.get(baseURL+'participantes/interno?noParticipante='+noParticipante);
-        }
-
-        return {
-            obterPorHash: Restangular.one('eventos').customGET
-        };
     }
 })();

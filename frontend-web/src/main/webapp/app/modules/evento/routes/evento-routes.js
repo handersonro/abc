@@ -3,14 +3,14 @@
 
     angular
 
-        .module('sisagmApp.reuniao.routes')
+        .module('sisagmApp.evento.routes')
         .config(configPublicRoutes);
 
     /* @ngInject */
     function configPublicRoutes($stateProvider) {
         var MODULE_NAME = 'evento';
         var MODULE_PATH = 'modules/'+MODULE_NAME+'/';
-        var STATE_PATH = 'app.private.';
+        var STATE_PATH = 'app.public.';
         $stateProvider
             .state(STATE_PATH+MODULE_NAME, {
                 url: '/'+MODULE_NAME,

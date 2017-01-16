@@ -1,10 +1,10 @@
 (function(){
     angular
-        .module('sisagmApp.reuniao.controllers')
-        .controller('ReuniaoController', ReuniaoController);
+        .module('sisagmApp.evento.controllers')
+        .controller('EventoController', EventoController);
 
     /* @ngInject */
-    function ReuniaoController($scope){
+    function EventoController($scope){
 
         ///////////////////////////////////
 
