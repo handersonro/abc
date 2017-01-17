@@ -58,6 +58,14 @@
                 templateUrl: MODULE_PATH+'views/relatorio-emitir-relatorio-auditoria-view.html',
                 resolve: {
                 }
-            });
+            })
+            .state(STATE_PATH+MODULE_NAME+'.relatorio-auditoria', {
+            url: '/relatorio-auditoria',
+            controller: 'RelatorioController',
+            controllerAs: 'vm',
+            templateUrl: MODULE_PATH+'views/relatorio-auditoria.html',
+            resolve: {
+            }
+        });
     }
 })();

@@ -12,5 +12,9 @@
             $state.go("app.public.home.pagina-inicial");
         }
 
+        $scope.login =function(){
+            location.reload();
+        }
+
     }
 })();

@@ -4,9 +4,13 @@
         .controller('HomeController', HomeController);
 
     /* @ngInject */
-    function HomeController($scope){
+    function HomeController($scope,$state,UsuarioLogado){
+
+        console.log('WWWW1',$state.current);
 
         ///////////////////////////////////
+
+
 
     }
 })();
