@@ -20,6 +20,7 @@
         vm.listaAutoridades = {};
         vm.pessoasParaSeremRemovidas = [];
         vm.removeParticipante = removeParticipante;
+        vm.procurarLocal = EventoService.obterLocais;
         inicializar();
         function inicializar(){
             if(vm.dataInicio > vm.dataFim){
