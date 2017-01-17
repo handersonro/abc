@@ -18,6 +18,8 @@
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
         vm.listaAutoridades = {};
+        vm.pessoasParaSeremRemovidas = [];
+        vm.removeParticipante = removeParticipante;
         inicializar();
         function inicializar(){
             if(vm.dataInicio > vm.dataFim){
@@ -56,6 +58,7 @@
             audiencia.noLocalEvento = vm.localidade.noLocalidade;
             audiencia.idLocalidade = vm.localidade.id;
             audiencia.remetente = vm.remetente;
+            audiencia.pessoasParaSeremRemovidas = vm.pessoasParaSeremRemovidas;
 
             var pessoas = [];
 
@@ -63,7 +66,6 @@
                 pessoas.push(usuario.pessoa);
             });
 
-            console.log(pessoas);
             audiencia.pessoas = pessoas;
 
             console.log(audiencia);
@@ -120,6 +122,10 @@
                 });
 
             return retorno.promise;
+        }
+
+        function removeParticipante(chip) {
+            vm.pessoasParaSeremRemovidas.push(chip.pessoa);
         }
         /*DIALOG*/
     }

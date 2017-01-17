@@ -79,6 +79,7 @@
                         flex
                         ng-model="vm.participantes"
                         md-transform-chip="vm.transformChip($chip)"
+                        md-on-remove="vm.removeParticipante($chip)"
                         md-require-match="true">
                     <md-autocomplete
                             md-selected-item="vm.selectedItem"

@@ -127,7 +127,7 @@
             };
         }
         /*DIALOG*/
-        vm.showConfirm = function(ev) {
+        vm.showConfirm = function(ev,audiencia) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
                 .title('Atenção')
@@ -138,6 +138,14 @@
                 .cancel('Cancelar');
 
             $mdDialog.show(confirm).then(function() {
+                EventoService.excluirPorId(audiencia.id).then(
+                    function (sucesso) {
+                        AlertsService.success('Audiência removido com sucesso.');
+                        var index = vm.dto.list.indexOf(audiencia);
+                        vm.dto.list.splice(index,1);
+                    }
+                );
+
                 $scope.status = 'You decided to get rid of your debt.';
             }, function() {
                 $scope.status = 'You decided to keep your debt.';
