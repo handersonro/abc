@@ -4,7 +4,7 @@
         .config(configApp);
 
     /* @ngInject */
-    function configApp($ocLazyLoadProvider, $translateProvider, $mdThemingProvider, RestangularProvider, $httpProvider, $breadcrumbProvider,$mdDateLocaleProvider){
+    function configApp($ocLazyLoadProvider, $translateProvider, $mdThemingProvider, RestangularProvider, $httpProvider, $breadcrumbProvider,$mdDateLocaleProvider, $provide){
         $ocLazyLoadProvider.config({
             debug: false,
             events: false
@@ -52,5 +52,39 @@
             prefixStateName: 'app.private',
            	template: '<div disable-animate style="box-sizing: border-box; margin: 8px" class="breadcrumb md-primmary md-whiteframe-z2"><a ng-repeat="step in steps" class="btn btn-flat" data-ng-class="{active: $last}" href="{{step.ncyBreadcrumbLink}}" ng-disabled="$last">{{step.ncyBreadcrumbLabel}}</a></div>'
         });
-    }
+
+
+        $provide.decorator('taOptions', ['taRegisterTool', '$delegate', function(taRegisterTool, taOptions){
+            // $delegate is the taOptions we are decorating
+            // register the tool with textAngular
+
+
+
+            taRegisterTool('fontColor', {
+                display: "<button colorpicker type='button' class='btn btn-default ng-scope'  title='Font Color'  colorpicker-close-on-select colorpicker-position='bottom' ng-model='fontColor' style='color: {{fontColor}}'><i class='fa fa-font '></i></button>",
+                action: function (deferred) {
+                    var self = this;
+                    if (typeof self.listener == 'undefined') {
+                        self.listener = self.$watch('fontColor', function (newValue) {
+                            self.$editor().wrapSelection('foreColor', newValue);
+                        });
+                    }
+                    self.$on('colorpicker-selected', function () {
+                        deferred.resolve();
+                    });
+                    self.$on('colorpicker-closed', function () {
+                        deferred.resolve();
+                    });
+                    return false;
+                }
+            });
+            taOptions.toolbar[1].unshift('fontColor');
+
+            taOptions.setup.textEditorSetup=function($element) {
+                $element.attr('ui-codemirror', '');
+            };
+            return taOptions;
+        }]);
+
+}
 })();
