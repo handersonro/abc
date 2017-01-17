@@ -7,7 +7,7 @@
     function RelatorioEmitirRelatorioReunioesController($scope, $mdDialog, $timeout, EventoService){
         var vm = this;
         vm.procurarLocal = null;//ConviteRestService.obterLocais;
-        vm.procurarUsuario = EventoService.obterUsuarios;
+        vm.procurarUsuario = null//EventoService.obterUsuarios;
         vm.title = "Relatório de reuniões";
         vm.autoridade = "Ministro";
         vm.tipoEvento = {};
