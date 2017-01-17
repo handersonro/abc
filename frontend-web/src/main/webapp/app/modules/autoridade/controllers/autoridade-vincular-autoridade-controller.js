@@ -4,7 +4,7 @@
         .controller('AutoridadeVincularAutoridadeController', AutoridadeVincularAutoridadeController);
 
     /* @ngInject */
-    function AutoridadeVincularAutoridadeController($scope, $timeout,$log, $q,$http,$state, UsuarioRestService, AlertsService,AutoridadeService){
+    function AutoridadeVincularAutoridadeController($scope, $timeout,$log, $q,$http,$state, AlertsService,AutoridadeService){
         var vm = this;
 
         vm.listAutoridades = {};
