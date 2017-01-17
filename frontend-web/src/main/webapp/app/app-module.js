@@ -14,6 +14,7 @@
             'ngMaterialDatePicker',
             'pascalprecht.translate',
             'ncy-angular-breadcrumb',
+            'colorpicker.module',
 
             'sisagmApp.routes',
             'sisagmApp.core',
