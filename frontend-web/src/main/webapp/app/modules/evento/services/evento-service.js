@@ -24,6 +24,10 @@
             return $http.get(baseURL+ 'remetentes?noRemetente=' + noUsuario);
         }
 
+        function buscarPorNome(noParticipante) {
+            return $http.get(baseURL+'participantes/buscar-por-nome?noParticipante='+noParticipante);
+        }
+
         function obterListaUsuario(dto){
             var retorno = $q.defer();
             $http
@@ -58,7 +62,8 @@
             obterRemetentesPeloNome: buscaRemetentePeloNome,
             obterListaUsuario: obterListaUsuario,
             obterLocalidadePeloId: obterLocalidadePeloId,
-            obterParticipanteExternoPorId: obterParticipanteExternoPorId
+            obterParticipanteExternoPorId: obterParticipanteExternoPorId,
+            buscarPorNome: buscarPorNome
         };
 
     }

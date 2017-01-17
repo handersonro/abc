@@ -4,7 +4,7 @@
         .controller('ReuniaoPesquisarReuniaoController', ReuniaoPesquisarReuniaoController);
 
     /* @ngInject */
-    function ReuniaoPesquisarReuniaoController($scope, $timeout, $log, $http, $mdDialog, $state,$location, $anchorScroll, AlertsService, DTO){
+    function ReuniaoPesquisarReuniaoController($scope, $timeout, $log, $http, $mdDialog, $state,$location, $anchorScroll, AlertsService, DTO,EventoService){
     var vm = this;
     var _itens = [];
     vm.dto = new DTO();
@@ -16,6 +16,8 @@
     vm.filtro = {};
     vm.limpar = limpar;
     vm.listaAutoridades = {};
+    vm.participantes = EventoService.buscarPorNome;
+
     inicializar();
     ///////////////////////////////////
     function inicializar (){
@@ -25,14 +27,69 @@
             {autoridade: "Secretário Nacional de Estruturação do Turismo"},
             {autoridade: "Secretário Nacional de Qualificação e Promoção do Turismo"}
         ];
+
+        vm.filtro = {
+            noLocalEvento: '',
+            tipoEvento: '',
+            noDespacho: '',
+            localReuniao: '',
+            noPauta: '',
+            assunto: '',
+            descricao: '',
+            dataInicio:'',
+            dtFimEvento:'',
+            flEventoInternacional: '',
+            dataInicialCad:'',
+            dataFimCad:''
+        };
     }
 
     function pesquisar (){
-        vm.tbResultado = true;
+
+        vm.filtro.tipoEvento = {id: 3,noTipoEvento: 'REUNIAO'};
+        vm.filtro.flEventoInternacional = false;
+
+        $state.params.filtro.filtros.dataCadInicial = new Date(vm.filtro.dataCadInicial).getTime();
+        $state.params.filtro.filtros.dataCadFinal = new Date(vm.filtro.dataCadFinal).getTime();
+
+        $state.params.filtro.filtros.noAssunto = vm.filtro.assunto;
+        $state.params.filtro.filtros.noDespacho = vm.filtro.noDespacho;
+        $state.params.filtro.filtros.noPauta = vm.filtro.pautaReuniao;
+        $state.params.filtro.filtros.tipoEvento = vm.filtro.tipoEvento;
+        $state.params.filtro.filtros.noLocalEvento = vm.filtro.localReuniao;
+
+        $state.params.filtro.filtros.dtInicioEvento = vm.filtro.dataInicio;
+        $state.params.filtro.filtros.dtFimEvento = vm.filtro.dataFim;
+
+        getMoreInfinityScrollData($state.params.filtro.currentPage);
+
         $location.hash('result-pesquisa');
-        // call $anchorScroll()
         $anchorScroll();
     }
+
+        function getMoreInfinityScrollData(pageNumber){
+            $state.params.filtro.currentPage = pageNumber;
+
+            var promiseLoadMoreData = EventoService.consultarComFiltroSemLoader($state.params.filtro);
+
+            promiseLoadMoreData.then(
+                function(data) {
+                    vm.tbResultado = true;
+
+                    $location.hash('result-pesquisa');
+
+                    vm.dto.totalResults = data.totalResults;
+                    vm.dto.list = data.list;
+                    $anchorScroll();
+                },function (error) {
+                    vm.tbResultado = false;
+                    vm.dto.totalResults = 0;
+                    vm.dto.list = [];
+                }
+            );
+
+            return promiseLoadMoreData;
+        }
     function editar (reuniao){
         $state.go('app.private.reuniao.editar-reuniao', {reuniao: reuniao});
     }

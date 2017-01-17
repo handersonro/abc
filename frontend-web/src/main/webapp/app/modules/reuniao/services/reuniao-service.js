@@ -20,6 +20,8 @@
             return $http.get(baseURL+'participantes/interno?noParticipante='+noParticipante);
         }
 
+
+
         return {
             obterPorId: Restangular.one('eventos').customGET,
             buscaParticipantePeloNome: buscaParticipantePeloNome,
