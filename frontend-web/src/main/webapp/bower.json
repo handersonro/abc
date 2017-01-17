@@ -29,7 +29,7 @@
     "ngstorage": "0.3.10",
     "angular-cache-buster": "0.4.3",
     "angular-cookies": "1.5.8",
-    "angular-bootstrap-colorpicker": "^3.0.25"
+    "angular-bootstrap-colorpicker": "https://github.com/aragao-diego/angular-bootstrap-colorpicker.git#v3.1.0"
   },
   "devDependencies": {},
   "resolutions": {
