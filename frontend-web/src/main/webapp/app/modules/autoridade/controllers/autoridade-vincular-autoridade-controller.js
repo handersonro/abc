@@ -68,16 +68,20 @@
         }
 
         function vincularAutoridade(usuario) {
-            angular.forEach(vm.listAutoridades, function(item, key) {
-
-                if(item.id == usuario.autoridade.id){
-                    console.log(item.id + '==' + usuario.autoridade.id);
-                    item['selected'] = true;
-                    console.log(item);
+            angular.forEach(vm.listAutoridades, function(autoridade, key) {
+                if( (validarAutoridade(usuario.autoridade)) && autoridade.id == usuario.autoridade.id){
+                    autoridade['selected'] = true;
                 }
             });
 
-            vm.vincular.autoridade = usuario.autoridade;
+            if (vm.vincular != null && validarAutoridade(vm.vincular.autoridade)){
+                vm.vincular.autoridade = usuario.autoridade;
+            }
+
+        }
+
+        function validarAutoridade(autoridade){
+            return  undefined !=autoridade && null != autoridade.id ;
         }
     }
 
