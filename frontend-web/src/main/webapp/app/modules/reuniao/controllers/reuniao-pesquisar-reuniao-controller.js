@@ -4,7 +4,7 @@
         .controller('ReuniaoPesquisarReuniaoController', ReuniaoPesquisarReuniaoController);
 
     /* @ngInject */
-    function ReuniaoPesquisarReuniaoController($scope, $timeout, $log, $http, $mdDialog, $state,$location, $anchorScroll, AlertsService, DTO,EventoService){
+    function ReuniaoPesquisarReuniaoController($scope, $timeout, $log, $http, $mdDialog, $state,$location, $anchorScroll,$q, AlertsService, DTO,EventoService,ReuniaoService){
     var vm = this;
     var _itens = [];
     vm.dto = new DTO();
@@ -16,8 +16,8 @@
     vm.filtro = {};
     vm.limpar = limpar;
     vm.listaAutoridades = {};
-    vm.participantes = EventoService.buscarPorNome;
-
+    vm.transformChip = transformChip;
+    vm.querySearch = querySearch;
     inicializar();
     ///////////////////////////////////
     function inicializar (){
@@ -32,11 +32,10 @@
             noLocalEvento: '',
             tipoEvento: '',
             noDespacho: '',
-            localReuniao: '',
+            noLocalEvento: '',
             noPauta: '',
-            assunto: '',
-            descricao: '',
-            dataInicio:'',
+            noAssunto: '',
+            dtInicioEvento:'',
             dtFimEvento:'',
             flEventoInternacional: '',
             dataInicialCad:'',
@@ -44,22 +43,47 @@
         };
     }
 
+        /*CHIP*/
+        function transformChip(chip) {
+            // If it is an object, it's already a known chip
+            if (angular.isObject(chip)) {
+                return chip;
+            }
+
+            // Otherwise, create a new one
+            return { name: chip, type: 'new' }
+        }
+        /*
+        * Obterm as Participantes apartir do terceiro caracter pesquisado
+        * */
+        function querySearch (query) {
+            var resolve = $q.defer();
+            ReuniaoService.buscarParticipante(query)
+                .success(function (data) {
+                    resolve.resolve(data);
+                })
+                .error(function () {
+                    retorno.reject(alert('Não foi possivel carregar os dados'));
+                });
+
+            return resolve.promise;
+        }
+
     function pesquisar (){
 
         vm.filtro.tipoEvento = {id: 3,noTipoEvento: 'REUNIAO'};
         vm.filtro.flEventoInternacional = false;
 
         $state.params.filtro.filtros.dataCadInicial = new Date(vm.filtro.dataCadInicial).getTime();
-        $state.params.filtro.filtros.dataCadFinal = new Date(vm.filtro.dataCadFinal).getTime();
+        $state.params.filtro.filtros.dataCadFinal   = new Date(vm.filtro.dataCadFinal).getTime();
+        $state.params.filtro.filtros.dtInicioEvento =  new Date(vm.filtro.dtInicioEvento).getTime();
+        $state.params.filtro.filtros.dtFimEvento    =  new Date(vm.filtro.dtFimEvento).getTime();
 
-        $state.params.filtro.filtros.noAssunto = vm.filtro.assunto;
-        $state.params.filtro.filtros.noDespacho = vm.filtro.noDespacho;
-        $state.params.filtro.filtros.noPauta = vm.filtro.pautaReuniao;
-        $state.params.filtro.filtros.tipoEvento = vm.filtro.tipoEvento;
-        $state.params.filtro.filtros.noLocalEvento = vm.filtro.localReuniao;
-
-        $state.params.filtro.filtros.dtInicioEvento = vm.filtro.dataInicio;
-        $state.params.filtro.filtros.dtFimEvento = vm.filtro.dataFim;
+        $state.params.filtro.filtros.noAssunto      = vm.filtro.noAssunto;
+        $state.params.filtro.filtros.noDespacho     = vm.filtro.noDespacho;
+        $state.params.filtro.filtros.noPauta        = vm.filtro.noPauta;
+        $state.params.filtro.filtros.tipoEvento     = vm.filtro.tipoEvento;
+        $state.params.filtro.filtros.noLocalEvento  = vm.filtro.noLocalEvento;
 
         getMoreInfinityScrollData($state.params.filtro.currentPage);
 
@@ -94,19 +118,7 @@
         $state.go('app.private.reuniao.editar-reuniao', {reuniao: reuniao});
     }
 
-    vm.carregarListConvite = function(){
-    	$http
-    	.get('modules/convite/data/list-convite.json')
-    	.success (function(data){
-    		_itens = data;
-    		vm.dto.totalResults = data.length;
-    		vm.dto.list = _itens.slice(0, vm.dto.pageSize);
-    	})
-    	.error(function(){
-    		alert('Não fooi possivel carregar os dados');
-    	});
-    };
-    vm.carregarListConvite();
+
     function changePage(page){
     	vm.dto.currentPage = page;
     	vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
@@ -129,24 +141,31 @@
         }, wait || 10);
       };
     }
-    /*DIALOG*/
-    vm.showConfirm = function(ev) {
-    // Appending dialog to document.body to cover sidenav in docs app
-        var confirm = $mdDialog.confirm()
-          .title('Atenção')
-          .textContent('Tem certeza que deseja remover esse registro?')
-          .ariaLabel('Lucky day')
-          .targetEvent(ev)
-          .ok('Ok')
-          .cancel('Cancelar');
+        /*DIALOG*/
+        $scope.showConfirm = function(ev,reuniao) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                .title('Atenção')
+                .textContent('Tem certeza que deseja remover esse registro?')
+                .ariaLabel('Lucky day')
+                .targetEvent(ev)
+                .ok('Ok')
+                .cancel('Cancelar');
 
-        $mdDialog.show(confirm).then(function() {
-          $scope.status = 'You decided to get rid of your debt.';
-        }, function() {
-          $scope.status = 'You decided to keep your debt.';
-        });
-    };
-    /*DIALOG*/
+            $mdDialog.show(confirm).then(function() {
+                EventoService.excluirPorId(reuniao.id).then(
+                    function (sucesso) {
+                        AlertsService.success('Registro removido com sucesso.');
+                        var index = vm.dto.list.indexOf(reuniao);
+                        vm.dto.list.splice(index,1);
+                    }
+                );
+                $scope.status = 'You decided to get rid of your debt.';
+            }, function() {
+                $scope.status = 'You decided to keep your debt.';
+            });
+        };
+        /*DIALOG*/
 
     /**
      * Build handler to open/close a SideNav; when animation finishes

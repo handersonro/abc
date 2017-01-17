@@ -8,20 +8,9 @@
     /* @ngInject */
     function configPublicRoutes($stateProvider,$injector) {
 
-
-        console.log('A1 ');
-
-
-
-
-
             // $http({method: 'GET', url: 'http://localhost:8080/sisagm/api/autenticar/account', headers: {
             //     'Authorization': 'Bearer '+ retorno.id_token}
             // });
-
-
-
-
 
         $stateProvider
             .state( 'app.public', {
@@ -91,9 +80,6 @@
                 resolve: {
                 }
             });
-
-
-
 
     }
 })();

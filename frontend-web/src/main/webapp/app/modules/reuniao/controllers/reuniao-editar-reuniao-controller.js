@@ -4,7 +4,7 @@
         .controller('ReuniaoEditarReuniaoController', ReuniaoEditarReuniaoController);
 
     /* @ngInject */
-    function ReuniaoEditarReuniaoController($scope, $timeout, $http, AlertsService, $stateParams, $state, UsuarioRestService, ConviteRestService){
+    function ReuniaoEditarReuniaoController($scope, $timeout, $http, AlertsService, $stateParams, $state, ConviteRestService){
         var vm = this;
         vm.title = "Editar reunião";
         vm.autoridade = "Ministro";
@@ -14,13 +14,21 @@
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
         vm.listaAutoridades = {};
-        vm.procurarUsuario = UsuarioRestService.obterUsuarios;
         vm.procurarLocal = ConviteRestService.obterLocais;
 
         inicializar();
         ///////////////////////////////////
         function inicializar(){
+            vm.reuniao.pessoas.forEach(function (pessoa) {
+                EventoService.obterParticipanteExternoPorId(pessoa.id)
+                    .success(function (data) {
+                        vm.participantes.push(data);
+                    });
+            });
         }
+
+        console.log(vm.reuniao);
+        console.log(vm.participantes);
 
         function limpar(){
             vm.reuniao = {};
