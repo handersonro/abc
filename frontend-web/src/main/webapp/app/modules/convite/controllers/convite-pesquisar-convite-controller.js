@@ -47,7 +47,7 @@
         vm.dasabilitaCampo = dasabilitaCampo;
         vm.tipoEvento = {};
         vm.validacoes = {};
-         vm.procurarLocal = ConviteRestService.obterLocais;
+        vm.procurarLocal = ConviteRestService.obterLocais;
         inicializar();
         ///////////////////////////////////
         function inicializar() {
