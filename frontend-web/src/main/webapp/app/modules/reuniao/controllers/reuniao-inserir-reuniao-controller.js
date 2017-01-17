@@ -19,7 +19,6 @@
         vm.selectedItem = null;
         vm.searchText = null;
         vm.querySearch = querySearch;
-        vm.vegetables = loadVegetables();
         vm.usuarios = [];
         vm.numberChips = [];
         vm.eventoParticipantes = [];
@@ -31,6 +30,7 @@
         vm.procurarLocal = ConviteRestService.obterLocais;
         inicializar();
         ///////////////////////////////////
+
         function inicializar() {
             vm.reuniao = {
                 dtCadastro: new Date()
@@ -38,6 +38,8 @@
         }
 
 
+        console.log(vm.reuniao);
+        console.log(vm.participantes);
 
         function showBtnSalvar() {
             return $scope.formReuniao.$invalid;
@@ -141,35 +143,6 @@
                     });
 
             return resolve.promise;
-        }
-
-
-
-        function createFilterFor(query) {
-            var lowercaseQuery = angular.lowercase(query);
-
-
-            return function filterFn(vegetable) {
-                return (vegetable._lowername.indexOf(lowercaseQuery) === 0);
-            };
-
-        }
-
-        function loadVegetables() {
-            var veggies = [
-                { 'name': 'Paulo Júnior de Jesus Peres'},
-                { 'name': 'Júlio Nascimento'},
-                { 'name': 'Amanda Amorim Neto'},
-                { 'name': 'Bruno Azevedo Amaral'},
-                { 'name': 'Camila Ribeiro'},
-                { 'name': 'Danilo Cabaré'}
-
-            ];
-
-            return veggies.map(function (veg) {
-                veg._lowername = veg.name.toLowerCase();
-                return veg;
-            });
         }
 
         /*CHIP*/

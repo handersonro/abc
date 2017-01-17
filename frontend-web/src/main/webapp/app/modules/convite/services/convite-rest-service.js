@@ -13,6 +13,7 @@
             editar: Restangular.one('eventos').customPUT,
             obterLocais: Restangular.one('eventos/localidades').customGET,
             obterPaises: Restangular.one('eventos/paises').customGET,
+            obterPaisesPorId: Restangular.one('eventos/paises').customGET,
             obterRemetentes: Restangular.one('eventos/remetentes').customGET,
             excluirPorId: Restangular.one('eventos').customDELETE,
             consultarComFiltroSemLoader: Restangular.one('eventos/', 'pesquisar').withHttpConfig({'da-loader': false}).customPOST

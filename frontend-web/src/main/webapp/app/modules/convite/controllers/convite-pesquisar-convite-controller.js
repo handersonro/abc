@@ -65,9 +65,11 @@
                 noObservacao: '',
                 tipoEvento: '',
                 noDespacho: '',
+                noAssunto: '',
                 idLocalidade: '',
                 remetente: '',
                 descricao: '',
+                conviteValidacaoEnum: '',
                 flEventoInternacional: '',
                 dtInicioEvento:'',
                 dtFimEvento:'',
@@ -197,7 +199,7 @@
             $mdDialog.show(confirm).then(function() {
                 ConviteRestService.excluirPorId(convite.id).then(
                     function (sucesso) {
-                        AlertsService.success('Remetente removido com sucesso.');
+                        AlertsService.success('Convite removido com sucesso.');
                         var index = vm.dto.list.indexOf(convite);
                         vm.dto.list.splice(index,1);
                     }

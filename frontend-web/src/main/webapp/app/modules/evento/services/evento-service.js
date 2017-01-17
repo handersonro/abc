@@ -25,7 +25,7 @@
         }
 
         function buscarPorNome(noParticipante) {
-            return $http.get(baseURL+'participantes/buscar-por-nome?noParticipante='+noParticipante);
+            return $http.get(baseURL+'participantes?noParticipante='+noParticipante);
         }
 
         function obterListaUsuario(dto){
