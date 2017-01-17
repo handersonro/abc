@@ -4,7 +4,7 @@
         .controller('AutoridadePesquisarAutoridadeController', AutoridadePesquisarAutoridadeController);
 
     /* @ngInject */
-    function AutoridadePesquisarAutoridadeController($scope, $timeout, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, UsuarioRestService, ConviteRestService, DTO, AutoridadeService){
+    function AutoridadePesquisarAutoridadeController($scope, $timeout, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, DTO, AutoridadeService){
     var vm = this;
     var _itens = [];
     vm.dto = new DTO();
@@ -18,8 +18,6 @@
         noEmail: ''
     };
     vm.limpar = limpar;
-    vm.procurarUsuario = UsuarioRestService.obterUsuarios;
-    vm.procurarLocal = ConviteRestService.obterLocais;
     inicializar();
     ///////////////////////////////////
     function inicializar (){
