@@ -26,10 +26,11 @@
                         md-min-length="3"
                         md-match-case-insensitive="true"
                         md-input-maxlength="150"
-                        md-floating-label="Usuário">
+                        md-floating-label="Usuário"
+                        md-delay="1000">
                     <md-item-template>
                         <span md-highlight-text="noUsuario" md-highlight-flags="^i">{{item.noUsuario}}</span>
-                    </md-item-template>
+                    </md-item-t emplate>
                     <md-not-found>
                         Nenhum usuário "{{noUsuario}}" foi encontrado
                     </md-not-found>
