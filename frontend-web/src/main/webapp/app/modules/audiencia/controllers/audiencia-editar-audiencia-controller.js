@@ -50,6 +50,7 @@
                 return AlertsService.success($filter('translate')('A13.4'));
             }
 
+            audiencia.tipoEvento = {id: 1,noTipoEvento: 'AUDIENCIA'};
             audiencia.idUf = vm.localidade.uf.id;
             audiencia.nuRegiao = vm.localidade.uf.nuRegiao;
             audiencia.noLocalEvento = vm.localidade.noLocalidade;
