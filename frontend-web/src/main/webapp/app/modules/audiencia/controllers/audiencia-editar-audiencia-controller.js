@@ -29,7 +29,7 @@
                 });
 
             vm.audiencia.pessoas.forEach(function (pessoa) {
-                EventoService.obterParticipanteExternoPorId(pessoa.id)
+                EventoService.obterParticipanteExternoPorIdPessoa(pessoa.id)
                     .success(function (data) {
                         vm.participantes.push(data);
                     });

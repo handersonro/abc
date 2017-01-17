@@ -41,8 +41,8 @@
             return $http.get(baseURL+'eventos/localidades?idLocalidade='+id);
         }
 
-        function obterParticipanteExternoPorId(id) {
-            return $http.get(baseURL+'participantes/externo/'+id);
+        function obterParticipanteExternoPorIdPessoa(id) {
+            return $http.get(baseURL+'participantes/externo?idPessoa='+id);
         }
 
         return {
@@ -58,7 +58,7 @@
             obterRemetentesPeloNome: buscaRemetentePeloNome,
             obterListaUsuario: obterListaUsuario,
             obterLocalidadePeloId: obterLocalidadePeloId,
-            obterParticipanteExternoPorId: obterParticipanteExternoPorId
+            obterParticipanteExternoPorIdPessoa: obterParticipanteExternoPorIdPessoa
         };
 
     }
