@@ -33,6 +33,7 @@
             ];
 
             vm.filtro = {
+                noAssunto: '',
                 noObservacao: '',
                 tipoEvento: '',
                 noDespacho: '',
@@ -58,6 +59,14 @@
 
             vm.filtro.tipoEvento = {id: 1,noTipoEvento: 'AUDIENCIA'};
             vm.filtro.flEventoInternacional = false;
+
+            if(vm.filtro.validado === "Indiferente"){
+                vm.filtro.validado = "";
+            }else if(vm.filtro.validado ==="Sim"){
+                vm.filtro.validado = "SIM";
+            }else if(vm.filtro.validado ==="Não"){
+                vm.filtro.validado = "NAO";
+            }
 
             $state.params.filtro.filtros.dataCadInicial = new Date(vm.filtro.dataCadInicial).getTime();
             $state.params.filtro.filtros.dataCadFinal = new Date(vm.filtro.dataCadFinal).getTime();
