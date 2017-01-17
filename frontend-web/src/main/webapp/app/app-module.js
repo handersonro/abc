@@ -29,6 +29,7 @@
             'sisagmApp.audiencia',
             'sisagmApp.autoridade',
             'sisagmApp.relatorio',
+            'sisagmApp.evento',
             'menu',
             'ngStorage',
             '$alerts',

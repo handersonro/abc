@@ -9,6 +9,8 @@
 
         vm.screenIsSmall = $mdMedia('xs');
 
+        console.log('xxxx');
+
         $scope.blur = blur;
         $scope.executarFuncao = executarFuncao;
         $scope.setFocus = setFocus;

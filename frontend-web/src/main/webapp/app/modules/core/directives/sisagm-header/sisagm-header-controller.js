@@ -7,21 +7,24 @@
     function SisagmHeaderController($scope, $mdMedia, $timeout, $rootScope, $state,$localStorage, $sessionStorage,Principal){
         var vm = this;
         vm.isAuthenticated = Principal.isAuthenticated();
-        Principal.hasAuthority('AUDIENCIA').then(function(account) {
-            console.log(account)
-        })
+
+        console.log('>>>>>>>>>> ',Principal.isAuthenticated());
+
+        $scope.showLogoutButton = Principal.isAuthenticated();
 
         Principal.identity().then(function(account) {
             vm.currentAccount = account;
             // console.log(account);
 
         });
-        vm.logout = logout;
-        function logout () {
-            console.log('LOGOUT')
+
+        $scope.logout = function logout () {
+            console.log('LOGOUT>>>>>>>>> isAuthenticated: ',Principal.isAuthenticated());
+
             delete $localStorage.authenticationToken;
             delete $sessionStorage.authenticationToken;
-            $state.go("/login");
+            //$state.go("app.public.login.entrar");
+            location.reload();
         }
 
     }
