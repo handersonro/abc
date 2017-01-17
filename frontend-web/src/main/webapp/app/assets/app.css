@@ -125,6 +125,7 @@ md-toast.md-top{
 }
 .header-topo{
     background: url(img/bg-verde.jpg);
+    min-height: 48px;
 }
 
 #title .md-toolbar-tools{
