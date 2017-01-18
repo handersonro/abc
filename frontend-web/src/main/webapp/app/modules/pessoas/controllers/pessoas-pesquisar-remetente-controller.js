@@ -14,6 +14,7 @@
         vm.help = help;
         vm.dto = new DTO();
         vm.changePage = changePage;
+        vm.trocaOrdenacao = trocaOrdenacao;
         ///////////////////////////////////
         vm.title = "Pesquisar remetente";
         vm.tbResultado = false;
@@ -134,6 +135,15 @@
 
             getMoreInfinityScrollData(vm.dto.currentPage);
         }
+        function trocaOrdenacao() {
+
+            $state.params.filtro.sortFields = vm.dto.order;
+            $state.params.filtro.sortDirections = vm.dto.orderDirection;
+            $state.params.filtro.pageSize = vm.dto.pageSize;
+
+            getMoreInfinityScrollData(vm.dto.currentPage);
+        }
+
         $scope.changePage = changePage;
     }
 })();
