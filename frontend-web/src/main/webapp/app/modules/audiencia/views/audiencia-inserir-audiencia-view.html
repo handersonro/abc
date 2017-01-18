@@ -82,6 +82,7 @@
                         md-on-remove="vm.removeParticipante($chip)"
                         md-require-match="true">
                     <md-autocomplete
+                            ng-required="vm.participantes.length == 0 "
                             md-selected-item="vm.selectedItem"
                             md-search-text="vm.noParticipanteExterno"
                             md-items="item in vm.buscaParticipanteExterno(vm.noParticipanteExterno)"
@@ -98,6 +99,7 @@
             <md-input-container class="md-icon-float md-block" flex>
                 <md-autocomplete
                         flex
+                        required
                         md-no-cache="true"
                         md-input-maxlength="150"
                         md-selected-item="vm.localidade"
