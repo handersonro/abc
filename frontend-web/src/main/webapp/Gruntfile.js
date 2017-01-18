@@ -268,7 +268,8 @@ module.exports = function(grunt) {
         concat: {
             js: {
                 files:{
-                    '<%= appConfig.temp %>assets/app.js': appConfig.js.map(function(p){return appConfig.temp+p;})
+                    //'<%= appConfig.temp %>assets/app.js': appConfig.js.map(function(p){return appConfig.temp+p;})
+                    '<%= appConfig.dist %>assets/app.js': appConfig.js.map(function(p){return appConfig.temp+p;})
                 }
                 /*files:[{
                     expand: true,
@@ -316,7 +317,7 @@ module.exports = function(grunt) {
         'clean:js',
         'ngAnnotate:js',
         'concat:js',
-        'uglify:js',
+        //'uglify:js',
         'clean:temp'
     ]);
     grunt.registerTask('css-application', ['cssmin:css']);

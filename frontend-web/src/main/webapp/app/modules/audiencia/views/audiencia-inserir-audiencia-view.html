@@ -80,7 +80,7 @@
                         ng-model="vm.participantes"
                         md-transform-chip="vm.transformChip($chip)"
                         md-on-remove="vm.removeParticipante($chip)"
-                        md-require-match>
+                        md-require-match="true">
                     <md-autocomplete
                             ng-required="vm.participantes.length == 0 "
                             md-selected-item="vm.selectedItem"

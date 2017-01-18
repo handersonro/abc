@@ -16,24 +16,30 @@
         ///////////////////////////////////
         vm.title = "Pesquisar remetente";
         vm.tbResultado = false;
-        vm.filtro = {
+        vm.remetenteVO = {
             noRemetente: '',
             noCargo: '',
             noEmail: '',
             nuTelefone: ''
         };
+
         function limpar (){
-            vm.filtro ={};
+            Object.getOwnPropertyNames(vm.remetenteVO).forEach(function (prop) {
+                vm.remetenteVO[prop] = '';
+            });
+
+            vm.tbResultado = false;
+            vm.dto.totalResults = 0;
+            vm.dto.list = [];
         }
 
         function pesquisar (){
-            $state.params.filtro.filtros.noRemetente = vm.filtro.noRemetente;
-            $state.params.filtro.filtros.noCargo = vm.filtro.noCargo;
-            $state.params.filtro.filtros.noEmail = vm.filtro.noEmail;
-            $state.params.filtro.filtros.nuTelefone = vm.filtro.nuTelefone.replace(/[^0-9]/g,'');
+            $state.params.filtro.filtros.noRemetente = vm.remetenteVO.noRemetente;
+            $state.params.filtro.filtros.noCargo = vm.remetenteVO.noCargo;
+            $state.params.filtro.filtros.noEmail = vm.remetenteVO.noEmail;
+            $state.params.filtro.filtros.nuTelefone = vm.remetenteVO.nuTelefone.replace(/[^0-9]/g,'');
             $state.params.filtro.currentPage = 1;
             getMoreInfinityScrollData($state.params.filtro.currentPage);
-            vm.filtro = {}
         }
 
         function editar (remetente){
@@ -54,8 +60,8 @@
                     vm.tbResultado = true;
 
                     $location.hash('result-pesquisa');
+
                     vm.dto.totalResults = data.totalResults;
-                    vm.dto.list = [];
                     vm.dto.list = data.list;
                     $anchorScroll();
                 },function (error) {

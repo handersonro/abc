@@ -30,7 +30,7 @@
                                   <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
                                           min-date="minDate"
                                           format="DD/MM/YYYY HH:mm a"
-                                          ng-model="vm.filtro.dtInicioEvento">
+                                          ng-model="vm.filtro.dataInicio">
                                 </md-input-container>
 
                                 <md-input-container>
@@ -40,7 +40,7 @@
                                   <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
                                           min-date="minDate"
                                           format="DD/MM/YYYY HH:mm a"
-                                          ng-model="vm.filtro.dtFimEvento">
+                                          ng-model="vm.filtro.dataFim">
                                 </md-input-container>
                           </div>
                         </div>
@@ -62,7 +62,7 @@
                                   <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
                                           min-date="minDate"
                                           format="DD/MM/YYYY HH:mm a"
-                                          ng-model="vm.filtro.dataCadInicial">
+                                          ng-model="vm.filtro.dataInicialCad">
                                 </md-input-container>
                                 <md-input-container>
                                   <label>
@@ -71,7 +71,7 @@
                                   <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
                                           min-date="minDate"
                                           format="DD/MM/YYYY HH:mm a"
-                                          ng-model="vm.filtro.dataCadFinal">
+                                          ng-model="vm.filtro.dataFimCad">
                                 </md-input-container>
                           </div>
                         </div>
@@ -79,27 +79,7 @@
                 </div>
             </div>
             <div layout="row">
-                <md-input-container class="md-icon-float md-block padding-auto" flex>
-                    <md-chips
-                            flex
-                            ng-model="vm.participantes"
-                            md-transform-chip="vm.transformChip($chip)"
-                            md-require-match="true">
-                        <md-autocomplete
-                                md-selected-item="vm.selectedItem"
-                                md-search-text="vm.searchText"
-                                md-items="item in vm.querySearch(vm.searchText)"
-                                md-item-text="item.name"
-                                md-min-length="3"
-                                md-floating-label="Vincular participante">
-                            <span md-highlight-text="searchText">{{item.noParticipanteInterno}}</span>
-                        </md-autocomplete>
-                        <md-chip-template>
-                            <span>{{$chip.noParticipanteInterno}}</span>
-                        </md-chip-template>
-                    </md-chips>
-                </md-input-container>
-                <!--<md-autocomplete
+                <md-autocomplete
                       flex
                       md-input-maxlength="50"
                       md-no-cache="true"
@@ -117,14 +97,14 @@
                       Nenhum usuário "{{vm.textoUsuario}}" foi encontrado
                     </md-not-found>
                     <custom-validator-messages input-name="participante" ></custom-validator-messages>
-                </md-autocomplete>-->
+                </md-autocomplete>
             </div>
             <div layout="row" layout-xs="column">
                 <md-input-container class="md-block" flex flex-xs="100">
                     <label>
                         Despacho
                     </label>
-                    <textarea ng-model="vm.filtro.noDespacho" md-maxlength="150" maxlength="150" rows="3" md-select-on-focus>
+                    <textarea ng-model="vm.filtro.despacho" md-maxlength="150" maxlength="150" rows="3" md-select-on-focus>
                     </textarea>
                 </md-input-container>
             </div>
@@ -133,7 +113,7 @@
                     <label>
                         Local  da reunião
                     </label>
-                    <textarea ng-model="vm.filtro.noLocalEvento" rows="3" md-maxlength="150" maxlength="150" md-select-on-focus>
+                    <textarea ng-model="vm.filtro.localReuniao" rows="3" md-maxlength="150" maxlength="150" md-select-on-focus>
                     </textarea>
                 </md-input-container>
             </div>
@@ -142,7 +122,7 @@
                     <label>
                         Assunto
                     </label>
-                    <textarea ng-model="vm.filtro.noAssunto" rows="3" md-maxlength="255" maxlength="255" md-select-on-focus>
+                    <textarea ng-model="vm.filtro.assunto" rows="3" md-maxlength="255" maxlength="255" md-select-on-focus>
                     </textarea>
                 </md-input-container>
             </div>
@@ -151,7 +131,7 @@
                     <label>
                         Pauta da reunião
                     </label>
-                    <textarea ng-model="vm.filtro.noPauta" md-maxlength="255" maxlength="255" rows="3" md-select-on-focus>
+                    <textarea ng-model="vm.filtro.pautaReuniao" md-maxlength="255" maxlength="255" rows="3" md-select-on-focus>
                     </textarea>
                 </md-input-container>
             </div>
@@ -205,11 +185,12 @@
                         <th>
                             Assunto<paginacao-sorting dto="vm.dto" field-name="assunto"></paginacao-sorting>
                         </th>
-
+                        <th>
+                            Descrição<paginacao-sorting dto="vm.dto" field-name="descricao"></paginacao-sorting>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
-
                     <tr dir-paginate="item in vm.dto.list | itemsPerPage: vm.dto.pageSize" current-page="vm.dto.currentPage" total-items="vm.dto.totalResults">
                         <td class="text-center">
                             <md-menu>
@@ -237,7 +218,7 @@
                                         </md-button>
                                     </md-menu-item>
                                     <md-menu-item>
-                                        <md-button ng-click="showConfirm($event,item)">
+                                        <md-button ng-click="vm.showConfirm($event)">
                                             <md-icon>
                                                 &#xE92B;
                                             </md-icon>
@@ -247,18 +228,24 @@
                                 </md-menu-content>
                             </md-menu>
                         </td>
-                            <td>{{ item.dtInicioEvento | date : 'dd/MM/yyyy HH:mm a' }} à {{ item.dtFimEvento | date : 'dd/MM/yyyy HH:mm a' }}</td>
-                            <td>{{ item.dtCadastro | date : 'dd/MM/yyyy HH:mm a'}}</td>
                         <td>
-                            {{ item.noLocalEvento }}
+                            {{ item.dataEventoInicio }}
                         </td>
-                        <td ta-bind ng-model="item.noPauta">
-                            {{ item.noPauta }}
+                        <td>
+                            {{ item.dataEventoFim }}
                         </td>
-                        <td ta-bind ng-model="item.noAssunto">
-                            {{ item.noAssunto }}
+                        <td>
+                            {{ item.localReuniao }}
                         </td>
-
+                        <td>
+                            {{ item.pautaReuniao }}
+                        </td>
+                        <td>
+                            {{ item.assunto }}
+                        </td>
+                        <td>
+                            <span ta-bind ng-model="item.descricao"></span>
+                        </td>
                     </tr>
                 </tbody>
             </table>
