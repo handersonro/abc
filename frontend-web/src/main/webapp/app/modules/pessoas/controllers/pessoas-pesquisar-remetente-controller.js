@@ -11,6 +11,7 @@
         vm.showSalvar = showSalvar;
         vm.pesquisar = pesquisar;
         vm.editar = editar;
+        vm.help = help;
         vm.dto = new DTO();
         vm.changePage = changePage;
         ///////////////////////////////////
@@ -49,6 +50,21 @@
         function showSalvar(){
             return $scope.formRemetente.$invalid;
         }
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: PessoasPesquisarRemetenteController,
+                templateUrl: '/modules/pessoas/help/modal-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
 
         function getMoreInfinityScrollData(pageNumber){
             $state.params.filtro.currentPage = pageNumber;
