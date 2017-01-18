@@ -24,26 +24,18 @@
             return $http.get(baseURL+ 'remetentes?noRemetente=' + noUsuario);
         }
 
-        function obterListaUsuario(dto){
-            var retorno = $q.defer();
-            $http
-                .get('modules/audiencia/data/list-usuario.json')
-                .success (function(data){
-                    retorno.resolve(data);
-                })
-                .error(function(){
-                    retorno.reject(alert('Não fooi possivel carregar os dados'));
-                });
-            return retorno.promise;
-        }
-
         function obterLocalidadePeloId(id) {
             return $http.get(baseURL+'eventos/localidades?idLocalidade='+id);
         }
 
-        function obterParticipanteExternoPorIdPessoa(id) {
-            return $http.get(baseURL+'participantes/externo?idPessoa='+id);
+        function obterParticipanteExternoPorId(id) {
+            return $http.get(baseURL+'participantes/externo/'+id);
         }
+
+        function obterParticipanteInternoPorId(id) {
+            return $http.get(baseURL+'participantes/interno/pessoa/'+id);
+        }
+
 
         return {
             obterPorId: Restangular.one('eventos').customGET,
@@ -56,9 +48,9 @@
             consultarComFiltroSemLoader: Restangular.one('eventos/', 'pesquisar').withHttpConfig({'da-loader': false}).customPOST,
             obterParticipanteExterno: obterParticipanteExterno,
             obterRemetentesPeloNome: buscaRemetentePeloNome,
-            obterListaUsuario: obterListaUsuario,
             obterLocalidadePeloId: obterLocalidadePeloId,
-            obterParticipanteExternoPorIdPessoa: obterParticipanteExternoPorIdPessoa
+            obterParticipanteExternoPorId: obterParticipanteExternoPorId,
+            obterParticipanteInternoPorId: obterParticipanteInternoPorId
         };
 
     }

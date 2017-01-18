@@ -44,26 +44,27 @@
             $state.params.filtro.currentPage = pageNumber;
             var promiseLoadMoreData = ParticipanteExternoService.consultarComFiltroSemLoader($state.params.filtro);
             promiseLoadMoreData.then(function(data){
-                vm.dto.totalResults = data.totalResults;
-                angular.forEach(data.list, function (value, key){
-                    vm.dto.list.push(
-                        {
-                            id: value.id,
-                            nome: value.noParticipanteExterno,
-                            cargo: value.noCargo,
-                            email: value.noEmail,
-                            pessoa:{
-                                id: value.pessoa.id,
-                                flPessoaAtivo: value.pessoa.id
+                    vm.dto.totalResults = data.totalResults;
+                    angular.forEach(data.list, function (value, key){
+                        vm.dto.list.push(
+                            {
+                                id: value.id,
+                                nome: value.noParticipanteExterno,
+                                cargo: value.noCargo,
+                                email: value.noEmail,
+                                tel: value.nuTelefone,
+                                pessoa:{
+                                    id: value.pessoa.id,
+                                    flPessoaAtivo: value.pessoa.id
+                                }
                             }
-                        }
-                    );
-                });
+                        );
+                    });
 
-                $location.hash('result-pesquisa');
-                $anchorScroll();
-                vm.tbResultado = true;
-            },function (error) {
+                    $location.hash('result-pesquisa');
+                    $anchorScroll();
+                    vm.tbResultado = true;
+                },function (error) {
                     vm.tbResultado = false;
                     vm.dto.totalResults = 0;
                     vm.dto.list = [];
@@ -80,15 +81,15 @@
 
         $scope.carregaLista = function(){
             $http
-            .get('modules/pessoas/data/list-pessoas.json')
-            .success (function(data){
-                _itens = data;
-                vm.dto.totalResults = data.length;
-                vm.dto.list = _itens.slice(0, vm.dto.pageSize);
-            })
-            .error(function(){
-                alert('Não fooi possivel carregar os dados');
-            });
+                .get('modules/pessoas/data/list-pessoas.json')
+                .success (function(data){
+                    _itens = data;
+                    vm.dto.totalResults = data.length;
+                    vm.dto.list = _itens.slice(0, vm.dto.pageSize);
+                })
+                .error(function(){
+                    alert('Não fooi possivel carregar os dados');
+                });
         };
         //$scope.carregaLista();
 
@@ -96,12 +97,12 @@
         $scope.showConfirm = function(ev, participante) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
-            .title('Atenção')
-            .textContent('Tem certeza que deseja remover esse registro?')
-            .ariaLabel('Lucky day')
-            .targetEvent(ev)
-            .ok('Ok')
-            .cancel('Cancelar');
+                .title('Atenção')
+                .textContent('Tem certeza que deseja remover esse registro?')
+                .ariaLabel('Lucky day')
+                .targetEvent(ev)
+                .ok('Ok')
+                .cancel('Cancelar');
             $mdDialog.show(confirm).then(function() {
                 ParticipanteExternoService.excluirPorId(participante.id).then(
                     function (sucesso){
@@ -117,9 +118,9 @@
         /*DIALOG*/
 
         /**
-        * Supplies a function that will continue to operate until the
-        * time is up.
-        */
+         * Supplies a function that will continue to operate until the
+         * time is up.
+         */
         $scope.toggleLeft = buildDelayedToggler('left');
         $scope.toggleRight = buildToggler('right');
         $scope.isOpenRight = function(){
@@ -131,7 +132,7 @@
 
             return function debounced() {
                 var context = $scope,
-                args = Array.prototype.slice.call(arguments);
+                    args = Array.prototype.slice.call(arguments);
                 $timeout.cancel(timer);
                 timer = $timeout(function() {
                     timer = undefined;
@@ -141,17 +142,17 @@
         }
 
         /**
-        * Build handler to open/close a SideNav; when animation finishes
-        * report completion in console
-        */
+         * Build handler to open/close a SideNav; when animation finishes
+         * report completion in console
+         */
         function buildDelayedToggler(navID) {
             return debounce(function() {
                 // Component lookup should always be available since we are not using `ng-if`
                 $mdSidenav(navID)
-                .toggle()
-                .then(function () {
-                    $log.debug("toggle " + navID + " is done");
-                });
+                    .toggle()
+                    .then(function () {
+                        $log.debug("toggle " + navID + " is done");
+                    });
             }, 200);
         }
 
@@ -159,10 +160,10 @@
             return function() {
                 // Component lookup should always be available since we are not using `ng-if`
                 $mdSidenav(navID)
-                .toggle()
-                .then(function () {
-                    $log.debug("toggle " + navID + " is done");
-                });
+                    .toggle()
+                    .then(function () {
+                        $log.debug("toggle " + navID + " is done");
+                    });
             }
         }
 

@@ -20,9 +20,14 @@
             return $http.get(baseURL+'participantes/interno?noParticipante='+noParticipante);
         }
 
+        function buscarPorNome(noParticipante) {
+            return $http.get(baseURL+'participantes/interno/buscar?noParticipante='+noParticipante);
+        }
+
         return {
             obterPorId: Restangular.one('eventos').customGET,
             buscaParticipantePeloNome: buscaParticipantePeloNome,
+            buscarPorNome: buscarPorNome,
             salvar: Restangular.one('eventos').customPOST,
             editar: Restangular.one('eventos').customPUT,
             excluirPorId: Restangular.one('eventos').customDELETE,
