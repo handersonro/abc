@@ -65,6 +65,9 @@ md-toast.md-top{
     -moz-border-radius: 8px;
     border-radius: 8px;
 }
+md-toast.ng-scope._md.md-md-danger-theme-theme.md-bottom{
+
+}
 .padding-auto{
     margin-bottom:40px;
 }
@@ -96,6 +99,9 @@ md-toast.md-top{
 }
 .md-conteudo{
     padding-top: 30px;
+}
+.conteudo{
+    margin-bottom: 20px;
 }
 .box{
     background: #fff;
@@ -300,4 +306,10 @@ button.btn.btn-default:hover {
     float: left;
     height: 10px;
     width: 10px;
+}
+md-input-container:not(.md-input-has-value) input:not(:focus), md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-ampm-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-day-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-hour-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-millisecond-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-minute-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-month-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-second-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-week-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-year-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-text{
+    color: rgba(0,0,0,0.87) !important;
+}
+.md-chips .md-chip-input-container md-autocomplete input{
+    margin-top: -2px;
 }

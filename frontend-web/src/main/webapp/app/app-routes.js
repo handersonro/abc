@@ -38,7 +38,13 @@
                 //    }
 
                }
-           });
+           })
+            /* Importante para ANTÔNIO CESAR
+            .state('teste', {
+                url: '/teste',
+                template: '<p>deu certo</p>'
+            });
+            */
 
         $urlRouterProvider.otherwise('/public/login/entrar');
     }
