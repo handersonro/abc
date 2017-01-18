@@ -22,6 +22,8 @@
         vm.salvar = salvar;
         vm.listaAutoridades = {};
         vm.procurarLocal = ConviteRestService.obterLocais;
+        vm.removeParticipante = removeParticipante;
+        vm.pessoasParaSeremRemovidas = [];
         vm.participantes = [];
         inicializar();
         ///////////////////////////////////
@@ -50,6 +52,7 @@
             });
 
             reuniao.pessoas = pessoas;
+            reuniao.pessoasParaSeremRemovidas = vm.pessoasParaSeremRemovidas;
 
             EventoService.editar(reuniao).then(
                 function (retorno) {
@@ -75,6 +78,10 @@
                 });
 
             return retorno.promise;
+        }
+
+        function removeParticipante(chip) {
+            vm.pessoasParaSeremRemovidas.push(chip.pessoa);
         }
     }
 })();
