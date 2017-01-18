@@ -54,7 +54,7 @@
                 templateUrl: MODULE_PATH+'views/convite-pesquisar-convite-view.html',
                 params: {
                     filtro: {
-                        filtros: { noObservacao : '',noAssunto :'', noDespacho: '',noPauta: '', tipoEvento: '', idLocalidade : '',noRemetente:'',descricao:'',flEventoInternacional:'',dtInicioEvento:'',dtFimEvento:'',dataCadInicial:'',dataCadFinal:'',conviteValidacaoEnum:''},
+                        filtros: { noObservacao : '',noAssunto :'', noDespacho: '',noPauta: '', tipoEvento: '', idLocalidade : '',noRemetente:'',descricao:'',flEventoInternacional:'',dtInicioEvento:'',dtFimEvento:'',dataCadInicial:'',dataCadFinal:'',conviteValidacao:''},
                         currentPage: 1,
                         pageSize: 20,
                         sortFields: 'remetente',
