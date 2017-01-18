@@ -4,7 +4,7 @@
         .controller('ReuniaoPesquisarReuniaoController', ReuniaoPesquisarReuniaoController);
 
     /* @ngInject */
-    function ReuniaoPesquisarReuniaoController($scope, $timeout, $log, $http, $mdDialog, $state,$location, $anchorScroll, AlertsService, DTO){
+    function ReuniaoPesquisarReuniaoController($scope, $timeout, $log,$mdSidenav, $http, $mdDialog, $state,$location, $anchorScroll,$q, AlertsService, DTO,EventoService,ReuniaoService){
     var vm = this;
     var _itens = [];
     vm.dto = new DTO();
@@ -16,6 +16,20 @@
     vm.filtro = {};
     vm.limpar = limpar;
     vm.listaAutoridades = {};
+    /*chip*/
+    vm.readonly = false;
+    vm.selectedItem = null;
+    vm.searchText = null;
+    vm.usuarios = [];
+    vm.numberChips = [];
+    vm.eventoParticipantes = [];
+    vm.numberChips2 = [];
+    vm.numberBuffer = '';
+    vm.autocompleteDemoRequireMatch = true;
+    vm.transformChip = transformChip;
+     /*chip*/
+    vm.querySearch = querySearch;
+
     inicializar();
     ///////////////////////////////////
     function inicializar (){
@@ -25,31 +39,97 @@
             {autoridade: "Secretário Nacional de Estruturação do Turismo"},
             {autoridade: "Secretário Nacional de Qualificação e Promoção do Turismo"}
         ];
+
+        vm.filtro = {
+            tipoEvento: '',
+            noDespacho: '',
+            noLocalEvento: '',
+            noPauta: '',
+            noAssunto: '',
+            dtInicioEvento:'',
+            dtFimEvento:'',
+            flEventoInternacional: '',
+            dataInicialCad:'',
+            dataFimCad:''
+        };
     }
 
+
+        /*
+        * Obterm as Participantes apartir do terceiro caracter pesquisado
+        * */
+        function querySearch (query) {
+            var resolve = $q.defer();
+            ReuniaoService.buscarPorNome(query)
+                .success(function (data) {
+                    resolve.resolve(data);
+                })
+                .error(function () {
+                    retorno.reject(alert('Não foi possivel carregar os dados'));
+                });
+
+            return resolve.promise;
+        }
+
     function pesquisar (){
-        vm.tbResultado = true;
+
+        vm.filtro.tipoEvento = {id: 3,noTipoEvento: 'REUNIAO'};
+        vm.filtro.flEventoInternacional = false;
+
+        $state.params.filtro.filtros.dataCadInicial = new Date(vm.filtro.dataCadInicial).getTime();
+        $state.params.filtro.filtros.dataCadFinal   = new Date(vm.filtro.dataCadFinal).getTime();
+        $state.params.filtro.filtros.dtInicioEvento =  new Date(vm.filtro.dtInicioEvento).getTime();
+        $state.params.filtro.filtros.dtFimEvento    =  new Date(vm.filtro.dtFimEvento).getTime();
+
+        $state.params.filtro.filtros.noAssunto      = vm.filtro.noAssunto;
+        $state.params.filtro.filtros.noDespacho     = vm.filtro.noDespacho;
+        $state.params.filtro.filtros.noPauta        = vm.filtro.noPauta;
+        $state.params.filtro.filtros.tipoEvento     = vm.filtro.tipoEvento;
+        $state.params.filtro.filtros.noLocalEvento  = vm.filtro.noLocalEvento;
+
+        getMoreInfinityScrollData($state.params.filtro.currentPage);
+
         $location.hash('result-pesquisa');
-        // call $anchorScroll()
         $anchorScroll();
     }
+
+        function getMoreInfinityScrollData(pageNumber){
+            $state.params.filtro.currentPage = pageNumber;
+
+            var promiseLoadMoreData = EventoService.consultarComFiltroSemLoader($state.params.filtro);
+
+            promiseLoadMoreData.then(
+                function(data) {
+                    vm.tbResultado = true;
+
+                    $location.hash('result-pesquisa');
+
+                    vm.dto.totalResults = data.totalResults;
+                    vm.dto.list = data.list;
+                    $anchorScroll();
+                },function (error) {
+                    vm.tbResultado = false;
+                    vm.dto.totalResults = 0;
+                    vm.dto.list = [];
+                }
+            );
+
+            return promiseLoadMoreData;
+        }
     function editar (reuniao){
         $state.go('app.private.reuniao.editar-reuniao', {reuniao: reuniao});
     }
+    /*CHIP*/
+    function transformChip(chip) {
+        // If it is an object, it's already a known chip
+        if (angular.isObject(chip)) {
+            return chip;
+        }
 
-    vm.carregarListConvite = function(){
-    	$http
-    	.get('modules/convite/data/list-convite.json')
-    	.success (function(data){
-    		_itens = data;
-    		vm.dto.totalResults = data.length;
-    		vm.dto.list = _itens.slice(0, vm.dto.pageSize);
-    	})
-    	.error(function(){
-    		alert('Não fooi possivel carregar os dados');
-    	});
-    };
-    vm.carregarListConvite();
+        // Otherwise, create a new one
+        return {name: chip, type: 'new'}
+    }
+
     function changePage(page){
     	vm.dto.currentPage = page;
     	vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
@@ -72,24 +152,31 @@
         }, wait || 10);
       };
     }
-    /*DIALOG*/
-    vm.showConfirm = function(ev) {
-    // Appending dialog to document.body to cover sidenav in docs app
-        var confirm = $mdDialog.confirm()
-          .title('Atenção')
-          .textContent('Tem certeza que deseja remover esse registro?')
-          .ariaLabel('Lucky day')
-          .targetEvent(ev)
-          .ok('Ok')
-          .cancel('Cancelar');
+        /*DIALOG*/
+        $scope.showConfirm = function(ev,reuniao) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                .title('Atenção')
+                .textContent('Tem certeza que deseja remover esse registro?')
+                .ariaLabel('Lucky day')
+                .targetEvent(ev)
+                .ok('Ok')
+                .cancel('Cancelar');
 
-        $mdDialog.show(confirm).then(function() {
-          $scope.status = 'You decided to get rid of your debt.';
-        }, function() {
-          $scope.status = 'You decided to keep your debt.';
-        });
-    };
-    /*DIALOG*/
+            $mdDialog.show(confirm).then(function() {
+                EventoService.excluirPorId(reuniao.id).then(
+                    function (sucesso) {
+                        AlertsService.success('Registro removido com sucesso.');
+                        var index = vm.dto.list.indexOf(reuniao);
+                        vm.dto.list.splice(index,1);
+                    }
+                );
+                $scope.status = 'You decided to get rid of your debt.';
+            }, function() {
+                $scope.status = 'You decided to keep your debt.';
+            });
+        };
+        /*DIALOG*/
 
     /**
      * Build handler to open/close a SideNav; when animation finishes
@@ -117,6 +204,11 @@
       }
     }
   }
-
+/*    function changePage(page){
+        vm.dto.currentPage = page;
+        vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+        getMoreInfinityScrollData($state.params.filtro.currentPage);
+    }
+    vm.changePage = changePage;*/
 
 })();

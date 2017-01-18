@@ -10,6 +10,7 @@
         vm.autoridade = {noAutoridade: 'Ministro'};
         vm.reuniao = {};
         vm.validacoes = {};
+        vm.participantes = [];
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
         vm.limpar = limpar;
@@ -18,27 +19,29 @@
         vm.selectedItem = null;
         vm.searchText = null;
         vm.querySearch = querySearch;
-        vm.vegetables = loadVegetables();
         vm.usuarios = [];
         vm.numberChips = [];
+        vm.eventoParticipantes = [];
         vm.numberChips2 = [];
-        vm.listSistemas = [];
         vm.numberBuffer = '';
         vm.autocompleteDemoRequireMatch = true;
         vm.transformChip = transformChip;
         vm.procurarLocal = ConviteRestService.obterLocais;
         inicializar();
         ///////////////////////////////////
+
+
         function inicializar() {
+
+/*            vm.reuniao.pessoas.forEach(function (pessoa) {
+                EventoService.obterParticipanteExternoPorId(pessoa.id)
+                    .success(function (data) {
+                        vm.participantes.push(data);
+                    });
+            });*/
+
             vm.reuniao = {
-                dtInicioEvento: '',
-                dtFimEvento: '',
-                dtCadastro: new Date(),
-                noDespacho:'',
-                noLocalEvento:'',
-                noAssunto:'',
-                noPauta:'',
-                usuarios:''
+                dtCadastro: new Date()
             };
         }
 
@@ -51,14 +54,22 @@
         function salvar(reuniao) {
             var tipoEvento = {id: 3,noTipoEvento: 'REUNIAO'};
 
-            reuniao.usuarios = vm.usuarios;
-
             if (vm.dataInicio > vm.dataFim) {
                 return AlertsService.success($filter('translate')('A13.4'));
             }
 
             vm.reuniao.tipoEvento = tipoEvento;
             vm.reuniao.flEventoAtivo = true;
+
+            var pessoa = {flPessoaAtivo : true}
+            var pessoas = [];
+
+            vm.participantes.forEach(function (usuario) {
+                usuario.pessoa = pessoa;
+                pessoas.push(usuario);
+            });
+
+            reuniao.participanteInternos = pessoas;
 
             ConviteRestService.salvar(vm.reuniao).then(
                 function (retorno) {
@@ -67,9 +78,6 @@
                     $state.go('app.private.reuniao.inserir-reuniao', {}, {reload: true});
                 }
             );
-            console.log(vm.reuniao);
-
-            console.log(vm.usuarios);
         }
 
         function limpar() {
@@ -132,50 +140,15 @@
          * */
         function querySearch (query) {
             var resolve = $q.defer();
-
-
                 ReuniaoService.buscaParticipantePeloNome(query)
                     .success(function (data) {
-                        console.log(data);
                         resolve.resolve(data);
                     })
                     .error(function () {
-                        retorno.reject(alert('Não fooi possivel carregar os dados'));
+                        retorno.reject(alert('Não foi possivel carregar os dados'));
                     });
 
-
-            //resolve.resolve(query ? vm.vegetables.filter(createFilterFor(query)) : []);
-            console.log(resolve.promise);
             return resolve.promise;
-        }
-
-
-
-        function createFilterFor(query) {
-            var lowercaseQuery = angular.lowercase(query);
-
-
-            return function filterFn(vegetable) {
-                return (vegetable._lowername.indexOf(lowercaseQuery) === 0);
-            };
-
-        }
-
-        function loadVegetables() {
-            var veggies = [
-                { 'name': 'Paulo Júnior de Jesus Peres'},
-                { 'name': 'Júlio Nascimento'},
-                { 'name': 'Amanda Amorim Neto'},
-                { 'name': 'Bruno Azevedo Amaral'},
-                { 'name': 'Camila Ribeiro'},
-                { 'name': 'Danilo Cabaré'}
-
-            ];
-
-            return veggies.map(function (veg) {
-                veg._lowername = veg.name.toLowerCase();
-                return veg;
-            });
         }
 
         /*CHIP*/
