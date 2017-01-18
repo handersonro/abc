@@ -44,12 +44,6 @@
 
           <div layout="row" layout-xs="column">
               <md-input-container flex class="md-icon-float md-block">
-                  <!--<label>
-                      Solicitante
-                  </label>-->
-                  <md-icon>
-                      &#xE8A6;
-                  </md-icon>
                   <md-autocomplete
                           flex
                           required
@@ -72,13 +66,6 @@
                       </md-not-found>
                       <custom-validator-messages input-name="usuario" ></custom-validator-messages>
                   </md-autocomplete>
-                  <!--<input name="solicitante" type="text" ng-model="vm.filtro.solicitante" md-maxlength="50"
-                  />
-                  <div ng-messages="formPesquisaAudiencia.solicitante.$error">
-                      <div ng-message="md-maxlength">
-                          Mínimo ou igual à 50 caracter
-                      </div>
-                  </div>-->
               </md-input-container>
           </div>
           <div layout="row" layout-xs="column">
@@ -210,7 +197,7 @@
                                       </md-button>
                                   </md-menu-item>
                                   <md-menu-item>
-                                      <md-button ng-click="vm.showConfirm($event)">
+                                      <md-button ng-click="vm.showConfirm($event,item)">
                                           <md-icon>
                                               &#xE92B;
                                           </md-icon>

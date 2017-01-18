@@ -9,6 +9,10 @@
         vm.title = "Editar participante";
         vm.participante = $stateParams.participante;
 
+        if(vm.participante == null){
+            $state.go('app.private.pessoas.pesquisar-participante');
+        }
+
         vm.limpar = limpar;
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvarParticipanteExterno = salvarParticipanteExterno;

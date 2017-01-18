@@ -25,6 +25,9 @@
                 },
                 params: {
                     callback: null
+                },
+                data: {
+                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.inserir-convite', {
@@ -33,6 +36,9 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/convite-inserir-convite-view.html',
                 resolve: {
+                },
+                data: {
+                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.editar-convite', {
@@ -44,6 +50,9 @@
                 },
                 params: {
                     convite: null
+                },
+                data: {
+                    authorities: []
                 }
             })
 
@@ -54,7 +63,7 @@
                 templateUrl: MODULE_PATH+'views/convite-pesquisar-convite-view.html',
                 params: {
                     filtro: {
-                        filtros: { noObservacao : '',noAssunto :'', noDespacho: '',noPauta: '', tipoEvento: '', idLocalidade : '',noRemetente:'',descricao:'',flEventoInternacional:'',dtInicioEvento:'',dtFimEvento:'',dataCadInicial:'',dataCadFinal:'',conviteValidacao:''},
+                        filtros: { noObservacao : '', noDespacho: '', tipoEvento: '', idLocalidade : '',remetente:'',descricao:'',flEventoInternacional:'',dtInicioEvento:'',dtFimEvento:'',dataCadInicial:'',dataCadFinal:'',conviteValidacaoEnum:''},
                         currentPage: 1,
                         pageSize: 20,
                         sortFields: 'remetente',
@@ -62,6 +71,9 @@
                     }
                 },
                 resolve: {
+                },
+                data: {
+                    authorities: []
                 }
             });
     }
