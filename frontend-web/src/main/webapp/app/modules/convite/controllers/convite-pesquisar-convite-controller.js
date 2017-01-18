@@ -116,7 +116,7 @@
             $state.params.filtro.filtros.dataCadInicial = dataCadInicial;
             $state.params.filtro.filtros.dataCadFinal   = dataCadFinal;
             $state.params.filtro.filtros.flEventoInternacional = vm.filtro.flEventoInternacional;
-            $state.params.filtro.filtros.conviteValidacaoEnum = vm.filtro.validado;
+            $state.params.filtro.filtros.conviteValidacao = vm.filtro.validado;
             $state.params.filtro.filtros.flEventoInternacional = vm.filtro.tipoSaida;
             $state.params.filtro.currentPage = 1;
 
@@ -237,13 +237,12 @@
             }
         }
 
-        function changePage(page) {
-            console.log('aeaueauh', ((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+        function changePage(page){
             vm.dto.currentPage = page;
             vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+            getMoreInfinityScrollData($state.params.filtro.currentPage);
         }
-
-        $scope.changePage = changePage;
+        vm.changePage = changePage;
     }
 
 

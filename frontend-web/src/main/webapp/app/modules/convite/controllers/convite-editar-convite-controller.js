@@ -27,15 +27,15 @@
         }
 
 
-        if(vm.convite.conviteValidacaoEnum == 'NAO'){
+        if(vm.convite.conviteValidacao == 'NAO'){
             vm.convite.validado = 'Não';
         }
 
-        if(vm.convite.conviteValidacaoEnum == 'SIM'){
+        if(vm.convite.conviteValidacao == 'SIM'){
             vm.convite.validado = 'Sim';
         }
 
-        if(vm.convite.conviteValidacaoEnum == 'INDIFERENTE'){
+        if(vm.convite.conviteValidacao == 'INDIFERENTE'){
             vm.convite.validado = 'Indiferente';
         }
 
