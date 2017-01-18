@@ -4,7 +4,7 @@
         .controller('ConviteEditarConviteController', ConviteEditarConviteController);
 
     /* @ngInject */
-    function ConviteEditarConviteController($scope, $timeout, $http, AlertsService, $stateParams, $state, ConviteRestService){
+    function ConviteEditarConviteController($scope, $timeout, $http, AlertsService, $stateParams, $state, ConviteRestService,EventoService){
         var vm = this;
         vm.title = "Editar convite";
         vm.autoridade = "Ministro";
@@ -43,6 +43,14 @@
         inicializar();
         ///////////////////////////////////
         function inicializar(){
+        var tipoEvento = {id: 2,noTipoEvento: 'CONVITE'};
+        vm.convite.tipoEvento = tipoEvento;
+
+
+        EventoService.obterLocalidadePeloId(vm.convite.idLocalidade)
+            .success(function (data) {
+                vm.convite.idLocalidade = data;
+            });
 
             vm.validacoes=[
               {validado : 'Sim'},
@@ -54,13 +62,21 @@
         function limpar(){
             vm.convite = {};
         }
-
         function salvar(convite){
+            if(vm.convite.flEventoInternacional =='Evento nacional'){
+                vm.convite.flEventoInternacional = 0;
+                vm.convite.idPais = 1;
+            }else if(vm.convite.flEventoInternacional =='Evento internacional'){
+                vm.convite.flEventoInternacional = 1;
+                vm.convite.idPais = vm.convite.idPais.id;
+            }
+
+            vm.convite.idLocalidade = vm.convite.idLocalidade.id;
 
             ConviteRestService.editar(convite).then(
                 function (retorno) {
                     AlertsService.success('Registro alterado com sucesso.');
-                    $state.go('app.private.pessoas.pesquisar-remetente');
+                    $state.go('app.private.convite.pesquisar-convite');
                 }
             );
         }

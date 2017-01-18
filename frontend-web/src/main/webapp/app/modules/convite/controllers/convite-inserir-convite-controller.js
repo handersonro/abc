@@ -70,6 +70,8 @@
                 vm.convite.idPais = vm.convite.idPais.id;
             }
 
+
+
             ConviteRestService.salvar(vm.convite).then(
                 function (retorno) {
                     console.log(convite + 'No salvar');
