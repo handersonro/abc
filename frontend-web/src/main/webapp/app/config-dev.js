@@ -9,7 +9,4 @@
 		RestangularProvider.setBaseUrl(baseURL);
     }
 
-    /*
-    teste
-     */
 })();
