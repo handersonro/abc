@@ -25,6 +25,9 @@
                 },
                 params: {
                     callback: null
+                },
+                data: {
+                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.inserir-reuniao', {
@@ -33,6 +36,9 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/reuniao-inserir-reuniao-view.html',
                 resolve: {
+                },
+                data: {
+                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.editar-reuniao', {
@@ -44,6 +50,9 @@
                 },
                 params: {
                     reuniao: null
+                },
+                data: {
+                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.pesquisar-reuniao', {
@@ -52,6 +61,9 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/reuniao-pesquisar-reuniao-view.html',
                 resolve: {
+                },
+                data: {
+                    authorities: []
                 }
             });
     }

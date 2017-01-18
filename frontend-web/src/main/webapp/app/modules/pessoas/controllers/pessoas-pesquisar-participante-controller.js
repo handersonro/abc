@@ -105,7 +105,7 @@
             $mdDialog.show(confirm).then(function() {
                 ParticipanteExternoService.excluirPorId(participante.id).then(
                     function (sucesso){
-                        AlertsService.success('Remetente removido com sucesso.');
+                        AlertsService.success('Participante removido com sucesso.');
                         pesquisar();
                     }
                 );

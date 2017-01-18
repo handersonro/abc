@@ -39,12 +39,11 @@
 
                }
            })
-            /* Importante para ANTÔNIO CESAR
-            .state('teste', {
-                url: '/teste',
-                template: '<p>deu certo</p>'
-            });
-            */
+               },
+                data: {
+                    authorities: []
+                }
+           });
 
         $urlRouterProvider.otherwise('/public/login/entrar');
     }

@@ -25,6 +25,9 @@
                 },
                 params: {
                     callback: null
+                },
+                data: {
+                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.inserir-convite', {
@@ -33,6 +36,9 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/convite-inserir-convite-view.html',
                 resolve: {
+                },
+                data: {
+                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.editar-convite', {
@@ -44,6 +50,9 @@
                 },
                 params: {
                     convite: null
+                },
+                data: {
+                    authorities: []
                 }
             })
 
@@ -62,6 +71,9 @@
                     }
                 },
                 resolve: {
+                },
+                data: {
+                    authorities: []
                 }
             });
     }
