@@ -280,3 +280,14 @@ button.btn.btn-default:hover {
 .hidden{
     display: none !important;
 }
+
+/*CSS HELP*/
+.largura-help{
+    width: 100%;
+}
+
+.aviso-help{
+    color:#ef5252;
+    background: rgba(210, 210, 210, 0.36);
+    padding: 15px;
+}
