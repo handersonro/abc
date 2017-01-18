@@ -25,9 +25,6 @@
                 },
                 params: {
                     callback: null
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.inserir-autoridade', {
@@ -36,9 +33,6 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/autoridade-inserir-autoridade-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.vincular-autoridade', {
@@ -47,9 +41,6 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/autoridade-vincular-autoridade-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.editar-autoridade', {
@@ -61,9 +52,6 @@
                 },
                 params: {
                     autoridade: null
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.pesquisar-autoridade', {
@@ -81,9 +69,6 @@
                     }
                 },
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
             });
     }

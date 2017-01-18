@@ -25,9 +25,6 @@
                 },
                 params: {
                     callback: null
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.emitir-relatorio', {
@@ -36,9 +33,6 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/relatorio-emitir-relatorio-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.emitir-relatorio-convite', {
@@ -47,9 +41,6 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/relatorio-emitir-relatorio-convite-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.emitir-relatorio-reunioes', {
@@ -58,9 +49,6 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/relatorio-emitir-relatorio-reunioes-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.emitir-relatorio-auditoria', {
@@ -69,9 +57,6 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/relatorio-emitir-relatorio-auditoria-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.relatorio-auditoria', {
@@ -80,10 +65,7 @@
             controllerAs: 'vm',
             templateUrl: MODULE_PATH+'views/relatorio-auditoria.html',
             resolve: {
-            },
-                data: {
-                    authorities: []
-                }
+            }
         });
     }
 })();

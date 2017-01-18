@@ -30,17 +30,13 @@
             if (!_authenticated || !_identity || !_identity.authorities) {
                 return false;
             }
-            for (var j = 0; j < _identity.authorities.length; j++) {
-                for (var i = 0; i < authorities.length; i++) {
-                    if (_identity.authorities.map(function (e) {
-                            return e.funcionalidades;
-                        })[j].map(function (e) {
-                            return e.funcionalidade;
-                        }).indexOf(authorities[i]) !== -1) {
-                        return true;
-                    }
+
+            for (var i = 0; i < authorities.length; i++) {
+                if (_identity.authorities.map(function(e) { return e.funcionalidades; })[0].map(function(e) { return e.funcionalidade; }).indexOf(authorities[i]) !== -1) {
+                    return true;
                 }
             }
+
             return false;
         }
 
@@ -49,14 +45,15 @@
                 return $q.when(false);
             }
             return this.identity().then(function(_id) {
-                for (var i = 0; i < _id.authorities.length; i++) {
-                    if(_id.authorities.map(function(e) { return e.funcionalidades; })[i].map(function(e) { return e.funcionalidade; }).indexOf(authority) !== -1){
-                        return true;
-                    }
-                }
-                return false;
-               },
-                function(){
+                return(_id.authorities.map(function(e) { return e.funcionalidades; })[0].map(function(e) { return e.funcionalidade; }).indexOf(authority) !== -1)
+                // for(var i = 0, len = _id.authorities.length; i < len; i++) {
+                //     if( _id.authorities[i]['funcionalidades'].map(function(e) { return e.funcionalidade; }).indexOf(authority) !== -1) {
+                //         return true
+                //     }
+                // }
+                // return false;
+                // return _id.authorities && _id.authorities.map(function(e) { return e.funcionalidades; }).map(function(e) { return e.funcionalidade; }).indexOf(authority) !== -1;
+            }, function(){
                 return false;
             });
         }

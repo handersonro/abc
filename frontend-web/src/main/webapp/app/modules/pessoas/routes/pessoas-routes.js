@@ -25,9 +25,6 @@
                 },
                 params: {
                     callback: null
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.pesquisar-participante', {
@@ -45,9 +42,6 @@
                     }
                 },
                 resolve: {
-                },
-                data: {
-                    authorities: ['PESQUISAR_PARTICIPANTE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.inserir-participante', {
@@ -56,9 +50,6 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/pessoas-inserir-participante-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: ['INCLUIR_PARTICIPANTE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.editar-participante', {
@@ -70,9 +61,6 @@
                 },
                 params: {
                     participante: null
-                },
-                data: {
-                    authorities: ['PESQUISAR_PARTICIPANTE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.inserir-remetente', {
@@ -81,9 +69,6 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/pessoas-inserir-remetente-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: ['INSERIR_REMETENTE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.pesquisar-remetente', {
@@ -101,9 +86,6 @@
                     }
                 },
                 resolve: {
-                },
-                data: {
-                    authorities: ['PESQUISAR_REMETENTE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.editar-remetente', {
@@ -115,9 +97,6 @@
                 },
                 params: {
                     remetente: null
-                },
-                data: {
-                    authorities: ['PESQUISAR_REMETENTE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.help', {
@@ -129,9 +108,6 @@
             },
             params: {
                 remetente: null
-            },
-            data: {
-                authorities: []
             }
         });
     }

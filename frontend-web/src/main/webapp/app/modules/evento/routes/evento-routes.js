@@ -25,9 +25,6 @@
                 },
                 params: {
                     callback: null
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.confirmar', {
@@ -36,9 +33,6 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/confirmar-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.recusar', {
@@ -47,9 +41,6 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/recusar-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
             }).state(STATE_PATH+MODULE_NAME+'.confirmacao-nao-permitida', {
                 url: '/confirmacao-nao-permitida',
@@ -57,9 +48,6 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/confirmacao-nao-permitida-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
              }).state(STATE_PATH+MODULE_NAME+'.recusar-nao-permitida', {
                 url: '/recusar-nao-permitida',
@@ -67,9 +55,6 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/recusar-nao-permitida-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
             });
 

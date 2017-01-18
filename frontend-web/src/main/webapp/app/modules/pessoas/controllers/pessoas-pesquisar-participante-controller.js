@@ -52,7 +52,6 @@
                             nome: value.noParticipanteExterno,
                             cargo: value.noCargo,
                             email: value.noEmail,
-                            tel: value.nuTelefone,
                             pessoa:{
                                 id: value.pessoa.id,
                                 flPessoaAtivo: value.pessoa.id
@@ -106,7 +105,7 @@
             $mdDialog.show(confirm).then(function() {
                 ParticipanteExternoService.excluirPorId(participante.id).then(
                     function (sucesso){
-                        AlertsService.success('Participante removido com sucesso.');
+                        AlertsService.success('Remetente removido com sucesso.');
                         pesquisar();
                     }
                 );

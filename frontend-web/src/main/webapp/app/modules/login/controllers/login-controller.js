@@ -8,13 +8,13 @@
         var vm = this;
 
         vm.isAuthenticated = Principal.isAuthenticated();
-        // if(vm.isAuthenticated){
-        //     $state.go("app.public.home.pagina-inicial");
-        // }
+        if(vm.isAuthenticated){
+            $state.go("app.public.home.pagina-inicial");
+        }
 
-        // $scope.login =function(){
-        //     location.reload();grunt
-        // }
+        $scope.login =function(){
+            location.reload();
+        }
 
     }
 })();

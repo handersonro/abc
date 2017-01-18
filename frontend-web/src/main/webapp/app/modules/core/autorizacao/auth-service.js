@@ -6,7 +6,7 @@
         .factory('Auth', Auth);
 
     /* @ngInject */
-    function Auth ($rootScope, $state, $localStorage, $q, Principal) {
+    function Auth ($rootScope, $state, $sessionStorage, $q, Principal) {
         var service = {
             authorize: authorize
         };
@@ -21,60 +21,11 @@
             function authThen () {
                 var isAuthenticated = Principal.isAuthenticated();
 
-                if( !$rootScope.logar && !$localStorage.authenticationToken ){
-                     // NESSA SITUACAO O USUARIO DEU UM REFRESH NA PAGINA E NÃO POSSUE UM toState
-                    $rootScope.logar = true;
-                    $state.go('app.public.login.entrar');
-                    return;
-                }else{
-                    $rootScope.logar = false;
-                    if($localStorage.authenticationToken === undefined  && $rootScope.toState && $rootScope.toState.name !== 'app.public.login.entrar'){ //NESSE MOMENTO ESTÁ TENTANDO ACESSAR UM RECURSO NÃO PERMITIDO SEM TOKEN
-                        $state.go('app.public.login.entrar');
-                        return;
-                    }
-                }
-
-                if(!$rootScope.reload && $localStorage.authenticationToken != undefined && $rootScope.toState == undefined && $rootScope.fromState == undefined){
-                    $rootScope.reload = true;
-                    $rootScope.sair = true;
-                    $rootScope.logar = true;
-                    $rootScope.isAuthenticated = true;
-                    $state.go("app.public.home.pagina-inicial");
-                    return
-                }else{
-                    $rootScope.reload = false;
-                }
-
-                if ( !$rootScope.isAuthenticated && $localStorage.authenticationToken && $rootScope.toState && ($rootScope.fromState.name === 'app.public.login.entrar')) {
-                    $rootScope.isAuthenticated = true;
-                    $rootScope.reload = true;
-                    $rootScope.sair = true;
-                    $rootScope.logar = true;
-                    location.reload();
-                }else {
-                    $rootScope.isAuthenticated = false;
-                }
-
-
-                if ( !$rootScope.sair && $localStorage.authenticationToken === undefined  && $rootScope.toState  && ($rootScope.toState.name === 'app.public.login.entrar')) {
-                    $rootScope.sair = true;
-                    $rootScope.logar = true;
-                    location.reload();
-                }else {
-                    $rootScope.sair = false;
-                }
-
-                // console.log('PARAMS ',$rootScope.isLogout)
-                //
-                // if ( !$rootScope.isLogout && !$localStorage.authenticationToken && $rootScope.toState && ($rootScope.toState.name === 'app.public.login.entrar')) {
-                //     console.log('SAINDO');
-                //     $rootScope.isLogout = true;
-                //     $state.go("app.public.login.entrar");
-                //     return;
-                // }else {
-                //     $rootScope.isLogout = false;
+                // // an authenticated user can't access to login and register pages
+                // if (isAuthenticated && $rootScope.toState.parent === 'account' && ($rootScope.toState.name === 'login' || $rootScope.toState.name === 'register' || $rootScope.toState.name === 'social-auth')) {
+                //     $state.go('home');
                 // }
-
+                //
                 // // recover and clear previousState after external login redirect (e.g. oauth2)
                 // if (isAuthenticated && !$rootScope.fromState.name && getPreviousState()) {
                 //     var previousState = getPreviousState();
@@ -82,26 +33,22 @@
                 //     $state.go(previousState.name, previousState.params);
                 // }
                 //
-
-                if ($rootScope.toState && $rootScope.toState.data.authorities && $rootScope.toState.data.authorities.length > 0 && !Principal.hasAnyAuthority($rootScope.toState.data.authorities)) {
-                    if (isAuthenticated) {
-                        console.log('SEM',$rootScope.toState.data.authorities);
-                        // user is signed in but not authorized for desired state
-                        //SEM AUTORIZAACO
-                        // $state.go('app.public.home.pagina-inicial');
-                    }
-                    else {
-                        // $state.go("app.public.login.entrar");
-                        //SEM AUTORIZAACO
-
-                        // user is not authenticated. stow the state they wanted before you
-                        // storePreviousState($rootScope.toState.name, $rootScope.toStateParams);
-                        // $state.go('app.public.home.pagina-inicial');
-                    }
-                }else{
-                    // $state.go("app.public.login.entrar");
-
-                }
+                // if ($rootScope.toState.data.authorities && $rootScope.toState.data.authorities.length > 0 && !Principal.hasAnyAuthority($rootScope.toState.data.authorities)) {
+                //     if (isAuthenticated) {
+                //         // user is signed in but not authorized for desired state
+                //         $state.go('accessdenied');
+                //     }
+                //     else {
+                //         // user is not authenticated. stow the state they wanted before you
+                //         // send them to the login service, so you can return them when you're done
+                //         storePreviousState($rootScope.toState.name, $rootScope.toStateParams);
+                //
+                //         // now, send them to the signin state so they can log in
+                //         $state.go('accessdenied').then(function() {
+                //             LoginService.open();
+                //         });
+                //     }
+                // }
             }
         }
 

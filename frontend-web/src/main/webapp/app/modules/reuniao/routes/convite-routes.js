@@ -25,9 +25,6 @@
                 },
                 params: {
                     callback: null
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.inserir-reuniao', {
@@ -36,9 +33,6 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/reuniao-inserir-reuniao-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.editar-reuniao', {
@@ -50,9 +44,6 @@
                 },
                 params: {
                     reuniao: null
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.pesquisar-reuniao', {
@@ -62,7 +53,7 @@
                 templateUrl: MODULE_PATH+'views/reuniao-pesquisar-reuniao-view.html',
                 params: {
                     filtro: {
-                        filtros: { noObservacao: '',noRemetente: '',noDespacho: '', tipoEvento: '', noLocalEvento : '', noAssunto:'',descricao:'', noPauta:'', dtInicioEvento:'',dtFimEvento:'',dataCadInicial:'',dataCadFinal:'',conviteValidacaoEnum:''},
+                        filtros: { noObservacao: '',noRemetente: '',noDespacho: '', tipoEvento: '', noLocalEvento : '', noAssunto:'',descricao:'', noPauta:'', dtInicioEvento:'',dtFimEvento:'',dataCadInicial:'',dataCadFinal:'',conviteValidacao:''},
                         currentPage: 1,
                         pageSize: 20,
                         sortFields: 'id',
@@ -70,9 +61,6 @@
                     }
                 },
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
             });
     }

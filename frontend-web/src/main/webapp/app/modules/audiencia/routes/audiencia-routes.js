@@ -8,7 +8,7 @@
 
     /* @ngInject */
     function configPublicRoutes($stateProvider) {
-        var MODULE_NAME = 'audiencia';
+        /*var MODULE_NAME = 'audiencia';
         var MODULE_PATH = 'modules/'+MODULE_NAME+'/';
         var STATE_PATH = 'app.private.';
         $stateProvider
@@ -25,9 +25,6 @@
                 },
                 params: {
                     callback: null
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.inserir-audiencia', {
@@ -36,9 +33,6 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/audiencia-inserir-audiencia-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.editar-audiencia', {
@@ -50,9 +44,6 @@
                 },
                 params: {
                     audiencia: null
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.pesquisar-audiencia', {
@@ -70,10 +61,7 @@
                     }
                 },
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
-            });
+            });*/
     }
 })();

@@ -37,10 +37,7 @@
                 //        return retorno.promise;
                 //    }
 
-               },
-                data: {
-                    authorities: []
-                }
+               }
            });
 
         $urlRouterProvider.otherwise('/public/login/entrar');

@@ -58,12 +58,6 @@ md-toast.ng-scope._md.md-md-success-theme-theme.md-bottom{
 }
 md-toast.md-top{
     position: fixed;
-    margin: 5px;
-    background-color:#eb8f00;
-    color: #fff;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
 }
 .padding-auto{
     margin-bottom:40px;
@@ -131,7 +125,6 @@ md-toast.md-top{
 }
 .header-topo{
     background: url(img/bg-verde.jpg);
-    min-height: 48px;
 }
 
 #title .md-toolbar-tools{
@@ -288,16 +281,13 @@ button.btn.btn-default:hover {
     display: none !important;
 }
 
-.colorpicker-selectors {
-    display: none;
-    height: 10px;
-    margin-top: 5px;
-    clear: both;
+/*CSS HELP*/
+.largura-help{
+    width: 100%;
 }
 
-.colorpicker-selectors i {
-    cursor: pointer;
-    float: left;
-    height: 10px;
-    width: 10px;
+.aviso-help{
+    color:#ef5252;
+    background: rgba(210, 210, 210, 0.36);
+    padding: 15px;
 }

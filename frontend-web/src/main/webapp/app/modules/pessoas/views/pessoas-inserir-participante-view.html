@@ -13,7 +13,7 @@
                             Nome
                         </label>
                         <md-icon>&#xE8A6;</md-icon>
-                        <input type="text" ng-model="vm.participante.nome" name="nome" md-maxlength="50" maxlength="50" required/>
+                        <input type="text" ng-model="vm.participante.nome" name="nome" md-maxlength="50" required/>
                         <custom-validator-messages input-name="nome" ></custom-validator-messages>
                     </md-input-container>
                     <md-input-container flex class="md-icon-float md-block">
@@ -21,8 +21,7 @@
                             E-mail
                         </label>
                         <md-icon>&#xE0BE;</md-icon>
-                        <input name="email" type="email" ng-model="vm.participante.email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$" md-maxlength="50" maxlength="50"/>
-                        <custom-validator-messages input-name="email" custom-message-pattern="Email inválido"></custom-validator-messages>
+                        <input name="email" type="email" ng-model="vm.participante.email"  md-maxlength="50"/>
                     </md-input-container>
                 </div>
                 <div layout="row" layout-xs="column">
@@ -41,7 +40,6 @@
                         </label>
                         <md-icon>&#xE0CF;</md-icon>
                         <input name="telefone" type="text" ng-model="vm.participante.tel" mask="(99) 9?9999-9999"/>
-                        <custom-validator-messages input-name="telefone" custom-message-mask="Telefone inválido"></custom-validator-messages>
                     </md-input-container>
                 </div>
                 <section class="md-padding action" layout="row" layout-align="end center" layout-wrap>
