@@ -63,7 +63,7 @@
             $state.params.filtro.filtros.dataCadFinal = new Date(vm.filtro.dataCadFinal).getTime();
             $state.params.filtro.filtros.noRemetente = vm.filtro.remetente != undefined ? vm.filtro.remetente.noRemetente : '';
             $state.params.filtro.filtros.idLocalidade = vm.filtro.localidade != undefined ? vm.filtro.localidade.id : '';
-            $state.params.filtro.filtros.conviteValidacaoEnum = vm.filtro.validado != undefined ? vm.filtro.validado : '';
+            $state.params.filtro.filtros.conviteValidacao = vm.filtro.validado != undefined ? vm.filtro.validado : '';
             $state.params.filtro.filtros.noObservacao = vm.filtro.noObservacao;
             $state.params.filtro.filtros.noDespacho = vm.filtro.noDespacho;
             $state.params.filtro.filtros.noAssunto = vm.filtro.noAssunto;
