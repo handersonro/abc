@@ -4,7 +4,7 @@
         .controller('AutoridadeInserirAutoridadeController', AutoridadeInserirAutoridadeController);
 
     /* @ngInject */
-    function AutoridadeInserirAutoridadeController($scope, $timeout,$log, $state, AlertsService){
+    function AutoridadeInserirAutoridadeController($scope, $timeout,$log, $state, AlertsService, AutoridadeService){
     var vm = this;
     vm.title = "Incluir autoridade";
 
@@ -21,9 +21,14 @@
     function showBtnSalvar(){
       return $scope.formAutoridade.$invalid;
     }
-    function salvar(){
-        AlertsService.success('Registro incluído com sucesso.');
-        $state.go('app.private.autoridade.inserir-autoridade', {}, {reload: true});
+    function salvar(autoridade){
+
+        AutoridadeService.salvar(autoridade).then(
+            function (retorno) {
+                AlertsService.success('Registro incluído com sucesso.');
+                $state.go('app.private.autoridade.inserir-autoridade', {}, {reload: true});
+            }
+        );
     }
     function limpar(){
         $state.go('app.private.autoridade.inserir-autoridade', {}, {reload: true});

@@ -15,7 +15,9 @@
             templateUrl: 'modules/core/directives/custom-validator-messages/custom-validator-messages.html',
             scope: {
                 inputName:'@inputName',
-                overwriteMessage:'=?'
+                overwriteMessage:'=?',
+                customMessageMask:'@customMessageMask',
+                customMessagePattern: '@customMessagePattern'
             },
             compile: function (elem, attrs) {
                 return {

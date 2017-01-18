@@ -4,8 +4,10 @@
         .controller('AppController', AppController);
 
     /* @ngInject */
-    function AppController($scope, $mdMedia,AlertsManager, $timeout, $rootScope, $state){
+    function AppController($scope, $mdMedia,AlertsManager, $timeout, $rootScope, $state,stateHandler){
         var vm = this;
+        stateHandler.initialize();
+
 
         vm.screenIsSmall = $mdMedia('xs');
 

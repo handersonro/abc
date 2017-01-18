@@ -4,7 +4,7 @@
         .controller('PessoasPesquisarParticipanteController', PessoasPesquisarParticipanteController);
 
     /* @ngInject */
-    function PessoasPesquisarParticipanteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, DTO){
+    function PessoasPesquisarParticipanteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, DTO, ParticipanteInternoService, ParticipanteExternoService){
         var vm = this;
         var _itens = [];
         vm.tbResultado = false;
@@ -16,17 +16,64 @@
 
         vm.changePage = changePage;
 
+        vm.filtro = {
+            nome: '',
+            cargo: '',
+            email: '',
+            tel: ''
+        };
+
         ///////////////////////////////////
 
         vm.limpar = function(){
             vm.filtro ={};
         }
         function pesquisar (){
-            vm.tbResultado = true;
-            $location.hash('result-pesquisa');
-            // call $anchorScroll()
-            $anchorScroll();
+            vm.tbResultado = false;
+            vm.dto.list = [];
+            vm.dto.totalResults = 0;
+            $state.params.filtro.filtros.noParticipanteExterno = vm.filtro.nome;
+            $state.params.filtro.filtros.noCargo = vm.filtro.cargo;
+            $state.params.filtro.filtros.noEmail = vm.filtro.email;
+            $state.params.filtro.filtros.nuTelefone = vm.filtro.tel.replace(/[^0-9]/g,'');
+            $state.params.filtro.currentPage = 1;
+            getMoreInfinityScrollData($state.params.filtro.currentPage);
         }
+
+        function getMoreInfinityScrollData(pageNumber){
+            $state.params.filtro.currentPage = pageNumber;
+            var promiseLoadMoreData = ParticipanteExternoService.consultarComFiltroSemLoader($state.params.filtro);
+            promiseLoadMoreData.then(function(data){
+                vm.dto.totalResults = data.totalResults;
+                angular.forEach(data.list, function (value, key){
+                    vm.dto.list.push(
+                        {
+                            id: value.id,
+                            nome: value.noParticipanteExterno,
+                            cargo: value.noCargo,
+                            email: value.noEmail,
+                            tel: value.nuTelefone,
+                            pessoa:{
+                                id: value.pessoa.id,
+                                flPessoaAtivo: value.pessoa.id
+                            }
+                        }
+                    );
+                });
+
+                $location.hash('result-pesquisa');
+                $anchorScroll();
+                vm.tbResultado = true;
+            },function (error) {
+                    vm.tbResultado = false;
+                    vm.dto.totalResults = 0;
+                    vm.dto.list = [];
+                }
+            );
+
+            return promiseLoadMoreData;
+        }
+
         function editar (participante){
             $state.go('app.private.pessoas.editar-participante', {participante: participante});
         }
@@ -44,10 +91,10 @@
                 alert('Não fooi possivel carregar os dados');
             });
         };
-        $scope.carregaLista();
+        //$scope.carregaLista();
 
         /*DIALOG*/
-        $scope.showConfirm = function(ev) {
+        $scope.showConfirm = function(ev, participante) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
             .title('Atenção')
@@ -56,8 +103,13 @@
             .targetEvent(ev)
             .ok('Ok')
             .cancel('Cancelar');
-
             $mdDialog.show(confirm).then(function() {
+                ParticipanteExternoService.excluirPorId(participante.id).then(
+                    function (sucesso){
+                        AlertsService.success('Participante removido com sucesso.');
+                        pesquisar();
+                    }
+                );
                 $scope.status = 'You decided to get rid of your debt.';
             }, function() {
                 $scope.status = 'You decided to keep your debt.';
@@ -118,6 +170,8 @@
         function changePage(page){
             vm.dto.currentPage = page;
             vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+
+            getMoreInfinityScrollData(vm.dto.currentPage);
         }
         $scope.changePage = changePage;
     }

@@ -27,19 +27,19 @@
                                   <label>
                                       Data inicial
                                   </label>
-                                  <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                  <input mdc-datetime-picker ng-disabled="!vm.filtro.dataCadInicial === false" date="true" time="true" type="text" short-time="true"
                                           min-date="minDate"
                                           format="DD/MM/YYYY HH:mm a"
-                                          ng-model="vm.filtro.dataInicio">
+                                          ng-model="vm.filtro.dtInicioEvento">
                                 </md-input-container>
                                 <md-input-container>
                                   <label>
                                       Data final
                                   </label>
-                                  <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                  <input mdc-datetime-picker ng-disabled="!vm.filtro.dataCadInicial === false" date="true" time="true" type="text" short-time="true"
                                           min-date="minDate"
                                           format="DD/MM/YYYY HH:mm a"
-                                          ng-model="vm.filtro.dataFim">
+                                          ng-model="vm.filtro.dtFimEvento">
                                 </md-input-container>
                           </div>
                         </div>
@@ -58,7 +58,7 @@
                                   <label>
                                       Data inicial
                                   </label>
-                                  <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                  <input mdc-datetime-picker date="true" ng-disabled="!vm.filtro.dtInicioEvento === false" time="true" type="text" short-time="true"
                                           min-date="minDate"
                                           format="DD/MM/YYYY HH:mm a"
                                           ng-model="vm.filtro.dataCadInicial">
@@ -68,7 +68,7 @@
                                   <label>
                                       Data final
                                   </label>
-                                  <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                  <input mdc-datetime-picker date="true" ng-disabled="!vm.filtro.dtInicioEvento === false" time="true" type="text" short-time="true"
                                           min-date="minDate"
                                           format="DD/MM/YYYY HH:mm a"
                                           ng-model="vm.filtro.dataCadFinal">
@@ -98,7 +98,7 @@
                   <label>Evento</label>
                   <md-icon class="md-datepicker-calendar-icon ng-scope" aria-label="md-calendar" md-svg-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgM2gtMVYxaC0ydjJIOFYxSDZ2Mkg1Yy0xLjExIDAtMS45OS45LTEuOTkgMkwzIDE5YzAgMS4xLjg5IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMTZINVY4aDE0djExek03IDEwaDV2NUg3eiIvPjwvc3ZnPg==" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"></path></svg></md-icon>
                   <md-select ng-model="vm.filtro.tipoSaida">
-                    <md-option ng-repeat="item in vm.tipoEvento" value="{{item.evento}}">
+                    <md-option ng-repeat="item in vm.flEventoInternacional" value="{{item.evento}}">
                       {{item.evento}}
                     </md-option>
                   </md-select>
@@ -108,28 +108,24 @@
             <div layout="row" layout-xs="column">
                 <div class="" flex="50" layout="row" layout-align="center center">
 
-
-                    <!-- <input name="text" type="text" ng-model="filtro.localEvento" md-maxlength="50"/> -->
-
                     <md-autocomplete
-                          flex
-                          md-no-cache="true"
-                          md-selected-item="selectedItem"
-                          md-input-name="local"
-                          md-search-text="vm.textoLocal"
-                          md-items="item in vm.procurarLocal(vm.textoLocal)"
-                          md-item-text="item.local"
-                          md-min-length="1"
-                          md-floating-label="Local do evento">
+                            flex
+                            md-no-cache="true"
+                            md-selected-item="vm.convite.idLocalidade"
+                            md-input-name="noLocalidade"
+                            md-search-text="textoLocal"
+                            md-items="item in vm.procurarLocal(textoLocal)"
+                            md-item-text="item.localidadesUf"
+                            md-min-length="3"
+                            required="true"
+                            md-floating-label="Local do evento">
                         <md-item-template>
-                          <span md-highlight-text="vm.textoLocal" md-highlight-flags="^i">{{item.local}}</span>
+                            <span md-highlight-text="textoLocal" md-highlight-flags="^i">{{item.localidadesUf}}</span>
                         </md-item-template>
                         <md-not-found>
-                          Nenhum local de evento "{{vm.textoLocal}}" foi encontrado
+                            Nenhum local de evento "{{textoLocal}}" foi encontrado
                         </md-not-found>
-                      </md-autocomplete>
-
-
+                    </md-autocomplete>
                 </div>
                 <md-input-container class="md-icon-float md-block" flex>
                     <label>
@@ -150,14 +146,14 @@
                     <label>
                         Observação
                     </label>
-                    <textarea ng-model="vm.filtro.observacao" md-maxlength="500" rows="3" md-select-on-focus>
+                    <textarea ng-model="vm.filtro.noObservacao" md-maxlength="500" rows="3" md-select-on-focus>
                     </textarea>
                 </md-input-container>
                 <md-input-container class="md-block" flex flex-xs="100">
                     <label>
                         Despacho
                     </label>
-                    <textarea ng-model="vm.filtro.despacho" md-maxlength="500" rows="3" md-select-on-focus>
+                    <textarea ng-model="vm.filtro.noDespacho" md-maxlength="500" rows="3" md-select-on-focus>
                     </textarea>
                 </md-input-container>
             </div>
@@ -217,15 +213,16 @@
                         <th>
                             Data do evento<paginacao-sorting dto="vm.dto" field-name="dataEvento"></paginacao-sorting>
                         </th>
-                        <th>
+                        <!--<th>
                             Validado<paginacao-sorting dto="vm.dto" field-name="validado"></paginacao-sorting>
-                        </th>
+                        </th>-->
                         <th>
                             Descrição<paginacao-sorting dto="vm.dto" field-name="descricao"></paginacao-sorting>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
+
                     <tr dir-paginate="item in vm.dto.list | itemsPerPage: vm.dto.pageSize" current-page="vm.dto.currentPage" total-items="vm.dto.totalResults">
                         <td class="text-center">
                             <md-menu>
@@ -245,7 +242,7 @@
                                         </md-button>
                                     </md-menu-item>
                                     <md-menu-item>
-                                        <md-button ng-click="vm.showConfirm($event)">
+                                        <md-button ng-click="showConfirm($event,item)">
                                             <md-icon>
                                                 &#xE92B;
                                             </md-icon>
@@ -255,30 +252,18 @@
                                 </md-menu-content>
                             </md-menu>
                         </td>
-                        <td>
-                            {{ item.remetente }}
-                        </td>
-                        <td>
-                            {{ item.dataCadastro }}
-                        </td>
-                        <td>
-                            {{ item.localEvento }}
-                        </td>
-                        <td>
-                            {{ item.dataEventoInicio }} à {{ item.dataEventoFim }}
-                        </td>
-                        <td>
-                            {{ item.validado }}
-                        </td>
-                        <td>
-                            {{ item.descricao }}
-                        </td>
+                        <td>{{ item.remetente.noRemetente }}</td>
+                        <td>{{ item.dtCadastro | date : 'dd/MM/yyyy HH:mm a'}}</td>
+                        <td>{{ item.noLocalEvento }}</td>
+                        <td>{{ item.dtInicioEvento | date : 'dd/MM/yyyy HH:mm a' }} à {{ item.dtFimEvento | date : 'dd/MM/yyyy HH:mm a' }}</td>
+                        <!--<td>{{ item.validado }}</td>-->
+                        <td ta-bind ng-model="item.descricao"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <dir-pagination-controls layout layout-align="center" boundary-links="true" on-page-change="vm.changePage(newPageNumber)" template-url="modules/core/directives/paginacao/paginacao-view.html" layout-align="center center" class="dir-pagination-controls">
-        </dir-pagination-controls>
+    </dir-pagination-controls>
         <!-- tabela css angular material -->
     </div>
     <!-- resultado da busca -->

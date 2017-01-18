@@ -2,6 +2,69 @@ body{
     background-color: #dedede;
     height:auto;
 }
+md-toast.md-default-theme .md-toast-content, md-toast .md-toast-content{
+    background-color: transparent;
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+}
+md-toast.ng-scope._md.md-md-danger-theme-theme.md-top.md-left.md-right{
+    background-color: red;
+    color: #fff;
+    margin: 5px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+md-toast.ng-scope._md.md-md-danger-theme-theme.md-bottom{
+    background-color: red;
+    color: #fff;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+md-toast.ng-scope._md.md-md-warning-theme-theme.md-top.md-left.md-right{
+    background-color: #eb8f00;
+    color: #fff;
+    margin: 5px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+md-toast.ng-scope._md.md-md-warning-theme-theme.md-bottom{
+    background-color: #eb8f00;
+    color: #fff;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+md-toast.md-default-theme .md-toast-content .md-button.md-highlight, md-toast .md-toast-content .md-button.md-highlight{
+    color: #fff;
+}
+md-toast.ng-scope._md.md-md-success-theme-theme.md-top.md-left.md-right{
+    background-color: rgb(139,195,74);
+    color: #fff;
+    margin: 5px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+md-toast.ng-scope._md.md-md-success-theme-theme.md-bottom{
+    background-color: rgb(139,195,74);
+    color: #fff;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+md-toast.md-top{
+    position: fixed;
+    margin: 5px;
+    background-color:#eb8f00;
+    color: #fff;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
 .padding-auto{
     margin-bottom:40px;
 }
@@ -32,7 +95,7 @@ body{
     font-size:13px;
 }
 .md-conteudo{
-    padding-top: 60px;
+    padding-top: 30px;
 }
 .box{
     background: #fff;
@@ -68,6 +131,7 @@ body{
 }
 .header-topo{
     background: url(img/bg-verde.jpg);
+    min-height: 48px;
 }
 
 #title .md-toolbar-tools{
@@ -111,6 +175,13 @@ body{
 @media only screen and (min-width: 1920px) {
 
 
+}
+button.md-fab.md-mini.md-acoes.md-button.md-ink-ripple{
+    background: transparent !important;
+    box-shadow: none !important;
+}
+.md-acoes md-icon.ng-scope.material-icons{
+    color:#fff;
 }
 .panel{
     margin: 10px;
@@ -211,4 +282,22 @@ button.btn.btn-default:hover {
     font-size: 20px;
     padding: 9px;
     background-color: #8bc34a;
+}
+
+.hidden{
+    display: none !important;
+}
+
+.colorpicker-selectors {
+    display: none;
+    height: 10px;
+    margin-top: 5px;
+    clear: both;
+}
+
+.colorpicker-selectors i {
+    cursor: pointer;
+    float: left;
+    height: 10px;
+    width: 10px;
 }

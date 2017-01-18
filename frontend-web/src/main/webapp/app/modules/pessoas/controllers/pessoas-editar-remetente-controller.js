@@ -4,10 +4,14 @@
         .controller('PessoasEditarRemetenteController', PessoasEditarRemetenteController);
 
     /* @ngInject */
-    function PessoasEditarRemetenteController($scope, $timeout, $http, AlertsService, $stateParams, $state){
+    function PessoasEditarRemetenteController($scope, $timeout, $http, AlertsService, $stateParams, $state, RemetenteService){
         var vm = this;
         vm.title = "Editar remetente";
         vm.remetente = $stateParams.remetente;
+
+        if(vm.remetente == null){
+            $state.go('app.private.pessoas.pesquisar-remetente');
+        }
 
         vm.limpar = limpar;
         vm.showBtnSalvar = showBtnSalvar;
@@ -20,9 +24,16 @@
             vm.remetente ={};
         }
 
-        function salvar(){
-          AlertsService.success('Registro alterado com sucesso.');
-          $state.go('app.private.pessoas.pesquisar-remetente');
+        function salvar(remetente){
+
+            remetente.nuTelefone = remetente.nuTelefone.replace(/[^0-9]/g,'');
+
+            RemetenteService.editar(remetente).then(
+                function (retorno) {
+                    AlertsService.success('Registro alterado com sucesso.');
+                    $state.go('app.private.pessoas.pesquisar-remetente');
+                }
+            );
         }
 
         function showBtnSalvar(){

@@ -12,7 +12,7 @@
 <!-- TELA DE CADASTRO -->
     <div class="md-padding">
 
-        <form name="formConvite" ng-submit="vm.salvar()">
+        <form name="formConvite" ng-submit="vm.salvar(vm.convite)">
             <!-- conteudo -->
 
             <div layout="row" layout-xs="column">
@@ -24,7 +24,7 @@
                             min-date="minDate"
                             required
                             format="DD/MM/YYYY HH:mm a"
-                            ng-model="vm.convite.dataInicio">
+                            ng-model="vm.convite.dtInicioEvento">
                     <custom-validator-messages input-name="idDataInicio" ></custom-validator-messages>
                 </md-input-container>
                 <md-input-container flex>
@@ -35,7 +35,7 @@
                             min-date="minDate"
                             required
                             format="DD/MM/YYYY HH:mm a"
-                            ng-model="vm.convite.dataFim">
+                            ng-model="vm.convite.dtFimEvento">
                     <custom-validator-messages input-name="idDataFim" ></custom-validator-messages>
                 </md-input-container>
                 <md-input-container flex>
@@ -46,24 +46,35 @@
                             min-date="minDate"
                             required
                             format="DD/MM/YYYY HH:mm a"
-                            ng-model="vm.convite.dataCadastramento">
-                    <custom-validator-messages input-name="dataCadastramento" ></custom-validator-messages>
+                            ng-model="vm.convite.dtCadastro">
+                    <custom-validator-messages input-name="dtCadastro" ></custom-validator-messages>
                 </md-input-container>
             </div>
             <div layout="row" layout-xs="column">
-                <md-input-container flex class="md-icon-float md-block">
-                    <label>
-                        Remetente
-                    </label>
-                    <md-icon>
-                        &#xE8A6;
-                    </md-icon>
-                    <input type="text" ng-model="vm.convite.remetente" name="remetente" required md-maxlength="50"/>
-                    <custom-validator-messages input-name="remetente" ></custom-validator-messages>
-                </md-input-container>
+
+                <md-autocomplete
+                        flex
+                        md-no-cache="true"
+                        md-selected-item="vm.convite.remetente"
+                        md-input-name="remetente"
+                        md-search-text="noRemetente"
+                        md-items="item in vm.procurarRemetente(noRemetente)"
+                        md-item-text="item.noRemetente"
+                        md-min-length="3"
+                        required="true"
+                        md-match-case-insensitive="true"
+                        md-floating-label="Remetente"
+                        md-icon="&#xE8A6">
+                    <md-item-template>
+                        <span md-highlight-text="noRemetente" md-highlight-flags="^i">{{item.noRemetente}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        Nenhum local de evento "{{noRemetente}}" foi encontrado
+                    </md-not-found>
+                </md-autocomplete>
             </div>
             <div class="row">
-                <md-radio-group ng-model="vm.convite.tipoEvento">
+                <md-radio-group ng-model="vm.convite.flEventoInternacional">
                     <md-input-container>
                         <md-radio-button value="Evento nacional" class="md-primary">Evento nacional</md-radio-button>
                     </md-input-container>
@@ -73,44 +84,56 @@
                 </md-radio-group>
             </div>
             <div layout="row" layout-xs="column">
-                <md-input-container flex class="md-icon-float md-block" ng-if="vm.convite.tipoEvento === 'Evento internacional'">
-                    <label>
-                        País
-                    </label>
-                    <md-icon>
-                        &#xE55B;
-                    </md-icon>
-                    <input type="text" ng-model="vm.convite.pais" name="pais" required md-maxlength="150"/>
-                    <custom-validator-messages input-name="pais" ></custom-validator-messages>
-                </md-input-container>
-                <md-input-container flex class="md-icon-float md-block" ng-if="vm.convite.tipoEvento === 'Evento internacional'">
+
+                <md-autocomplete ng-if="vm.convite.flEventoInternacional === 'Evento internacional'"
+                        flex
+                        md-no-cache="true"
+                        md-selected-item="vm.convite.idPais"
+                        md-input-name="noPais"
+                        md-search-text="textoLocal"
+                        md-items="item in vm.procurarPaises(textoLocal)"
+                        md-item-text="item.noPais"
+                        md-min-length="1"
+                        required="true"
+                        md-floating-label="País">
+                    <md-item-template>
+                        <span md-highlight-text="textoLocal" md-highlight-flags="^i">{{item.noPais}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        Nenhum local de evento "{{textoLocal}}" foi encontrado
+                    </md-not-found>
+                </md-autocomplete>
+
+
+                <md-input-container flex class="md-icon-float md-block" ng-if="vm.convite.flEventoInternacional === 'Evento internacional'">
                     <label>
                         Cidade
                     </label>
                     <md-icon>
                         &#xE7F1;
                     </md-icon>
-                    <input name="cidade" type="text" ng-model="vm.convite.cidade" required md-maxlength="150"/>
+                    <input name="cidade" type="text" ng-model="vm.convite.noCidadeInternacional" required md-maxlength="150"/>
                     <custom-validator-messages input-name="cidade" ></custom-validator-messages>
                 </md-input-container>
             </div>
-            <div layout="row" layout-xs="column" ng-if="vm.convite.tipoEvento === 'Evento nacional'">
+            <div layout="row" layout-xs="column" ng-if="vm.convite.flEventoInternacional === 'Evento nacional'">
+
                 <md-autocomplete
                         flex
                         md-no-cache="true"
-                        md-selected-item="vm.convite.localEvento"
-                        md-input-name="local"
-                        md-search-text="vm.convite.textoLocal"
-                        md-items="item in vm.procurarLocal(vm.convite.textoLocal)"
-                        md-item-text="item.local"
-                        md-min-length="1"
+                        md-selected-item="vm.convite.idLocalidade"
+                        md-input-name="noLocalidade"
+                        md-search-text="textoLocal"
+                        md-items="item in vm.procurarLocal(textoLocal)"
+                        md-item-text="item.localidadesUf"
+                        md-min-length="3"
                         required="true"
                         md-floating-label="Local do evento">
                     <md-item-template>
-                        <span md-highlight-text="vm.textoLocal" md-highlight-flags="^i">{{item.local}}</span>
+                        <span md-highlight-text="textoLocal" md-highlight-flags="^i">{{item.localidadesUf}}</span>
                     </md-item-template>
                     <md-not-found>
-                        Nenhum local de evento "{{vm.convite.textoLocal}}" foi encontrado
+                        Nenhum local de evento "{{textoLocal}}" foi encontrado
                     </md-not-found>
                 </md-autocomplete>
             </div>
@@ -119,7 +142,7 @@
                     <label>
                         Despacho
                     </label>
-                    <textarea ng-model="vm.convite.despacho" md-maxlength="150" rows="3" md-select-on-focus>
+                    <textarea ng-model="vm.convite.noDespacho" md-maxlength="150" rows="3" md-select-on-focus>
                     </textarea>
                 </md-input-container>
             </div>
@@ -137,7 +160,7 @@
                     <h3 class="toolbar-edit-textarea">
                         Observação
                     </h3>
-                    <div text-angular ng-model="vm.convite.descricao" layout="column" required name="txaObservacao"></div>
+                    <div text-angular ng-model="vm.convite.noObservacao" layout="column" required name="txaObservacao"></div>
                     <custom-validator-messages input-name="txaObservacao" ></custom-validator-messages>
                 </md-input-container>
             </div>
