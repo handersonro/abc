@@ -11,6 +11,10 @@
         vm.title = "Editar audiência";
         vm.audiencia = $stateParams.audiencia;
 
+        if(vm.audiencia==null){
+            $state.go('app.private.audiencia.pesquisar-audiencia');
+        }
+
         vm.remetente =  vm.audiencia.remetente;
         vm.participantes = [];
 
@@ -23,6 +27,7 @@
         vm.procurarLocal = EventoService.obterLocais;
         inicializar();
         function inicializar(){
+
             if(vm.dataInicio > vm.dataFim){
                 return AlertsService.success($filter('translate')('A13.4'));
             }

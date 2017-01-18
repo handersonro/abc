@@ -37,6 +37,7 @@
                 noObservacao: '',
                 tipoEvento: '',
                 noDespacho: '',
+                noPauta: '',
                 idLocalidade: '',
                 noRemetente: '',
                 descricao: '',
@@ -75,6 +76,7 @@
             $state.params.filtro.filtros.conviteValidacaoEnum = vm.filtro.validado != undefined ? vm.filtro.validado : '';
             $state.params.filtro.filtros.noObservacao = vm.filtro.noObservacao;
             $state.params.filtro.filtros.noDespacho = vm.filtro.noDespacho;
+            $state.params.filtro.filtros.noPauta = vm.filtro.noPauta;
             $state.params.filtro.filtros.noAssunto = vm.filtro.noAssunto;
             $state.params.filtro.filtros.tipoEvento = vm.filtro.tipoEvento;
             $state.params.filtro.filtros.descricao = vm.filtro.descricao;
@@ -98,10 +100,11 @@
                 function(data) {
                     vm.tbResultado = true;
 
-                    $location.hash('result-pesquisa');
 
                     vm.dto.totalResults = data.totalResults;
                     vm.dto.list = data.list;
+
+                    $location.hash('result-pesquisa');
                     $anchorScroll();
                 },function (error) {
                     vm.tbResultado = false;
@@ -155,8 +158,10 @@
         function changePage(page){
             vm.dto.currentPage = page;
             vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+
+            getMoreInfinityScrollData(vm.dto.currentPage);
         }
-        $scope.changePage = changePage;
+        vm.changePage = changePage;
 
         function buscarRemetentePeloNome(noUsuario) {
             var retorno = $q.defer();
