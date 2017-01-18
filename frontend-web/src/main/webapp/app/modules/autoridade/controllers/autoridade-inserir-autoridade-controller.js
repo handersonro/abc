@@ -4,7 +4,7 @@
         .controller('AutoridadeInserirAutoridadeController', AutoridadeInserirAutoridadeController);
 
     /* @ngInject */
-    function AutoridadeInserirAutoridadeController($scope, $timeout,$log, $state, AlertsService, AutoridadeService){
+    function AutoridadeInserirAutoridadeController($scope, $timeout,$log, $mdDialog, $state, AlertsService, AutoridadeService){
     var vm = this;
     vm.title = "Incluir autoridade";
 
@@ -12,6 +12,7 @@
     vm.showBtnSalvar = showBtnSalvar;
     vm.salvar = salvar;
     vm.limpar = limpar;
+    vm.help = help;
 
     inicializar();
     ///////////////////////////////////
@@ -33,6 +34,21 @@
     function limpar(){
         $state.go('app.private.autoridade.inserir-autoridade', {}, {reload: true});
     }
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: AutoridadeInserirAutoridadeController,
+                templateUrl: '/modules/autoridade/help/modal-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
 
   }
 

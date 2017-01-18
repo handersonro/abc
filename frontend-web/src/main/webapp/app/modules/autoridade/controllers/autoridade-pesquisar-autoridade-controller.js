@@ -12,6 +12,7 @@
     vm.autoridade = 'Ministro';
     vm.tbResultado = false;
     vm.pesquisar = pesquisar;
+    vm.help = help;
     vm.editar = editar;
     vm.filtro = {
         noAutoridade: '',
@@ -56,6 +57,21 @@
 
         return promiseLoadMoreData;
     }
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: AutoridadePesquisarAutoridadeController,
+                templateUrl: '/modules/autoridade/help/modal-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
 
     function editar (autoridade){
         $state.go('app.private.autoridade.editar-autoridade', {autoridade: autoridade});

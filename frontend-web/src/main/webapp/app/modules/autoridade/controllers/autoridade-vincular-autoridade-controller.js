@@ -4,7 +4,7 @@
         .controller('AutoridadeVincularAutoridadeController', AutoridadeVincularAutoridadeController);
 
     /* @ngInject */
-    function AutoridadeVincularAutoridadeController($scope, $timeout,$log, $q,$http,$state, AlertsService,AutoridadeService){
+    function AutoridadeVincularAutoridadeController($scope, $timeout,$log, $mdDialog, $q,$http,$state, AlertsService,AutoridadeService){
         var vm = this;
 
         vm.listAutoridades = {};
@@ -14,6 +14,7 @@
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
         vm.limpar = limpar;
+        vm.help = help;
         vm.noRemetente = '';
         vm.procurarUsuario = buscarRemetentePeloNome;
         vm.vincularAutoridade = vincularAutoridade;
@@ -83,6 +84,21 @@
         function validarAutoridade(autoridade){
             return  undefined !=autoridade && null != autoridade.id ;
         }
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: AutoridadeVincularAutoridadeController,
+                templateUrl: '/modules/autoridade/help/modal-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
     }
 
 })();
