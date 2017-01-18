@@ -4,7 +4,7 @@
         .controller('ConviteEditarConviteController', ConviteEditarConviteController);
 
     /* @ngInject */
-    function ConviteEditarConviteController($scope, $timeout, $http, AlertsService, $stateParams, $state, ConviteRestService){
+    function ConviteEditarConviteController($scope, $timeout, $http, AlertsService, $stateParams, $state, ConviteRestService,EventoService){
         var vm = this;
         vm.title = "Editar convite";
         vm.autoridade = "Ministro";
@@ -27,15 +27,15 @@
         }
 
 
-        if(vm.convite.conviteValidacaoEnum == 'NAO'){
+        if(vm.convite.conviteValidacao == 'NAO'){
             vm.convite.validado = 'Não';
         }
 
-        if(vm.convite.conviteValidacaoEnum == 'SIM'){
+        if(vm.convite.conviteValidacao == 'SIM'){
             vm.convite.validado = 'Sim';
         }
 
-        if(vm.convite.conviteValidacaoEnum == 'INDIFERENTE'){
+        if(vm.convite.conviteValidacao == 'INDIFERENTE'){
             vm.convite.validado = 'Indiferente';
         }
 
@@ -43,6 +43,10 @@
         inicializar();
         ///////////////////////////////////
         function inicializar(){
+            EventoService.obterLocalidadePeloId(vm.convite.idLocalidade)
+                .success(function (data) {
+                    vm.convite.idLocalidade = data;
+                });
 
             vm.validacoes=[
               {validado : 'Sim'},
@@ -50,13 +54,17 @@
               {validado : 'Indiferente'}
             ];
         }
-        console.log(vm.convite);
         function limpar(){
             vm.convite = {};
         }
 
         function salvar(convite){
 
+            if(vm.convite.flEventoInternacional =='Evento nacional'){
+                vm.convite.flEventoInternacional = 0;
+            }else if(vm.convite.flEventoInternacional =='Evento internacional'){
+                vm.convite.flEventoInternacional = 1;
+            }
             ConviteRestService.editar(convite).then(
                 function (retorno) {
                     AlertsService.success('Registro alterado com sucesso.');

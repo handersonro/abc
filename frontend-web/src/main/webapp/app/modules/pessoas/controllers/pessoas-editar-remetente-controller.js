@@ -9,10 +9,6 @@
         vm.title = "Editar remetente";
         vm.remetente = $stateParams.remetente;
 
-        if(vm.remetente == null){
-            $state.go('app.private.pessoas.pesquisar-remetente');
-        }
-
         vm.limpar = limpar;
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;

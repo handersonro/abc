@@ -11,10 +11,6 @@
         vm.title = "Editar audiência";
         vm.audiencia = $stateParams.audiencia;
 
-        if(vm.audiencia==null){
-            $state.go('app.private.audiencia.pesquisar-audiencia');
-        }
-
         vm.remetente =  vm.audiencia.remetente;
         vm.participantes = [];
 
@@ -22,12 +18,8 @@
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
         vm.listaAutoridades = {};
-        vm.pessoasParaSeremRemovidas = [];
-        vm.removeParticipante = removeParticipante;
-        vm.procurarLocal = EventoService.obterLocais;
         inicializar();
         function inicializar(){
-
             if(vm.dataInicio > vm.dataFim){
                 return AlertsService.success($filter('translate')('A13.4'));
             }
@@ -37,7 +29,7 @@
                 });
 
             vm.audiencia.pessoas.forEach(function (pessoa) {
-                EventoService.obterParticipanteExternoPorIdPessoa(pessoa.id)
+                EventoService.obterParticipanteExternoPorId(pessoa.id)
                     .success(function (data) {
                         vm.participantes.push(data);
                     });
@@ -58,13 +50,11 @@
                 return AlertsService.success($filter('translate')('A13.4'));
             }
 
-            audiencia.tipoEvento = {id: 1,noTipoEvento: 'AUDIENCIA'};
             audiencia.idUf = vm.localidade.uf.id;
             audiencia.nuRegiao = vm.localidade.uf.nuRegiao;
             audiencia.noLocalEvento = vm.localidade.noLocalidade;
             audiencia.idLocalidade = vm.localidade.id;
             audiencia.remetente = vm.remetente;
-            audiencia.pessoasParaSeremRemovidas = vm.pessoasParaSeremRemovidas;
 
             var pessoas = [];
 
@@ -72,6 +62,7 @@
                 pessoas.push(usuario.pessoa);
             });
 
+            console.log(pessoas);
             audiencia.pessoas = pessoas;
 
             console.log(audiencia);
@@ -128,10 +119,6 @@
                 });
 
             return retorno.promise;
-        }
-
-        function removeParticipante(chip) {
-            vm.pessoasParaSeremRemovidas.push(chip.pessoa);
         }
         /*DIALOG*/
     }

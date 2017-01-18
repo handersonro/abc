@@ -325,9 +325,20 @@ button.close.close-colorpicker {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+/*
 md-input-container:not(.md-input-has-value) input:not(:focus), md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-ampm-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-day-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-hour-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-millisecond-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-minute-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-month-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-second-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-week-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-year-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-text{
     color: rgba(0,0,0,0.87) !important;
 }
-.md-chips .md-chip-input-container md-autocomplete input{
+*/
+.md-chips .md-chip-input-container md-autocomplete input {
     margin-top: -2px;
+}
+/*CSS HELP*/
+.largura-help{
+    width: 100%;
+}
+.aviso-help{
+    color:#ef5252;
+    background: rgba(210, 210, 210, 0.36);
+    padding: 15px;
 }

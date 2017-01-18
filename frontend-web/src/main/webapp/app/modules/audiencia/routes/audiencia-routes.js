@@ -8,7 +8,7 @@
 
     /* @ngInject */
     function configPublicRoutes($stateProvider) {
-        var MODULE_NAME = 'audiencia';
+        /*var MODULE_NAME = 'audiencia';
         var MODULE_PATH = 'modules/'+MODULE_NAME+'/';
         var STATE_PATH = 'app.private.';
         $stateProvider
@@ -74,6 +74,6 @@
                 data: {
                     authorities: []
                 }
-            });
+            });*/
     }
 })();
