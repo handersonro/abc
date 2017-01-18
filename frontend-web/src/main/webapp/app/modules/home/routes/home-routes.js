@@ -25,6 +25,9 @@
                 },
                 params: {
                     callback: null
+                },
+                data: {
+                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.pagina-inicial', {
@@ -32,6 +35,9 @@
                 controller: 'PaginaInicialController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/pagina-inicial.html',
+                data: {
+                    authorities: []
+                },
                 resolve: {
                 }
             });

@@ -25,6 +25,9 @@
                 },
                 params: {
                     callback: null
+                },
+                data: {
+                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.entrar', {
@@ -33,6 +36,9 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/login-entrar-view.html',
                 resolve: {
+                },
+                data: {
+                    authorities: []
                 }
             });
     }

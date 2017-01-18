@@ -28,6 +28,9 @@
                 'default': '200' // use shade 200 for default, and keep all other shades the same
             });
 
+        $httpProvider.interceptors.push('errorHandlerInterceptor');
+        $httpProvider.interceptors.push('authExpiredInterceptor');
+        $httpProvider.interceptors.push('authInterceptor');
         $httpProvider.interceptors.push('httpMessageHandleInterceptor');
 
         //$httpProvider.interceptors.push('daLoaderHttpInterceptor');
