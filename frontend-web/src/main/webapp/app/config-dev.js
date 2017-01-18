@@ -8,8 +8,4 @@
     function configDev(RestangularProvider,baseURL){
 		RestangularProvider.setBaseUrl(baseURL);
     }
-
-    /*
-    teste
-     */
 })();
