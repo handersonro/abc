@@ -17,16 +17,16 @@
                         Descrição da autoridade
                     </label>
                     <md-icon>&#xE8A6;</md-icon>
-                    <input type="text" ng-model="vm.autoridade.noAutoridade" name="desAutoridade" md-maxlength="50" required/>
-                    <custom-validator-messages input-name="desAutoridade" ></custom-validator-messages>
+                    <input type="text" ng-model="vm.autoridade.noAutoridade" name="desAutoridade" md-maxlength="50" required maxlength="50"/>
+                    <custom-validator-messages input-name="noAutoridade" ></custom-validator-messages>
                 </md-input-container>
                 <md-input-container flex class="md-icon-float md-block">
                     <label>
                         E-mail
                     </label>
                     <md-icon>&#xE0BE;</md-icon>
-                    <input name="email" type="email" ng-model="vm.autoridade.noEmail" required md-maxlength="50"/>
-                    <custom-validator-messages input-name="email" ></custom-validator-messages>
+                    <input name="email" type="email" ng-model="vm.autoridade.noEmail" required md-maxlength="50" maxlength="50"/>
+                    <custom-validator-messages input-name="noEmail" ></custom-validator-messages>
                 </md-input-container>
             </div>
             <section class="md-padding action" layout="row" layout-align="end center"
