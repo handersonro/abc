@@ -42,13 +42,16 @@
         }
 
         function salvarParticipanteExterno(){
+            console.log("1");
             vm.participanteVO ={
                 id:vm.participante.id,
-                noParticianteExterno:vm.participante.nome,
+                nuTelefone:vm.participante.tel != undefined ? vm.participante.tel.replace(/[^0-9]/g, '') : '',
+                noParticipanteExterno:vm.participante.nome,
                 noCargo:vm.participante.cargo,
                 noEmail:vm.participante.email,
                 pessoa:vm.participante.pessoa
             };
+            console.log(vm.participanteVO);
             ParticipanteExternoService.editar(vm.participanteVO).then(
                 function (retorno) {
                     AlertsService.success('Registro alterado com sucesso.');

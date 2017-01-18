@@ -52,6 +52,7 @@
                             nome: value.noParticipanteExterno,
                             cargo: value.noCargo,
                             email: value.noEmail,
+                            tel: value.nuTelefone,
                             pessoa:{
                                 id: value.pessoa.id,
                                 flPessoaAtivo: value.pessoa.id
