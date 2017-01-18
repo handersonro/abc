@@ -25,6 +25,8 @@
         vm.pessoasParaSeremRemovidas = [];
         vm.removeParticipante = removeParticipante;
         vm.procurarLocal = EventoService.obterLocais;
+        vm.buscarRemetentePeloNome = buscarRemetentePeloNome;
+
         inicializar();
         function inicializar(){
 
@@ -132,6 +134,18 @@
 
         function removeParticipante(chip) {
             vm.pessoasParaSeremRemovidas.push(chip.pessoa);
+        }
+
+        function buscarRemetentePeloNome(noUsuario) {
+            var retorno = $q.defer();
+            EventoService.obterRemetentesPeloNome(noUsuario)
+                .success(function (data) {
+                    retorno.resolve(data);
+                })
+                .error(function () {
+                    retorno.reject(alert('Não foi possivel carregar os dados'));
+                });
+            return retorno.promise;
         }
         /*DIALOG*/
     }
