@@ -35,10 +35,12 @@
             });
 
             var stateChangeSuccess = $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
-                console.log('Conclui',fromState)
-                // if(fromState && fromState.name === 'app.public.login.entrar'){
-                //     location.reload();
-                // }
+                console.log('Conclui')
+                if(fromState && fromState.name === 'app.public.login.entrar'){
+                    console.log('Loguei')
+                    location.reload();
+                    // $state.go('app.private.home.pagina-inicial')
+                }
                 // if(toState && toState.name === 'app.public.login.entrar'){
                 //     location.reload();
                 // }

@@ -34,7 +34,7 @@
                 url: '/entrar',
                 controller: 'LoginEntrarController',
                 controllerAs: 'vm',
-                templateUrl: MODULE_PATH+'views/error-401-view.html',
+                templateUrl: MODULE_PATH+'views/login-entrar-view.html',
                 resolve: {
                 },
                 data: {
