@@ -119,6 +119,7 @@
     }
 
         function getMoreInfinityScrollData(pageNumber){
+            vm.dto.list = [];
             $state.params.filtro.currentPage = pageNumber;
 
             var promiseLoadMoreData = EventoService.consultarComFiltroSemLoader($state.params.filtro);
@@ -174,6 +175,8 @@
         Object.getOwnPropertyNames(vm.filtro).forEach(function (prop) {
             vm.filtro[prop] = '';
         });
+
+        vm.participantes = [];
 
         vm.tbResultado = false;
         vm.dto.totalResults = 0;
