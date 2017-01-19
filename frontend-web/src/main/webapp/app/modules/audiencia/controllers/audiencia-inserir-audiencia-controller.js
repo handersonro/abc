@@ -27,6 +27,7 @@
         vm.salvar = salvar;
         vm.listaAutoridades = {};
         vm.audiencia = {};
+        vm.validacoes = {};
         inicializar();
         function inicializar(){
             vm.audiencia = {
@@ -35,6 +36,11 @@
             if(vm.dataInicio > vm.dataFim){
                 return AlertsService.success($filter('translate')('A13.4'));
             }
+            vm.validacoes=[
+                {validado : 'Sim'},
+                {validado : 'Não'},
+                {validado : 'Indiferente'}
+            ];
         }
         ///////////////////////////////////
 
