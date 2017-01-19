@@ -89,12 +89,15 @@
         }
 
        function pesquisar() {
-           var tipoEvento = {id: 2,noTipoEvento: 'CONVITE'};
 
-            vm.convite.tipoEvento = tipoEvento;
+
+           vm.filtro.tipoEvento = {id: 1,noTipoEvento: 'CONVITE'};
             vm.flEventoInternacional = vm.filtro.tipoSaida;
             var dataCadInicial = new Date(vm.filtro.dataCadInicial).getTime();
             var dataCadFinal = new Date(vm.filtro.dataCadFinal).getTime();
+
+            var dtInicioEvento = new Date(vm.filtro.dtInicioEvento).getTime();
+            var dtFimEvento = new Date(vm.filtro.dataCadFinal).getTime();
 
             if(vm.filtro.validado ==="Indiferente"){
                 vm.filtro.validado = "INDIFERENTE";
@@ -110,14 +113,16 @@
                 vm.filtro.tipoSaida = false;
             }
 
+            console.log(vm.filtro.idLocalidade);
+
             $state.params.filtro.filtros.noObservacao = vm.filtro.noObservacao;
             $state.params.filtro.filtros.noDespacho = vm.filtro.noDespacho;
-            $state.params.filtro.filtros.tipoEvento = vm.convite.tipoEvento;
-            $state.params.filtro.filtros.idLocalidade = vm.filtro.idLocalidade;
+            $state.params.filtro.filtros.tipoEvento = vm.convite.tipoEvento != undefined ? vm.filtro.tipoEvento : '';
+            $state.params.filtro.filtros.idLocalidade = vm.filtro.idLocalidade != undefined ? vm.filtro.idLocalidade.id : '';
             $state.params.filtro.filtros.noRemetente = vm.filtro.remetente;
             $state.params.filtro.filtros.descricao = vm.filtro.descricao;
-            $state.params.filtro.filtros.dtInicioEvento = vm.filtro.dtInicioEvento.getTime();;
-            $state.params.filtro.filtros.dtFimEvento = vm.filtro.dtFimEvento.getTime();;
+            $state.params.filtro.filtros.dtInicioEvento = dtInicioEvento;
+            $state.params.filtro.filtros.dtFimEvento = dtFimEvento;
             $state.params.filtro.filtros.dataCadInicial = dataCadInicial;
             $state.params.filtro.filtros.dataCadFinal   = dataCadFinal;
             $state.params.filtro.filtros.flEventoInternacional = vm.filtro.flEventoInternacional;
