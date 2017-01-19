@@ -32,13 +32,10 @@
             })
             .state(STATE_PATH+MODULE_NAME+'.401', {
                 url: '/401',
-                controller: 'Error401Controller',
+                controller: 'ErrorController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/error-401-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
             });
     }
