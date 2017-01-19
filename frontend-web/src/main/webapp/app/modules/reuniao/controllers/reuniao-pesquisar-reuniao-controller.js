@@ -4,7 +4,7 @@
         .controller('ReuniaoPesquisarReuniaoController', ReuniaoPesquisarReuniaoController);
 
     /* @ngInject */
-    function ReuniaoPesquisarReuniaoController($scope, $timeout, $log,$mdSidenav, $http, $mdDialog, $state,$location, $anchorScroll,$q, AlertsService, DTO,EventoService,ReuniaoService){
+    function ReuniaoPesquisarReuniaoController($scope, $timeout, $log,$mdSidenav, $http, $mdDialog, $state,$location, $anchorScroll, $q, AlertsService, DTO,EventoService,ReuniaoService){
     var vm = this;
     var _itens = [];
     vm.dto = new DTO();
@@ -20,10 +20,11 @@
     vm.readonly = false;
     vm.selectedItem = null;
     vm.searchText = null;
+    vm.querySearch = querySearch;
     vm.usuarios = [];
     vm.numberChips = [];
-    vm.eventoParticipantes = [];
     vm.numberChips2 = [];
+    vm.listSistemas = [];
     vm.numberBuffer = '';
     vm.autocompleteDemoRequireMatch = true;
     vm.transformChip = transformChip;
@@ -54,11 +55,20 @@
         };
     }
 
-
-        /*
-        * Obterm as Participantes apartir do terceiro caracter pesquisado
-        * */
+        /*ARQUIVO ORIGINAL CHIP*/
+        /*funções*/
+        function transformChip(chip) {
+            // If it is an object, it's already a known chip
+            if (angular.isObject(chip)) {
+                return chip;
+            }
+            // Otherwise, create a new one
+            return { name: chip, type: 'new' }
+        }
         function querySearch (query) {
+            /*var resolve = $q.defer();
+            resolve.resolve(query ? vm.vegetables.filter(createFilterFor(query)) : []);
+            return resolve.promise;*/
             var resolve = $q.defer();
             ReuniaoService.buscarPorNome(query)
                 .success(function (data) {
@@ -70,6 +80,16 @@
 
             return resolve.promise;
         }
+        function createFilterFor(query) {
+            var lowercaseQuery = angular.lowercase(query);
+            return function filterFn(vegetable) {
+                return (vegetable._lowername.indexOf(lowercaseQuery) === 0);
+            };
+        }
+        <!-- componente de autocomplete -->
+
+        /*ARQUIVO ORIGINAL CHIP*/
+
 
     function pesquisar (){
 

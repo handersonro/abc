@@ -78,30 +78,23 @@
                     </div>
                 </div>
             </div>
-            <div layout="row">
-
-
-
-                <md-input-container class="md-icon-float md-block padding-auto" flex>
-                    <md-chips
-                            flex
-                            ng-model="vm.participantes"
-                            md-transform-chip="vm.transformChip($chip)"
-                            md-require-match="true">
-                        <md-autocomplete
-                                md-selected-item="vm.selectedItem"
-                                md-search-text="vm.searchText"
-                                md-items="item in vm.querySearch(vm.searchText)"
-                                md-item-text="item"
-                                md-min-length="3"
-                                md-floating-label="Vincular participante">
-                            <span md-highlight-text="searchText">{{item.noParticipanteInterno}}</span>
-                        </md-autocomplete>
-                        <md-chip-template>
-                            <span>{{$chip.noParticipanteInterno}}</span>
-                        </md-chip-template>
-                    </md-chips>
-                </md-input-container>
+            <div layout="row" class="padding-auto">
+                <md-chips ng-model="vm.usuarios" flex="100"
+                          md-transform-chip="vm.transformChip($chip)"
+                          md-require-match="true">
+                    <md-autocomplete
+                            md-selected-item="vm.selectedItem"
+                            md-search-text="vm.searchText"
+                            md-items="item in vm.querySearch(vm.searchText)"
+                            md-item-text="item.noParticipanteInterno"
+                            md-min-length="3"
+                            md-floating-label="Para usuário destino">
+                        <span md-highlight-text="searchText">{{item.noParticipanteInterno}}</span>
+                    </md-autocomplete>
+                    <md-chip-template>
+                        <span>{{$chip.noParticipanteInterno}}</span>
+                    </md-chip-template>
+                </md-chips>
             </div>
             <div layout="row" layout-xs="column">
                 <md-input-container class="md-block" flex flex-xs="100">
