@@ -103,7 +103,14 @@
         $state.params.filtro.filtros.noPauta        = vm.filtro.noPauta != undefined ? vm.filtro.noPauta : '';
         $state.params.filtro.filtros.tipoEvento     = vm.filtro.tipoEvento;
         $state.params.filtro.filtros.noLocalEvento  = vm.filtro.noLocalEvento != undefined ? vm.filtro.noLocalEvento : '';
-        $state.params.filtro.filtros.participantes  = vm.participantes != undefined ? vm.participantes : '';
+        var idPessoa = [];
+
+        if(vm.participantes != undefined){
+            vm.participantes.forEach(function (participante) {
+                idPessoa.push(participante.pessoa.id);
+            });
+        }
+        $state.params.filtro.filtros.participantes  = vm.participantes != undefined ? idPessoa : '';
 
         getMoreInfinityScrollData($state.params.filtro.currentPage);
 
