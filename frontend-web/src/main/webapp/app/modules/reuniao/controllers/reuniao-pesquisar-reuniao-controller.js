@@ -21,7 +21,7 @@
     vm.selectedItem = null;
     vm.searchText = null;
     vm.querySearch = querySearch;
-    vm.usuarios = [];
+    vm.participantes = [];
     vm.numberChips = [];
     vm.numberChips2 = [];
     vm.listSistemas = [];
@@ -51,7 +51,8 @@
             dtFimEvento:'',
             flEventoInternacional: '',
             dataInicialCad:'',
-            dataFimCad:''
+            participantes:[],
+
         };
     }
 
@@ -66,9 +67,6 @@
             return { name: chip, type: 'new' }
         }
         function querySearch (query) {
-            /*var resolve = $q.defer();
-            resolve.resolve(query ? vm.vegetables.filter(createFilterFor(query)) : []);
-            return resolve.promise;*/
             var resolve = $q.defer();
             ReuniaoService.buscarPorNome(query)
                 .success(function (data) {
@@ -92,7 +90,6 @@
 
 
     function pesquisar (){
-
         vm.filtro.tipoEvento = {id: 3,noTipoEvento: 'REUNIAO'};
         vm.filtro.flEventoInternacional = false;
 
@@ -101,11 +98,12 @@
         $state.params.filtro.filtros.dtInicioEvento =  new Date(vm.filtro.dtInicioEvento).getTime();
         $state.params.filtro.filtros.dtFimEvento    =  new Date(vm.filtro.dtFimEvento).getTime();
 
-        $state.params.filtro.filtros.noAssunto      = vm.filtro.noAssunto;
-        $state.params.filtro.filtros.noDespacho     = vm.filtro.noDespacho;
-        $state.params.filtro.filtros.noPauta        = vm.filtro.noPauta;
+        $state.params.filtro.filtros.noAssunto      = vm.filtro.noAssunto != undefined ? vm.filtro.noAssunto : '';
+        $state.params.filtro.filtros.noDespacho     = vm.filtro.noDespacho != undefined ? vm.filtro.noDespacho : '';
+        $state.params.filtro.filtros.noPauta        = vm.filtro.noPauta != undefined ? vm.filtro.noPauta : '';
         $state.params.filtro.filtros.tipoEvento     = vm.filtro.tipoEvento;
-        $state.params.filtro.filtros.noLocalEvento  = vm.filtro.noLocalEvento;
+        $state.params.filtro.filtros.noLocalEvento  = vm.filtro.noLocalEvento != undefined ? vm.filtro.noLocalEvento : '';
+        $state.params.filtro.filtros.participantes  = vm.participantes != undefined ? vm.participantes : '';
 
         getMoreInfinityScrollData($state.params.filtro.currentPage);
 

@@ -62,12 +62,13 @@
                 templateUrl: MODULE_PATH+'views/reuniao-pesquisar-reuniao-view.html',
                 params: {
                     filtro: {
-                        filtros: { noObservacao: '',noRemetente: '',noDespacho: '', tipoEvento: '', noLocalEvento : '', noAssunto:'',descricao:'', noPauta:'', dtInicioEvento:'',dtFimEvento:'',dataCadInicial:'',dataCadFinal:'',conviteValidacao:''},
+                        filtros: { noObservacao: '',noRemetente: '',noDespacho: '', tipoEvento: '', noLocalEvento : '', noAssunto:'',descricao:'', noPauta:'', dtInicioEvento:'',dtFimEvento:'',dataCadInicial:'',dataCadFinal:'',conviteValidacao:'',participantes: ''},
                         currentPage: 1,
                         pageSize: 20,
                         sortFields: 'id',
                         sortDirections: 'asc'
                     }
+
                 },
                 resolve: {
                 },
