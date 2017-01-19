@@ -58,6 +58,12 @@ md-toast.ng-scope._md.md-md-success-theme-theme.md-bottom{
 }
 md-toast.md-top{
     position: fixed;
+    margin: 5px;
+    background-color:#eb8f00;
+    color: #fff;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
 }
 md-toast.ng-scope._md.md-md-danger-theme-theme.md-bottom{
 
