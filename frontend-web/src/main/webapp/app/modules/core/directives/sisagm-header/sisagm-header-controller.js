@@ -10,16 +10,15 @@
 
 
         $scope.showLogoutButton = Principal.isAuthenticated();
-
-        Principal.identity().then(function(account) {
-            vm.currentAccount = account;
-        });
+        if(Principal.isAuthenticated()){
+            Principal.identity().then(function(account) {
+                $scope.nomeUsuarioLogado = account.userAutenticado.noUsuario;
+            });
+        }
 
         $scope.logout = function logout () {
-            console.log('LOGOUT>>>>>>>>> isAuthenticated: ',Principal.isAuthenticated());
             delete $localStorage.authenticationToken;
             $state.go("app.public.login.entrar");
-            location.reload();
         }
 
     }

@@ -21,7 +21,8 @@
         }
 
         function limpar(){
-            vm.autoridade = {};
+            vm.autoridade.noAutoridade = null;
+            vm.autoridade.noEmail = null;
         }
 
         function salvar(autoridade){

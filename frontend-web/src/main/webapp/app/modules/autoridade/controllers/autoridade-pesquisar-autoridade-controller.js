@@ -35,7 +35,7 @@
 
     function getMoreInfinityScrollData(pageNumber){
         $state.params.filtro.currentPage = pageNumber;
-
+        vm.dto.list = {};
         console.log($state.params.filtro);
 
         var promiseLoadMoreData = AutoridadeService.consultarComFiltroSemLoader($state.params.filtro);
