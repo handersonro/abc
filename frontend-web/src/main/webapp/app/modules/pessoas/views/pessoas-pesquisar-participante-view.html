@@ -105,7 +105,7 @@
                     </td>
                     <td>{{ item.nome }}</td>
                     <td>{{ item.cargo }}</td>
-                    <td>{{ item.email }}</td>
+                    <td>{{ item.email != '' ? item.email : "Não informado" }}</td>
                     <td>{{ item.tel != 0 ? (item.tel | mask:"(99) 9?9999-9999") : ("Não Informado")}}</td>
                 </tr>
                 </tbody>
