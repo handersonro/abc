@@ -41,7 +41,7 @@
                 data: {
                     authorities: []
                 }
-            });
+            })
 
         $urlRouterProvider.otherwise('/public/login/entrar');
     }
