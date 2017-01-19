@@ -21,7 +21,10 @@
         ///////////////////////////////////
 
         function limpar(){
-            vm.remetente ={};
+            vm.remetente.noRemetente = '';
+            vm.remetente.noEmail = '';
+            vm.remetente.noCargo = '';
+            vm.remetente.nuTelefone = '';
         }
 
         function salvar(remetente){
