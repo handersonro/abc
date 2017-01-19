@@ -66,7 +66,10 @@
             if(participante.email != undefined){
                 participanteExterno.noEmail = participante.email;
             }
-            participanteExterno.nuTelefone = participante.tel.replace(/[^0-9]/g,'');
+            if(participante.tel != undefined){
+                participanteExterno.nuTelefone = participante.tel.replace(/[^0-9]/g,'');
+
+            }
             participanteExterno.pessoa = pessoa;
             return participanteExterno;
         }
