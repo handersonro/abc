@@ -4,9 +4,9 @@
     </a>
     <img  ng-show="!showLogoutButton" class="logo-mtur hide-xs hide-sm show-md show-gt-lg" src="assets/img/logo-sisagm.png">
     <div layout="row" layout-align="end center">
-        <div class="btn-action">
-            <!--<md-button href="#login" ><md-icon>&#xE853;</md-icon> Login do usuário</md-button>-->
-            <md-button ng-show="showLogoutButton" type="submit" data-ng-click="logout()"><md-icon>&#xE8AC;</md-icon> Sair</md-button>
+        <div ng-show="showLogoutButton"  class="btn-action">
+            <span ><md-icon>&#xE853;</md-icon{{}}></span>
+            <md-button type="submit" data-ng-click="logout()"><md-icon>&#xE8AC;</md-icon> Sair</md-button>
         </div>
     </div>
 </div>
