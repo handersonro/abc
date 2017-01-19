@@ -68,6 +68,7 @@
         /*MODAL*/
 
         function getMoreInfinityScrollData(pageNumber){
+            vm.dto.list = [];
             $state.params.filtro.currentPage = pageNumber;
 
             var promiseLoadMoreData = RemetenteService.consultarComFiltroSemLoader($state.params.filtro);

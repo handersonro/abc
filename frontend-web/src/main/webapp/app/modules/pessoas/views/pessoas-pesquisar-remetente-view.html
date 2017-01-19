@@ -62,7 +62,7 @@
         </form>
     </div>
     <!-- resultado da busca -->
-    <div id="result-pesquisa" class="md-padding" ng-show="vm.tbResultado">
+    <div id="result-pesquisa" class="md-padding" ng-if="vm.dto.list.length > 0">
         <!-- tabela css angular material -->
         <div class="table-responsive-vertical shadow-z-1">
             <!-- Table starts here -->
