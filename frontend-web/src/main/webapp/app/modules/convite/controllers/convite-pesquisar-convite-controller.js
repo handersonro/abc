@@ -116,8 +116,8 @@
             $state.params.filtro.filtros.idLocalidade = vm.filtro.idLocalidade;
             $state.params.filtro.filtros.noRemetente = vm.filtro.remetente;
             $state.params.filtro.filtros.descricao = vm.filtro.descricao;
-            $state.params.filtro.filtros.dtInicioEvento = vm.filtro.dtInicioEvento;
-            $state.params.filtro.filtros.dtFimEvento = vm.filtro.dtFimEvento;
+            $state.params.filtro.filtros.dtInicioEvento = vm.filtro.dtInicioEvento.getTime();;
+            $state.params.filtro.filtros.dtFimEvento = vm.filtro.dtFimEvento.getTime();;
             $state.params.filtro.filtros.dataCadInicial = dataCadInicial;
             $state.params.filtro.filtros.dataCadFinal   = dataCadFinal;
             $state.params.filtro.filtros.flEventoInternacional = vm.filtro.flEventoInternacional;

@@ -79,7 +79,7 @@
                 </div>
             </div>
             <div layout="row" class="padding-auto">
-                <md-chips ng-model="vm.usuarios" flex="100"
+                <md-chips ng-model="vm.participantes" flex="100"
                           md-transform-chip="vm.transformChip($chip)"
                           md-require-match="true">
                     <md-autocomplete
@@ -88,7 +88,7 @@
                             md-items="item in vm.querySearch(vm.searchText)"
                             md-item-text="item.noParticipanteInterno"
                             md-min-length="3"
-                            md-floating-label="Para usuário destino">
+                            md-floating-label="Vincular participante">
                         <span md-highlight-text="searchText">{{item.noParticipanteInterno}}</span>
                     </md-autocomplete>
                     <md-chip-template>
