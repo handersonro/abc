@@ -21,14 +21,14 @@
                         Nome
                     </label>
                     <md-icon>&#xE8A6;</md-icon>
-                    <input type="text" ng-model="vm.remetenteVO.noRemetente" name="nome" md-maxlength="50" maxlength="50" />
+                    <input type="text" ng-model="vm.filtro.noRemetente" name="nome" md-maxlength="50" maxlength="50" />
                 </md-input-container>
                 <md-input-container flex=50 class="md-icon-float md-block">
                     <label>
                         E-mail
                     </label>
                     <md-icon>&#xE0BE;</md-icon>
-                    <input type="type" ng-model="vm.remetenteVO.noEmail" md-maxlength="50"  maxlength="50" />
+                    <input type="type" ng-model="vm.filtro.noEmail" md-maxlength="50"  maxlength="50" />
                 </md-input-container>
             </div>
             <div layout="row" layout-xs="column">
@@ -37,7 +37,7 @@
                         Cargo
                     </label>
                     <md-icon>&#xE8F8;</md-icon>
-                    <input type="text" ng-model="vm.remetenteVO.noCargo" md-maxlength="250" maxlength="250" />
+                    <input type="text" ng-model="vm.filtro.noCargo" md-maxlength="250" maxlength="250" />
                 </md-input-container>
 
                 <md-input-container flex class="md-icon-float md-block">
@@ -45,7 +45,7 @@
                         Telefone
                     </label>
                     <md-icon>&#xE0CF;</md-icon>
-                    <input name="telefone" type="text" ng-model="vm.remetenteVO.nuTelefone" mask="(99) 9?9999-9999" />
+                    <input name="telefone" type="text" ng-model="vm.filtro.nuTelefone" mask="(99) 9?9999-9999" />
                     <custom-validator-messages input-name="telefone" custom-message-mask="Telefone inválido"></custom-validator-messages>
                 </md-input-container>
             </div>

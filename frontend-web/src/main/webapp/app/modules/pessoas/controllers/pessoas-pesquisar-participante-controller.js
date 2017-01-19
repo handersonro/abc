@@ -27,7 +27,13 @@
         ///////////////////////////////////
 
         vm.limpar = function(){
-            vm.filtro ={};
+            Object.getOwnPropertyNames(vm.filtro).forEach(function (prop) {
+                vm.filtro[prop] = '';
+            });
+
+            vm.tbResultado = false;
+            vm.dto.totalResults = 0;
+            vm.dto.list = [];
         }
         function pesquisar (){
             vm.tbResultado = false;
