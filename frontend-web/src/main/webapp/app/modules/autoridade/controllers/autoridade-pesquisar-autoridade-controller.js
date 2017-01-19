@@ -14,6 +14,7 @@
     vm.pesquisar = pesquisar;
     vm.help = help;
     vm.editar = editar;
+    vm.trocaOrdenacao = trocaOrdenacao;
     vm.filtro = {
         noAutoridade: '',
         noEmail: ''
@@ -144,6 +145,14 @@
             $log.debug("toggle " + navID + " is done");
           });
       }
+    }
+
+    function trocaOrdenacao() {
+        $state.params.filtro.sortFields = vm.dto.order;
+        $state.params.filtro.sortDirections = vm.dto.orderDirection;
+        $state.params.filtro.pageSize = vm.dto.pageSize;
+
+        getMoreInfinityScrollData(vm.dto.currentPage);
     }
   }
 

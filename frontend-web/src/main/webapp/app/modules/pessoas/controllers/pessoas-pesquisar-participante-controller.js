@@ -15,6 +15,7 @@
         vm.title = "Pesquisar participante";
 
         vm.changePage = changePage;
+        vm.trocaOrdenacao = trocaOrdenacao;
 
         vm.filtro = {
             nome: '',
@@ -44,8 +45,10 @@
             $state.params.filtro.currentPage = pageNumber;
             var promiseLoadMoreData = ParticipanteExternoService.consultarComFiltroSemLoader($state.params.filtro);
             promiseLoadMoreData.then(function(data){
+                    vm.dto.list = [];
                     vm.dto.totalResults = data.totalResults;
                     angular.forEach(data.list, function (value, key){
+
                         vm.dto.list.push(
                             {
                                 id: value.id,
@@ -173,6 +176,16 @@
 
             getMoreInfinityScrollData(vm.dto.currentPage);
         }
+
+        function trocaOrdenacao() {
+
+            $state.params.filtro.sortFields = vm.dto.order;
+            $state.params.filtro.sortDirections = vm.dto.orderDirection;
+            $state.params.filtro.pageSize = vm.dto.pageSize;
+
+            getMoreInfinityScrollData(vm.dto.currentPage);
+        }
+
         $scope.changePage = changePage;
     }
 })();
