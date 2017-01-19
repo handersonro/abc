@@ -60,7 +60,19 @@
         }
         console.log(vm.convite);
         function limpar(){
-            vm.convite = {};
+            vm.convite.dtInicioEvento = '';
+            vm.convite.dtFimEvento = '';
+            vm.convite.dtCadastro = '';
+            vm.convite.validado = '';
+            vm.convite.remetente = '';
+            vm.convite.flEventoInternacional = '';
+            vm.convite.idPais = '';
+            vm.convite.noCidadeInternacional = '';
+            vm.convite.noLocalEvento = '';
+            vm.convite.idLocalidade = '';
+            vm.convite.noDespacho = '';
+            vm.convite.descricao = '';
+            vm.convite.noObservacao = '';
         }
         function salvar(convite){
             if(vm.convite.flEventoInternacional =='Evento nacional'){

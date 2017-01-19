@@ -78,7 +78,14 @@
         }
 
         function limpar() {
-            vm.filtro = {};
+            Object.getOwnPropertyNames(vm.filtro).forEach(function (prop) {
+                vm.filtro[prop] = '';
+            });
+            vm.convite.idLocalidade = '';
+
+            vm.tbResultado = false;
+            vm.dto.totalResults = 0;
+            vm.dto.list = [];
         }
 
        function pesquisar() {
@@ -126,6 +133,7 @@
         }
 
         function getMoreInfinityScrollData(pageNumber){
+            vm.dto.list = [];
             $state.params.filtro.currentPage = pageNumber;
 
             var promiseLoadMoreData = ConviteRestService.consultarComFiltroSemLoader($state.params.filtro);

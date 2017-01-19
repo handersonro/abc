@@ -16,7 +16,10 @@
         vm.salvarParticipanteInterno = salvarParticipanteInterno;
         ///////////////////////////////////
         function limpar(){
-            vm.participante ={};
+            vm.participante.nome = '';
+            vm.participante.email = '';
+            vm.participante.cargo = '';
+            vm.participante.tel = '';
         }
         function salvarParticipanteInterno(){
             vm.participanteVO ={
