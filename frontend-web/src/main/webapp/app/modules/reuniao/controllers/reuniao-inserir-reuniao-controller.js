@@ -49,10 +49,10 @@
                 return AlertsService.success($filter('translate')('A13.4'));
             }
 
-            reuniao.idUf = vm.localidade.uf.id;
-            reuniao.nuRegiao = vm.localidade.uf.nuRegiao;
-            reuniao.noLocalEvento = vm.localidade.noLocalidade;
-            reuniao.idLocalidade = vm.localidade.id;
+            // reuniao.idUf = vm.localidade.uf.id;
+            // reuniao.nuRegiao = vm.localidade.uf.nuRegiao;
+            // reuniao.noLocalEvento = vm.localidade.noLocalidade;
+            // reuniao.idLocalidade = vm.localidade.id;
             reuniao.tipoEvento = {id: 3,noTipoEvento: 'REUNIAO'};
             reuniao.flEventoAtivo = true;
             reuniao.pessoas = [];
