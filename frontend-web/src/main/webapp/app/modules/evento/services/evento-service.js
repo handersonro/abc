@@ -20,8 +20,14 @@
             return retorno;
         }
 
-        function buscaRemetentePeloNome(noUsuario){
-            return $http.get(baseURL+ 'remetentes?noRemetente=' + noUsuario);
+        function buscaRemetentePeloNome(noUsuario,soAtivo){
+
+            if(soAtivo == undefined){
+                return $http.get(baseURL+ 'remetentes?noRemetente=' + noUsuario);
+            }else{
+                return $http.get(baseURL+ 'remetentes?noRemetente=' + noUsuario +'&soPessoaAtivo='+soAtivo);
+            }
+
         }
 
         function obterLocalidadePeloId(id) {
