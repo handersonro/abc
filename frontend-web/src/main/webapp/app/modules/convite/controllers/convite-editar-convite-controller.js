@@ -57,7 +57,7 @@
         EventoService.obterLocalidadePeloId(vm.convite.idLocalidade)
             .success(function (data) {
                 vm.convite.idLocalidade = data;
-            });
+        });
 
             vm.validacoes=[
                 {validado : {label:'Sim',value:'SIM'}},

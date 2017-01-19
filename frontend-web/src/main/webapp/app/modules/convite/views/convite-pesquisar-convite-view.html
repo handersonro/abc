@@ -222,8 +222,7 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                {{vm.dto.list}}
+                
                     <tr dir-paginate="item in vm.dto.list | itemsPerPage: vm.dto.pageSize" current-page="vm.dto.currentPage" total-items="vm.dto.totalResults">
 
                         <td class="text-center">
