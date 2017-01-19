@@ -4,7 +4,7 @@
         .controller('ReuniaoEditarReuniaoController', ReuniaoEditarReuniaoController);
 
     /* @ngInject */
-    function ReuniaoEditarReuniaoController($scope, $timeout, $http, AlertsService, $stateParams, $state, ConviteRestService, EventoService){
+    function ReuniaoEditarReuniaoController($scope, $timeout, $http, AlertsService, $stateParams, $state, $q,ConviteRestService, EventoService, ReuniaoService){
         var vm = this;
         vm.title = "Editar reunião";
         vm.autoridade = "Ministro";
@@ -20,6 +20,7 @@
         vm.showBtnSalvar = showBtnSalvar;
         vm.buscaParticipanteExterno = buscaParticipanteExterno;
         vm.salvar = salvar;
+        vm.querySearch = querySearch;
         vm.listaAutoridades = {};
         vm.procurarLocal = ConviteRestService.obterLocais;
         vm.removeParticipante = removeParticipante;
@@ -35,6 +36,11 @@
                      });
              });
 
+            EventoService.obterLocalidadePeloId(vm.reuniao.idLocalidade)
+                .success(function (data) {
+                    vm.localidade = data;
+                });
+
         }
 
         function limpar(){
@@ -42,17 +48,15 @@
         }
 
         function salvar(reuniao){
-             var tipoEvento = {id: 3,noTipoEvento: 'REUNIAO'};
+            reuniao.tipoEvento = {id: 3,noTipoEvento: 'REUNIAO'};
+            reuniao.idUf = vm.localidade.uf.id;
+            reuniao.nuRegiao = vm.localidade.uf.nuRegiao;
+            reuniao.noLocalEvento = vm.localidade.noLocalidade;
+            reuniao.idLocalidade = vm.localidade.id;
 
-            reuniao.tipoEvento = tipoEvento;
-
-            var pessoas = [];
-            vm.participantes.forEach(function (usuario) {
-                pessoas.push(usuario.pessoa);
-            });
-
-            reuniao.pessoas = pessoas;
             reuniao.pessoasParaSeremRemovidas = vm.pessoasParaSeremRemovidas;
+            reuniao.participanteInternos = vm.participantes;
+            reuniao.pessoas = [];
 
             EventoService.editar(reuniao).then(
                 function (retorno) {
@@ -64,6 +68,19 @@
 
         function showBtnSalvar(){
           return $scope.formReuniao.$invalid;
+        }
+
+        function querySearch (query) {
+            var resolve = $q.defer();
+            ReuniaoService.buscaParticipantePeloNome(query)
+                .success(function (data) {
+                    resolve.resolve(data);
+                })
+                .error(function () {
+                    resolve.reject(alert('Não foi possivel carregar os dados'));
+                });
+
+            return resolve.promise;
         }
 
         function buscaParticipanteExterno (noParticipante) {
@@ -81,7 +98,9 @@
         }
 
         function removeParticipante(chip) {
-            vm.pessoasParaSeremRemovidas.push(chip.pessoa);
+            if (chip.pessoa != undefined){
+                vm.pessoasParaSeremRemovidas.push(chip.pessoa);
+            }
         }
     }
 })();

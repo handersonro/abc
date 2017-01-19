@@ -27,19 +27,12 @@
         vm.autocompleteDemoRequireMatch = true;
         vm.transformChip = transformChip;
         vm.procurarLocal = EventoService.obterLocais;
+        vm.removeParticipante = removeParticipante;
         inicializar();
         ///////////////////////////////////
 
 
         function inicializar() {
-
-/*            vm.reuniao.pessoas.forEach(function (pessoa) {
-                EventoService.obterParticipanteExternoPorId(pessoa.id)
-                    .success(function (data) {
-                        vm.participantes.push(data);
-                    });
-            });*/
-
             vm.reuniao = {
                 dtCadastro: new Date()
             };
@@ -62,20 +55,9 @@
             reuniao.idLocalidade = vm.localidade.id;
             reuniao.tipoEvento = {id: 3,noTipoEvento: 'REUNIAO'};
             reuniao.flEventoAtivo = true;
-
-            //var pessoa = {flPessoaAtivo : true}
-            //var pessoas = [];
-
-            /*vm.participantes.forEach(function (usuario) {
-                usuario.pessoa = pessoa;
-                pessoas.push(usuario);
-            });*/
+            reuniao.pessoas = [];
 
             reuniao.participanteInternos = vm.participantes;
-
-            console.log(reuniao);
-
-            ////////////////////////////////////////////////////////////////////
 
             ConviteRestService.salvar(reuniao).then(
                 function (retorno) {
@@ -155,6 +137,9 @@
                     });
 
             return resolve.promise;
+        }
+
+        function removeParticipante(chip) {
         }
 
         /*CHIP*/

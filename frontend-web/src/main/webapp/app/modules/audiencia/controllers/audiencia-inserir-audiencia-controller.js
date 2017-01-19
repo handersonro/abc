@@ -18,6 +18,7 @@
         vm.autocompleteDemoRequireMatch = true;
         vm.transformChip = transformChip;
         vm.buscarRemetentePeloNome = buscarRemetentePeloNome;
+        vm.removeParticipante = removeParticipante;
 
         vm.procurarLocal = EventoService.obterLocais;
 
@@ -137,6 +138,9 @@
                     retorno.reject(alert('Não foi possivel carregar os dados'));
                 });
             return retorno.promise;
+        }
+
+        function removeParticipante(chip) {
         }
     }
 })();

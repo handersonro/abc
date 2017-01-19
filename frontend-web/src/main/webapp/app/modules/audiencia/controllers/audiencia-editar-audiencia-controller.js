@@ -137,7 +137,9 @@
         }
 
         function removeParticipante(chip) {
-            vm.pessoasParaSeremRemovidas.push(chip.pessoa);
+            if (chip.pessoa != undefined) {
+                vm.pessoasParaSeremRemovidas.push(chip.pessoa);
+            }
         }
 
         function buscarRemetentePeloNome(noUsuario) {
