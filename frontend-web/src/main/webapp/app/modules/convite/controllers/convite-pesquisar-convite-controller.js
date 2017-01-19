@@ -81,7 +81,7 @@
             Object.getOwnPropertyNames(vm.filtro).forEach(function (prop) {
                 vm.filtro[prop] = '';
             });
-            vm.convite.idLocalidade = '';
+            vm.filtro.idLocalidade = '';
 
             vm.tbResultado = false;
             vm.dto.totalResults = 0;
@@ -89,9 +89,9 @@
         }
 
        function pesquisar() {
+           var tipoEvento = {id: 2,noTipoEvento: 'CONVITE'};
 
 
-           vm.filtro.tipoEvento = {id: 1,noTipoEvento: 'CONVITE'};
             vm.flEventoInternacional = vm.filtro.tipoSaida;
             var dataCadInicial = new Date(vm.filtro.dataCadInicial).getTime();
             var dataCadFinal = new Date(vm.filtro.dataCadFinal).getTime();
@@ -117,7 +117,7 @@
 
             $state.params.filtro.filtros.noObservacao = vm.filtro.noObservacao;
             $state.params.filtro.filtros.noDespacho = vm.filtro.noDespacho;
-            $state.params.filtro.filtros.tipoEvento = vm.convite.tipoEvento != undefined ? vm.filtro.tipoEvento : '';
+            $state.params.filtro.filtros.tipoEvento = tipoEvento;
             $state.params.filtro.filtros.idLocalidade = vm.filtro.idLocalidade != undefined ? vm.filtro.idLocalidade.id : '';
             $state.params.filtro.filtros.noRemetente = vm.filtro.remetente;
             $state.params.filtro.filtros.descricao = vm.filtro.descricao;

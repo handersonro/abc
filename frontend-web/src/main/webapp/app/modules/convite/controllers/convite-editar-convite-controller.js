@@ -43,6 +43,13 @@
         inicializar();
         ///////////////////////////////////
         function inicializar(){
+
+        //caso seja recarregado a tela no editar o $stateParams.reuniao retorna vazio e quebra a tela
+        //redireiona a tela para o pesquisar novamente
+        if(vm.convite == null){
+            $state.go('app.private.reuniao.pesquisar-convite');
+        }
+
         var tipoEvento = {id: 2,noTipoEvento: 'CONVITE'};
         vm.convite.tipoEvento = tipoEvento;
 
