@@ -23,6 +23,7 @@
             'sisagmApp.private',
             'sisagmApp.public',
             'sisagmApp.login',
+            'sisagmApp.errors',
             'sisagmApp.home',
             'sisagmApp.pessoas',
             'sisagmApp.convite',
