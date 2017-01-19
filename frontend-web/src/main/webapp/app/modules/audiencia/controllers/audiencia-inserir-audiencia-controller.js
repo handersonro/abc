@@ -79,7 +79,7 @@
             EventoService.salvar(audiencia).then(
                 function (retorno) {
                     AlertsService.success('Registro incluído com sucesso.');
-                    $state.go('app.private.audiencia.inserir-audiencia', {}, {reload: true});
+                    $state.go('app.private.audiencia.pesquisar-audiencia', {}, {reload: true});
                 }
             );
         }

@@ -125,9 +125,9 @@
                     <md-icon>
                         &#xE834;
                     </md-icon>
-                    <md-select ng-model="vm.audiencia.validado">
-                        <md-option ng-repeat="item in vm.validacoes" value="{{item.validado}}">
-                            {{item.validado}}
+                    <md-select ng-model="vm.audiencia.conviteValidacao">
+                        <md-option ng-repeat="item in vm.validacoes" value="{{item.validado.value}}">
+                            {{item.validado.label}}
                         </md-option>
                     </md-select>
                 </md-input-container>

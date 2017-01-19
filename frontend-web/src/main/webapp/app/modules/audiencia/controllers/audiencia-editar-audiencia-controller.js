@@ -26,9 +26,15 @@
         vm.removeParticipante = removeParticipante;
         vm.procurarLocal = EventoService.obterLocais;
         vm.buscarRemetentePeloNome = buscarRemetentePeloNome;
+        vm.validacoes = {};
 
         inicializar();
         function inicializar(){
+            vm.validacoes=[
+                {validado : {label:'Sim',value:'SIM'}},
+                {validado : {label:'Não',value:'NAO'}},
+                {validado : {label:'Indiferente',value:''}}
+            ];
 
             if(vm.dataInicio > vm.dataFim){
                 return AlertsService.success($filter('translate')('A13.4'));
@@ -75,8 +81,6 @@
             });
 
             audiencia.pessoas = pessoas;
-
-            console.log(audiencia);
 
             EventoService.editar(audiencia).then(
                 function (retorno) {
