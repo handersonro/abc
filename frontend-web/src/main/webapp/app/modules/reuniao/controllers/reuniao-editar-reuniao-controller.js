@@ -49,10 +49,10 @@
 
         function salvar(reuniao){
             reuniao.tipoEvento = {id: 3,noTipoEvento: 'REUNIAO'};
-            reuniao.idUf = vm.localidade.uf.id;
+/*            reuniao.idUf = vm.localidade.uf.id;
             reuniao.nuRegiao = vm.localidade.uf.nuRegiao;
             reuniao.noLocalEvento = vm.localidade.noLocalidade;
-            reuniao.idLocalidade = vm.localidade.id;
+            reuniao.idLocalidade = vm.localidade.id;*/
 
             reuniao.pessoasParaSeremRemovidas = vm.pessoasParaSeremRemovidas;
             reuniao.participanteInternos = vm.participantes;
