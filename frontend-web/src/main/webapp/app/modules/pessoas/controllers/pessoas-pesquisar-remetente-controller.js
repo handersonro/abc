@@ -18,7 +18,7 @@
         ///////////////////////////////////
         vm.title = "Pesquisar remetente";
         vm.tbResultado = false;
-        vm.remetenteVO = {
+        vm.filtro = {
             noRemetente: '',
             noCargo: '',
             noEmail: '',
@@ -26,8 +26,8 @@
         };
 
         function limpar (){
-            Object.getOwnPropertyNames(vm.remetenteVO).forEach(function (prop) {
-                vm.remetenteVO[prop] = '';
+            Object.getOwnPropertyNames(vm.filtro).forEach(function (prop) {
+                vm.filtro[prop] = '';
             });
 
             vm.tbResultado = false;
@@ -36,10 +36,10 @@
         }
 
         function pesquisar (){
-            $state.params.filtro.filtros.noRemetente = vm.remetenteVO.noRemetente;
-            $state.params.filtro.filtros.noCargo = vm.remetenteVO.noCargo;
-            $state.params.filtro.filtros.noEmail = vm.remetenteVO.noEmail;
-            $state.params.filtro.filtros.nuTelefone = vm.remetenteVO.nuTelefone.replace(/[^0-9]/g,'');
+            $state.params.filtro.filtros.noRemetente = vm.filtro.noRemetente;
+            $state.params.filtro.filtros.noCargo = vm.filtro.noCargo;
+            $state.params.filtro.filtros.noEmail = vm.filtro.noEmail;
+            $state.params.filtro.filtros.nuTelefone = vm.filtro.nuTelefone.replace(/[^0-9]/g,'');
             $state.params.filtro.currentPage = 1;
             getMoreInfinityScrollData($state.params.filtro.currentPage);
         }
@@ -68,6 +68,7 @@
         /*MODAL*/
 
         function getMoreInfinityScrollData(pageNumber){
+            vm.dto.list = [];
             $state.params.filtro.currentPage = pageNumber;
 
             var promiseLoadMoreData = RemetenteService.consultarComFiltroSemLoader($state.params.filtro);

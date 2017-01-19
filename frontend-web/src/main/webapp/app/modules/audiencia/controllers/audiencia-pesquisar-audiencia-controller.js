@@ -10,7 +10,7 @@
         vm.dto = new DTO();
         vm.procurarLocal = EventoService.obterLocais;
         vm.buscarRemetentePeloNome = buscarRemetentePeloNome;
-        vm.title = "Pesquisar audiencia";
+        vm.title = "Pesquisar audiência";
         vm.tbResultado = false;
         vm.validacoes = {};
         vm.pesquisar = pesquisar;
@@ -165,7 +165,7 @@
 
         function buscarRemetentePeloNome(noUsuario) {
             var retorno = $q.defer();
-            EventoService.obterRemetentesPeloNome(noUsuario)
+            EventoService.obterRemetentesPeloNome(noUsuario,false)
                 .success(function (data) {
                     retorno.resolve(data);
                 })

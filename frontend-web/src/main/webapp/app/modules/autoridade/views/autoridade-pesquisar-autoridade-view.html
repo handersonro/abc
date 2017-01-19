@@ -64,15 +64,9 @@
             <table id="table" class="table table-hover table-mc-green">
                 <thead>
                     <tr>
-                        <th class="text-center">
-                            Ações
-                        </th>
-                        <th>
-                                Descrição da autoridade <paginacao-sorting dto="vm.dto" field-name="descAutoridade"></paginacao-sorting>
-                        </th>
-                        <th>
-                            E-mail<paginacao-sorting dto="vm.dto" field-name="email"></paginacao-sorting>
-                        </th>
+                        <th class="text-center">Ações</th>
+                        <th>Descrição da autoridade <paginacao-sorting dto="vm.dto" field-name="no_autoridade" ng-click="vm.trocaOrdenacao()"></paginacao-sorting></th>
+                        <th>E-mail<paginacao-sorting dto="vm.dto" field-name="no_email" ng-click="vm.trocaOrdenacao()"></paginacao-sorting></th>
                     </tr>
                 </thead>
                 <tbody>
