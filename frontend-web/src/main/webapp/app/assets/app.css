@@ -58,12 +58,9 @@ md-toast.ng-scope._md.md-md-success-theme-theme.md-bottom{
 }
 md-toast.md-top{
     position: fixed;
-    margin: 5px;
-    background-color:#eb8f00;
-    color: #fff;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
+}
+md-toast.ng-scope._md.md-md-danger-theme-theme.md-bottom{
+
 }
 .padding-auto{
     margin-bottom:40px;
@@ -79,10 +76,10 @@ md-toast.md-top{
     color: #333
 }
 .text-center{
-  text-align: center;
+    text-align: center;
 }
 .error404 h2 i{
-    font-size: 40px;
+    font-sigruze: 40px;
     padding: 10px;
     background: #fff;
     border-radius: 40px;
@@ -96,6 +93,9 @@ md-toast.md-top{
 }
 .md-conteudo{
     padding-top: 30px;
+}
+.conteudo{
+    margin-bottom: 20px;
 }
 .box{
     background: #fff;
@@ -131,7 +131,6 @@ md-toast.md-top{
 }
 .header-topo{
     background: url(img/bg-verde.jpg);
-    min-height: 48px;
 }
 
 #title .md-toolbar-tools{
@@ -146,7 +145,7 @@ md-toast.md-top{
     min-height:50px;
 }
 .md-toolbar-tools{
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6dc238+0,5cb02c+100 */
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6dc238+0,5cb02c+100 */
     background: #6dc238; /* Old browsers */
     background: -moz-linear-gradient(top, #6dc238 0%, #5cb02c 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top, #6dc238 0%,#5cb02c 100%); /* Chrome10-25,Safari5.1-6 */
@@ -287,27 +286,48 @@ button.btn.btn-default:hover {
 .hidden{
     display: none !important;
 }
-
+.colorpicker{
+    min-width: 121px;
+}
 .colorpicker-selectors {
     display: none;
     height: 10px;
     margin-top: 5px;
     clear: both;
+    margin-bottom:14px;
 }
 
 .colorpicker-selectors i {
     cursor: pointer;
     float: left;
     height: 10px;
+    padding: 2px;
     width: 10px;
+    margin: 2px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
-
-
+button.close.close-colorpicker {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 20px;
+}
+.colorpicker.dropdown.ng-scope.colorpicker-position-bottom.colorpicker-visible {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+md-input-container:not(.md-input-has-value) input:not(:focus), md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-ampm-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-day-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-hour-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-millisecond-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-minute-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-month-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-second-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-week-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-year-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-text{
+    color: rgba(0,0,0,0.87) !important;
+}
+.md-chips .md-chip-input-container md-autocomplete input {
+    margin-top: -2px;
+}
 /*CSS HELP*/
 .largura-help{
     width: 100%;
 }
-
 .aviso-help{
     color:#ef5252;
     background: rgba(210, 210, 210, 0.36);
