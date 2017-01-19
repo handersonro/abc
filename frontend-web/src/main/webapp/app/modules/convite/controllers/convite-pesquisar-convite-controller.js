@@ -48,6 +48,7 @@
         vm.tipoEvento = {};
         vm.validacoes = {};
          vm.procurarLocal = ConviteRestService.obterLocais;
+         vm.trocaOrdenacao = trocaOrdenacao;
         inicializar();
         ///////////////////////////////////
         function inicializar() {
@@ -113,7 +114,6 @@
                 vm.filtro.tipoSaida = false;
             }
 
-            console.log(vm.filtro.idLocalidade);
 
             $state.params.filtro.filtros.noObservacao = vm.filtro.noObservacao;
             $state.params.filtro.filtros.noDespacho = vm.filtro.noDespacho;
@@ -252,9 +252,19 @@
             console.log('aeaueauh', ((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
             vm.dto.currentPage = page;
             vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+            getMoreInfinityScrollData(vm.dto.currentPage);
         }
 
-        $scope.changePage = changePage;
+        function trocaOrdenacao() {
+
+            $state.params.filtro.sortFields = vm.dto.order;
+            $state.params.filtro.sortDirections = vm.dto.orderDirection;
+            $state.params.filtro.pageSize = vm.dto.pageSize;
+
+            getMoreInfinityScrollData(vm.dto.currentPage);
+        }
+
+        vm.changePage = changePage;
     }
 
 

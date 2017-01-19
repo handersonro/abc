@@ -202,29 +202,32 @@
                             Ações
                         </th>
                         <th>
-                            Remetente<paginacao-sorting dto="vm.dto" field-name="remetente"></paginacao-sorting>
+                            Remetente
                         </th>
                         <th>
-                            Data do cadastro<paginacao-sorting dto="vm.dto" field-name="dataCadastro"></paginacao-sorting>
+                            Data do cadastro<paginacao-sorting dto="vm.dto" field-name="dt_cadastro" ng-click="vm.trocaOrdenacao()"></paginacao-sorting>
                         </th>
                         <th>
-                            Local<paginacao-sorting dto="vm.dto" field-name="local"></paginacao-sorting>
+                            Local<paginacao-sorting dto="vm.dto" field-name="no_local_evento" ng-click="vm.trocaOrdenacao()"></paginacao-sorting>
                         </th>
                         <th>
-                            Data do evento<paginacao-sorting dto="vm.dto" field-name="dataEvento"></paginacao-sorting>
+                            Data do evento<paginacao-sorting dto="vm.dto" field-name="dt_inicio_evento" ng-click="vm.trocaOrdenacao()"></paginacao-sorting>
                         </th>
-                        <!--<th>
-                            Validado<paginacao-sorting dto="vm.dto" field-name="validado"></paginacao-sorting>
-                        </th>-->
                         <th>
-                            Descrição<paginacao-sorting dto="vm.dto" field-name="descricao"></paginacao-sorting>
+                            Validado
+                        </th>
+                        <th>
+                            Descrição<paginacao-sorting dto="vm.dto" field-name="no_descricao" ng-click="vm.trocaOrdenacao()"></paginacao-sorting>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
 
+                {{vm.dto.list}}
                     <tr dir-paginate="item in vm.dto.list | itemsPerPage: vm.dto.pageSize" current-page="vm.dto.currentPage" total-items="vm.dto.totalResults">
+
                         <td class="text-center">
+
                             <md-menu>
                               <md-button class="md-icon-button" aria-label="Favorite" ng-click="appCtrl.openMenu($mdOpenMenu, $event)">
                                 <md-tooltip md-direction="left">
@@ -256,7 +259,10 @@
                         <td>{{ item.dtCadastro | date : 'dd/MM/yyyy HH:mm a'}}</td>
                         <td>{{ item.noLocalEvento }}</td>
                         <td>{{ item.dtInicioEvento | date : 'dd/MM/yyyy HH:mm a' }} à {{ item.dtFimEvento | date : 'dd/MM/yyyy HH:mm a' }}</td>
-                        <!--<td>{{ item.validado }}</td>-->
+                        <td ng-switch="item.conviteValidacao">
+                            <span class="spanView15" ng-switch-when="NAO">Não</span>
+                            <span class="spanView15" ng-switch-when="SIM">Sim</span>
+                            <span class="spanView15" ng-switch-when="">Indiferente</span></td>
                         <td ta-bind ng-model="item.descricao"></td>
                     </tr>
                 </tbody>
