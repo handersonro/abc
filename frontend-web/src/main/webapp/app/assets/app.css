@@ -131,6 +131,7 @@ md-toast.ng-scope._md.md-md-danger-theme-theme.md-bottom{
 }
 .header-topo{
     background: url(img/bg-verde.jpg);
+    min-height:48px;
 }
 
 #title .md-toolbar-tools{
@@ -332,4 +333,8 @@ md-input-container:not(.md-input-has-value) input:not(:focus), md-input-containe
     color:#ef5252;
     background: rgba(210, 210, 210, 0.36);
     padding: 15px;
+}
+/*Pointe na ordenação*/
+paginacao-sorting.ng-isolate-scope {
+    cursor: pointer;
 }
