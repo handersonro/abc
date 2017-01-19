@@ -87,7 +87,13 @@
     $scope.changePage = changePage;
 
     function limpar(){
-        vm.filtro = {};
+        Object.getOwnPropertyNames(vm.filtro).forEach(function (prop) {
+            vm.filtro[prop] = '';
+        });
+
+        vm.tbResultado = false;
+        vm.dto.totalResults = 0;
+        vm.dto.list = [];
     }
     function debounce(func, wait, context) {
       var timer;

@@ -51,7 +51,24 @@
         ///////////////////////////////////
 
         vm.limpar = function(){
-            vm.filtro = {};
+            vm.filtro = {
+                noAssunto: '',
+                noObservacao: '',
+                tipoEvento: '',
+                noDespacho: '',
+                noPauta: '',
+                idLocalidade: '',
+                noRemetente: '',
+                descricao: '',
+                dtInicioEvento:'',
+                dtFimEvento:'',
+                flEventoInternacional: '',
+                dataCadInicial:'',
+                dataCadFinal:''
+            };
+            vm.tbResultado = false;
+            vm.dto.totalResults = 0;
+            vm.dto.list = [];
         }
         function editar (audiencia){
             $state.go('app.private.audiencia.editar-audiencia', {audiencia: audiencia});
