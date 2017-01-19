@@ -58,9 +58,9 @@
                         &#xE834;
                     </md-icon>
 
-                    <md-select ng-model="vm.convite.validado">
-                        <md-option ng-repeat="item in vm.validacoes" value="{{item.validado}}">
-                            {{item.validado}}
+                    <md-select ng-model="vm.convite.conviteValidacao">
+                        <md-option ng-repeat="item in vm.validacoes" value="{{item.validado.value}}">
+                            {{item.validado.label}}
                         </md-option>
                     </md-select>
                 </md-input-container>
@@ -137,7 +137,7 @@
                 <md-autocomplete
                         flex
                         md-no-cache="true"
-                        md-selected-item="vm.convite.noLocalEvento || vm.convite.idLocalidade"
+                        md-selected-item="vm.convite.idLocalidade"
                         md-input-name="noLocalidade"
                         md-search-text="textoLocal"
                         md-items="item in vm.procurarLocal(textoLocal)"

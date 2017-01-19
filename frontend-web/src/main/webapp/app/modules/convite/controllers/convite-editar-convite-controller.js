@@ -53,9 +53,9 @@
             });
 
             vm.validacoes=[
-              {validado : 'Sim'},
-              {validado : 'Não'},
-              {validado : 'Indiferente'}
+                {validado : {label:'Sim',value:'SIM'}},
+                {validado : {label:'Não',value:'NAO'}},
+                {validado : {label:'Indiferente',value:''}}
             ];
         }
         console.log(vm.convite);
@@ -63,7 +63,7 @@
             vm.convite.dtInicioEvento = '';
             vm.convite.dtFimEvento = '';
             vm.convite.dtCadastro = '';
-            vm.convite.validado = '';
+            vm.convite.conviteValidacao = '';
             vm.convite.remetente = '';
             vm.convite.flEventoInternacional = '';
             vm.convite.idPais = '';
