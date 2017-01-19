@@ -61,7 +61,7 @@
                                 nome: value.noParticipanteExterno,
                                 cargo: value.noCargo,
                                 email: value.noEmail,
-                                tel: value.nuTelefone,
+                                tel: atribuirTelefone(value.nuTelefone),
                                 pessoa:{
                                     id: value.pessoa.id,
                                     flPessoaAtivo: value.pessoa.id
@@ -190,6 +190,13 @@
             $state.params.filtro.pageSize = vm.dto.pageSize;
 
             getMoreInfinityScrollData(vm.dto.currentPage);
+        }
+
+        function atribuirTelefone(telefone) {
+            if(telefone == undefined || telefone == null){
+                return telefone = 0;
+            }
+            return telefone;
         }
 
         $scope.changePage = changePage;

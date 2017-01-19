@@ -14,7 +14,7 @@
                 .then(
                     function(retorno){
                         $localStorage.authenticationToken = retorno.id_token;
-                        $state.go('app.public.home.pagina-inicial');
+                        $state.go('app.private.home.pagina-inicial');
                         // location.reload();
                         //account();
                     }).catch(function (retorno) {

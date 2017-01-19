@@ -344,3 +344,9 @@ md-input-container:not(.md-input-has-value) input:not(:focus), md-input-containe
 paginacao-sorting.ng-isolate-scope {
     cursor: pointer;
 }
+/*USER*/
+.info-user, .info-user button.md-button.md-ink-ripple {
+    font-size: 12px;
+    color: #fff;
+    text-transform: capitalize;
+}

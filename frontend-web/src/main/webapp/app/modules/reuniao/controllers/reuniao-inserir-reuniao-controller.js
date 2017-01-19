@@ -4,7 +4,7 @@
         .controller('ReuniaoInserirReuniaoController', ReuniaoInserirReuniaoController);
 
     /* @ngInject */
-    function ReuniaoInserirReuniaoController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $q, AlertsService, ConviteRestService, ReuniaoService) {
+    function ReuniaoInserirReuniaoController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $q, AlertsService, ConviteRestService, ReuniaoService,EventoService) {
         var vm = this;
         vm.title = "Incluir reunião";
         vm.autoridade = {noAutoridade: 'Ministro'};
@@ -26,7 +26,7 @@
         vm.numberBuffer = '';
         vm.autocompleteDemoRequireMatch = true;
         vm.transformChip = transformChip;
-        vm.procurarLocal = ConviteRestService.obterLocais;
+        vm.procurarLocal = EventoService.obterLocais;
         inicializar();
         ///////////////////////////////////
 
@@ -52,26 +52,32 @@
         }
 
         function salvar(reuniao) {
-            var tipoEvento = {id: 3,noTipoEvento: 'REUNIAO'};
-
             if (vm.dataInicio > vm.dataFim) {
                 return AlertsService.success($filter('translate')('A13.4'));
             }
 
-            vm.reuniao.tipoEvento = tipoEvento;
-            vm.reuniao.flEventoAtivo = true;
+            reuniao.idUf = vm.localidade.uf.id;
+            reuniao.nuRegiao = vm.localidade.uf.nuRegiao;
+            reuniao.noLocalEvento = vm.localidade.noLocalidade;
+            reuniao.idLocalidade = vm.localidade.id;
+            reuniao.tipoEvento = {id: 3,noTipoEvento: 'REUNIAO'};
+            reuniao.flEventoAtivo = true;
 
-            var pessoa = {flPessoaAtivo : true}
-            var pessoas = [];
+            //var pessoa = {flPessoaAtivo : true}
+            //var pessoas = [];
 
-            vm.participantes.forEach(function (usuario) {
+            /*vm.participantes.forEach(function (usuario) {
                 usuario.pessoa = pessoa;
                 pessoas.push(usuario);
-            });
+            });*/
 
-            reuniao.participanteInternos = pessoas;
+            reuniao.participanteInternos = vm.participantes;
 
-            ConviteRestService.salvar(vm.reuniao).then(
+            console.log(reuniao);
+
+            ////////////////////////////////////////////////////////////////////
+
+            ConviteRestService.salvar(reuniao).then(
                 function (retorno) {
                     console.log(reuniao + 'No salvar');
                     AlertsService.success('Registro incluído com sucesso.');

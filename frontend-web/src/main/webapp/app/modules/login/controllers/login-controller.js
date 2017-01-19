@@ -8,9 +8,11 @@
         var vm = this;
 
         vm.isAuthenticated = Principal.isAuthenticated();
-        // if(vm.isAuthenticated){
-        //     $state.go("app.public.home.pagina-inicial");
-        // }
+        if(vm.isAuthenticated){
+            // location.reload();
+            $state.go("app.private.home.pagina-inicial");
+            console.log('VOLTOU')
+        }
 
         // $scope.login =function(){
         //     location.reload();grunt

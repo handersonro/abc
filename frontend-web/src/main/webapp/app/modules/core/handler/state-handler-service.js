@@ -35,8 +35,13 @@
             });
 
             var stateChangeSuccess = $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
-                console.log('Conclui')
-
+                console.log('Conclui',fromState)
+                // if(fromState && fromState.name === 'app.public.login.entrar'){
+                //     location.reload();
+                // }
+                // if(toState && toState.name === 'app.public.login.entrar'){
+                //     location.reload();
+                // }
                 // Set the page title key to the one configured in state or use default one
                 // if (toState.data.pageTitle) {
                 //     titleKey = toState.data.pageTitle;
