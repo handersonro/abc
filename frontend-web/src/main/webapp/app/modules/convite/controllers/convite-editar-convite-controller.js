@@ -6,12 +6,13 @@
     /* @ngInject */
     function ConviteEditarConviteController($scope, $timeout, $http, $mdDialog, AlertsService, $stateParams, $state, ConviteRestService,EventoService){
         var vm = this;
+        vm.isEdicao = true;
         vm.title = "Editar convite";
         vm.autoridade = "Ministro";
         vm.convite = $stateParams.convite;
 
         if(vm.convite == null){
-            $state.go('app.private.convite.pesquisar-convite', {convite: convite});
+            $state.go('app.private.convite.pesquisar-convite', {reload: true});
         }
 
         vm.convite.dtInicioEvento = new Date(vm.convite.dtInicioEvento);
@@ -99,6 +100,7 @@
             if(vm.convite.flEventoInternacional =='Evento nacional'){
                 vm.convite.flEventoInternacional = 0;
                 vm.convite.idPais.id = 1;
+                vm.convite.idLocalidade = vm.convite.idLocalidade.id;
             }else if(vm.convite.flEventoInternacional =='Evento internacional'){
                 vm.convite.flEventoInternacional = 1;
                 vm.convite.noLocalEvento = vm.convite.idPais.noPais;

@@ -5,6 +5,7 @@
     /* @ngInject */
     function PessoasEditarParticipanteController($scope, $timeout, $http, AlertsService, $stateParams, $state, ParticipanteInternoService, ParticipanteExternoService){
         var vm = this;
+        vm.isEdicao = true;
         vm.title = "Editar participante";
         vm.participante = $stateParams.participante;
         if(vm.participante == null){

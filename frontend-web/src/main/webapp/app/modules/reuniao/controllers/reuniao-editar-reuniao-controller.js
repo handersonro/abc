@@ -4,7 +4,7 @@
         .controller('ReuniaoEditarReuniaoController', ReuniaoEditarReuniaoController);
 
     /* @ngInject */
-    function ReuniaoEditarReuniaoController($scope, $timeout, $http, AlertsService, $stateParams, $state, $q,ConviteRestService, EventoService, ReuniaoService){
+    function ReuniaoEditarReuniaoController($scope, $timeout, $http, AlertsService, $mdDialog, $stateParams, $state, $q,ConviteRestService, EventoService, ReuniaoService){
         var vm = this;
         vm.title = "Editar reunião";
         vm.autoridade = "Ministro";
