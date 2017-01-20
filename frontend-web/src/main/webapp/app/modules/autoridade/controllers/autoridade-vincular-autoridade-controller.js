@@ -89,7 +89,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: AutoridadeVincularAutoridadeController,
-                templateUrl: '/modules/autoridade/help/modal-vincular-help.html',
+                templateUrl: 'modules/autoridade/help/modal-vincular-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true
