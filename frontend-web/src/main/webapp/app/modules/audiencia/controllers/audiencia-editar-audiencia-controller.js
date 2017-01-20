@@ -4,7 +4,7 @@
         .controller('AudienciaEditarAudienciaController', AudienciaEditarAudienciaController);
 
     /* @ngInject */
-    function AudienciaEditarAudienciaController($scope, $mdDialog, $timeout, $stateParams, $q, $state, AlertsService, EventoService){
+    function AudienciaEditarAudienciaController($scope, $mdDialog, $timeout, $stateParams, $q, $state, AlertsService, EventoService,Principal){
         var vm = this;
         vm.isEdicao = true;
         vm.buscaParticipanteExterno = buscaParticipanteExterno;
@@ -21,8 +21,10 @@
 
         vm.remetente =  vm.audiencia.remetente;
         vm.participantes = [];
+        Principal.identity().then(function(account) {
+            vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
+        });
 
-        vm.autoridade = {noAutoridade : 'Ministro'};
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
         vm.listaAutoridades = {};

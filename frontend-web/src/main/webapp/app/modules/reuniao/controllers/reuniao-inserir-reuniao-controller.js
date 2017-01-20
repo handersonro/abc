@@ -4,11 +4,13 @@
         .controller('ReuniaoInserirReuniaoController', ReuniaoInserirReuniaoController);
 
     /* @ngInject */
-    function ReuniaoInserirReuniaoController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $q, AlertsService, ConviteRestService, ReuniaoService,EventoService) {
+    function ReuniaoInserirReuniaoController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $q, AlertsService, ConviteRestService, ReuniaoService,EventoService,Principal) {
         var vm = this;
         vm.isEdit = false;
         vm.title = "Incluir reunião";
-        vm.autoridade = {noAutoridade: 'Ministro'};
+        Principal.identity().then(function(account) {
+            vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
+        });
         vm.help = help;
         vm.reuniao = {};
         vm.validacoes = {};

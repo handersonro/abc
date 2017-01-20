@@ -4,7 +4,7 @@
         .controller('AudienciaPesquisarAudienciaController', AudienciaPesquisarAudienciaController);
 
     /* @ngInject */
-    function AudienciaPesquisarAudienciaController($scope, $mdDialog, $http, $q, $timeout, AlertsService, $filter, $location, $anchorScroll, $state, DTO, EventoService){
+    function AudienciaPesquisarAudienciaController($scope, $mdDialog, $http, $q, $timeout, AlertsService, $filter, $location, $anchorScroll, $state, DTO, EventoService,Principal){
         var vm = this;
         vm.help = help;
         var _itens = [];
@@ -17,7 +17,9 @@
         vm.editar = editar;
         vm.listaAutoridades = {};
         vm.filtro = {};
-        vm.autoridade = {noAutoridade : 'Ministro'};
+        Principal.identity().then(function(account) {
+            vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
+        });
         vm.trocaOrdenacao = trocaOrdenacao;
         inicializar();
         function inicializar(){

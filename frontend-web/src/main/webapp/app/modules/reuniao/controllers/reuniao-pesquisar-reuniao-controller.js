@@ -4,13 +4,15 @@
         .controller('ReuniaoPesquisarReuniaoController', ReuniaoPesquisarReuniaoController);
 
     /* @ngInject */
-    function ReuniaoPesquisarReuniaoController($scope, $timeout, $log,$mdSidenav, $http, $mdDialog, $state,$location, $anchorScroll, $q, AlertsService, DTO,EventoService,ReuniaoService){
+    function ReuniaoPesquisarReuniaoController($scope, $timeout, $log,$mdSidenav, $http, $mdDialog, $state,$location, $anchorScroll, $q, AlertsService, DTO,EventoService,ReuniaoService,Principal){
     var vm = this;
     var _itens = [];
     vm.help = help;
     vm.dto = new DTO();
     vm.title = "Pesquisar reunião";
-    vm.autoridade = 'Ministro';
+    Principal.identity().then(function(account) {
+        vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
+    });
     vm.tbResultado = false;
     vm.pesquisar = pesquisar;
     vm.editar = editar;

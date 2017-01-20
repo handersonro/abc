@@ -4,7 +4,7 @@
         .controller('AudienciaInserirAudienciaController', AudienciaInserirAudienciaController);
 
     /* @ngInject */
-    function AudienciaInserirAudienciaController($scope, $mdDialog, $timeout,  AlertsService, $filter, $q, EventoService){
+    function AudienciaInserirAudienciaController($scope, $mdDialog, $timeout,  AlertsService, $filter, $q, EventoService,Principal){
         var vm = this;
         vm.readonly = false;
         vm.selectedItem = null;
@@ -24,7 +24,9 @@
         vm.procurarLocal = EventoService.obterLocais;
 
         vm.title = "Incluir audiência";
-        vm.autoridade = {noAutoridade : 'Ministro'};
+        Principal.identity().then(function(account) {
+            vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
+        });
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
         vm.listaAutoridades = {};

@@ -33,12 +33,14 @@
         .controller('ConvitePesquisarConviteController', ConvitePesquisarConviteController);
 
     /* @ngInject */
-    function ConvitePesquisarConviteController($scope, $timeout, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, ConviteRestService, DTO) {
+    function ConvitePesquisarConviteController($scope, $timeout, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, ConviteRestService, DTO,Principal) {
         var vm = this;
         var _itens = [];
         vm.dto = new DTO();
         vm.title = "Pesquisar convite";
-        vm.autoridade = 'Ministro';
+        Principal.identity().then(function(account) {
+            vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
+        });
         vm.tbResultado = false;
         vm.pesquisar = pesquisar;
         vm.editar = editar;
