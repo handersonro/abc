@@ -20,10 +20,8 @@
 
             function authThen () {
                 if(!($rootScope.toState && $rootScope.toState.name.indexOf("app.public") !== -1)) {
-                    console.log('ESTOU AQUI');
                     var isAuthenticated = Principal.isAuthenticated();
                     if (!$rootScope.logar && !$localStorage.authenticationToken && $rootScope.toState === undefined) {
-                        console.log('REDIRECIONOU 1');
 
                         // NESSA SITUACAO O USUARIO DEU UM REFRESH NA PAGINA E NÃO POSSUE UM toState
                         $rootScope.logar = true;
@@ -33,8 +31,6 @@
                     }
 
                     if ($localStorage.authenticationToken === undefined && $rootScope.toState && $rootScope.toState.name !== 'app.public.login.entrar') {
-                        console.log('REDIRECIONOU 2');
-
                         //NESSE MOMENTO ESTÁ TENTANDO ACESSAR UM RECURSO NÃO PERMITIDO SEM TOKEN
                         $state.go('app.public.login.entrar');
                     }
