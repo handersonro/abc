@@ -6,6 +6,7 @@
     /* @ngInject */
     function ReuniaoInserirReuniaoController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $q, AlertsService, ConviteRestService, ReuniaoService,EventoService) {
         var vm = this;
+        vm.isEdit = false;
         vm.title = "Incluir reunião";
         vm.autoridade = {noAutoridade: 'Ministro'};
         vm.reuniao = {};

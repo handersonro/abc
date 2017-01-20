@@ -9,6 +9,7 @@
         vm.title = "Editar reunião";
         vm.autoridade = "Ministro";
         vm.reuniao = $stateParams.reuniao;
+        vm.isEdit = true;
 
         //caso seja recarregado a tela no editar o $stateParams.reuniao retorna vazio e quebra a tela
         //redireiona a tela para o pesquisar novamente

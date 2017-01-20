@@ -202,7 +202,7 @@
                             Ações
                         </th>
                         <th>
-                            Remetente
+                            Remetente<paginacao-sorting dto="vm.dto" field-name="remetente.noRemetente" ng-click="vm.trocaOrdenacao()"></paginacao-sorting>
                         </th>
                         <th>
                             Data do cadastro<paginacao-sorting dto="vm.dto" field-name="dt_cadastro" ng-click="vm.trocaOrdenacao()"></paginacao-sorting>
@@ -214,10 +214,10 @@
                             Data do evento<paginacao-sorting dto="vm.dto" field-name="dt_inicio_evento" ng-click="vm.trocaOrdenacao()"></paginacao-sorting>
                         </th>
                         <th>
-                            Validado
+                            Validado<paginacao-sorting dto="vm.dto" field-name="conviteValidacao" ng-click="vm.trocaOrdenacao()"></paginacao-sorting>
                         </th>
                         <th>
-                            Descrição<paginacao-sorting dto="vm.dto" field-name="no_descricao" ng-click="vm.trocaOrdenacao()"></paginacao-sorting>
+                            Descrição
                         </th>
                     </tr>
                 </thead>

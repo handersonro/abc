@@ -10,6 +10,14 @@
         vm.autoridade = "Ministro";
         vm.convite = $stateParams.convite;
 
+        if(vm.convite == null){
+            $state.go('app.private.convite.pesquisar-convite', {convite: convite});
+        }
+
+        vm.convite.dtInicioEvento = new Date(vm.convite.dtInicioEvento);
+        vm.convite.dtFimEvento = new Date(vm.convite.dtFimEvento);
+        vm.convite.dtCadastro = new Date(vm.convite.dtCadastro);
+
         vm.limpar = limpar;
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
@@ -53,7 +61,6 @@
         var tipoEvento = {id: 2,noTipoEvento: 'CONVITE'};
         vm.convite.tipoEvento = tipoEvento;
 
-
         EventoService.obterLocalidadePeloId(vm.convite.idLocalidade)
             .success(function (data) {
                 vm.convite.idLocalidade = data;
@@ -65,7 +72,7 @@
                 {validado : {label:'Indiferente',value:''}}
             ];
         }
-        console.log(vm.convite);
+
         function limpar(){
             vm.convite.dtInicioEvento = '';
             vm.convite.dtFimEvento = '';
