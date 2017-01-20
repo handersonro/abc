@@ -44,7 +44,7 @@
 
         }
         function addError(message){
-            self.add( { type: 'error', msg: message } );
+            self.add( { type: 'danger', msg: message } );
         }
         function addWarning(message){
             self.add( { type: 'warning', msg: message } );
