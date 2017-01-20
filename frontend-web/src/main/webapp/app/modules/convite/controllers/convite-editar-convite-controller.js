@@ -97,6 +97,11 @@
             vm.convite.noObservacao = '';
         }
         function salvar(convite){
+
+            if (vm.convite.dtInicioEvento.getTime() > vm.convite.dtFimEvento.getTime()) {
+                return AlertsService.success('O início do evento deve ser anterior ao término.');
+            }
+
             if(vm.convite.flEventoInternacional =='Evento nacional'){
                 vm.convite.flEventoInternacional = 0;
                 vm.convite.idPais = vm.convite.idPais.id = 1;

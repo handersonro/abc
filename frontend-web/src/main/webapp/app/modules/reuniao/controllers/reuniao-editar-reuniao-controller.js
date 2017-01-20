@@ -50,6 +50,10 @@
         }
 
         function salvar(reuniao){
+            if (vm.reuniao.dtInicioEvento.getTime() > vm.reuniao.dtFimEvento.getTime()) {
+                return AlertsService.success('O início do evento deve ser anterior ao término.');
+            }
+
             reuniao.tipoEvento = {id: 3,noTipoEvento: 'REUNIAO'};
 /*            reuniao.idUf = vm.localidade.uf.id;
             reuniao.nuRegiao = vm.localidade.uf.nuRegiao;

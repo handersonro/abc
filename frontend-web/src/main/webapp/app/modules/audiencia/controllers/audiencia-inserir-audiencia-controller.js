@@ -54,9 +54,8 @@
             return $scope.formAudiencia.$invalid;
         }
         function salvar(audiencia){
-
-            if(vm.audiencia.dataInicio > vm.audiencia.dataFim){
-                return AlertsService.success($filter('translate')('A13.4'));
+            if (vm.audiencia.dtInicioEvento.getTime() > vm.audiencia.dtFimEvento.getTime()) {
+                return AlertsService.success('O início do evento deve ser anterior ao término.');
             }
 
             audiencia.tipoEvento = {id: 1,noTipoEvento: 'AUDIENCIA'};

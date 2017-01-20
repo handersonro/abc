@@ -47,9 +47,11 @@
         }
 
         function salvar(reuniao) {
-            if (vm.dataInicio > vm.dataFim) {
-                return AlertsService.success($filter('translate')('A13.4'));
-            }
+
+        if (vm.reuniao.dtInicioEvento.getTime() > vm.reuniao.dtFimEvento.getTime()) {
+            return AlertsService.success('O início do evento deve ser anterior ao término.');
+        }
+
 
             // reuniao.idUf = vm.localidade.uf.id;
             // reuniao.nuRegiao = vm.localidade.uf.nuRegiao;

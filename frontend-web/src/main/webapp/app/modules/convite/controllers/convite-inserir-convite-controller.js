@@ -55,8 +55,8 @@
 
             var tipoEvento = {id: 2,noTipoEvento: 'CONVITE'};
 
-            if (vm.convite.dtInicioEvento > vm.convite.dtFimEvento) {
-                 return AlertsService.success($filter('translate')('A13.4'));
+            if (vm.convite.dtInicioEvento.getTime() > vm.convite.dtFimEvento.getTime()) {
+                 return AlertsService.success('O início do evento deve ser anterior ao término.');
             }
 
             vm.convite.tipoEvento = tipoEvento;
