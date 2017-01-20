@@ -5,7 +5,7 @@
         .service('AlertsManager', AlertsManager);
 
     /* @ngInject */
-    function AlertsManager($rootScope, $timeout, $mdToast, $animate) {
+    function AlertsManager($rootScope, $timeout, $mdToast, $animate, AlertsService) {
         var self = this;
 
         self.alerts = {};
@@ -44,7 +44,7 @@
             }
         }
         function addError(message){
-            self.add( { type: 'danger', msg: message } );
+            self.add( { type: 'error', msg: message } );
         }
         function addWarning(message){
             self.add( { type: 'warning', msg: message } );
@@ -75,6 +75,12 @@
         }
         function show(id){
             self.isShowing = true;
+
+            if(typeof AlertsService[self.alerts[id].type] === 'function'){
+                return AlertsService[self.alerts[id].type](self.alerts[id].msg);
+            }
+
+            /*
             $mdToast.show({
                 controller: 'AlertController',
                 templateUrl: 'modules/alerts/views/alerts-view.html',
@@ -88,7 +94,7 @@
                 function(response){
                     self.closeAlert(id, response);
                 }
-            );
+            );*/
         }
 
     }

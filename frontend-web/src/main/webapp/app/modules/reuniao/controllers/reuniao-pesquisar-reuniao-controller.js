@@ -115,8 +115,7 @@
 
         getMoreInfinityScrollData($state.params.filtro.currentPage);
 
-        $location.hash('result-pesquisa');
-        $anchorScroll();
+        
     }
 
         function getMoreInfinityScrollData(pageNumber){

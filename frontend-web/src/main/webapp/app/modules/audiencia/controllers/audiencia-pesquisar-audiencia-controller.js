@@ -103,9 +103,7 @@
 
             getMoreInfinityScrollData($state.params.filtro.currentPage);
 
-            $location.hash('result-pesquisa');
-            // call $anchorScroll()
-            $anchorScroll();
+
         }
 
         function getMoreInfinityScrollData(pageNumber){
@@ -122,6 +120,7 @@
                     vm.dto.list = data.list;
 
                     $location.hash('result-pesquisa');
+                    // call $anchorScroll()
                     $anchorScroll();
                 },function (error) {
                     vm.tbResultado = false;
