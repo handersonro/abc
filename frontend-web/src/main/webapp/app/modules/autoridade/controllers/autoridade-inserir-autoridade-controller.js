@@ -39,7 +39,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: AutoridadeInserirAutoridadeController,
-                templateUrl: '/modules/autoridade/help/modal-incluir-help.html',
+                templateUrl: 'modules/autoridade/help/modal-incluir-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true
