@@ -17,7 +17,7 @@
         function initialize() {
 
             var stateChangeStart = $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams, fromState) {
-                console.log('iniciou a mudanca')
+                console.log('iniciou a mudanca',fromState)
 
                 $rootScope.toState = toState;
                 $rootScope.toStateParams = toStateParams;
@@ -38,12 +38,13 @@
                 console.log('Conclui')
                 if(fromState && fromState.name === 'app.public.login.entrar'){
                     console.log('Loguei')
-                    location.reload();
-                    // $state.go('app.private.home.pagina-inicial')
+                    history.go(0);
+                    // location.reload();
+                    // $state.go('app.private.home.pagina-inicial',{reload:true},{reload:true})
                 }
-                // if(toState && toState.name === 'app.public.login.entrar'){
-                //     location.reload();
-                // }
+                if(toState && toState.name === 'app.public.login.entrar'){
+                    // history.go(0)
+                }
                 // Set the page title key to the one configured in state or use default one
                 // if (toState.data.pageTitle) {
                 //     titleKey = toState.data.pageTitle;

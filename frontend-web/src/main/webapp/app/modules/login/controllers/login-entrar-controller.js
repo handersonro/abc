@@ -15,20 +15,13 @@
                     function(retorno){
                         $localStorage.authenticationToken = retorno.id_token;
                         $state.go('app.private.home.pagina-inicial');
-                        // location.reload();
-                        //account();
-                    }).catch(function (retorno) {
-                if(retorno.data != null){
-                    console.log( retorno.data.mensagens[0].msg)
-                    AlertsService.error(retorno.data.mensagens!= null ?  retorno.data.mensagens[0].msg: '');
-                }
-            });
+                    })
+                .catch(function (retorno) {
+                    if(retorno.data != null){
+                        console.log( retorno.data.mensagens[0].msg)
+                        AlertsService.error(retorno.data.mensagens!= null ?  retorno.data.mensagens[0].msg: '');
+                    }
+                });
         }
-
-        // function account() {
-        //     UsuarioLogado.obterUsuario().then(function(retorno){
-        //         }
-        //     );
-        // }
     }
 })();
