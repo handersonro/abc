@@ -153,7 +153,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: ReuniaoInserirReuniaoController,
-                templateUrl: '/modules/reuniao/help/modal-incluir-help.html',
+                templateUrl: 'modules/reuniao/help/modal-incluir-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

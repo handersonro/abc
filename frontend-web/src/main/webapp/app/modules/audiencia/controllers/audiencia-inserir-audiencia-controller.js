@@ -132,7 +132,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: AudienciaInserirAudienciaController,
-                templateUrl: '/modules/audiencia/help/modal-incluir-help.html',
+                templateUrl: 'modules/audiencia/help/modal-incluir-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

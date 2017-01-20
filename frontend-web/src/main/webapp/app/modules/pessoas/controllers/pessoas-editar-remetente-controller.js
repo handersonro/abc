@@ -49,7 +49,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: PessoasEditarRemetenteController,
-                templateUrl: '/modules/pessoas/help/modal-editar-help.html',
+                templateUrl: 'modules/pessoas/help/modal-editar-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

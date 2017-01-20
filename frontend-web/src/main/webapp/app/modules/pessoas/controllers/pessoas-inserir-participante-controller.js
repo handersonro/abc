@@ -79,7 +79,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: PessoasInserirParticipanteController,
-                templateUrl: '/modules/pessoas/help/modal-incluir-p-help.html',
+                templateUrl: 'modules/pessoas/help/modal-incluir-p-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

@@ -254,7 +254,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: ConvitePesquisarConviteController,
-                templateUrl: '/modules/convite/help/modal-pesquisar-help.html',
+                templateUrl: 'modules/convite/help/modal-pesquisar-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

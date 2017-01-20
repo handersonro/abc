@@ -240,7 +240,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: ReuniaoPesquisarReuniaoController,
-                templateUrl: '/modules/reuniao/help/modal-pesquisar-help.html',
+                templateUrl: 'modules/reuniao/help/modal-pesquisar-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

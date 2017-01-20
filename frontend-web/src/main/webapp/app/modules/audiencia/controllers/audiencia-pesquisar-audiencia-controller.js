@@ -175,7 +175,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: AudienciaPesquisarAudienciaController,
-                templateUrl: '/modules/audiencia/help/modal-pesquisar-help.html',
+                templateUrl: 'modules/audiencia/help/modal-pesquisar-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

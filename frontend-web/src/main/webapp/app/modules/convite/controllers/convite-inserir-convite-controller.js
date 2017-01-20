@@ -185,7 +185,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: ConviteInserirConviteController,
-                templateUrl: '/modules/convite/help/modal-incluir-help.html',
+                templateUrl: 'modules/convite/help/modal-incluir-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

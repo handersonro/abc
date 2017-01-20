@@ -161,7 +161,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: AudienciaEditarAudienciaController,
-                templateUrl: '/modules/audiencia/help/modal-editar-help.html',
+                templateUrl: 'modules/audiencia/help/modal-editar-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

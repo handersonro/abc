@@ -116,7 +116,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: ReuniaoEditarReuniaoController,
-                templateUrl: '/modules/reuniao/help/modal-editar-help.html',
+                templateUrl: 'modules/reuniao/help/modal-editar-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true
