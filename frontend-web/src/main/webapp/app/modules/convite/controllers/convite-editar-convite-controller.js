@@ -67,6 +67,11 @@
                 vm.convite.idLocalidade = data;
         });
 
+            EventoService.obterPaisPorId(vm.convite.idPais)
+                .success(function (data) {
+                    vm.convite.idPais = data;
+                });
+
             vm.validacoes=[
                 {validado : {label:'Sim',value:'SIM'}},
                 {validado : {label:'Não',value:'NAO'}},
