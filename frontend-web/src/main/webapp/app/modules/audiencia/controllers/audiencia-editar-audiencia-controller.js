@@ -65,11 +65,6 @@
         }
         function salvar(audiencia){
 
-            if (vm.audiencia.dtInicioEvento.getTime() > vm.audiencia.dtFimEvento.getTime()) {
-                return AlertsService.success('O início do evento deve ser anterior ao término.');
-            }
-
-
             audiencia.tipoEvento = {id: 1,noTipoEvento: 'AUDIENCIA'};
             audiencia.idUf = vm.localidade.uf.id;
             audiencia.nuRegiao = vm.localidade.uf.nuRegiao;
