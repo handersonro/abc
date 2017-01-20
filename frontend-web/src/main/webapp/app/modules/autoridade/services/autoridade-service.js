@@ -22,7 +22,7 @@
 
         return {
             obterPorId: Restangular.one('autoridades').customGET,
-            obterTodasAutoridades: Restangular.all('autoridades').getList(),
+            obterTodasAutoridades: Restangular.all('autoridades').getList,
             obterRemetentesPeloNome: buscaRemetentePeloNome,
             salvar: Restangular.one('autoridades').customPOST,
             editar: Restangular.one('autoridades').customPUT,

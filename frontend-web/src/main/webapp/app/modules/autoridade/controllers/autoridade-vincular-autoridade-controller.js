@@ -23,7 +23,7 @@
         ///////////////////////////////////
         function inicializar(){
             vm.listAutoridades = [];
-            AutoridadeService.obterTodasAutoridades.then(
+            AutoridadeService.obterTodasAutoridades().then(
                 function (resultados) {
                     resultados.forEach(function (item, index) {
                         item['selected'] = false;
