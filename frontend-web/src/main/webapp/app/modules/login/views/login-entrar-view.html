@@ -19,15 +19,16 @@
                     </div>
                 </md-input-container>
                 <md-input-container flex class="md-icon-float md-block">
-                    <label>
-                        Senha
-                    </label>
+
                     <md-icon>&#xE0DA;</md-icon>
                     <input type="password" md-maxlength="60" name="senha" ng-model="vm.user.noSenhaCrypto" required/>
                     <div ng-messages="formLogin.senha.$error">
                         <div ng-message="required">Campo obrigatório</div>
                         <div ng-message="md-maxlength">Mínimo ou igual à 60 caracter</div>
                     </div>
+                    <label>
+                        Senha
+                    </label>
                 </md-input-container>
                 <div layout="row" layout-align="center center">
                     <md-button class="md-raised md-primary" type="submit" ng-click="vm.logar()" ng-disabled="!vm.user.edEmail.length > 0 || !vm.user.noSenhaCrypto.length > 0">
