@@ -9,6 +9,7 @@
         vm.title = "Editar reunião";
         vm.autoridade = "Ministro";
         vm.reuniao = $stateParams.reuniao;
+        vm.help = help;
         vm.isEdit = true;
 
         //caso seja recarregado a tela no editar o $stateParams.reuniao retorna vazio e quebra a tela
@@ -103,5 +104,20 @@
                 vm.pessoasParaSeremRemovidas.push(chip.pessoa);
             }
         }
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: ReuniaoEditarReuniaoController,
+                templateUrl: '/modules/reuniao/help/modal-editar-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
     }
 })();

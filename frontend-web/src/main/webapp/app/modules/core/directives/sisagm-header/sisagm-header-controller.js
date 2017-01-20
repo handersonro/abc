@@ -12,7 +12,8 @@
         $scope.showLogoutButton = Principal.isAuthenticated();
         if(Principal.isAuthenticated()){
             Principal.identity().then(function(account) {
-                $scope.nomeUsuarioLogado = account.userAutenticado.noUsuario;
+                $scope.nomeUsuarioLogado = account.userAutenticado.noLogin;
+                $scope.nomeUsuario = account.userAutenticado.noUsuario;
             });
         }
 

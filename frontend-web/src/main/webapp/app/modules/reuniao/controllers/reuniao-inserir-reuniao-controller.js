@@ -9,6 +9,7 @@
         vm.isEdit = false;
         vm.title = "Incluir reunião";
         vm.autoridade = {noAutoridade: 'Ministro'};
+        vm.help = help;
         vm.reuniao = {};
         vm.validacoes = {};
         vm.participantes = [];
@@ -144,6 +145,24 @@
         }
 
         /*CHIP*/
+
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: ReuniaoInserirReuniaoController,
+                templateUrl: '/modules/reuniao/help/modal-incluir-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
+
+
     }
 
 

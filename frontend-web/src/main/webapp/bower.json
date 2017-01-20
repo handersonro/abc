@@ -22,12 +22,11 @@
     "lodash": "^4.13.1",
     "restangular": "~1.5.2",
     "angular-breadcrumb": "^0.4.1",
-
     "ngMask": "angular-mask#^3.1.1",
     "textAngular": "^1.5.16",
     "angular-material-datetimepicker": "^1.4.0",
     "ngstorage": "0.3.10",
-    "angular-bootstrap-colorpicker": "https://github.com/aragao-diego/angular-bootstrap-colorpicker.git#v3.1.0",
+    "angular-bootstrap-colorpicker": "https://github.com/aragao-diego/angular-bootstrap-colorpicker.git#v3.1.2",
     "pluton-loader": "https://github.com/aragao-diego/pluton-loader.git#^0.0.76"
   },
   "devDependencies": {},

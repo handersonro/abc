@@ -335,6 +335,11 @@ md-input-container:not(.md-input-has-value) input:not(:focus), md-input-containe
 .largura-help{
     width: 100%;
 }
+
+.pequena-largura-help{
+    width: 45%;
+}
+
 .aviso-help{
     color:#ef5252;
     background: rgba(210, 210, 210, 0.36);

@@ -11,7 +11,7 @@
         return {
             restrict: 'E',
             replace: true,
-            require:'^form',
+            require:'^?form',
             templateUrl: 'modules/core/directives/custom-validator-messages/custom-validator-messages.html',
             scope: {
                 inputName:'@inputName',

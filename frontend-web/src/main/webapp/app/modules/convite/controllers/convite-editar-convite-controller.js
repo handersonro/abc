@@ -79,6 +79,7 @@
             ];
         }
 
+
         function limpar(){
             vm.convite.dtInicioEvento = '';
             vm.convite.dtFimEvento = '';
@@ -97,13 +98,12 @@
         function salvar(convite){
             if(vm.convite.flEventoInternacional =='Evento nacional'){
                 vm.convite.flEventoInternacional = 0;
-                vm.convite.idPais = 1;
+                vm.convite.idPais.id = 1;
             }else if(vm.convite.flEventoInternacional =='Evento internacional'){
                 vm.convite.flEventoInternacional = 1;
+                vm.convite.noLocalEvento = vm.convite.idPais.noPais;
                 vm.convite.idPais = vm.convite.idPais.id;
             }
-
-            vm.convite.idLocalidade = vm.convite.idLocalidade.id;
 
             ConviteRestService.editar(convite).then(
                 function (retorno) {
