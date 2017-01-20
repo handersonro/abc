@@ -39,9 +39,9 @@
 
             self.alerts[obj.id] = obj;
 
-            if( !self.isShowing ){
-                self.show(obj.id);
-            }
+
+            self.show(obj.id);
+
         }
         function addError(message){
             self.add( { type: 'error', msg: message } );

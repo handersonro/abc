@@ -411,3 +411,10 @@ paginacao-sorting.ng-isolate-scope {
         width: ~"calc((100% - 18px) / 0.75)";
         color: rgba(0,0,0,0.54);
     }
+
+
+@media (min-width: 1920px){
+    md-toast .md-toast-content {
+        max-width: 100% !important;
+    }
+}
