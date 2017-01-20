@@ -31,6 +31,9 @@
         inicializar();
         ///////////////////////////////////
         function inicializar(){
+            vm.reuniao.dtInicioEvento  = new Date(vm.reuniao.dtInicioEvento);
+            vm.reuniao.dtFimEvento  = new Date(vm.reuniao.dtFimEvento);
+
              vm.reuniao.pessoas.forEach(function (pessoa) {
                  EventoService.obterParticipanteInternoPorId(pessoa.id)
                      .success(function (data) {
