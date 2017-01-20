@@ -99,14 +99,14 @@
         function salvar(convite){
             if(vm.convite.flEventoInternacional =='Evento nacional'){
                 vm.convite.flEventoInternacional = 0;
-                vm.convite.idPais.id = 1;
+                vm.convite.idPais = vm.convite.idPais.id = 1;
                 vm.convite.idLocalidade = vm.convite.idLocalidade.id;
             }else if(vm.convite.flEventoInternacional =='Evento internacional'){
                 vm.convite.flEventoInternacional = 1;
                 vm.convite.noLocalEvento = vm.convite.idPais.noPais;
                 vm.convite.idPais = vm.convite.idPais.id;
             }
-
+            console.log(vm.convite);
             ConviteRestService.editar(convite).then(
                 function (retorno) {
                     AlertsService.success('Registro alterado com sucesso.');
