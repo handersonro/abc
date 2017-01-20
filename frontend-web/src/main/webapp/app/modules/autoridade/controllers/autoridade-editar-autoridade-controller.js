@@ -43,7 +43,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: AutoridadeEditarAutoridadeController,
-                templateUrl: '/modules/autoridade/help/modal-help.html',
+                templateUrl: '/modules/autoridade/help/modal-editar-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

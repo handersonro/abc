@@ -4,7 +4,7 @@
         .controller('AudienciaInserirAudienciaController', AudienciaInserirAudienciaController);
 
     /* @ngInject */
-    function AudienciaInserirAudienciaController($scope, $mdDialog, $timeout, AlertsService, $filter, $q, EventoService){
+    function AudienciaInserirAudienciaController($scope, $mdDialog, $timeout,  AlertsService, $filter, $q, EventoService){
         var vm = this;
         vm.readonly = false;
         vm.selectedItem = null;
@@ -18,6 +18,7 @@
         vm.autocompleteDemoRequireMatch = true;
         vm.transformChip = transformChip;
         vm.buscarRemetentePeloNome = buscarRemetentePeloNome;
+        vm.help = help;
         vm.removeParticipante = removeParticipante;
 
         vm.procurarLocal = EventoService.obterLocais;
@@ -75,7 +76,7 @@
 
             audiencia.pessoas = pessoas;
 
-            console.log(audiencia);
+            //console.log(audiencia);
 
             EventoService.salvar(audiencia).then(
                 function (retorno) {
@@ -127,6 +128,21 @@
             return retorno.promise;
         }
         /*CHIPS*/
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: AudienciaInserirAudienciaController,
+                templateUrl: '/modules/audiencia/help/modal-incluir-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
 
         function buscarRemetentePeloNome(noUsuario) {
             var retorno = $q.defer();

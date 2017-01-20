@@ -1,6 +1,13 @@
 <div id="title">
     <md-toolbar class=" md-toolbar-tools">
         <h1 class="md-toolbar-tools">{{vm.title}}</h1>
+        <span flex></span>
+        <md-button class="md-fab md-mini md-acoes" aria-label="Use Android" ng-click="vm.help($event)">
+            <md-tooltip md-direction="left">
+                Ajuda
+            </md-tooltip>
+            <md-icon>&#xE8FD;</md-icon>
+        </md-button>
     </md-toolbar>
 </div>
 <md-content class="box">

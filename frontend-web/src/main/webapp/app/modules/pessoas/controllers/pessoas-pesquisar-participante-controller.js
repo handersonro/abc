@@ -9,6 +9,7 @@
         var _itens = [];
         vm.editar = editar;
         vm.pesquisar = pesquisar;
+        vm.help = help;
         vm.filtro = {};
         vm.dto = new DTO();
         vm.title = "Pesquisar participante";
@@ -127,6 +128,21 @@
             });
         };
         /*DIALOG*/
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: PessoasPesquisarParticipanteController,
+                templateUrl: '/modules/pessoas/help/modal-pesquisar-p-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
 
         /**
          * Supplies a function that will continue to operate until the

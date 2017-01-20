@@ -6,6 +6,7 @@
     /* @ngInject */
     function AudienciaPesquisarAudienciaController($scope, $mdDialog, $http, $q, $timeout, AlertsService, $filter, $location, $anchorScroll, $state, DTO, EventoService){
         var vm = this;
+        vm.help = help;
         var _itens = [];
         vm.dto = new DTO();
         vm.procurarLocal = EventoService.obterLocais;
@@ -169,6 +170,22 @@
                 $scope.status = 'You decided to keep your debt.';
             });
         };
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: AudienciaPesquisarAudienciaController,
+                templateUrl: '/modules/audiencia/help/modal-pesquisar-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
+
         /*DIALOG*/
         function changePage(page){
             vm.dto.currentPage = page;

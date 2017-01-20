@@ -56,7 +56,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: PessoasPesquisarRemetenteController,
-                templateUrl: '/modules/pessoas/help/modal-help.html',
+                templateUrl: '/modules/pessoas/help/modal-pesquisar-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

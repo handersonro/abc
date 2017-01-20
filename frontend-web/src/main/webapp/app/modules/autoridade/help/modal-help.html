@@ -2,7 +2,7 @@
     <form ng-cloak>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Autoridade</h2>
+                <h2>Pesquisar Autoridade</h2>
                 <span flex></span>
                 <md-button class="md-icon-button md-acoes" ng-click="close()">
                     <md-icon>&#xE5CD;</md-icon>
@@ -15,21 +15,15 @@
             <div ng-cloak>
                 <md-content>
                     <md-tabs md-dynamic-height md-border-bottom>
-                        <md-tab label="Vincular Autoridade">
-                            <md-content class="md-padding">
-                                <div ng-include="'/modules/autoridade/help/help-vincular-autoridade.html'"></div>
-                            </md-content>
-                        </md-tab>
-
-                        <md-tab label="Editar Autoridade">
+                        <md-tab label="Como Pesquisar Autoridade">
                             <md-content class="md-padding">
                                 <div ng-include="'/modules/autoridade/help/help-pesquisar-autoridade.html'"></div>
                             </md-content>
                         </md-tab>
 
-                        <md-tab label="Incluir Autoridade">
+                        <md-tab label="Como Editar Autoridade">
                             <md-content class="md-padding">
-                                <div ng-include="'/modules/autoridade/help/help-incluir-autoridade.html'"></div>
+                                <div ng-include="'/modules/autoridade/help/help-editar-autoridade.html'"></div>
                             </md-content>
                         </md-tab>
                     </md-tabs>

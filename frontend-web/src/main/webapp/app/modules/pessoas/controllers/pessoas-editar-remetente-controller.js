@@ -4,7 +4,7 @@
         .controller('PessoasEditarRemetenteController', PessoasEditarRemetenteController);
 
     /* @ngInject */
-    function PessoasEditarRemetenteController($scope, $timeout, $http, AlertsService, $stateParams, $state, RemetenteService){
+    function PessoasEditarRemetenteController($scope, $timeout, $mdDialog, $http, AlertsService, $stateParams, $state, RemetenteService){
         var vm = this;
         vm.isEdicao = true;
         vm.title = "Editar remetente";
@@ -17,6 +17,7 @@
         vm.limpar = limpar;
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
+        vm.help = help;
 
 
         ///////////////////////////////////
@@ -43,6 +44,21 @@
         function showBtnSalvar(){
           return $scope.formRemetente.$invalid;
         }
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: PessoasEditarRemetenteController,
+                templateUrl: '/modules/pessoas/help/modal-editar-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
 
 
 

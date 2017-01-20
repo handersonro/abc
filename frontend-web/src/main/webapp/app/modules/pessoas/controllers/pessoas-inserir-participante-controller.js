@@ -4,12 +4,13 @@
         .controller('PessoasInserirParticipanteController', PessoasInserirParticipanteController);
 
     /* @ngInject */
-    function PessoasInserirParticipanteController($scope, $timeout, $log, $state, AlertsService, ParticipanteInternoService, ParticipanteExternoService){
+    function PessoasInserirParticipanteController($scope, $timeout, $log, $state, AlertsService, $mdDialog, ParticipanteInternoService, ParticipanteExternoService){
         var vm = this;
         vm.title = "Incluir participante";
         vm.participante = {};
         vm.showBtnSalvar = showBtnSalvar;
         vm.limpar = limpar;
+        vm.help = help;
         vm.salvarParticipanteExterno = salvarParticipanteExterno;
         vm.salvarParticipanteInterno = salvarParticipanteInterno;
 
@@ -73,5 +74,20 @@
             participanteExterno.pessoa = pessoa;
             return participanteExterno;
         }
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: PessoasInserirParticipanteController,
+                templateUrl: '/modules/pessoas/help/modal-incluir-p-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
     }
 })();

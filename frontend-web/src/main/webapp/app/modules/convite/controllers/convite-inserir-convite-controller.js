@@ -13,6 +13,7 @@
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
         vm.limpar = limpar;
+        vm.help = help;
         vm.tipoEvento = {};
 
 
@@ -179,6 +180,21 @@
 
              return promiseLoadMoreData;
          }
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: ConviteInserirConviteController,
+                templateUrl: '/modules/convite/help/modal-incluir-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
 
     }
 

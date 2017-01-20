@@ -44,6 +44,7 @@
         vm.editar = editar;
         vm.filtro = {};
         vm.limpar = limpar;
+        vm.help = help;
         vm.dasabilitaCampo = dasabilitaCampo;
         vm.tipoEvento = {};
         vm.validacoes = {};
@@ -249,6 +250,21 @@
                     });
             }
         }
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: ConvitePesquisarConviteController,
+                templateUrl: '/modules/convite/help/modal-pesquisar-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
 
         function changePage(page) {
             console.log('aeaueauh', ((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
