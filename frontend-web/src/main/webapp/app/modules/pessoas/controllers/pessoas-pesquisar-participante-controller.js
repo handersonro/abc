@@ -61,7 +61,7 @@
                                 nome: value.noParticipanteExterno,
                                 cargo: value.noCargo,
                                 email: value.noEmail,
-                                tel: atribuirTelefone(value.nuTelefone),
+                                tel: value.nuTelefone,
                                 pessoa:{
                                     id: value.pessoa.id,
                                     flPessoaAtivo: value.pessoa.id
@@ -116,7 +116,8 @@
                 ParticipanteExternoService.excluirPorId(participante.id).then(
                     function (sucesso){
                         AlertsService.success('Participante removido com sucesso.');
-                        pesquisar();
+                        var index = vm.dto.list.indexOf(participante);
+                        vm.dto.list.splice(index,1);
                     }
                 );
                 $scope.status = 'You decided to get rid of your debt.';
@@ -190,13 +191,6 @@
             $state.params.filtro.pageSize = vm.dto.pageSize;
 
             getMoreInfinityScrollData(vm.dto.currentPage);
-        }
-
-        function atribuirTelefone(telefone) {
-            if(telefone == undefined || telefone == null){
-                return telefone = 0;
-            }
-            return telefone;
         }
 
         $scope.changePage = changePage;
