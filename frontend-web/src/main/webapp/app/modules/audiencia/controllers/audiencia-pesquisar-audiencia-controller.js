@@ -161,7 +161,7 @@
             $mdDialog.show(confirm).then(function() {
                 EventoService.excluirPorId(audiencia.id).then(
                     function (sucesso) {
-                        AlertsService.success('Audiência removido com sucesso.');
+                        AlertsService.success('Audiência removida com sucesso.');
                         var index = vm.dto.list.indexOf(audiencia);
                         vm.dto.list.splice(index,1);
                     }
