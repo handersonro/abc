@@ -37,6 +37,22 @@
                 templateUrl: MODULE_PATH+'views/error-401-view.html',
                 resolve: {
                 }
+            })
+            .state(STATE_PATH+MODULE_NAME+'.403', {
+                url: '/403',
+                controller: 'ErrorController',
+                controllerAs: 'vm',
+                templateUrl: MODULE_PATH+'views/error-403-view.html',
+                resolve: {
+                }
+            })
+            .state(STATE_PATH+MODULE_NAME+'.500', {
+                url: '/500',
+                controller: 'ErrorController',
+                controllerAs: 'vm',
+                templateUrl: MODULE_PATH+'views/error-500-view.html',
+                resolve: {
+                }
             });
     }
 })();

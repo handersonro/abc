@@ -7,10 +7,5 @@
     function ErrorController($scope,$state,Principal){
         var vm = this;
 
-        var vm = this;
-        vm.title = "Error!!!!!";
-
-        console.log('ERRO CONTROLLER');
-
     }
 })();

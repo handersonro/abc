@@ -2,29 +2,34 @@ body{
     background-color: #dedede;
     height:auto;
 }
+
+
+/* Mensagem do sistema*/
+/*
 md-toast.md-default-theme .md-toast-content, md-toast .md-toast-content{
     background-color: transparent;
+    color: #333;
     -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
 }
 md-toast.ng-scope._md.md-md-danger-theme-theme.md-top.md-left.md-right{
-    background-color: red;
-    color: #fff;
+    background-color: #FF0004;
+    color: #a94442;
     margin: 5px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
 }
 md-toast.ng-scope._md.md-md-danger-theme-theme.md-bottom{
-    background-color: red;
-    color: #fff;
+    background-color: #FF0004;
+    color: #a94442;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
 }
 md-toast.ng-scope._md.md-md-warning-theme-theme.md-top.md-left.md-right{
-    background-color: #eb8f00;
+    background-color: #fcf8e3;
     color: #fff;
     margin: 5px;
     -webkit-border-radius: 8px;
@@ -32,7 +37,7 @@ md-toast.ng-scope._md.md-md-warning-theme-theme.md-top.md-left.md-right{
     border-radius: 8px;
 }
 md-toast.ng-scope._md.md-md-warning-theme-theme.md-bottom{
-    background-color: #eb8f00;
+    background-color: #fcf8e3;
     color: #fff;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -59,8 +64,7 @@ md-toast.ng-scope._md.md-md-success-theme-theme.md-bottom{
 md-toast.md-top{
     position: fixed;
     margin: 5px;
-    background-color:#eb8f00;
-    color: #fff;
+    background-color:#fcf8e3;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
@@ -68,6 +72,10 @@ md-toast.md-top{
 md-toast.ng-scope._md.md-md-danger-theme-theme.md-bottom{
 
 }
+/*
+/* Mensagem do sistema*/
+
+
 .padding-auto{
     margin-bottom:40px;
 }
@@ -354,4 +362,30 @@ paginacao-sorting.ng-isolate-scope {
     font-size: 12px;
     color: #fff;
     text-transform: capitalize;
+}
+/*ALERTAS DO SISTEMA*/
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+}
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+.alert-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+.alert-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+.alert-danger {
+    color: #ffffff;
+    background-color: #FF0004;
+    border-color: #ebccd1;
 }
