@@ -4,7 +4,7 @@
         .controller('AudienciaPesquisarAudienciaController', AudienciaPesquisarAudienciaController);
 
     /* @ngInject */
-    function AudienciaPesquisarAudienciaController($scope, $mdDialog, $http, $q, $timeout, AlertsService, $filter, $location, $anchorScroll, $state, DTO, EventoService){
+    function AudienciaPesquisarAudienciaController($scope, $mdDialog, $http, $q, $timeout, AlertsService, $filter, $location, $anchorScroll, $state, DTO, EventoService,Principal){
         var vm = this;
         vm.help = help;
         var _itens = [];
@@ -17,7 +17,9 @@
         vm.editar = editar;
         vm.listaAutoridades = {};
         vm.filtro = {};
-        vm.autoridade = {noAutoridade : 'Ministro'};
+        Principal.identity().then(function(account) {
+            vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
+        });
         vm.trocaOrdenacao = trocaOrdenacao;
         inicializar();
         function inicializar(){
@@ -159,7 +161,7 @@
             $mdDialog.show(confirm).then(function() {
                 EventoService.excluirPorId(audiencia.id).then(
                     function (sucesso) {
-                        AlertsService.success('Audiência removido com sucesso.');
+                        AlertsService.success('Audiência removida com sucesso.');
                         var index = vm.dto.list.indexOf(audiencia);
                         vm.dto.list.splice(index,1);
                     }
@@ -175,7 +177,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: AudienciaPesquisarAudienciaController,
-                templateUrl: '/modules/audiencia/help/modal-pesquisar-help.html',
+                templateUrl: 'modules/audiencia/help/modal-pesquisar-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

@@ -4,10 +4,12 @@
         .controller('ConviteInserirConviteController', ConviteInserirConviteController);
 
     /* @ngInject */
-    function ConviteInserirConviteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, AlertsService, ConviteRestService,EventoService) {
+    function ConviteInserirConviteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, AlertsService, ConviteRestService,EventoService,Principal) {
         var vm = this;
         vm.title = "Incluir convite";
-        vm.autoridade = 'Ministro';
+        Principal.identity().then(function(account) {
+            vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
+        });
         vm.convite = {};
         vm.validacoes = {};
         vm.showBtnSalvar = showBtnSalvar;
@@ -185,7 +187,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: ConviteInserirConviteController,
-                templateUrl: '/modules/convite/help/modal-incluir-help.html',
+                templateUrl: 'modules/convite/help/modal-incluir-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

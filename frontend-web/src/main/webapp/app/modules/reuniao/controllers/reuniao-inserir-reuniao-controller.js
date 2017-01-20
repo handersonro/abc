@@ -4,11 +4,13 @@
         .controller('ReuniaoInserirReuniaoController', ReuniaoInserirReuniaoController);
 
     /* @ngInject */
-    function ReuniaoInserirReuniaoController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $q, AlertsService, ConviteRestService, ReuniaoService,EventoService) {
+    function ReuniaoInserirReuniaoController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $q, AlertsService, ConviteRestService, ReuniaoService,EventoService,Principal) {
         var vm = this;
         vm.isEdit = false;
         vm.title = "Incluir reunião";
-        vm.autoridade = {noAutoridade: 'Ministro'};
+        Principal.identity().then(function(account) {
+            vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
+        });
         vm.help = help;
         vm.reuniao = {};
         vm.validacoes = {};
@@ -153,7 +155,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: ReuniaoInserirReuniaoController,
-                templateUrl: '/modules/reuniao/help/modal-incluir-help.html',
+                templateUrl: 'modules/reuniao/help/modal-incluir-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

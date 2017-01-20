@@ -133,7 +133,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: PessoasPesquisarParticipanteController,
-                templateUrl: '/modules/pessoas/help/modal-pesquisar-p-help.html',
+                templateUrl: 'modules/pessoas/help/modal-pesquisar-p-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

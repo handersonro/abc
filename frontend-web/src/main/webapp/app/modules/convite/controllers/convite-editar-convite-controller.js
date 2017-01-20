@@ -4,12 +4,17 @@
         .controller('ConviteEditarConviteController', ConviteEditarConviteController);
 
     /* @ngInject */
-    function ConviteEditarConviteController($scope, $timeout, $http, $mdDialog, AlertsService, $stateParams, $state, ConviteRestService,EventoService){
+    function ConviteEditarConviteController($scope, $timeout, $http, $mdDialog, AlertsService, $stateParams, $state, ConviteRestService,EventoService,Principal){
         var vm = this;
         vm.isEdicao = true;
         vm.title = "Editar convite";
-        vm.autoridade = "Ministro";
+
+        Principal.identity().then(function(account) {
+            vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
+        });
+
         vm.convite = $stateParams.convite;
+
 
         if(vm.convite == null){
             $state.go('app.private.convite.pesquisar-convite', {reload: true});
@@ -128,7 +133,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: ConviteEditarConviteController,
-                templateUrl: '/modules/convite/help/modal-editar-help.html',
+                templateUrl: 'modules/convite/help/modal-editar-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

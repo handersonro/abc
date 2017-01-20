@@ -3,7 +3,7 @@
         .module('sisagmApp.pessoas.controllers')
         .controller('PessoasEditarParticipanteController', PessoasEditarParticipanteController);
     /* @ngInject */
-    function PessoasEditarParticipanteController($scope, $timeout, $http, AlertsService, $stateParams, $state, ParticipanteInternoService, ParticipanteExternoService){
+    function PessoasEditarParticipanteController($scope, $timeout, $http, $mdDialog, AlertsService, $stateParams, $state, ParticipanteInternoService, ParticipanteExternoService){
         var vm = this;
         vm.isEdicao = true;
         vm.title = "Editar participante";
@@ -12,6 +12,7 @@
             $state.go('app.private.pessoas.pesquisar-participante');
         }
         vm.limpar = limpar;
+        vm.help = help;
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvarParticipanteExterno = salvarParticipanteExterno;
         vm.salvarParticipanteInterno = salvarParticipanteInterno;
@@ -58,5 +59,20 @@
         function showBtnSalvar(){
             return $scope.formParticipante.$invalid;
         }
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: PessoasEditarParticipanteController,
+                templateUrl: 'modules/pessoas/help/modal-editar-p-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
     }
 })();

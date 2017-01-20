@@ -4,7 +4,7 @@
         .controller('AudienciaEditarAudienciaController', AudienciaEditarAudienciaController);
 
     /* @ngInject */
-    function AudienciaEditarAudienciaController($scope, $mdDialog, $timeout, $stateParams, $q, $state, AlertsService, EventoService){
+    function AudienciaEditarAudienciaController($scope, $mdDialog, $timeout, $stateParams, $q, $state, AlertsService, EventoService,Principal){
         var vm = this;
         vm.isEdicao = true;
         vm.buscaParticipanteExterno = buscaParticipanteExterno;
@@ -21,8 +21,10 @@
 
         vm.remetente =  vm.audiencia.remetente;
         vm.participantes = [];
+        Principal.identity().then(function(account) {
+            vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
+        });
 
-        vm.autoridade = {noAutoridade : 'Ministro'};
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
         vm.listaAutoridades = {};
@@ -62,11 +64,6 @@
           return $scope.formAudiencia.$invalid;
         }
         function salvar(audiencia){
-
-            if (vm.audiencia.dtInicioEvento.getTime() > vm.audiencia.dtFimEvento.getTime()) {
-                return AlertsService.success('O início do evento deve ser anterior ao término.');
-            }
-
 
             audiencia.tipoEvento = {id: 1,noTipoEvento: 'AUDIENCIA'};
             audiencia.idUf = vm.localidade.uf.id;
@@ -161,7 +158,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: AudienciaEditarAudienciaController,
-                templateUrl: '/modules/audiencia/help/modal-editar-help.html',
+                templateUrl: 'modules/audiencia/help/modal-editar-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

@@ -4,10 +4,12 @@
         .controller('ReuniaoEditarReuniaoController', ReuniaoEditarReuniaoController);
 
     /* @ngInject */
-    function ReuniaoEditarReuniaoController($scope, $timeout, $http, AlertsService, $mdDialog, $stateParams, $state, $q,ConviteRestService, EventoService, ReuniaoService){
+    function ReuniaoEditarReuniaoController($scope, $timeout, $http, AlertsService, $mdDialog, $stateParams, $state, $q,ConviteRestService, EventoService, ReuniaoService,Principal){
         var vm = this;
         vm.title = "Editar reunião";
-        vm.autoridade = "Ministro";
+        Principal.identity().then(function(account) {
+            vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
+        });
         vm.reuniao = $stateParams.reuniao;
         vm.help = help;
         vm.isEdit = true;
@@ -116,7 +118,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: ReuniaoEditarReuniaoController,
-                templateUrl: '/modules/reuniao/help/modal-editar-help.html',
+                templateUrl: 'modules/reuniao/help/modal-editar-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true
