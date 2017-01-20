@@ -6,8 +6,10 @@
     /* @ngInject */
     function ReuniaoInserirReuniaoController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $q, AlertsService, ConviteRestService, ReuniaoService,EventoService) {
         var vm = this;
+        vm.isEdit = false;
         vm.title = "Incluir reunião";
         vm.autoridade = {noAutoridade: 'Ministro'};
+        vm.help = help;
         vm.reuniao = {};
         vm.validacoes = {};
         vm.participantes = [];
@@ -49,10 +51,10 @@
                 return AlertsService.success($filter('translate')('A13.4'));
             }
 
-            reuniao.idUf = vm.localidade.uf.id;
-            reuniao.nuRegiao = vm.localidade.uf.nuRegiao;
-            reuniao.noLocalEvento = vm.localidade.noLocalidade;
-            reuniao.idLocalidade = vm.localidade.id;
+            // reuniao.idUf = vm.localidade.uf.id;
+            // reuniao.nuRegiao = vm.localidade.uf.nuRegiao;
+            // reuniao.noLocalEvento = vm.localidade.noLocalidade;
+            // reuniao.idLocalidade = vm.localidade.id;
             reuniao.tipoEvento = {id: 3,noTipoEvento: 'REUNIAO'};
             reuniao.flEventoAtivo = true;
             reuniao.pessoas = [];
@@ -143,6 +145,24 @@
         }
 
         /*CHIP*/
+
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: ReuniaoInserirReuniaoController,
+                templateUrl: '/modules/reuniao/help/modal-incluir-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
+
+
     }
 
 

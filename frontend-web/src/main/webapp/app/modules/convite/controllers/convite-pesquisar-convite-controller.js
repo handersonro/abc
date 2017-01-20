@@ -48,6 +48,7 @@
         vm.tipoEvento = {};
         vm.validacoes = {};
          vm.procurarLocal = ConviteRestService.obterLocais;
+         vm.trocaOrdenacao = trocaOrdenacao;
         inicializar();
         ///////////////////////////////////
         function inicializar() {
@@ -81,7 +82,7 @@
             Object.getOwnPropertyNames(vm.filtro).forEach(function (prop) {
                 vm.filtro[prop] = '';
             });
-            vm.convite.idLocalidade = '';
+            vm.filtro.idLocalidade = '';
 
             vm.tbResultado = false;
             vm.dto.totalResults = 0;
@@ -91,10 +92,13 @@
        function pesquisar() {
            var tipoEvento = {id: 2,noTipoEvento: 'CONVITE'};
 
-            vm.convite.tipoEvento = tipoEvento;
+
             vm.flEventoInternacional = vm.filtro.tipoSaida;
             var dataCadInicial = new Date(vm.filtro.dataCadInicial).getTime();
             var dataCadFinal = new Date(vm.filtro.dataCadFinal).getTime();
+
+            var dtInicioEvento = new Date(vm.filtro.dtInicioEvento).getTime();
+            var dtFimEvento = new Date(vm.filtro.dataCadFinal).getTime();
 
             if(vm.filtro.validado ==="Indiferente"){
                 vm.filtro.validado = "INDIFERENTE";
@@ -110,14 +114,15 @@
                 vm.filtro.tipoSaida = false;
             }
 
+
             $state.params.filtro.filtros.noObservacao = vm.filtro.noObservacao;
             $state.params.filtro.filtros.noDespacho = vm.filtro.noDespacho;
-            $state.params.filtro.filtros.tipoEvento = vm.convite.tipoEvento;
-            $state.params.filtro.filtros.idLocalidade = vm.filtro.idLocalidade;
+            $state.params.filtro.filtros.tipoEvento = tipoEvento;
+            $state.params.filtro.filtros.idLocalidade = vm.filtro.idLocalidade != undefined ? vm.filtro.idLocalidade.id : '';
             $state.params.filtro.filtros.noRemetente = vm.filtro.remetente;
             $state.params.filtro.filtros.descricao = vm.filtro.descricao;
-            $state.params.filtro.filtros.dtInicioEvento = vm.filtro.dtInicioEvento.getTime();;
-            $state.params.filtro.filtros.dtFimEvento = vm.filtro.dtFimEvento.getTime();;
+            $state.params.filtro.filtros.dtInicioEvento = dtInicioEvento;
+            $state.params.filtro.filtros.dtFimEvento = dtFimEvento;
             $state.params.filtro.filtros.dataCadInicial = dataCadInicial;
             $state.params.filtro.filtros.dataCadFinal   = dataCadFinal;
             $state.params.filtro.filtros.flEventoInternacional = vm.filtro.flEventoInternacional;
@@ -247,9 +252,19 @@
             console.log('aeaueauh', ((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
             vm.dto.currentPage = page;
             vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+            getMoreInfinityScrollData(vm.dto.currentPage);
         }
 
-        $scope.changePage = changePage;
+        function trocaOrdenacao() {
+
+            $state.params.filtro.sortFields = vm.dto.order;
+            $state.params.filtro.sortDirections = vm.dto.orderDirection;
+            $state.params.filtro.pageSize = vm.dto.pageSize;
+
+            getMoreInfinityScrollData(vm.dto.currentPage);
+        }
+
+        vm.changePage = changePage;
     }
 
 

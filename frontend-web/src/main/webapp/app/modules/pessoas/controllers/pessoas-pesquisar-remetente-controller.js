@@ -145,6 +145,6 @@
             getMoreInfinityScrollData(vm.dto.currentPage);
         }
 
-        $scope.changePage = changePage;
+        vm.changePage = changePage;
     }
 })();

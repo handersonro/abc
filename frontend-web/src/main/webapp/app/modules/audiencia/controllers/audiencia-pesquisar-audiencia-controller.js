@@ -51,7 +51,24 @@
         ///////////////////////////////////
 
         vm.limpar = function(){
-            vm.filtro = {};
+            vm.filtro = {
+                noAssunto: '',
+                noObservacao: '',
+                tipoEvento: '',
+                noDespacho: '',
+                noPauta: '',
+                idLocalidade: '',
+                noRemetente: '',
+                descricao: '',
+                dtInicioEvento:'',
+                dtFimEvento:'',
+                flEventoInternacional: '',
+                dataCadInicial:'',
+                dataCadFinal:''
+            };
+            vm.tbResultado = false;
+            vm.dto.totalResults = 0;
+            vm.dto.list = [];
         }
         function editar (audiencia){
             $state.go('app.private.audiencia.editar-audiencia', {audiencia: audiencia});
@@ -73,7 +90,7 @@
             $state.params.filtro.filtros.dataCadFinal = new Date(vm.filtro.dataCadFinal).getTime();
             $state.params.filtro.filtros.noRemetente = vm.filtro.remetente != undefined ? vm.filtro.remetente.noRemetente : '';
             $state.params.filtro.filtros.idLocalidade = vm.filtro.localidade != undefined ? vm.filtro.localidade.id : '';
-            $state.params.filtro.filtros.conviteValidacaoEnum = vm.filtro.validado != undefined ? vm.filtro.validado : '';
+            $state.params.filtro.filtros.conviteValidacao = vm.filtro.validado != undefined ? vm.filtro.validado : '';
             $state.params.filtro.filtros.noObservacao = vm.filtro.noObservacao;
             $state.params.filtro.filtros.noDespacho = vm.filtro.noDespacho;
             $state.params.filtro.filtros.noPauta = vm.filtro.noPauta;

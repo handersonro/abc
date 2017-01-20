@@ -62,7 +62,7 @@
                 templateUrl: MODULE_PATH+'views/audiencia-pesquisar-audiencia-view.html',
                 params: {
                     filtro: {
-                        filtros: {},
+                        filtros: {'conviteValidacao':''},
                         currentPage: 1,
                         pageSize: 20,
                         sortFields: 'id',

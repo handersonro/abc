@@ -4,15 +4,24 @@
         .controller('ConviteEditarConviteController', ConviteEditarConviteController);
 
     /* @ngInject */
-    function ConviteEditarConviteController($scope, $timeout, $http, AlertsService, $stateParams, $state, ConviteRestService,EventoService){
+    function ConviteEditarConviteController($scope, $timeout, $http, $mdDialog, AlertsService, $stateParams, $state, ConviteRestService,EventoService){
         var vm = this;
         vm.title = "Editar convite";
         vm.autoridade = "Ministro";
         vm.convite = $stateParams.convite;
 
+        if(vm.convite == null){
+            $state.go('app.private.convite.pesquisar-convite', {convite: convite});
+        }
+
+        vm.convite.dtInicioEvento = new Date(vm.convite.dtInicioEvento);
+        vm.convite.dtFimEvento = new Date(vm.convite.dtFimEvento);
+        vm.convite.dtCadastro = new Date(vm.convite.dtCadastro);
+
         vm.limpar = limpar;
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
+        vm.help = help;
         vm.validacoes = {};
         vm.procurarLocal = ConviteRestService.obterLocais;
         vm.procurarRemetente = ConviteRestService.obterRemetentes;
@@ -43,14 +52,25 @@
         inicializar();
         ///////////////////////////////////
         function inicializar(){
+
+        //caso seja recarregado a tela no editar o $stateParams.reuniao retorna vazio e quebra a tela
+        //redireiona a tela para o pesquisar novamente
+        if(vm.convite == null){
+            $state.go('app.private.reuniao.pesquisar-convite');
+        }
+
         var tipoEvento = {id: 2,noTipoEvento: 'CONVITE'};
         vm.convite.tipoEvento = tipoEvento;
-
 
         EventoService.obterLocalidadePeloId(vm.convite.idLocalidade)
             .success(function (data) {
                 vm.convite.idLocalidade = data;
-            });
+        });
+
+            EventoService.obterPaisPorId(vm.convite.idPais)
+                .success(function (data) {
+                    vm.convite.idPais = data;
+                });
 
             vm.validacoes=[
                 {validado : {label:'Sim',value:'SIM'}},
@@ -58,7 +78,8 @@
                 {validado : {label:'Indiferente',value:''}}
             ];
         }
-        console.log(vm.convite);
+
+
         function limpar(){
             vm.convite.dtInicioEvento = '';
             vm.convite.dtFimEvento = '';
@@ -77,13 +98,12 @@
         function salvar(convite){
             if(vm.convite.flEventoInternacional =='Evento nacional'){
                 vm.convite.flEventoInternacional = 0;
-                vm.convite.idPais = 1;
+                vm.convite.idPais.id = 1;
             }else if(vm.convite.flEventoInternacional =='Evento internacional'){
                 vm.convite.flEventoInternacional = 1;
+                vm.convite.noLocalEvento = vm.convite.idPais.noPais;
                 vm.convite.idPais = vm.convite.idPais.id;
             }
-
-            vm.convite.idLocalidade = vm.convite.idLocalidade.id;
 
             ConviteRestService.editar(convite).then(
                 function (retorno) {
@@ -96,6 +116,21 @@
         function showBtnSalvar(){
           return $scope.formConvite.$invalid;
         }
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: ConviteEditarConviteController,
+                templateUrl: '/modules/convite/help/modal-editar-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
 
     }
 })();

@@ -7,6 +7,7 @@
     function ReuniaoPesquisarReuniaoController($scope, $timeout, $log,$mdSidenav, $http, $mdDialog, $state,$location, $anchorScroll, $q, AlertsService, DTO,EventoService,ReuniaoService){
     var vm = this;
     var _itens = [];
+    vm.help = help;
     vm.dto = new DTO();
     vm.title = "Pesquisar reunião";
     vm.autoridade = 'Ministro';
@@ -103,7 +104,14 @@
         $state.params.filtro.filtros.noPauta        = vm.filtro.noPauta != undefined ? vm.filtro.noPauta : '';
         $state.params.filtro.filtros.tipoEvento     = vm.filtro.tipoEvento;
         $state.params.filtro.filtros.noLocalEvento  = vm.filtro.noLocalEvento != undefined ? vm.filtro.noLocalEvento : '';
-        $state.params.filtro.filtros.participantes  = vm.participantes != undefined ? vm.participantes : '';
+        var idPessoa = [];
+
+        if(vm.participantes != undefined){
+            vm.participantes.forEach(function (participante) {
+                idPessoa.push(participante.pessoa.id);
+            });
+        }
+        $state.params.filtro.filtros.participantes  = vm.participantes != undefined ? idPessoa : '';
 
         getMoreInfinityScrollData($state.params.filtro.currentPage);
 
@@ -112,6 +120,7 @@
     }
 
         function getMoreInfinityScrollData(pageNumber){
+            vm.dto.list = [];
             $state.params.filtro.currentPage = pageNumber;
 
             var promiseLoadMoreData = EventoService.consultarComFiltroSemLoader($state.params.filtro);
@@ -148,11 +157,22 @@
         return {name: chip, type: 'new'}
     }
 
-    function changePage(page){
-    	vm.dto.currentPage = page;
-    	vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
-    }
-    $scope.changePage = changePage;
+        function changePage(page) {
+            vm.dto.currentPage = page;
+            vm.dto.list = _itens.slice(((vm.dto.currentPage - 1) * vm.dto.pageSize), vm.dto.pageSize * vm.dto.currentPage);
+            getMoreInfinityScrollData(vm.dto.currentPage);
+        }
+
+        function trocaOrdenacao() {
+
+            $state.params.filtro.sortFields = vm.dto.order;
+            $state.params.filtro.sortDirections = vm.dto.orderDirection;
+            $state.params.filtro.pageSize = vm.dto.pageSize;
+
+            getMoreInfinityScrollData(vm.dto.currentPage);
+        }
+
+        vm.changePage = changePage;
 
         vm.filtro = {
             nome: '',
@@ -167,6 +187,8 @@
         Object.getOwnPropertyNames(vm.filtro).forEach(function (prop) {
             vm.filtro[prop] = '';
         });
+
+        vm.participantes = [];
 
         vm.tbResultado = false;
         vm.dto.totalResults = 0;
@@ -213,6 +235,23 @@
         };
         /*DIALOG*/
 
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: ReuniaoPesquisarReuniaoController,
+                templateUrl: '/modules/reuniao/help/modal-pesquisar-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
+
+
+
     /**
      * Build handler to open/close a SideNav; when animation finishes
      * report completion in console
@@ -228,22 +267,17 @@
       }, 200);
     }
 
-    function buildToggler(navID) {
-      return function() {
-        // Component lookup should always be available since we are not using `ng-if`
-        $mdSidenav(navID)
-          .toggle()
-          .then(function () {
-            $log.debug("toggle " + navID + " is done");
-          });
-      }
+        function buildToggler(navID) {
+            return function () {
+                // Component lookup should always be available since we are not using `ng-if`
+                $mdSidenav(navID)
+                    .toggle()
+                    .then(function () {
+                        $log.debug("toggle " + navID + " is done");
+                    });
+            }
+        }
     }
-  }
-/*    function changePage(page){
-        vm.dto.currentPage = page;
-        vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
-        getMoreInfinityScrollData($state.params.filtro.currentPage);
-    }
-    vm.changePage = changePage;*/
+
 
 })();

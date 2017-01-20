@@ -4,7 +4,7 @@
         .controller('ConviteInserirConviteController', ConviteInserirConviteController);
 
     /* @ngInject */
-    function ConviteInserirConviteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, AlertsService, ConviteRestService) {
+    function ConviteInserirConviteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, AlertsService, ConviteRestService,EventoService) {
         var vm = this;
         vm.title = "Incluir convite";
         vm.autoridade = 'Ministro';
@@ -51,15 +51,16 @@
         }
 
         function salvar(convite) {
+
             var tipoEvento = {id: 2,noTipoEvento: 'CONVITE'};
 
-            if (vm.convite.dataInicioEvento > vm.convite.dataFimEvento) {
+            if (vm.convite.dtInicioEvento > vm.convite.dtFimEvento) {
                 return AlertsService.success($filter('translate')('A13.4'));
             }
 
             vm.convite.tipoEvento = tipoEvento;
-            vm.convite.idLocalidade = vm.convite.idLocalidade.id;
             vm.convite.noLocalEvento = vm.convite.idLocalidade.localidadesUf;
+            vm.convite.idLocalidade = vm.convite.idLocalidade.id;
 
             vm.convite.flEventoAtivo = true;
             if(vm.convite.flEventoInternacional =='Evento nacional'){
@@ -69,9 +70,6 @@
                 vm.convite.flEventoInternacional = 1;
                 vm.convite.idPais = vm.convite.idPais.id;
             }
-
-
-
             ConviteRestService.salvar(vm.convite).then(
                 function (retorno) {
                     console.log(convite + 'No salvar');

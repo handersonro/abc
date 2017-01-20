@@ -3,6 +3,13 @@
         <h1 class="md-toolbar-tools">
             {{vm.title}}
         </h1>
+        <span flex></span>
+        <md-button class="md-fab md-mini md-acoes" aria-label="Use Android" ng-click="vm.help($event)">
+            <md-tooltip md-direction="left">
+                Ajuda
+            </md-tooltip>
+            <md-icon>&#xE8FD;</md-icon>
+        </md-button>
     </md-toolbar>
 </div>
 <md-content class="box">
@@ -27,7 +34,7 @@
                                   <label>
                                       Data inicial
                                   </label>
-                                  <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                  <input mdc-datetime-picker ng-disabled="!vm.filtro.dataCadInicial === false" date="true" time="true" type="text" short-time="true"
                                           min-date="minDate"
                                           format="DD/MM/YYYY HH:mm a"
                                           ng-model="vm.filtro.dtInicioEvento">
@@ -37,7 +44,7 @@
                                   <label>
                                       Data final
                                   </label>
-                                  <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                  <input mdc-datetime-picker ng-disabled="!vm.filtro.dataCadInicial === false" date="true" time="true" type="text" short-time="true"
                                           min-date="minDate"
                                           format="DD/MM/YYYY HH:mm a"
                                           ng-model="vm.filtro.dtFimEvento">
@@ -59,7 +66,7 @@
                                   <label>
                                       Data inicial
                                   </label>
-                                  <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                  <input mdc-datetime-picker ng-disabled="!vm.filtro.dtInicioEvento === false" date="true" time="true" type="text" short-time="true"
                                           min-date="minDate"
                                           format="DD/MM/YYYY HH:mm a"
                                           ng-model="vm.filtro.dataCadInicial">
@@ -68,7 +75,7 @@
                                   <label>
                                       Data final
                                   </label>
-                                  <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                  <input mdc-datetime-picker ng-disabled="!vm.filtro.dtInicioEvento === false" date="true" time="true" type="text" short-time="true"
                                           min-date="minDate"
                                           format="DD/MM/YYYY HH:mm a"
                                           ng-model="vm.filtro.dataCadFinal">
@@ -88,7 +95,7 @@
                             md-items="item in vm.querySearch(vm.searchText)"
                             md-item-text="item.noParticipanteInterno"
                             md-min-length="3"
-                            md-floating-label="Vincular participante">
+                            md-floating-label="Participante">
                         <span md-highlight-text="searchText">{{item.noParticipanteInterno}}</span>
                     </md-autocomplete>
                     <md-chip-template>
@@ -158,7 +165,7 @@
         </form>
     </div>
     <!-- resultado da busca -->
-    <div id="result-pesquisa" class="md-padding" ng-show="vm.tbResultado">
+    <div id="result-pesquisa" class="md-padding" ng-if="vm.dto.list.length > 0">
         <div class="table-responsive-vertical shadow-z-1">
             <!-- Table starts here -->
             <table id="table" class="table table-hover table-mc-green">
@@ -168,19 +175,19 @@
                             Ações
                         </th>
                         <th>
-                            Data da reunião <paginacao-sorting dto="vm.dto" field-name="dataReuniao"></paginacao-sorting>
+                            Data da reunião <paginacao-sorting dto="vm.dto" field-name="dtInicioEvento" ng-click="vm.trocaOrdenacao()"></paginacao-sorting>
                         </th>
                         <th>
-                            Data de cadastro<paginacao-sorting dto="vm.dto" field-name="dataCadastro"></paginacao-sorting>
+                            Data de cadastro<paginacao-sorting dto="vm.dto" field-name="dtCadastro" ng-click="vm.trocaOrdenacao()"></paginacao-sorting>
                         </th>
                         <th>
-                            Local da reunião<paginacao-sorting dto="vm.dto" field-name="localReuniao"></paginacao-sorting>
+                            Local da reunião<paginacao-sorting dto="vm.dto" field-name="noLocalEvento" ng-click="vm.trocaOrdenacao()"></paginacao-sorting>
                         </th>
                         <th>
-                            Pauta da reunião<paginacao-sorting dto="vm.dto" field-name="pautaReuniao"></paginacao-sorting>
+                            Pauta da reunião
                         </th>
                         <th>
-                            Assunto<paginacao-sorting dto="vm.dto" field-name="assunto"></paginacao-sorting>
+                            Assunto
                         </th>
 
                     </tr>

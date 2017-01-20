@@ -9,6 +9,8 @@
         vm.title = "Editar reunião";
         vm.autoridade = "Ministro";
         vm.reuniao = $stateParams.reuniao;
+        vm.help = help;
+        vm.isEdit = true;
 
         //caso seja recarregado a tela no editar o $stateParams.reuniao retorna vazio e quebra a tela
         //redireiona a tela para o pesquisar novamente
@@ -49,10 +51,10 @@
 
         function salvar(reuniao){
             reuniao.tipoEvento = {id: 3,noTipoEvento: 'REUNIAO'};
-            reuniao.idUf = vm.localidade.uf.id;
+/*            reuniao.idUf = vm.localidade.uf.id;
             reuniao.nuRegiao = vm.localidade.uf.nuRegiao;
             reuniao.noLocalEvento = vm.localidade.noLocalidade;
-            reuniao.idLocalidade = vm.localidade.id;
+            reuniao.idLocalidade = vm.localidade.id;*/
 
             reuniao.pessoasParaSeremRemovidas = vm.pessoasParaSeremRemovidas;
             reuniao.participanteInternos = vm.participantes;
@@ -102,5 +104,20 @@
                 vm.pessoasParaSeremRemovidas.push(chip.pessoa);
             }
         }
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: ReuniaoEditarReuniaoController,
+                templateUrl: '/modules/reuniao/help/modal-editar-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
     }
 })();
