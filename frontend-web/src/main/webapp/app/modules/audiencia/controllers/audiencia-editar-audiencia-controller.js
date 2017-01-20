@@ -10,6 +10,7 @@
         vm.buscaParticipanteExterno = buscaParticipanteExterno;
         vm.title = "Editar audiência";
         vm.audiencia = $stateParams.audiencia;
+        vm.help = help;
 
         if(vm.audiencia==null){
             $state.go('app.private.audiencia.pesquisar-audiencia');
@@ -154,5 +155,20 @@
             return retorno.promise;
         }
         /*DIALOG*/
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: AudienciaEditarAudienciaController,
+                templateUrl: '/modules/audiencia/help/modal-editar-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
     }
 })();
