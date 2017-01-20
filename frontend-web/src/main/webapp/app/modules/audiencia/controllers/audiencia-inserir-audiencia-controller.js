@@ -4,7 +4,7 @@
         .controller('AudienciaInserirAudienciaController', AudienciaInserirAudienciaController);
 
     /* @ngInject */
-    function AudienciaInserirAudienciaController($scope, $mdDialog, $timeout,  AlertsService, $filter, $q, EventoService,Principal){
+    function AudienciaInserirAudienciaController($scope, $mdDialog, $timeout, $state, AlertsService, $filter, $q, EventoService,Principal){
         var vm = this;
         vm.readonly = false;
         vm.selectedItem = null;
@@ -77,12 +77,10 @@
 
             audiencia.pessoas = pessoas;
 
-            //console.log(audiencia);
-
             EventoService.salvar(audiencia).then(
                 function (retorno) {
                     AlertsService.success('Registro incluído com sucesso.');
-                    $state.go('app.private.audiencia.pesquisar-audiencia', {}, {reload: true});
+                    $state.go('app.private.audiencia.inserir-audiencia', {}, {reload: true});
                 }
             );
         }

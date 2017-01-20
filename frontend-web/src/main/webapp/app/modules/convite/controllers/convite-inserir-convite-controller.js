@@ -75,7 +75,6 @@
             }
             ConviteRestService.salvar(vm.convite).then(
                 function (retorno) {
-                    console.log(convite + 'No salvar');
                     AlertsService.success('Registro incluído com sucesso.');
                     $state.go('app.private.convite.inserir-convite', {}, {reload: true});
                 }

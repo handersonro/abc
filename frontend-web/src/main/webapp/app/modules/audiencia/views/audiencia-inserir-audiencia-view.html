@@ -95,6 +95,7 @@
                             md-items="item in vm.buscaParticipanteExterno(vm.noParticipanteExterno)"
                             md-item-text="item.noParticipanteExterno"
                             md-min-length="3"
+                            md-match-case-insensitive="true"
                             md-floating-label="Vincular participante">
                         <span md-highlight-text="searchText">{{item.noParticipanteExterno}}</span>
                     </md-autocomplete>
