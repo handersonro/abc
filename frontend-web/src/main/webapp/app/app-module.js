@@ -38,7 +38,7 @@
 
 
             'pessoa',
-
+            'pluton-loader'
 
         ]).run(run);
 
