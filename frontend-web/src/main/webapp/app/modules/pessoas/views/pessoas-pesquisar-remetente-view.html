@@ -107,7 +107,7 @@
                     <td>{{ item.noRemetente }}</td>
                     <td>{{ item.noCargo }}</td>
                     <td>{{ (item.noEmail != "" && item.noEmail != '' && item.noEmail != null) ? item.noEmail : "Não informado" }}</td>
-                    <td>{{ item.nuTelefone != 0 ? (item.nuTelefone | mask:"(99) 9?9999-9999") : ("Não Informado")}}</td>
+                    <td>{{ (item.nuTelefone != 0 && item.nuTelefone != null) ? (item.nuTelefone | mask:"(99) 9?9999-9999") : ("Não Informado")}}</td>
                 </tr>
                 </tbody>
             </table>
