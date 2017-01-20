@@ -81,7 +81,9 @@
 
                     vm.dto.totalResults = data.totalResults;
                     vm.dto.list = data.list;
-                    $anchorScroll();
+                    $timeout(function () {
+                        $anchorScroll();
+                    },0);
                 },function (error) {
                     vm.tbResultado = false;
                     vm.dto.totalResults = 0;

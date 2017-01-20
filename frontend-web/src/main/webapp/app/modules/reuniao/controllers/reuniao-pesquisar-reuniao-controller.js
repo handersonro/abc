@@ -29,6 +29,7 @@
     vm.numberBuffer = '';
     vm.autocompleteDemoRequireMatch = true;
     vm.transformChip = transformChip;
+    vm.trocaOrdenacao = trocaOrdenacao;
      /*chip*/
     vm.querySearch = querySearch;
 
@@ -114,9 +115,6 @@
         $state.params.filtro.filtros.participantes  = vm.participantes != undefined ? idPessoa : '';
 
         getMoreInfinityScrollData($state.params.filtro.currentPage);
-
-        $location.hash('result-pesquisa');
-        $anchorScroll();
     }
 
         function getMoreInfinityScrollData(pageNumber){
@@ -133,7 +131,10 @@
 
                     vm.dto.totalResults = data.totalResults;
                     vm.dto.list = data.list;
-                    $anchorScroll();
+
+                    $timeout(function () {
+                        $anchorScroll();
+                    },0);
                 },function (error) {
                     vm.tbResultado = false;
                     vm.dto.totalResults = 0;
@@ -278,6 +279,5 @@
             }
         }
     }
-
 
 })();

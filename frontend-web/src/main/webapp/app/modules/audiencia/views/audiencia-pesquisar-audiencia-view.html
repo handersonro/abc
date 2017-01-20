@@ -153,27 +153,17 @@
       </form>
   </div>
   <!-- resultado da pesquisa-->
-  <div id="result-pesquisa" class="md-padding" ng-show="vm.tbResultado">
+  <div id="result-pesquisa" class="md-padding" ng-if="vm.dto.list.length > 0">
       <div class="table-responsive-vertical shadow-z-1">
           <!-- Table starts here -->
           <table id="table" class="table table-hover table-mc-green">
               <thead>
                   <tr>
-                      <th class="text-center">
-                          Ações
-                      </th>
-                      <th>
-                          Solicitante<paginacao-sorting dto="vm.dto" field-name="solicitante"></paginacao-sorting>
-                      </th>
-                      <th>
-                          Data de cadastro<paginacao-sorting dto="vm.dto" field-name="dataCadastro"></paginacao-sorting>
-                      </th>
-                      <th>
-                          Local<paginacao-sorting dto="vm.dto" field-name="local"></paginacao-sorting>
-                      </th>
-                      <th>
-                          Assunto<paginacao-sorting dto="vm.dto" field-name="assunto"></paginacao-sorting>
-                      </th>
+                      <th class="text-center"> Ações</th>
+                      <th> Solicitante <paginacao-sorting dto="vm.dto" field-name="remetente.noRemetente" ng-click="vm.trocaOrdenacao()"/> </th>
+                      <th> Data de cadastro <paginacao-sorting dto="vm.dto" field-name="dtCadastro" ng-click="vm.trocaOrdenacao()"/> </th>
+                      <th> Local <paginacao-sorting dto="vm.dto" field-name="noLocalEvento" ng-click="vm.trocaOrdenacao()"/> </th>
+                      <th> Assunto </th>
                   </tr>
               </thead>
               <tbody>

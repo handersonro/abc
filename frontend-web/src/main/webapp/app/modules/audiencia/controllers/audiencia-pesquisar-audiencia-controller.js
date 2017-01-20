@@ -11,13 +11,13 @@
         vm.procurarLocal = EventoService.obterLocais;
         vm.buscarRemetentePeloNome = buscarRemetentePeloNome;
         vm.title = "Pesquisar audiência";
-        vm.tbResultado = false;
         vm.validacoes = {};
         vm.pesquisar = pesquisar;
         vm.editar = editar;
         vm.listaAutoridades = {};
         vm.filtro = {};
         vm.autoridade = {noAutoridade : 'Ministro'};
+        vm.trocaOrdenacao = trocaOrdenacao;
         inicializar();
         function inicializar(){
             vm.listaAutoridades = [
@@ -66,7 +66,6 @@
                 dataCadInicial:'',
                 dataCadFinal:''
             };
-            vm.tbResultado = false;
             vm.dto.totalResults = 0;
             vm.dto.list = [];
         }
@@ -102,29 +101,26 @@
             $state.params.filtro.filtros.dtFimEvento = vm.filtro.dtFimEvento;
 
             getMoreInfinityScrollData($state.params.filtro.currentPage);
-
-            $location.hash('result-pesquisa');
-            // call $anchorScroll()
-            $anchorScroll();
         }
 
         function getMoreInfinityScrollData(pageNumber){
+            vm.dto.list = [];
+
             $state.params.filtro.currentPage = pageNumber;
 
             var promiseLoadMoreData = EventoService.consultarComFiltroSemLoader($state.params.filtro);
 
             promiseLoadMoreData.then(
                 function(data) {
-                    vm.tbResultado = true;
 
-
+                    $location.hash('result-pesquisa');
                     vm.dto.totalResults = data.totalResults;
                     vm.dto.list = data.list;
 
-                    $location.hash('result-pesquisa');
-                    $anchorScroll();
+                    $timeout(function () {
+                        $anchorScroll();
+                    },0);
                 },function (error) {
-                    vm.tbResultado = false;
                     vm.dto.totalResults = 0;
                     vm.dto.list = [];
                 }
@@ -190,6 +186,14 @@
                     retorno.reject(alert('Não foi possivel carregar os dados'));
                 });
             return retorno.promise;
+        }
+
+        function trocaOrdenacao() {
+            $state.params.filtro.sortFields = vm.dto.order;
+            $state.params.filtro.sortDirections = vm.dto.orderDirection;
+            $state.params.filtro.pageSize = vm.dto.pageSize;
+
+            getMoreInfinityScrollData(vm.dto.currentPage);
         }
     }
 })();

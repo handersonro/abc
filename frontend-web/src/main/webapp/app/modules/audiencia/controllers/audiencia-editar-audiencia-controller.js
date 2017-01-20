@@ -16,6 +16,9 @@
             $state.go('app.private.audiencia.pesquisar-audiencia');
         }
 
+        vm.audiencia.dtFimEvento = new Date(vm.audiencia.dtFimEvento);
+        vm.audiencia.dtCadastro = new Date(vm.audiencia.dtCadastro);
+
         vm.remetente =  vm.audiencia.remetente;
         vm.participantes = [];
 
