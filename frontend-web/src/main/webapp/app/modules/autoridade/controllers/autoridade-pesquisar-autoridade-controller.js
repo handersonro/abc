@@ -65,7 +65,7 @@
         function help(ev) {
             $mdDialog.show({
                 controller: AutoridadePesquisarAutoridadeController,
-                templateUrl: '/modules/autoridade/help/modal-help.html',
+                templateUrl: 'modules/autoridade/help/modal-help.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

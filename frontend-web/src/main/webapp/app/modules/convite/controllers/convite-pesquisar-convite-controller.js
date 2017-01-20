@@ -126,8 +126,7 @@
             $state.params.filtro.filtros.dtFimEvento = dtFimEvento;
             $state.params.filtro.filtros.dataCadInicial = dataCadInicial;
             $state.params.filtro.filtros.dataCadFinal   = dataCadFinal;
-            $state.params.filtro.filtros.flEventoInternacional = vm.filtro.flEventoInternacional;
-            $state.params.filtro.filtros.conviteValidacaoEnum = vm.filtro.validado;
+            $state.params.filtro.filtros.conviteValidacao = vm.filtro.validado;
             $state.params.filtro.filtros.flEventoInternacional = vm.filtro.tipoSaida;
             $state.params.filtro.currentPage = 1;
 

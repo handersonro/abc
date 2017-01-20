@@ -40,10 +40,6 @@
                 {validado : {label:'Indiferente',value:''}}
             ];
 
-            if (vm.audiencia.dtInicioEvento.getTime() > vm.audiencia.dtFimEvento.getTime()) {
-                return AlertsService.success('O início do evento deve ser anterior ao término.');
-            }
-
             EventoService.obterLocalidadePeloId(vm.audiencia.idLocalidade)
                 .success(function (data) {
                     vm.localidade = data;
