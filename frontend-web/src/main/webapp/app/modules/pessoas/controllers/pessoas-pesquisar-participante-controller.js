@@ -7,7 +7,6 @@
     function PessoasPesquisarParticipanteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, DTO, ParticipanteInternoService, ParticipanteExternoService){
         var vm = this;
         var _itens = [];
-        vm.tbResultado = false;
         vm.editar = editar;
         vm.pesquisar = pesquisar;
         vm.filtro = {};
@@ -31,12 +30,10 @@
                 vm.filtro[prop] = '';
             });
 
-            vm.tbResultado = false;
             vm.dto.totalResults = 0;
             vm.dto.list = [];
         }
         function pesquisar (){
-            vm.tbResultado = false;
             vm.dto.list = [];
             vm.dto.totalResults = 0;
             $state.params.filtro.filtros.noParticipanteExterno = vm.filtro.nome;
@@ -48,10 +45,14 @@
         }
 
         function getMoreInfinityScrollData(pageNumber){
+            vm.dto.list = [];
             $state.params.filtro.currentPage = pageNumber;
+
             var promiseLoadMoreData = ParticipanteExternoService.consultarComFiltroSemLoader($state.params.filtro);
-            promiseLoadMoreData.then(function(data){
-                    vm.dto.list = [];
+
+            promiseLoadMoreData.then(
+                function(data){
+                    $location.hash('result-pesquisa');
                     vm.dto.totalResults = data.totalResults;
                     angular.forEach(data.list, function (value, key){
 
@@ -70,11 +71,11 @@
                         );
                     });
 
-                    $location.hash('result-pesquisa');
-                    $anchorScroll();
-                    vm.tbResultado = true;
+                    $timeout(function () {
+                        $anchorScroll();
+                    },0);
+
                 },function (error) {
-                    vm.tbResultado = false;
                     vm.dto.totalResults = 0;
                     vm.dto.list = [];
                 }

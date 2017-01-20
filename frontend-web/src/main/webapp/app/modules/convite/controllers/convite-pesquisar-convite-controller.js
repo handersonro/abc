@@ -147,11 +147,15 @@
                 function(data) {
                     vm.tbResultado = true;
 
-                    $location.hash('result-pesquisa');
 
+                    vm.dto.list = [];
                     vm.dto.totalResults = data.totalResults;
                     vm.dto.list = data.list;
-                    $anchorScroll();
+
+                    $timeout(function(){
+                        $location.hash('result-pesquisa');
+                        $anchorScroll();
+                    });
                 },function (error) {
                     vm.tbResultado = false;
                     vm.dto.totalResults = 0;
