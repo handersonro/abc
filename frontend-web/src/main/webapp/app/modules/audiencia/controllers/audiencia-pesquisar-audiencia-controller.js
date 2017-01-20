@@ -113,13 +113,15 @@
             promiseLoadMoreData.then(
                 function(data) {
 
-                    $location.hash('result-pesquisa');
+                    vm.dto.list = [];
                     vm.dto.totalResults = data.totalResults;
                     vm.dto.list = data.list;
 
-                    $timeout(function () {
+                    $timeout(function(){
+                        $location.hash('result-pesquisa');
                         $anchorScroll();
-                    },0);
+                    });
+
                 },function (error) {
                     vm.dto.totalResults = 0;
                     vm.dto.list = [];

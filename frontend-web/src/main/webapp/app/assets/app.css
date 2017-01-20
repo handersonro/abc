@@ -403,3 +403,11 @@ paginacao-sorting.ng-isolate-scope {
     background-repeat: no-repeat;
     background-position: center;
 }
+
+
+.md-input[type=password]:-webkit-autofill ~ label:not(.md-no-float) {
+        transform: translate3d(0, 6px, 0) scale(0.75);
+        transition: transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.4s, width cubic-bezier(0.25, 0.8, 0.25, 1) 0.4s;
+        width: ~"calc((100% - 18px) / 0.75)";
+        color: rgba(0,0,0,0.54);
+    }
