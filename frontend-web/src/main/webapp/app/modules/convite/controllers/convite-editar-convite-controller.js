@@ -4,7 +4,7 @@
         .controller('ConviteEditarConviteController', ConviteEditarConviteController);
 
     /* @ngInject */
-    function ConviteEditarConviteController($scope, $timeout, $http, AlertsService, $stateParams, $state, ConviteRestService,EventoService){
+    function ConviteEditarConviteController($scope, $timeout, $http, $mdDialog, AlertsService, $stateParams, $state, ConviteRestService,EventoService){
         var vm = this;
         vm.title = "Editar convite";
         vm.autoridade = "Ministro";
@@ -13,6 +13,7 @@
         vm.limpar = limpar;
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
+        vm.help = help;
         vm.validacoes = {};
         vm.procurarLocal = ConviteRestService.obterLocais;
         vm.procurarRemetente = ConviteRestService.obterRemetentes;
@@ -103,6 +104,21 @@
         function showBtnSalvar(){
           return $scope.formConvite.$invalid;
         }
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: ConviteEditarConviteController,
+                templateUrl: '/modules/convite/help/modal-editar-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
 
     }
 })();
