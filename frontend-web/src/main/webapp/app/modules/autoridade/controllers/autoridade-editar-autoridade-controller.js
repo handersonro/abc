@@ -6,6 +6,7 @@
     /* @ngInject */
     function AutoridadeEditarAutoridadeController($scope, $timeout, $http, $mdDialog, AlertsService, $stateParams, $state,AutoridadeService){
         var vm = this;
+        vm.isEdicao = true;
         vm.title = "Editar autoridade";
         vm.autoridade = $stateParams.autoridade;
 

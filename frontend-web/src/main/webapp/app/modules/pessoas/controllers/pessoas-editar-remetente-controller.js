@@ -6,6 +6,7 @@
     /* @ngInject */
     function PessoasEditarRemetenteController($scope, $timeout, $http, AlertsService, $stateParams, $state, RemetenteService){
         var vm = this;
+        vm.isEdicao = true;
         vm.title = "Editar remetente";
         vm.remetente = $stateParams.remetente;
 
