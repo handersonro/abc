@@ -6,6 +6,7 @@
     /* @ngInject */
     function ConviteEditarConviteController($scope, $timeout, $http, $mdDialog, AlertsService, $stateParams, $state, ConviteRestService,EventoService){
         var vm = this;
+        vm.isEdicao = true;
         vm.title = "Editar convite";
         vm.autoridade = "Ministro";
         vm.convite = $stateParams.convite;
