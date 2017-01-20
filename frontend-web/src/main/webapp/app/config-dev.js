@@ -1,7 +1,7 @@
 (function(){
     angular
         .module('sisagmApp')
-        .constant('baseURL','http://192.168.56.10:28080/sisagm-api/api/')
+        .constant('baseURL','http://sturdeswildfly01:8080/sisagm-api/api/')
         .config(configDev);
 
     /* @ngInject */

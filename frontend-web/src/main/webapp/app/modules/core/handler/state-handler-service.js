@@ -17,7 +17,7 @@
         function initialize() {
 
             var stateChangeStart = $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams, fromState) {
-                console.log('iniciou a mudanca',fromState)
+                console.log('iniciou a mudanca')
 
                 $rootScope.toState = toState;
                 $rootScope.toStateParams = toStateParams;
