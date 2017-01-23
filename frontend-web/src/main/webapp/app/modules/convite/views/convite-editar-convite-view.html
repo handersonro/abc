@@ -135,7 +135,7 @@
                     <md-icon>
                         &#xE7F1;
                     </md-icon>
-                    <input name="cidade" type="text" ng-model="vm.convite.noCidadeInternacional" required md-maxlength="150"/>
+                    <input name="cidade" type="text" ng-model="vm.convite.noCidadeInternacional" required md-maxlength="150" maxlength="150"/>
                     <custom-validator-messages input-name="cidade" ></custom-validator-messages>
                 </md-input-container>
             </div>
@@ -165,7 +165,7 @@
                     <label>
                         Despacho
                     </label>
-                    <textarea ng-model="vm.convite.noDespacho" md-maxlength="150" rows="3" md-select-on-focus>
+                    <textarea ng-model="vm.convite.noDespacho" md-maxlength="150" maxlength="150" rows="3" md-select-on-focus>
                     </textarea>
                 </md-input-container>
             </div>

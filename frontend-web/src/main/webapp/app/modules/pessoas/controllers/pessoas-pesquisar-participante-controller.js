@@ -4,7 +4,7 @@
         .controller('PessoasPesquisarParticipanteController', PessoasPesquisarParticipanteController);
 
     /* @ngInject */
-    function PessoasPesquisarParticipanteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, DTO, ParticipanteInternoService, ParticipanteExternoService){
+    function PessoasPesquisarParticipanteController($scope, $timeout, $window, $mdSidenav, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, DTO, ParticipanteInternoService, ParticipanteExternoService){
         var vm = this;
         var _itens = [];
         vm.editar = editar;
@@ -120,6 +120,8 @@
                         AlertsService.success('Participante removido com sucesso.');
                         var index = vm.dto.list.indexOf(participante);
                         vm.dto.list.splice(index,1);
+
+                        $window.scrollTo(0, 0);
                     }
                 );
                 $scope.status = 'You decided to get rid of your debt.';

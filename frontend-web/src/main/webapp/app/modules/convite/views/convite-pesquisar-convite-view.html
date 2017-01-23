@@ -97,7 +97,7 @@
                     <md-icon>
                         &#xE8A6;
                     </md-icon>
-                    <input name="text" type="text" ng-model="vm.filtro.remetente" md-maxlength="50"
+                    <input name="text" type="text" ng-model="vm.filtro.remetente" md-maxlength="50" maxlength="50"
                     />
                     <div ng-messages="formParticipante.email.$error">
                         <div ng-message="md-maxlength">
@@ -127,7 +127,6 @@
                             md-items="item in vm.procurarLocal(textoLocal)"
                             md-item-text="item.localidadesUf"
                             md-min-length="3"
-                            required="true"
                             md-floating-label="Local do evento">
                         <md-item-template>
                             <span md-highlight-text="textoLocal" md-highlight-flags="^i">{{item.localidadesUf}}</span>
@@ -156,14 +155,14 @@
                     <label>
                         Observação
                     </label>
-                    <textarea ng-model="vm.filtro.noObservacao" md-maxlength="500" rows="3" md-select-on-focus>
+                    <textarea ng-model="vm.filtro.noObservacao" md-maxlength="500" maxlength="500" rows="3" md-select-on-focus>
                     </textarea>
                 </md-input-container>
                 <md-input-container class="md-block" flex flex-xs="100">
                     <label>
                         Despacho
                     </label>
-                    <textarea ng-model="vm.filtro.noDespacho" md-maxlength="500" rows="3" md-select-on-focus>
+                    <textarea ng-model="vm.filtro.noDespacho" md-maxlength="500" maxlength="500"rows="3" md-select-on-focus>
                     </textarea>
                 </md-input-container>
             </div>
@@ -172,7 +171,7 @@
                     <label>
                         Descrição
                     </label>
-                    <textarea ng-model="vm.filtro.descricao" md-maxlength="500" rows="3" md-select-on-focus>
+                    <textarea ng-model="vm.filtro.descricao" md-maxlength="500" maxlength="500" rows="3" md-select-on-focus>
                     </textarea>
                 </md-input-container>
             </div>

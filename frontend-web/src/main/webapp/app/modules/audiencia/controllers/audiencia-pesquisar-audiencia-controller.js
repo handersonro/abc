@@ -4,7 +4,7 @@
         .controller('AudienciaPesquisarAudienciaController', AudienciaPesquisarAudienciaController);
 
     /* @ngInject */
-    function AudienciaPesquisarAudienciaController($scope, $mdDialog, $http, $q, $timeout, AlertsService, $filter, $location, $anchorScroll, $state, DTO, EventoService,Principal){
+    function AudienciaPesquisarAudienciaController($scope, $mdDialog, $http, $window, $q, $timeout, AlertsService, $filter, $location, $anchorScroll, $state, DTO, EventoService,Principal){
         var vm = this;
         vm.help = help;
         var _itens = [];
@@ -164,6 +164,8 @@
                         AlertsService.success('Audiência removida com sucesso.');
                         var index = vm.dto.list.indexOf(audiencia);
                         vm.dto.list.splice(index,1);
+
+                        $window.scrollTo(0, 0);
                     }
                 );
 

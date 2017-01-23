@@ -6,6 +6,7 @@
     /* @ngInject */
     function ReuniaoEditarReuniaoController($scope, $timeout, $http, AlertsService, $mdDialog, $stateParams, $state, $q,ConviteRestService, EventoService, ReuniaoService,Principal){
         var vm = this;
+        vm.isEdicao = true;
         vm.title = "Editar reunião";
         Principal.identity().then(function(account) {
             vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;

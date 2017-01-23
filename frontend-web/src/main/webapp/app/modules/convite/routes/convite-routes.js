@@ -38,7 +38,7 @@
                 resolve: {
                 },
                 data: {
-                    authorities: []
+                    authorities: ['INCLUIR_CONVITE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.editar-convite', {
@@ -52,7 +52,7 @@
                     convite: null
                 },
                 data: {
-                    authorities: []
+                    authorities: ['PESQUISAR_CONVITE']
                 }
             })
 
@@ -73,7 +73,7 @@
                 resolve: {
                 },
                 data: {
-                    authorities: []
+                    authorities: ['PESQUISAR_CONVITE']
                 }
             });
     }

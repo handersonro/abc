@@ -38,7 +38,7 @@
                 resolve: {
                 },
                 data: {
-                    authorities: []
+                    authorities: ['INCLUIR_REUNIAO']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.editar-reuniao', {
@@ -52,7 +52,7 @@
                     reuniao: null
                 },
                 data: {
-                    authorities: []
+                    authorities: ['PESQUISAR_REUNIAO']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.pesquisar-reuniao', {
@@ -73,7 +73,7 @@
                 resolve: {
                 },
                 data: {
-                    authorities: []
+                    authorities: ['PESQUISAR_REUNIAO']
                 }
             });
     }
