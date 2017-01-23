@@ -366,6 +366,9 @@ paginacao-sorting.ng-isolate-scope {
 .info-user span .info-span {
     padding-left: 23px;
 }
+.info-user .md-button.md-default-theme:not([disabled]):hover, .md-button:not([disabled]):hover{
+    background-color: transparent;
+}
 /*ALERTAS DO SISTEMA*/
 .alert {
     padding: 15px;
