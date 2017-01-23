@@ -11,7 +11,8 @@
         if(vm.isAuthenticated){
             // location.reload();
             $state.go("app.private.home.pagina-inicial");
-            console.log('VOLTOU')
+            history.go(0);
+
         }
 
         // $scope.login =function(){
