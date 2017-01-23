@@ -25,6 +25,44 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+
+        <profile>
+            <id>desenvolvimento</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <ambiente.nome>DES</ambiente.nome>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>teste</id>
+
+            <properties>
+                <ambiente.nome>TESTE</ambiente.nome>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>homologacao</id>
+
+            <properties>
+                <ambiente.nome>HOM</ambiente.nome>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>producao</id>
+
+            <properties>
+                <ambiente.nome>PROD</ambiente.nome>
+            </properties>
+        </profile>
+
+    </profiles>
+
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
@@ -67,6 +105,14 @@
                                 <include>**</include>
                             </includes>
                             <targetPath>.</targetPath>
+                        </resource>
+                        <resource>
+                            <directory>${basedir}/src/main/webapp/app</directory>
+                            <filtering>true</filtering>
+                            <targetPath>app</targetPath>
+                            <includes>
+                                <include>**/config-dev.js</include>
+                            </includes>
                         </resource>
                     </webResources>
                     <warSourceExcludes>app/**,bower_components/**,node_modules/**,test/**,e2e/**, **-test.js, **</warSourceExcludes>

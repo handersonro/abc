@@ -4,10 +4,12 @@
         .controller('SisagmHeaderController', SisagmHeaderController);
 
     /* @ngInject */
-    function SisagmHeaderController($scope, $mdMedia, $timeout, $rootScope, $state,$localStorage,Principal){
+    function SisagmHeaderController($scope, $mdMedia, $timeout, $rootScope, $state,$localStorage,Principal,versaoProjeto, ambiente){
         var vm = this;
         vm.isAuthenticated = Principal.isAuthenticated();
-
+        vm.versaoProjeto = versaoProjeto;
+        vm.ambiente = ambiente;
+        console.log(versaoProjeto);
 
         $scope.showLogoutButton = Principal.isAuthenticated();
         if(Principal.isAuthenticated()){
