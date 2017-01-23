@@ -20,7 +20,7 @@
     <div class="md-padding">
         <form name="formPesquisaConvite">
             <!-- conteudo -->
-            <div layout="row" layout-xs="column"  layout-align="space-around center">
+            <div layout="row" layout-xs="column">
                 <div flex="50" flex-xs="100">
                     <div class="panel">
                         <div class="panel-title bg-panel-default">
@@ -29,8 +29,8 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                          <div layout-gt-xs="row">
-                                <md-input-container flex-gt-xs>
+                          <div layout="row" layout-xs="column">
+                                <md-input-container flex="50" flex-xs="100">
                                   <label>
                                       Data inicial
                                   </label>
@@ -40,7 +40,7 @@
                                          ng-model="vm.filtro.dtInicioEvento"
                                          text-cancel="Cancelar">
                                 </md-input-container>
-                                <md-input-container>
+                                <md-input-container flex>
                                   <label>
                                       Data final
                                   </label>
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-                <div flex="50" flex-xs="100">
+                <div flex>
                     <div class="panel ">
                         <div class="panel-title bg-panel-default">
                             <h3>
@@ -62,8 +62,8 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                          <div layout-gt-xs="row">
-                                <md-input-container flex-gt-xs>
+                          <div layout="row" layout-xs="column">
+                                <md-input-container flex="50" flex-xs="100">
                                   <label>
                                       Data inicial
                                   </label>
@@ -74,7 +74,7 @@
                                          text-cancel="Cancelar">
                                 </md-input-container>
 
-                                <md-input-container>
+                                <md-input-container flex>
                                   <label>
                                       Data final
                                   </label>

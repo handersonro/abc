@@ -12,8 +12,8 @@
   <div class="md-padding">
       <form name="formPesquisaRelatorioAudiencia">
           <!-- conteudo -->
-          <div layout="row" layout-xs="column"  layout-align="left center">
-            <md-input-container flex="50">
+          <div layout="row" layout-xs="column" >
+            <md-input-container flex="50" flex-xs="100">
                 <label>
                     Data inicial
                 </label>
@@ -33,7 +33,7 @@
             </md-input-container>
           </div>
           <div layout="row" layout-xs="column">
-              <md-input-container flex="50" class="md-icon-float md-block">
+              <md-input-container flex="50" flex-xs="100" class="md-icon-float md-block">
                   <label>
                       Solicitante
                   </label>
@@ -48,7 +48,7 @@
                       </div>
                   </div>
               </md-input-container>
-              <md-input-container flex="50" class="md-icon-float md-block">
+              <md-input-container flex class="md-icon-float md-block">
                   <label>
                       Cargo solicitante
                   </label>
@@ -66,26 +66,25 @@
               <md-checkbox ng-model="myForm.$invalid">Inverter cargo solicitante</md-checkbox>
           </div>
           <div layout="row" layout-xs="column">
-              <div flex="50" layout="row" layout-align="center center">
-                  <md-autocomplete
-                        flex
-                        md-no-cache="true"
-                        md-selected-item="vm.filtro.selectedItem"
-                        md-input-name="local"
-                        md-search-text="vm.textoLocal"
-                        md-items="item in vm.procurarLocal(vm.textoLocal)"
-                        md-item-text="item.local"
-                        md-min-length="1"
-                        md-input-maxlength="150"
-                        md-floating-label="Local do evento">
-                      <md-item-template>
-                        <span md-highlight-text="vm.textoLocal" md-highlight-flags="^i">{{item.local}}</span>
-                      </md-item-template>
-                      <md-not-found>
-                        Nenhum local de evento "{{vm.textoLocal}}" foi encontrado
-                      </md-not-found>
-                    </md-autocomplete>
-              </div>
+              <md-autocomplete
+                    flex
+                    flex-xs="100"
+                    md-no-cache="true"
+                    md-selected-item="vm.filtro.selectedItem"
+                    md-input-name="local"
+                    md-search-text="vm.textoLocal"
+                    md-items="item in vm.procurarLocal(vm.textoLocal)"
+                    md-item-text="item.local"
+                    md-min-length="1"
+                    md-input-maxlength="150"
+                    md-floating-label="Local do evento">
+                  <md-item-template>
+                    <span md-highlight-text="vm.textoLocal" md-highlight-flags="^i">{{item.local}}</span>
+                  </md-item-template>
+                  <md-not-found>
+                    Nenhum local de evento "{{vm.textoLocal}}" foi encontrado
+                  </md-not-found>
+              </md-autocomplete>
               <md-input-container class="md-icon-float md-block" flex>
                   <label>
                       Validado
