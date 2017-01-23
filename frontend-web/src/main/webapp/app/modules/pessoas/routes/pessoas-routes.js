@@ -83,7 +83,7 @@
                 resolve: {
                 },
                 data: {
-                    authorities: ['INSERIR_REMETENTE']
+                    authorities: ['INCLUIR_REMETENTE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.pesquisar-remetente', {

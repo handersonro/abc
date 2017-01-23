@@ -38,7 +38,7 @@
                 resolve: {
                 },
                 data: {
-                    authorities: []
+                    authorities: ['INCLUIR_AUTORIDADE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.vincular-autoridade', {
@@ -49,7 +49,7 @@
                 resolve: {
                 },
                 data: {
-                    authorities: []
+                    authorities: ['VINCULAR_AUTORIDADE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.editar-autoridade', {
@@ -63,7 +63,7 @@
                     autoridade: null
                 },
                 data: {
-                    authorities: []
+                    authorities: ['PESQUISAR_AUTORIDADE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.pesquisar-autoridade', {
@@ -83,7 +83,7 @@
                 resolve: {
                 },
                 data: {
-                    authorities: []
+                    authorities: ['PESQUISAR_AUTORIDADE']
                 }
             });
     }

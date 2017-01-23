@@ -38,7 +38,7 @@
                 resolve: {
                 },
                 data: {
-                    authorities: []
+                    authorities: ['INCLUIR_AUDIENCIA']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.editar-audiencia', {
@@ -52,7 +52,7 @@
                     audiencia: null
                 },
                 data: {
-                    authorities: []
+                    authorities: ['PESQUISAR_AUDIENCIA']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.pesquisar-audiencia', {
@@ -72,7 +72,7 @@
                 resolve: {
                 },
                 data: {
-                    authorities: []
+                    authorities: ['PESQUISAR_AUDIENCIA']
                 }
             });
     }
