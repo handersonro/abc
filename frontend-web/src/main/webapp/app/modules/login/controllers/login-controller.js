@@ -4,14 +4,14 @@
         .controller('LoginController', LoginController);
 
     /* @ngInject */
-    function LoginController($scope,$state,Principal){
+    function LoginController($scope,$state,Principal,$localStorage){
         var vm = this;
-
+        console.log('ESTOU AQUI')
         vm.isAuthenticated = Principal.isAuthenticated();
-        if(vm.isAuthenticated){
+        if($localStorage.authenticationToken !== undefined){
             // location.reload();
             $state.go("app.private.home.pagina-inicial");
-            // history.go(0);
+            history.go(0);
 
         }
 
