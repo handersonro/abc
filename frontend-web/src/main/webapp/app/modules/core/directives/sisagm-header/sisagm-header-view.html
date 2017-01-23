@@ -1,8 +1,7 @@
 <div flex >
-    <a ng-show="showLogoutButton" ui-sref="app.private.home.pagina-inicial">
+    <a ui-sref="app.private.home.pagina-inicial">
         <img class="logo-mtur hide-xs hide-sm show-md show-gt-lg" src="assets/img/logo-sisagm.png">
     </a>
-    <img  ng-show="!showLogoutButton" class="logo-mtur hide-xs hide-sm show-md show-gt-lg" src="assets/img/logo-sisagm.png">
     <div layout="row" layout-align="end center">
         <div ng-show="showLogoutButton"  class="btn-action info-user">
             <span><md-icon style="color: #fff;">&#xE853;</md-icon> {{nomeUsuarioLogado}}
