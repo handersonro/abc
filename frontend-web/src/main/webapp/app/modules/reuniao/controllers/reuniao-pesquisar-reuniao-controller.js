@@ -4,7 +4,7 @@
         .controller('ReuniaoPesquisarReuniaoController', ReuniaoPesquisarReuniaoController);
 
     /* @ngInject */
-    function ReuniaoPesquisarReuniaoController($scope, $timeout, $log,$mdSidenav, $http, $mdDialog, $state,$location, $anchorScroll, $q, AlertsService, DTO,EventoService,ReuniaoService,Principal){
+    function ReuniaoPesquisarReuniaoController($scope, $window, $timeout, $log,$mdSidenav, $http, $mdDialog, $state,$location, $anchorScroll, $q, AlertsService, DTO,EventoService,ReuniaoService,Principal){
     var vm = this;
     var _itens = [];
     vm.help = help;
@@ -229,6 +229,8 @@
                         AlertsService.success('Registro removido com sucesso.');
                         var index = vm.dto.list.indexOf(reuniao);
                         vm.dto.list.splice(index,1);
+
+                        $window.scrollTo(0, 0);
                     }
                 );
                 $scope.status = 'You decided to get rid of your debt.';

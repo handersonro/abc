@@ -33,7 +33,7 @@
         .controller('ConvitePesquisarConviteController', ConvitePesquisarConviteController);
 
     /* @ngInject */
-    function ConvitePesquisarConviteController($scope, $timeout, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, ConviteRestService, DTO,Principal) {
+    function ConvitePesquisarConviteController($scope, $timeout, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, ConviteRestService, DTO,Principal, $window) {
         var vm = this;
         var _itens = [];
         vm.dto = new DTO();
@@ -217,6 +217,8 @@
                         AlertsService.success('Remetente removido com sucesso.');
                         var index = vm.dto.list.indexOf(convite);
                         vm.dto.list.splice(index,1);
+
+                        $window.scrollTo(0, 0);
                     }
                 );
                 $scope.status = 'You decided to get rid of your debt.';
