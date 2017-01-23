@@ -35,19 +35,19 @@
                                       Data inicial
                                   </label>
                                   <input mdc-datetime-picker ng-disabled="!vm.filtro.dataCadInicial === false" date="true" time="true" type="text" short-time="true"
-                                          min-date="minDate"
-                                          format="DD/MM/YYYY HH:mm a"
-                                          ng-model="vm.filtro.dtInicioEvento"
-                                            text-cancel="Cancelar">
+                                         min-date="minDate"
+                                         format="DD/MM/YYYY HH:mm a"
+                                         ng-model="vm.filtro.dtInicioEvento"
+                                         text-cancel="Cancelar">
                                 </md-input-container>
                                 <md-input-container>
                                   <label>
                                       Data final
                                   </label>
                                   <input mdc-datetime-picker ng-disabled="!vm.filtro.dataCadInicial === false" date="true" time="true" type="text" short-time="true"
-                                          min-date="minDate"
-                                          format="DD/MM/YYYY HH:mm a"
-                                          ng-model="vm.filtro.dtFimEvento"
+                                         min-date="minDate"
+                                         format="DD/MM/YYYY HH:mm a"
+                                         ng-model="vm.filtro.dtFimEvento"
                                          text-cancel="Cancelar">
                                 </md-input-container>
                           </div>
@@ -117,8 +117,7 @@
             </div>
 
             <div layout="row" layout-xs="column">
-                <div class="" flex="50" layout="row" layout-align="center center">
-
+                <div  flex="50" flex-xs="100"  layout="row" layout-align="center center">
                     <md-autocomplete
                             flex
                             md-no-cache="true"
