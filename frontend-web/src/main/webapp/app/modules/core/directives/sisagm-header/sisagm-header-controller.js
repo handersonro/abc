@@ -9,7 +9,6 @@
         vm.isAuthenticated = Principal.isAuthenticated();
         vm.versaoProjeto = versaoProjeto;
         vm.ambiente = ambiente;
-        console.log(versaoProjeto);
 
         $scope.showLogoutButton = Principal.isAuthenticated();
         if(Principal.isAuthenticated()){

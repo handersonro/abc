@@ -1,6 +1,6 @@
 <div flex >
     <div class="box-amb">
-        <img src="/assets/img/amb-des.png" ng-if="vm.ambiente == 'DES'">
+        <img src="/assets/img/amb-des.png" ng-if="vm.ambiente == 'DES' || vm.ambiente == '${ambiente.nome}'">
         <img src="/assets/img/amb-hom.png" ng-if="vm.ambiente == 'HOM'"/>
         <img src="/assets/img/amb-tqs.png" ng-if="vm.ambiente == 'TESTE'"/>
     </div>
