@@ -17,8 +17,6 @@
         function initialize() {
 
             var stateChangeStart = $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams, fromState) {
-                console.log('iniciou a mudanca')
-
                 $rootScope.toState = toState;
                 $rootScope.toStateParams = toStateParams;
                 $rootScope.fromState = fromState;
@@ -35,9 +33,7 @@
             });
 
             var stateChangeSuccess = $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
-                console.log('Conclui')
                 if(fromState && fromState.name === 'app.public.login.entrar'){
-                    console.log('Loguei')
                     history.go(0);
                     // location.reload();
                     // $state.go('app.private.home.pagina-inicial',{reload:true},{reload:true})
