@@ -186,13 +186,9 @@ md-toast.ng-scope._md.md-md-danger-theme-theme.md-bottom{
     .md-conteudo{
         padding-top: 17px;
     }
-    .info-user span {
-        padding-left: 13px;
+    .info-user span .info-span {
+        padding-left: 8px !important;
     }
-}
-@media only screen and (min-width: 1920px) {
-
-
 }
 button.md-fab.md-mini.md-acoes.md-button.md-ink-ripple{
     background: transparent !important;
@@ -367,7 +363,7 @@ paginacao-sorting.ng-isolate-scope {
     color: #fff;
     text-transform: capitalize;
 }
-.info-user span {
+.info-user span .info-span {
     padding-left: 23px;
 }
 /*ALERTAS DO SISTEMA*/
