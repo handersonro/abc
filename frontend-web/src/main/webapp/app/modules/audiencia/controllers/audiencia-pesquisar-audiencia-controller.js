@@ -119,6 +119,15 @@
                     vm.dto.list = [];
                     vm.dto.totalResults = data.totalResults;
                     vm.dto.list = data.list;
+                    _.map(vm.dto.list, function(item){
+                        var _fields = ['dtCadastro'];
+                        _fields.forEach(function(campo, index){
+                            var t = new Date();
+                            var d = new Date(item[campo]-t.getTimezoneOffset()*60*1000);
+                            item[campo] = d;
+                        });
+                        return item;
+                    });
 
                     $timeout(function(){
                         $location.hash('result-pesquisa');

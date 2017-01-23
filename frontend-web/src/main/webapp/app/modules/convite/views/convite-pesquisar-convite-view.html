@@ -36,7 +36,7 @@
                                   </label>
                                   <input mdc-datetime-picker ng-disabled="!vm.filtro.dataCadInicial === false" date="true" time="true" type="text" short-time="true"
                                          min-date="minDate"
-                                         format="DD/MM/YYYY HH:mm a"
+                                         format="DD/MM/YYYY HH:mm"
                                          ng-model="vm.filtro.dtInicioEvento"
                                          text-cancel="Cancelar">
                                 </md-input-container>
@@ -46,7 +46,7 @@
                                   </label>
                                   <input mdc-datetime-picker ng-disabled="!vm.filtro.dataCadInicial === false" date="true" time="true" type="text" short-time="true"
                                          min-date="minDate"
-                                         format="DD/MM/YYYY HH:mm a"
+                                         format="DD/MM/YYYY HH:mm"
                                          ng-model="vm.filtro.dtFimEvento"
                                          text-cancel="Cancelar">
                                 </md-input-container>
@@ -69,7 +69,7 @@
                                   </label>
                                   <input mdc-datetime-picker date="true" ng-disabled="!vm.filtro.dtInicioEvento === false" time="true" type="text" short-time="true"
                                           min-date="minDate"
-                                          format="DD/MM/YYYY HH:mm a"
+                                          format="DD/MM/YYYY HH:mm"
                                           ng-model="vm.filtro.dataCadInicial"
                                          text-cancel="Cancelar">
                                 </md-input-container>
@@ -80,7 +80,7 @@
                                   </label>
                                   <input mdc-datetime-picker date="true" ng-disabled="!vm.filtro.dtInicioEvento === false" time="true" type="text" short-time="true"
                                           min-date="minDate"
-                                          format="DD/MM/YYYY HH:mm a"
+                                          format="DD/MM/YYYY HH:mm"
                                           ng-model="vm.filtro.dataCadFinal"
                                          text-cancel="Cancelar">
                                 </md-input-container>
@@ -264,9 +264,9 @@
                             </md-menu>
                         </td>
                         <td>{{ item.remetente.noRemetente }}</td>
-                        <td>{{ item.dtCadastro | date : 'dd/MM/yyyy HH:mm a'}}</td>
+                        <td>{{ item.dtCadastro | date : 'dd/MM/yyyy HH:mm'}}</td>
                         <td>{{ item.noLocalEvento }}</td>
-                        <td>{{ item.dtInicioEvento | date : 'dd/MM/yyyy HH:mm a' }} à {{ item.dtFimEvento | date : 'dd/MM/yyyy HH:mm a' }}</td>
+                        <td>{{ item.dtInicioEvento | date : 'dd/MM/yyyy HH:mm' }} à {{ item.dtFimEvento | date : 'dd/MM/yyyy HH:mm' }}</td>
                         <td ng-switch="item.conviteValidacao">
                             <span class="spanView15" ng-switch-when="NAO">Não</span>
                             <span class="spanView15" ng-switch-when="SIM">Sim</span>
