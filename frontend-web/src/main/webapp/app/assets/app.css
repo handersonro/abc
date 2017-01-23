@@ -418,3 +418,9 @@ paginacao-sorting.ng-isolate-scope {
         max-width: 100% !important;
     }
 }
+.dtp table.dtp-picker-days tr > th, .dtp-actual-day{
+    text-transform: uppercase;
+}
+.dtp-picker-month {
+    text-transform: capitalize;
+}
