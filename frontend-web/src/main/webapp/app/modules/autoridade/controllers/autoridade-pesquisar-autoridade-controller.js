@@ -15,6 +15,7 @@
     vm.help = help;
     vm.editar = editar;
     vm.trocaOrdenacao = trocaOrdenacao;
+    vm.changePage = changePage;
     vm.filtro = {
         noAutoridade: '',
         noEmail: ''
