@@ -82,6 +82,7 @@ md-toast.ng-scope._md.md-md-danger-theme-theme.md-bottom{
 .logo-padding-left{
     padding-left: 20px;
 }
+
 .cabecalho-logo-menuh{
     width: 80%;
     margin: 0 auto;
@@ -184,6 +185,10 @@ md-toast.ng-scope._md.md-md-danger-theme-theme.md-bottom{
 @media only screen and (max-width: 960px) {
     .md-conteudo{
         padding-top: 17px;
+    }
+    .info-user span {
+        padding-left: 13px;
+        background-color: red;
     }
 }
 @media only screen and (min-width: 1920px) {
@@ -363,6 +368,9 @@ paginacao-sorting.ng-isolate-scope {
     color: #fff;
     text-transform: capitalize;
 }
+.info-user span {
+    padding-left: 23px;
+}
 /*ALERTAS DO SISTEMA*/
 .alert {
     padding: 15px;
@@ -423,4 +431,11 @@ paginacao-sorting.ng-isolate-scope {
 }
 .dtp-picker-month {
     text-transform: capitalize;
+}
+.box-amb img{
+    position: fixed;
+    right: 0;
+    margin: 10px;
+    z-index: 10;
+    width: 127px;
 }

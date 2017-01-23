@@ -1,16 +1,31 @@
 <div flex >
-    <a ui-sref="app.private.home.pagina-inicial">
+    <div class="box-amb">
+        <img src="/assets/img/amb-des.png" ng-if="">
+        <img src="/assets/img/amb-hom.png" ng-if=""/>
+        <img src="/assets/img/amb-tqs.png" ng-if=""/>
+    </div>
+    <a ng-show="showLogoutButton" ui-sref="app.private.home.pagina-inicial">
         <img class="logo-mtur hide-xs hide-sm show-md show-gt-lg" src="assets/img/logo-sisagm.png">
     </a>
+    <img  ng-show="!showLogoutButton" class="logo-mtur hide-xs hide-sm show-md show-gt-lg" src="assets/img/logo-sisagm.png">
     <div layout="row" layout-align="end center">
-        <div ng-show="showLogoutButton"  class="btn-action info-user">
-            <span><md-icon style="color: #fff;">&#xE853;</md-icon> {{nomeUsuarioLogado}}
-            <md-tooltip md-direction="bottom">
-                {{nomeUsuario}}
-            </md-tooltip>
+        <div  class="btn-action info-user">
+            <span ng-show="showLogoutButton">
+                <span><md-icon style="color: #fff;">&#xE853;</md-icon> {{nomeUsuarioLogado}}
+                <md-tooltip md-direction="bottom">
+                    {{nomeUsuario}}
+                </md-tooltip>
+                </span>
+                <span>
+                    <md-icon style="color: #fff;">&#xE88F;</md-icon> 1.0.0
+                    <md-tooltip md-direction="bottom">
+                        Versão: 1.0.0
+                    </md-tooltip>
+                </span>
+                <md-button type="submit" data-ng-click="logout()"><md-icon style="color: #fff;">&#xE8AC;</md-icon> Sair
+                </md-button>
             </span>
-            <md-button type="submit" data-ng-click="logout()"><md-icon style="color: #fff;">&#xE8AC;</md-icon> Sair
-            </md-button>
+
         </div>
     </div>
 </div>
