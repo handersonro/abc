@@ -18,14 +18,13 @@
 
         <form name="formVincularAutoridade" ng-submit="vm.salvar()">
             <!-- conteudo -->
-            <div layout="row">
+            <div layout="row" layout-xs="column">
                 <md-autocomplete
                         flex
+                        flex-xs="100"
                         required
-
                         md-no-cache="true"
                         md-selected-item="vm.usuario"
-
                         md-search-text="noUsuario"
                         md-items="item in vm.procurarUsuario(noUsuario)"
                         md-selected-item-change="vm.vincularAutoridade(item)"
@@ -43,7 +42,7 @@
                     </md-not-found>
                     <custom-validator-messages input-name="usuario" ></custom-validator-messages>
                 </md-autocomplete>
-                <md-input-container flex class="md-icon-float md-block">
+                <md-input-container flex flex-xs="100" class="md-icon-float md-block">
                     <label>
                         Autoridade
                     </label>
