@@ -38,6 +38,7 @@
     inicializar();
     ///////////////////////////////////
     function inicializar (){
+        $window.scrollTo(0, 0);
         vm.listaAutoridades = [
             {autoridade: "Ministro do Turismo"},
             {autoridade: "Secretário Executivo"},

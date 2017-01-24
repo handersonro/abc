@@ -55,6 +55,7 @@
         inicializar();
         ///////////////////////////////////
         function inicializar() {
+            $window.scrollTo(0, 0);
             vm.flEventoInternacional = [
                 {evento: 'Nacional'},
                 {evento: 'Internacional'}
