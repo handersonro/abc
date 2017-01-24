@@ -17,6 +17,7 @@
         vm.editar = editar;
         vm.listaAutoridades = {};
         vm.filtro = {};
+
         Principal.identity().then(function(account) {
             vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
         });
@@ -52,6 +53,20 @@
                 dataCadFinal:''
             };
         }
+        vm.camposComLimiteEnter = ['vm.filtro.noObservacao','vm.filtro.noDespacho','vm.filtro.noAssunto'];
+
+        $scope.$watch('vm.filtro.noObservacao', function () {
+            vm.filtro.noObservacao = vm.filtro.noObservacao.replace(/\n\n\n/g,'\n');
+        });
+
+        $scope.$watch('vm.filtro.noDespacho', function () {
+            vm.filtro.noDespacho = vm.filtro.noDespacho.replace(/\n\n\n/g,'\n');
+        });
+
+        $scope.$watch('vm.filtro.noAssunto', function () {
+            vm.filtro.noAssunto = vm.filtro.noAssunto.replace(/\n\n\n/g,'\n');
+        });
+
         ///////////////////////////////////
 
         vm.limpar = function(){

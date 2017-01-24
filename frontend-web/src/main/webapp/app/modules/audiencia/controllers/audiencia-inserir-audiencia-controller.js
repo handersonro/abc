@@ -30,7 +30,7 @@
         vm.showBtnSalvar = showBtnSalvar;
         vm.salvar = salvar;
         vm.listaAutoridades = {};
-        vm.audiencia = {};
+        vm.audiencia = {noDespacho:''};
         vm.validacoes = {};
         inicializar();
         function inicializar(){
@@ -46,11 +46,15 @@
                 {validado : 'Indiferente'}
             ];
         }
+
+        $scope.$watch('vm.audiencia.noDespacho', function () {
+            vm.audiencia.noDespacho = vm.audiencia.noDespacho.replace(/\n\n\n/g,'\n');
+        });
         ///////////////////////////////////
 
         vm.limpar = function(){
             vm.audiencia = {};
-        }
+        };
 
         function showBtnSalvar(){
             return $scope.formAudiencia.$invalid;
