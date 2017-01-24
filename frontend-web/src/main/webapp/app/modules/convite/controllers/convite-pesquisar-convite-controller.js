@@ -171,6 +171,7 @@
                     vm.tbResultado = false;
                     vm.dto.totalResults = 0;
                     vm.dto.list = [];
+                    $window.scrollTo(0, 0);
                 }
             );
 
