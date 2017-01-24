@@ -30,6 +30,9 @@
         <profile>
             <id>local</id>
 
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <ambiente.nome>LOCAL</ambiente.nome>
                 <ambiente.url>http://localhost:8080/sisagm-backend/api/</ambiente.url>
@@ -38,9 +41,7 @@
 
         <profile>
             <id>desenvolvimento</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+
             <properties>
                 <ambiente.nome>DES</ambiente.nome>
                 <ambiente.url>http://sturdeswildfly01:8080/sisagm-backend/api/</ambiente.url>
