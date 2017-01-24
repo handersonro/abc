@@ -32,8 +32,9 @@
                         E-mail
                     </label>
                     <md-icon>&#xE0BE;</md-icon>
-                    <input name="email" type="email" ng-model="vm.autoridade.noEmail" required md-maxlength="50" maxlength="50"/>
-                    <custom-validator-messages input-name="noEmail" ></custom-validator-messages>
+                    <input name="email" type="email" ng-model="vm.autoridade.noEmail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$" md-maxlength="50" maxlength="50"/>
+                    <custom-validator-messages input-name="email" custom-message-pattern="Email inválido"></custom-validator-messages>
+
                 </md-input-container>
             </div>
             <section class="md-padding action" layout="row" layout-align="end center"
