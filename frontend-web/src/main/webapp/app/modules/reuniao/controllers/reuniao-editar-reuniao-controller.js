@@ -4,7 +4,7 @@
         .controller('ReuniaoEditarReuniaoController', ReuniaoEditarReuniaoController);
 
     /* @ngInject */
-    function ReuniaoEditarReuniaoController($scope, $timeout, $http, AlertsService, $mdDialog, $stateParams, $state, $q,ConviteRestService, EventoService, ReuniaoService,Principal){
+    function ReuniaoEditarReuniaoController($scope, $timeout, $http,$window,$anchorScroll, AlertsService, $mdDialog, $stateParams, $state, $q,ConviteRestService, EventoService, ReuniaoService,Principal){
         var vm = this;
         vm.isEdicao = true;
         vm.title = "Editar reunião";
@@ -57,14 +57,11 @@
 
         function salvar(reuniao){
             if (vm.reuniao.dtInicioEvento.getTime() > vm.reuniao.dtFimEvento.getTime()) {
+                $window.scrollTo(0, 0);
                 return AlertsService.success('O início do evento deve ser anterior ao término.');
             }
 
             reuniao.tipoEvento = {id: 3,noTipoEvento: 'REUNIAO'};
-/*            reuniao.idUf = vm.localidade.uf.id;
-            reuniao.nuRegiao = vm.localidade.uf.nuRegiao;
-            reuniao.noLocalEvento = vm.localidade.noLocalidade;
-            reuniao.idLocalidade = vm.localidade.id;*/
 
             reuniao.pessoasParaSeremRemovidas = vm.pessoasParaSeremRemovidas;
             reuniao.participanteInternos = vm.participantes;

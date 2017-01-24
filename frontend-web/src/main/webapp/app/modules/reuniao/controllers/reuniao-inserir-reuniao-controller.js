@@ -4,7 +4,7 @@
         .controller('ReuniaoInserirReuniaoController', ReuniaoInserirReuniaoController);
 
     /* @ngInject */
-    function ReuniaoInserirReuniaoController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $q, AlertsService, ConviteRestService, ReuniaoService,EventoService,Principal) {
+    function ReuniaoInserirReuniaoController($scope, $timeout, $mdSidenav, $window,$log, $mdDialog, $state, $q, AlertsService, ConviteRestService, ReuniaoService,EventoService,Principal) {
         var vm = this;
         vm.isEdit = false;
         vm.title = "Incluir reunião";
@@ -51,14 +51,10 @@
         function salvar(reuniao) {
 
         if (vm.reuniao.dtInicioEvento.getTime() > vm.reuniao.dtFimEvento.getTime()) {
+            $window.scrollTo(0, 0);
             return AlertsService.success('O início do evento deve ser anterior ao término.');
         }
 
-
-            // reuniao.idUf = vm.localidade.uf.id;
-            // reuniao.nuRegiao = vm.localidade.uf.nuRegiao;
-            // reuniao.noLocalEvento = vm.localidade.noLocalidade;
-            // reuniao.idLocalidade = vm.localidade.id;
             reuniao.tipoEvento = {id: 3,noTipoEvento: 'REUNIAO'};
             reuniao.flEventoAtivo = true;
             reuniao.pessoas = [];
@@ -67,7 +63,6 @@
 
             ConviteRestService.salvar(reuniao).then(
                 function (retorno) {
-                    console.log(reuniao + 'No salvar');
                     AlertsService.success('Registro incluído com sucesso.');
                     $state.go('app.private.reuniao.inserir-reuniao', {}, {reload: true});
                 }
