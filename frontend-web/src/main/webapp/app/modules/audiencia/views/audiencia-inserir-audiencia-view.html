@@ -19,30 +19,6 @@
     <div class="md-padding">
         <form name="formAudiencia" ng-submit="vm.salvar(vm.audiencia)">
             <div layout="row" layout-xs="column">
-                <md-input-container flex ng-if="!vm.isEdicao">
-                    <label>
-                        Data inicial
-                    </label>
-                    <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
-                           min-date="minDate"
-                           required
-                           name="dataInicial"
-                           format="DD/MM/YYYY HH:mm"
-                           ng-model="vm.audiencia.dtInicioEvento">
-                    <custom-validator-messages input-name="dataInicial"></custom-validator-messages>
-                </md-input-container>
-                <md-input-container flex ng-if="!vm.isEdicao">
-                    <label>
-                        Data final
-                    </label>
-                    <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
-                           min-date="minDate"
-                           required
-                           name="dataFim"
-                           format="DD/MM/YYYY HH:mm"
-                           ng-model="vm.audiencia.dtFimEvento">
-                    <custom-validator-messages input-name="dataFim"></custom-validator-messages>
-                </md-input-container>
                 <md-input-container flex>
                     <label>
                         Data de cadastro
