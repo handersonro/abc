@@ -16,6 +16,7 @@
     vm.tbResultado = false;
     vm.pesquisar = pesquisar;
     vm.editar = editar;
+    vm.emitir = emitir;
     vm.filtro = {};
     vm.limpar = limpar;
     vm.listaAutoridades = {};
@@ -152,7 +153,6 @@
                     vm.tbResultado = false;
                     vm.dto.totalResults = 0;
                     vm.dto.list = [];
-
                     $window.scrollTo(0, 0);
                 }
             );
@@ -162,6 +162,12 @@
     function editar (reuniao){
         $state.go('app.private.reuniao.editar-reuniao', {reuniao: reuniao});
     }
+
+    function emitir (reuniao){
+        $state.get('app.private.reuniao.emitir-lista').reuniao = reuniao;
+        $state.go('app.private.reuniao.emitir-lista');
+    }
+
     /*CHIP*/
     function transformChip(chip) {
         // If it is an object, it's already a known chip

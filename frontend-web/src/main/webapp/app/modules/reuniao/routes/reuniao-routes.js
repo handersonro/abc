@@ -41,6 +41,17 @@
                     authorities: ['INCLUIR_REUNIAO']
                 }
             })
+            .state(STATE_PATH+MODULE_NAME+'.emitir-lista', {
+                url: '/emitir-lista',
+                controller: 'ReuniaoEmitirReuniaoController',
+                controllerAs: 'vm',
+                templateUrl: MODULE_PATH+'views/relatorio-emitir-lista-view.html',
+                resolve: {
+                },
+                data: {
+                    authorities: []
+                }
+            })
             .state(STATE_PATH+MODULE_NAME+'.editar-reuniao', {
                 url: '/editar-reuniao',
                 controller: 'ReuniaoEditarReuniaoController',

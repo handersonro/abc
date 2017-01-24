@@ -1,0 +1,122 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Roboto');
+    body {
+        font-family: 'Roboto', sans-serif !important;
+        font-size: 1.2em !important;
+    }
+
+    .pt10 {
+        padding-top: 10px;
+    }
+
+    .mt30 {
+        margin-top: 30px;
+    }
+
+    .mt50 {
+        margin-top: 50px;
+    }
+
+    .centro {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .cinza {
+        background-color: #666;
+        color: #fff;
+    }
+
+    .dinamica {
+        border: solid 1px #d2d2d2;
+        padding: 5px 0 5px 0;
+    }
+
+    .bdr {
+        border-right: solid 1px #d2d2d2;
+    }
+</style>
+
+    <div class="row text-left bold mt30">
+        <div class="col-md-12">
+            <p></p>
+            <p>MTUR - Ministério do Turismo</p>
+            <p>Lista de Participantes de Reunião</p>
+            <p>Autoridade {{vm.reuniao.autoridade.noAutoridade}}</p>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row text-left">
+        <div class="col-md-12">
+            <p>Data da Reunião: {{ vm.reuniao.dtInicioEvento | date : 'dd/MM/yyyy HH:mm' }} à {{ vm.reuniao.dtInicioEvento | date : 'dd/MM/yyyy HH:mm' }}</p>
+            <p>Pauta da Reunião: <span ta-bind ng-model="vm.reuniao.noPauta">{{vm.reuniao.noPauta}}</span></p>
+            <p>Assunto da Reunião: <span ta-bind ng-model="vm.reuniao.noAssunto">{{vm.reuniao.noAssunto}}</span></p>
+            <p>Local da Reunião: <span ta-bind ng-model="vm.reuniao.noLocalEvento">{{vm.reuniao.noLocalEvento}}</span></p>
+        </div>
+    </div>
+
+    <div class="row cinza pt10 text-center">
+        <div class="col-md-2">
+            <p>Nome</p>
+        </div>
+
+        <div class="col-md-2">
+            <p>Cargo</p>
+        </div>
+
+        <div class="col-md-3">
+            <p>E-mail</p>
+        </div>
+
+        <div class="col-md-2">
+            <p>Telefone</p>
+        </div>
+
+        <div class="col-md-3">
+            <p>Participação</p>
+        </div>
+
+    </div>
+
+    <!-- Início ROW dinâmica -->
+    <div class="row dinamica pt10 text-center" ng-repeat="item in vm.participantes">
+        <div class="col-md-2 bdr"><p>{{item.noParticipanteInterno}}</p></div>
+
+        <div class="col-md-2 bdr"><p>{{item.noCargo}}</p></div>
+
+        <div class="col-md-3 bdr"><p>{{item.noEmail}}</p></div>
+
+        <div class="col-md-2 bdr"><p>{{item.nuTelefone}}</p></div>
+
+        <div class="col-md-3 bdr"><p ng-switch="item.stConfirmacao">
+            <span ng-switch-when="CONFIRMADO">Confirmado</span>
+            <span ng-switch-when="RECUSADO">Recusado</span>
+            <span ng-switch-when="NENHUMA_ACAO">Nenhuma ação</span>
+        </p></div>
+    </div>
+
+    <!-- Fim ROW dinâmica -->
+
+    <div class="row mt30">
+        <div class="col-md-2">
+            Página xx de xx
+        </div>
+        <div class="col-md-8">
+
+        </div>
+        <div class="col-md-2">
+            Relatório gerado em dd/mm/aaaa HH:MM:SS
+        </div>
+
+    </div>

@@ -24,10 +24,15 @@
             return $http.get(baseURL+'participantes/interno/buscar?noParticipante='+noParticipante);
         }
 
+        function emitirListaParticipantes(id) {
+            return $http.get(baseURL+'eventos/emitir?id='+id);
+        }
+
         return {
             obterPorId: Restangular.one('eventos').customGET,
             buscaParticipantePeloNome: buscaParticipantePeloNome,
             buscarPorNome: buscarPorNome,
+            emitirListaParticipantes: emitirListaParticipantes,
             salvar: Restangular.one('eventos').customPOST,
             editar: Restangular.one('eventos').customPUT,
             excluirPorId: Restangular.one('eventos').customDELETE,
