@@ -11,7 +11,7 @@
         if($localStorage.authenticationToken !== undefined){
             // location.reload();
             $state.go("app.private.home.pagina-inicial");
-            history.go(0);
+            // history.go(0);
 
         }
 
