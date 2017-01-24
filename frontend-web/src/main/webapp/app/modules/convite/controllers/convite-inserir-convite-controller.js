@@ -58,7 +58,8 @@
             var tipoEvento = {id: 2,noTipoEvento: 'CONVITE'};
 
             if (vm.convite.dtInicioEvento.getTime() > vm.convite.dtFimEvento.getTime()) {
-                 return AlertsService.success('O início do evento deve ser anterior ao término.');
+                $window.scrollTo(0, 0);
+                return AlertsService.success('O início do evento deve ser anterior ao término.');
             }
 
             vm.convite.tipoEvento = tipoEvento;

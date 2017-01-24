@@ -4,7 +4,7 @@
         .controller('ConviteEditarConviteController', ConviteEditarConviteController);
 
     /* @ngInject */
-    function ConviteEditarConviteController($scope, $timeout, $http, $mdDialog, AlertsService, $stateParams, $state, ConviteRestService,EventoService,Principal){
+    function ConviteEditarConviteController($scope, $window, $mdDialog, AlertsService, $stateParams, $state, ConviteRestService,EventoService,Principal){
         var vm = this;
         vm.isEdicao = true;
         vm.title = "Editar convite";
@@ -21,8 +21,13 @@
         }
 
         vm.convite.dtInicioEvento = new Date(vm.convite.dtInicioEvento);
+        vm.convite.dtInicioEvento.setHours(vm.convite.dtInicioEvento.getHours()-2);
+
         vm.convite.dtFimEvento = new Date(vm.convite.dtFimEvento);
+        vm.convite.dtFimEvento.setHours(vm.convite.dtFimEvento.getHours()-2);
+
         vm.convite.dtCadastro = new Date(vm.convite.dtCadastro);
+        vm.convite.dtCadastro.setHours(vm.convite.dtCadastro.getHours()-2);
 
         vm.limpar = limpar;
         vm.showBtnSalvar = showBtnSalvar;
@@ -104,8 +109,11 @@
         function salvar(convite){
 
             if (vm.convite.dtInicioEvento.getTime() > vm.convite.dtFimEvento.getTime()) {
+                $window.scrollTo(0, 0);
                 return AlertsService.success('O início do evento deve ser anterior ao término.');
             }
+
+
 
             if(vm.convite.flEventoInternacional =='Evento nacional'){
                 vm.convite.flEventoInternacional = 0;
