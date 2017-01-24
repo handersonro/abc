@@ -23,6 +23,7 @@
         vm.trocaOrdenacao = trocaOrdenacao;
         inicializar();
         function inicializar(){
+            $window.scrollTo(0, 0);
             vm.listaAutoridades = [
                 {autoridade: "Ministro do turismo"},
                 {autoridade: "Secretário executivo"},
@@ -137,6 +138,7 @@
                 },function (error) {
                     vm.dto.totalResults = 0;
                     vm.dto.list = [];
+                    $window.scrollTo(0, 0);
                 }
             );
 

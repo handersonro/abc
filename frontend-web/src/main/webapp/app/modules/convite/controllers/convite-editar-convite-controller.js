@@ -116,7 +116,6 @@
                 vm.convite.noLocalEvento = vm.convite.idPais.noPais;
                 vm.convite.idPais = vm.convite.idPais.id;
             }
-            console.log(vm.convite);
             ConviteRestService.editar(convite).then(
                 function (retorno) {
                     AlertsService.success('Registro alterado com sucesso.');

@@ -38,6 +38,7 @@
     inicializar();
     ///////////////////////////////////
     function inicializar (){
+        $window.scrollTo(0, 0);
         vm.listaAutoridades = [
             {autoridade: "Ministro do Turismo"},
             {autoridade: "Secretário Executivo"},
@@ -151,6 +152,8 @@
                     vm.tbResultado = false;
                     vm.dto.totalResults = 0;
                     vm.dto.list = [];
+
+                    $window.scrollTo(0, 0);
                 }
             );
 

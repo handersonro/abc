@@ -55,6 +55,7 @@
         inicializar();
         ///////////////////////////////////
         function inicializar() {
+            $window.scrollTo(0, 0);
             vm.flEventoInternacional = [
                 {evento: 'Nacional'},
                 {evento: 'Internacional'}
@@ -171,6 +172,7 @@
                     vm.tbResultado = false;
                     vm.dto.totalResults = 0;
                     vm.dto.list = [];
+                    $window.scrollTo(0, 0);
                 }
             );
 
