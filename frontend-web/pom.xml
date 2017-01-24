@@ -101,18 +101,11 @@
                     <webResources>
                         <resource>
                             <directory>src/main/webapp/dist</directory>
+                            <filtering>true</filtering>
                             <includes>
                                 <include>**</include>
                             </includes>
                             <targetPath>.</targetPath>
-                        </resource>
-                        <resource>
-                            <directory>${basedir}/src/main/webapp/app</directory>
-                            <filtering>true</filtering>
-                            <targetPath>app</targetPath>
-                            <includes>
-                                <include>**/config-dev.js</include>
-                            </includes>
                         </resource>
                     </webResources>
                     <warSourceExcludes>app/**,bower_components/**,node_modules/**,test/**,e2e/**, **-test.js, **</warSourceExcludes>
