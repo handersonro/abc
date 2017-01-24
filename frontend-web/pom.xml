@@ -101,7 +101,15 @@
                     <webResources>
                         <resource>
                             <directory>src/main/webapp/dist</directory>
+                            <targetPath>.</targetPath>
                             <filtering>true</filtering>
+                            <includes>
+                                <include>**/config-dev.js</include>
+                                <include>**/app.js</include>
+                            </includes>
+                        </resource>
+                        <resource>
+                            <directory>src/main/webapp/dist</directory>
                             <includes>
                                 <include>**</include>
                             </includes>
