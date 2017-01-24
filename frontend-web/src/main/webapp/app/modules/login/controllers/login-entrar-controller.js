@@ -20,6 +20,9 @@
                     if(retorno.data != null){
                         console.log( retorno.data.mensagens[0].msg)
                         AlertsService.error(retorno.data.mensagens!= null ?  retorno.data.mensagens[0].msg: '');
+                        vm.user = {};
+                        $scope.formLogin.$setPristine();
+                        $scope.formLogin.$setUntouched();
                     }
                 });
         }
