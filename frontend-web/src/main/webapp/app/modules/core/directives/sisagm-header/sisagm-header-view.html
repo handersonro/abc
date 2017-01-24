@@ -7,11 +7,10 @@
     <a ng-show="showLogoutButton" ui-sref="app.private.home.pagina-inicial">
         <img class="logo-mtur hide-xs hide-sm show-md show-gt-lg" src="assets/img/logo-sisagm.png">
     </a>
-    <img  ng-show="!showLogoutButton" class="logo-mtur hide-xs hide-sm show-md show-gt-lg" src="assets/img/logo-sisagm.png">
     <div layout="row" layout-align="end center">
         <div  class="btn-action info-user">
-            <span ng-show="showLogoutButton">
-                <span class="info-span"><md-icon style="color: #fff;">&#xE853;</md-icon> {{nomeUsuarioLogado}}
+            <span >
+                <span ng-show="showLogoutButton" class="info-span"><md-icon style="color: #fff;">&#xE853;</md-icon> {{nomeUsuarioLogado}}
                 <md-tooltip md-direction="bottom">
                     {{nomeUsuario}}
                 </md-tooltip>
@@ -22,7 +21,7 @@
                         Versão: {{vm.versaoProjeto}}
                     </md-tooltip>
                 </span>
-                <md-button type="submit" data-ng-click="logout()"><md-icon style="color: #fff;">&#xE8AC;</md-icon> Sair
+                <md-button ng-show="showLogoutButton" type="submit" data-ng-click="logout()"><md-icon style="color: #fff;">&#xE8AC;</md-icon> Sair
                 </md-button>
             </span>
 
