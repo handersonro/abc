@@ -18,8 +18,7 @@
                     })
                 .catch(function (retorno) {
                     if(retorno.data != null){
-                        console.log( retorno.data.mensagens[0].msg)
-                        AlertsService.error(retorno.data.mensagens!= null ?  retorno.data.mensagens[0].msg: '');
+                        AlertsService.error(retorno.data.mensagens!= null ?  retorno.data.mensagens[0].msg: 'Ocorreu um erro interno na aplicação, por favor contate o administrador do sistema!');
                         vm.user = {};
                         $scope.formLogin.$setPristine();
                         $scope.formLogin.$setUntouched();
