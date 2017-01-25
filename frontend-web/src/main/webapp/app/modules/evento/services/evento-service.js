@@ -61,7 +61,7 @@
             obterLocalidadePeloId: obterLocalidadePeloId,
             obterParticipanteExternoPorIdPessoa: obterParticipanteExternoPorIdPessoa,
             obterParticipanteInternoPorId: obterParticipanteInternoPorId,
-            obterPaisPorId: obterPaisPorId,
+            obterPaisPorId: obterPaisPorId
         };
 
     }

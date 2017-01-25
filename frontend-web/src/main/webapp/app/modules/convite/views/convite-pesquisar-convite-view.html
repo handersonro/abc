@@ -90,22 +90,31 @@
                 </div>
             </div>
             <div layout="row" layout-xs="column">
-                <md-input-container flex class="md-icon-float md-block">
-                    <label>
-                        Remetente
-                    </label>
-                    <md-icon>
-                        &#xE8A6;
-                    </md-icon>
-                    <input name="text" type="text" ng-model="vm.filtro.remetente" md-maxlength="50" maxlength="50"
-                    />
-                    <div ng-messages="formParticipante.email.$error">
-                        <div ng-message="md-maxlength">
-                            Mínimo ou igual à 50 caracter
-                        </div>
-                    </div>
-                </md-input-container>
-                <md-input-container class="md-block md-icon-float" flex-gt-sm>
+                <div  flex="50" flex-xs="100"  layout="row" layout-align="center center">
+                    <md-autocomplete
+                            flex
+                            md-input-name="remetente"
+                            md-no-cache="true"
+                            md-selected-item="vm.filtro.remetente"
+                            md-input-name="local"
+                            md-search-text="noRemetente"
+                            md-items="item in vm.buscarRemetentePeloNome(noRemetente)"
+                            md-item-text="item.noRemetente"
+                            md-min-length="3"
+                            md-match-case-insensitive="true"
+                            md-input-maxlength="50"
+                            md-floating-label="Remetente">
+                        <md-item-template>
+                            <span md-highlight-text="noRemetente" md-highlight-flags="^i">{{item.noRemetente}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            Nenhum usuário "{{noRemetente}}" foi encontrado
+                        </md-not-found>
+                        <custom-validator-messages input-name="usuario" ></custom-validator-messages>
+                    </md-autocomplete>
+                </div>
+
+                <md-input-container class="md-block md-block md-icon-float" flex-gt-sm flex>
                   <label>Evento</label>
                   <md-icon class="md-datepicker-calendar-icon ng-scope" aria-label="md-calendar" md-svg-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgM2gtMVYxaC0ydjJIOFYxSDZ2Mkg1Yy0xLjExIDAtMS45OS45LTEuOTkgMkwzIDE5YzAgMS4xLjg5IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMTZINVY4aDE0djExek03IDEwaDV2NUg3eiIvPjwvc3ZnPg==" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"></path></svg></md-icon>
                   <md-select ng-model="vm.filtro.tipoSaida">

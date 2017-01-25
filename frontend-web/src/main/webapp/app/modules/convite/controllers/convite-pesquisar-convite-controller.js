@@ -33,7 +33,7 @@
         .controller('ConvitePesquisarConviteController', ConvitePesquisarConviteController);
 
     /* @ngInject */
-    function ConvitePesquisarConviteController($scope, $timeout, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, ConviteRestService, DTO,Principal, $window) {
+    function ConvitePesquisarConviteController($scope, $timeout, $log, $http, $mdDialog, $q,$state, $location, $anchorScroll, AlertsService, ConviteRestService,EventoService, DTO,Principal, $window) {
         var vm = this;
         var _itens = [];
         vm.dto = new DTO();
@@ -51,6 +51,7 @@
         vm.tipoEvento = {};
         vm.validacoes = {};
          vm.procurarLocal = ConviteRestService.obterLocais;
+        vm.buscarRemetentePeloNome = buscarRemetentePeloNome;
          vm.trocaOrdenacao = trocaOrdenacao;
         inicializar();
         ///////////////////////////////////
@@ -71,7 +72,7 @@
                 tipoEvento: '',
                 noDespacho: '',
                 idLocalidade: '',
-                remetente: '',
+                noRemetente: '',
                 descricao: '',
                 flEventoInternacional: '',
                 dtInicioEvento:'',
@@ -118,12 +119,11 @@
                 vm.filtro.tipoSaida = false;
             }
 
-
             $state.params.filtro.filtros.noObservacao = vm.filtro.noObservacao;
             $state.params.filtro.filtros.noDespacho = vm.filtro.noDespacho;
             $state.params.filtro.filtros.tipoEvento = tipoEvento;
             $state.params.filtro.filtros.idLocalidade = vm.filtro.idLocalidade != undefined ? vm.filtro.idLocalidade.id : '';
-            $state.params.filtro.filtros.noRemetente = vm.filtro.remetente;
+            $state.params.filtro.filtros.noRemetente = vm.filtro.remetente != undefined ? vm.filtro.remetente.noRemetente : '';
             $state.params.filtro.filtros.descricao = vm.filtro.descricao;
             $state.params.filtro.filtros.dtInicioEvento = dtInicioEvento;
             $state.params.filtro.filtros.dtFimEvento = dtFimEvento;
@@ -287,6 +287,18 @@
             vm.dto.currentPage = page;
             vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
             getMoreInfinityScrollData(vm.dto.currentPage);
+        }
+
+        function buscarRemetentePeloNome(noUsuario) {
+            var retorno = $q.defer();
+            EventoService.obterRemetentesPeloNome(noUsuario,false)
+                .success(function (data) {
+                    retorno.resolve(data);
+                })
+                .error(function () {
+                    retorno.reject(alert('Não foi possivel carregar os dados'));
+                });
+            return retorno.promise;
         }
 
         function trocaOrdenacao() {
