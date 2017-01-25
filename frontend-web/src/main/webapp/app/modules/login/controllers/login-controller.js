@@ -6,7 +6,6 @@
     /* @ngInject */
     function LoginController($scope,$state,Principal,$localStorage){
         var vm = this;
-        console.log('ESTOU AQUI')
         vm.isAuthenticated = Principal.isAuthenticated();
         if($localStorage.authenticationToken !== undefined){
             // location.reload();

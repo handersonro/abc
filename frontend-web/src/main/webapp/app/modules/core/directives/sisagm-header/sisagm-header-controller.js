@@ -21,7 +21,7 @@
         $scope.logout = function logout () {
             delete $localStorage.authenticationToken;
             history.go(0);
-            $state.go("app.public.login.entrar");
+            // $state.go("app.public.login.entrar");
         }
 
     }

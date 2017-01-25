@@ -33,14 +33,14 @@
             });
 
             var stateChangeSuccess = $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
-                if(fromState && fromState.name === 'app.public.login.entrar'){
-                    history.go(0);
-                    // location.reload();
-                    // $state.go('app.private.home.pagina-inicial',{reload:true},{reload:true})
-                }
-                if(toState && toState.name === 'app.public.login.entrar'){
-                    // history.go(0)
-                }
+                // if(fromState && fromState.name === 'app.public.login.entrar'){
+                //     history.go(0);
+                //     // location.reload();
+                //     // $state.go('app.private.home.pagina-inicial',{reload:true},{reload:true})
+                // }
+                // if(toState && toState.name === 'app.public.login.entrar'){
+                //     // history.go(0)
+                // }
                 // Set the page title key to the one configured in state or use default one
                 // if (toState.data.pageTitle) {
                 //     titleKey = toState.data.pageTitle;
