@@ -4,7 +4,7 @@
         .controller('RelatorioEmitirRelatorioController', RelatorioEmitirRelatorioController);
 
     /* @ngInject */
-    function RelatorioEmitirRelatorioController($scope, $state, $mdDialog,$window, $timeout,ConviteRestService,DTO,RelatorioService){
+    function RelatorioEmitirRelatorioController($scope, $state, $mdDialog,$window, $timeout,ConviteRestService,DTO,RelatorioService,$http,baseURL ){
         var vm = this;
         vm.dto = new DTO();
         vm.gerarRelatorio = gerarRelatorio;
@@ -58,6 +58,37 @@
             $state.go('app.private.relatorio.relatorio-solicitar-audiencia');
 
         }
+
+
+
+        vm.gerarRelatorioDraw = function (){
+            window.status = "loaded";
+            //var reportData = '{"path":"http://192.168.56.10:28080/sisagm-backend/api/eventos/localidades/bra","name":"relatorio-remetente"}';
+            //var reportData = '{"path":"http://192.168.56.10:9011/#/private/relatorio/emitir-relatorio","name":"relatorio-remetente"}';
+            //var reportData = '{"path":"http://debian-dev:9011/#/public/login/entrar","name":"relatorio-remetente"}';
+            var reportData = '{"path":"http://sturdeswildfly01:8080/sisagm/#/public/login/entrar","name":"relatorio-remetente"}';
+
+            $http.defaults.headers.common.report = reportData;
+            $http.post(baseURL+'relatorios/relatorio-remetente',{
+                "currentPage": "1",
+                "pageSize": "20",
+                "totalResults": "1",
+                "sortFields": "id",
+                "sortDirections": "asc",
+                "filtros": {
+                }
+            }, {responseType:'arraybuffer'})
+                .success(function (response) {
+                    console.log('chegou');
+                    var file = new Blob([response], {type: 'application/pdf'});
+                    var fileURL = URL.createObjectURL(file);
+                    $window.open(fileURL, '_blank', 'location=yes');
+                });
+
+        }
+
+
+
 
         function debounce(func, wait, context) {
           var timer;

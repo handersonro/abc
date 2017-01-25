@@ -4,10 +4,11 @@
         .controller('LoginEntrarController', LoginEntrarController);
 
     /* @ngInject */
-    function LoginEntrarController($scope, $timeout,$log, $q,$state, LoginService, AlertsService,Restangular,$http,$localStorage, $sessionStorage,UsuarioLogado){
+    function LoginEntrarController($scope, $timeout,$log, $q,$state, LoginService, AlertsService,Restangular,$http,$localStorage, $sessionStorage,UsuarioLogado,$window){
         var vm = this;
         vm.logar = logar;
         vm.user = {};
+        $window.status = "loaded";
 
         function logar () {
             LoginService.autenticar(vm.user)

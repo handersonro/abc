@@ -6,6 +6,7 @@ module.exports = function(grunt) {
         dist: 'dist/',
         temp: 'temp/',
         js: [
+                "workaround/**/*.js",
                 "*-module.js",
                 "*-!(module).js",
                 "modules/**/*-module.js",
