@@ -4,8 +4,22 @@
         .controller('RelatorioEmitirRelatorioController', RelatorioEmitirRelatorioController);
 
     /* @ngInject */
-    function RelatorioEmitirRelatorioController($scope, $mdDialog, $timeout, ConviteRestService){
+    function RelatorioEmitirRelatorioController($scope, $state, $mdDialog,$window, $timeout,ConviteRestService,DTO,RelatorioService){
         var vm = this;
+        vm.dto = new DTO();
+        vm.gerarRelatorio = gerarRelatorio;
+        vm.filtro = {};
+        vm.filtroAudiencia = {
+            "currentPage": "1",
+            "pageSize": "20",
+            "totalResults": "1",
+            "sortFields": "id",
+            "sortDirections": "asc",
+            "filtros": {
+                //"idLocalidade":7339
+            }
+        }
+        vm.relatorio ={};
         vm.procurarLocal = ConviteRestService.obterLocais;
         ///////////////////////////////////
         vm.title = "Relatório de audiência";
@@ -27,22 +41,23 @@
         vm.limpar = function(){
          
         }
-        vm.carregarListConvite = function(){
+        inicializar();
+        function inicializar() {
+            vm.filtro = {};
+            console.log('A1 ');
+        }
 
-            console.log('carregarListConvite :::');
+        function gerarRelatorio() {
 
-/*             ConviteRestService
-                 .obterListaConvite({})
-                 .then(
-                     function(data){
-                         $scope.listaConvites = data;
-                     },
-                     function(error){
+            var tipoEvento = {id: 1,noTipoEvento: 'AUDIENCIA'};
 
-                     }
-                 );*/
-        };
-        vm.carregarListConvite();
+            $state.params.filtro.filtros.tipoEvento = tipoEvento;
+            $state.params.filtro.currentPage = 1;
+
+            $state.get('app.private.relatorio.relatorio-solicitar-audiencia').filtroAudiencia = vm.filtroAudiencia;
+            $state.go('app.private.relatorio.relatorio-solicitar-audiencia');
+
+        }
 
         function debounce(func, wait, context) {
           var timer;

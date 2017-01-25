@@ -35,6 +35,16 @@
                 controller: 'RelatorioEmitirRelatorioController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/relatorio-emitir-relatorio-view.html',
+                params: {
+                    filtro: {
+                        filtros: {},
+                        currentPage: 1,
+                        pageSize: 20,
+                        sortFields: 'id',
+                        sortDirections: 'asc'
+                    }
+
+                },
                 resolve: {
                 },
                 data: {
@@ -90,6 +100,16 @@
             controller: 'RelatorioSolicitarAudienciaController',
             controllerAs: 'vm',
             templateUrl: MODULE_PATH+'views/relatorio-solicitar-audiencia-view.html',
+            params: {
+                filtro: {
+                    filtros: { noObservacao: '',noRemetente: '',noDespacho: '', tipoEvento: '', noLocalEvento : '', noAssunto:'',descricao:'', noPauta:'', dtInicioEvento:'',dtFimEvento:'',dataCadInicial:'',dataCadFinal:'',conviteValidacao:'',participantes: ''},
+                    currentPage: 1,
+                    pageSize: 20,
+                    sortFields: 'id',
+                    sortDirections: 'asc'
+                }
+
+            },
             resolve: {
             },
             data: {
