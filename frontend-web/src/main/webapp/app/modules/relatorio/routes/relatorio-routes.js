@@ -84,6 +84,61 @@
                 data: {
                     authorities: []
                 }
+        })
+        .state(STATE_PATH+MODULE_NAME+'.relatorio-solicitar-audiencia', {
+            url: '/solicitar-audiencia',
+            controller: 'RelatorioSolicitarAudienciaController',
+            controllerAs: 'vm',
+            templateUrl: MODULE_PATH+'views/relatorio-solicitar-audiencia-view.html',
+            resolve: {
+            },
+            data: {
+                authorities: []
+            }
+        })
+        .state(STATE_PATH+MODULE_NAME+'.relatorio-solicitar-auditoria', {
+            url: '/solicitar-auditoria',
+            controller: 'RelatorioSolicitarAuditoriaController',
+            controllerAs: 'vm',
+            templateUrl: MODULE_PATH+'views/relatorio-solicitar-auditoria-view.html',
+            resolve: {
+            },
+            data: {
+                authorities: []
+            }
+        })
+        .state(STATE_PATH+MODULE_NAME+'.relatorio-solicitar-convite', {
+            url: '/solicitar-convite',
+            controller: 'RelatorioSolicitarConviteController',
+            controllerAs: 'vm',
+            templateUrl: MODULE_PATH+'views/relatorio-solicitar-convite-view.html',
+            resolve: {
+            },
+            data: {
+                authorities: []
+            }
+        })
+        .state(STATE_PATH+MODULE_NAME+'.relatorio-solicitar-remetentes', {
+            url: '/solicitar-remetentes',
+            controller: 'RelatorioSolicitarRemetentesController',
+            controllerAs: 'vm',
+            templateUrl: MODULE_PATH+'views/relatorio-solicitar-remetentes-view.html',
+            resolve: {
+            },
+            data: {
+                authorities: []
+            }
+        })
+        .state(STATE_PATH+MODULE_NAME+'.relatorio-solicitar-reuniao', {
+            url: '/solicitar-reuniao',
+            controller: 'RelatorioSolicitarReuniaoController',
+            controllerAs: 'vm',
+            templateUrl: MODULE_PATH+'views/relatorio-solicitar-reuniao-view.html',
+            resolve: {
+            },
+            data: {
+                authorities: []
+            }
         });
     }
 })();
