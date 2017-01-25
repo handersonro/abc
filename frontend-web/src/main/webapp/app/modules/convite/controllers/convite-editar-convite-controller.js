@@ -20,14 +20,10 @@
             $state.go('app.private.convite.pesquisar-convite', {reload: true});
         }
 
+        //recria as datas para a edição
         vm.convite.dtInicioEvento = new Date(vm.convite.dtInicioEvento);
-        vm.convite.dtInicioEvento.setHours(vm.convite.dtInicioEvento.getHours()-2);
-
         vm.convite.dtFimEvento = new Date(vm.convite.dtFimEvento);
-        vm.convite.dtFimEvento.setHours(vm.convite.dtFimEvento.getHours()-2);
-
         vm.convite.dtCadastro = new Date(vm.convite.dtCadastro);
-        vm.convite.dtCadastro.setHours(vm.convite.dtCadastro.getHours()-2);
 
         vm.limpar = limpar;
         vm.showBtnSalvar = showBtnSalvar;
