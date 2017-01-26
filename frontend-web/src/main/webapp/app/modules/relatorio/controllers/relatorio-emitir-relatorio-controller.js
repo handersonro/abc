@@ -58,7 +58,7 @@
 
         }
 
-        /*vm.gerarRelatorioDraw = function (){
+        vm.gerarRelatorioDraw = function (){
             window.status = "loaded";
             //var reportData = '{"path":"http://192.168.56.10:28080/sisagm-backend/api/eventos/localidades/bra","name":"relatorio-remetente"}';
             //var reportData = '{"path":"http://192.168.56.10:9011/#/private/relatorio/emitir-relatorio","name":"relatorio-remetente"}';
@@ -82,7 +82,7 @@
                     $window.open(fileURL, '_blank', 'location=yes');
                 });
 
-        }*/
+        }
 
     }
 })();
