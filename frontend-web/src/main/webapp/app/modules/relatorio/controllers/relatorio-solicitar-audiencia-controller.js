@@ -8,6 +8,7 @@
 
         var vm = this;
         vm.lista=  {}
+        vm.dataAtual = new Date();
 
         Principal.identity().then(function(account) {
             vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
