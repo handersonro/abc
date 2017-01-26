@@ -16,7 +16,6 @@
         vm.direcoes = {};
         vm.reuniao = {};
         vm.gerarRelatorio = gerarRelatorio;
-        var tipoEvento = {id: 3, noTipoEvento: 'REUNIAO'};
         vm.filtro = {};
         vm.filtroReuniao = {
             "currentPage": "1",
@@ -25,7 +24,8 @@
             "sortFields": "id",
             "sortDirections": "asc",
             "filtros": {
-                "tipoEvento" : tipoEvento
+                "tipoEvento.id": 3,
+                "noAssunto" : vm.reuniao.assunto
             }
         }
         inicializar();
