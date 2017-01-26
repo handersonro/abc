@@ -67,6 +67,16 @@
                 controller: 'RelatorioEmitirRelatorioReunioesController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/relatorio-emitir-relatorio-reunioes-view.html',
+                params: {
+                    filtro: {
+                        filtros: {},
+                        currentPage: 1,
+                        pageSize: 20,
+                        sortFields: 'id',
+                        sortDirections: 'asc'
+                    }
+
+                },
                 resolve: {
                 },
                 data: {
@@ -121,6 +131,16 @@
             controller: 'RelatorioSolicitarAuditoriaController',
             controllerAs: 'vm',
             templateUrl: MODULE_PATH+'views/relatorio-solicitar-auditoria-view.html',
+            params: {
+                filtro: {
+                    filtros: {},
+                    currentPage: 1,
+                    pageSize: 20,
+                    sortFields: 'id',
+                    sortDirections: 'asc'
+                }
+
+            },
             resolve: {
             },
             data: {
@@ -132,6 +152,16 @@
             controller: 'RelatorioSolicitarConviteController',
             controllerAs: 'vm',
             templateUrl: MODULE_PATH+'views/relatorio-solicitar-convite-view.html',
+            params: {
+                filtro: {
+                    filtros: {},
+                    currentPage: 1,
+                    pageSize: 20,
+                    sortFields: 'id',
+                    sortDirections: 'asc'
+                }
+
+            },
             resolve: {
             },
             data: {
@@ -143,6 +173,16 @@
             controller: 'RelatorioSolicitarRemetentesController',
             controllerAs: 'vm',
             templateUrl: MODULE_PATH+'views/relatorio-solicitar-remetentes-view.html',
+            params: {
+                filtro: {
+                    filtros: {},
+                    currentPage: 1,
+                    pageSize: 20,
+                    sortFields: 'id',
+                    sortDirections: 'asc'
+                }
+
+            },
             resolve: {
             },
             data: {
@@ -154,6 +194,16 @@
             controller: 'RelatorioSolicitarReuniaoController',
             controllerAs: 'vm',
             templateUrl: MODULE_PATH+'views/relatorio-solicitar-reuniao-view.html',
+            params: {
+                filtro: {
+                    filtros: {},
+                    currentPage: 1,
+                    pageSize: 20,
+                    sortFields: 'id',
+                    sortDirections: 'asc'
+                }
+
+            },
             resolve: {
             },
             data: {

@@ -45,12 +45,12 @@
         border-right: solid 1px #d2d2d2;
     }
 </style>
-
+<!--{{vm.lista}}-->
 <div class="row text-left bold mt30">
     <br />
     <p>MTUR - Ministério do Turismo</p>
     <p>Solicitações de Reunião</p>
-    <p>Autoridade {{vm.reuniao.autoridade.noAutoridade}}</p>
+    <p>Autoridade {{vm.autoridade}}</p>
 </div>
 
 <div class="row cinza pt10 text-center">
@@ -70,7 +70,7 @@
         <p>Pauta de Reunião</p>
     </div>
 
-    <div class="col-md-1">
+    <div class="col-md-2">
         <p>Despacho</p>
     </div>
 </div>
@@ -106,6 +106,6 @@
 
     </div>
     <div class="col-md-2">
-        Relatório gerado em dd/mm/aaaa HH:MM:SS
+        Relatório gerado em {{vm.dataAtual | date: 'dd/MM/yyyy HH:mm:ss'}}
     </div>
 </div>
