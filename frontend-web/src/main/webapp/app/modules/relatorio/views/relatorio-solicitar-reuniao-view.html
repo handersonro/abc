@@ -45,12 +45,12 @@
         border-right: solid 1px #d2d2d2;
     }
 </style>
-
+<!--{{vm.lista}}-->
 <div class="row text-left bold mt30">
     <br />
     <p>MTUR - Ministério do Turismo</p>
     <p>Solicitações de Reunião</p>
-    <p>Autoridade {{vm.reuniao.autoridade.noAutoridade}}</p>
+    <p>Autoridade {{vm.autoridade}}</p>
 </div>
 
 <div class="row cinza pt10 text-center">
@@ -70,31 +70,31 @@
         <p>Pauta de Reunião</p>
     </div>
 
-    <div class="col-md-1">
+    <div class="col-md-2">
         <p>Despacho</p>
     </div>
 </div>
 
 <!-- Início ROW dinâmica -->
-<div class="row dinamica pt10 text-center">
+<div class="row dinamica pt10 text-center"  ng-repeat="item in vm.lista">
     <div class="col-md-1 bdr">
-        <p>{dt_inicio _evento}</p>
+        <p>{{ item.dtInicioEvento | date : 'dd/MM/yyyy HH:mm'}}</p>
     </div>
 
     <div class="col-md-1 bdr">
-        <p>{local_ reuniao}</p>
+        <p>{{ item.noLocalEvento }}</p>
     </div>
 
     <div class="col-md-4 bdr">
-        <p>{no_assunto}</p>
+        <p>{{ item.noAssunto }}</p>
     </div>
 
     <div class="col-md-4 bdr">
-        <p>{no_pauta}</p>
+        <p>{{item.noPauta}}</p>
     </div>
 
     <div class="col-md-1">
-        <p>{no_despacho}</p>
+        <p>{{item.noDespacho}}</p>
     </div>
 </div>
 <!-- Fim ROW dinâmica -->
@@ -106,6 +106,6 @@
 
     </div>
     <div class="col-md-2">
-        Relatório gerado em dd/mm/aaaa HH:MM:SS
+        Relatório gerado em {{vm.dataAtual | date: 'dd/MM/yyyy HH:mm:ss'}}
     </div>
 </div>

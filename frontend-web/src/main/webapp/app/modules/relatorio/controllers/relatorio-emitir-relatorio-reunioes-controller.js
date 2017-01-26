@@ -4,7 +4,7 @@
         .controller('RelatorioEmitirRelatorioReunioesController', RelatorioEmitirRelatorioReunioesController);
 
     /* @ngInject */
-    function RelatorioEmitirRelatorioReunioesController($scope, $mdDialog, $timeout, EventoService){
+    function RelatorioEmitirRelatorioReunioesController($state, $scope, $mdDialog, $timeout, EventoService){
         var vm = this;
         vm.procurarLocal = null;//ConviteRestService.obterLocais;
         vm.procurarUsuario = null//EventoService.obterUsuarios;
@@ -15,6 +15,19 @@
         vm.ordenacoes = {};
         vm.direcoes = {};
         vm.reuniao = {};
+        vm.gerarRelatorio = gerarRelatorio;
+        var tipoEvento = {id: 3, noTipoEvento: 'REUNIAO'};
+        vm.filtro = {};
+        vm.filtroReuniao = {
+            "currentPage": "1",
+            "pageSize": "20",
+            "totalResults": "1",
+            "sortFields": "id",
+            "sortDirections": "asc",
+            "filtros": {
+                "tipoEvento" : tipoEvento
+            }
+        }
         inicializar();
         ///////////////////////////////////
         function inicializar(){
@@ -47,7 +60,12 @@
             vm.telaCadastro = false;
             vm.tbResultado = false;
         }
-        vm.gerarRelatorio = function(){
+        function gerarRelatorio() {
+
+            $state.params.filtro.currentPage = 1;
+
+            $state.get('app.private.relatorio.relatorio-solicitar-reuniao').filtroReuniao = vm.filtroReuniao;
+            $state.go('app.private.relatorio.relatorio-solicitar-reuniao');
 
         }
         vm.carregarListConvite = function(){

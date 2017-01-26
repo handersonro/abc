@@ -18,7 +18,8 @@
 
         return {
             obterDados: Restangular.one('relatorios/', 'relatorio-audiencia').customPOST,
-            obterRemetentes: Restangular.one('relatorios/', 'pesquisar-remetente').customPOST
+            obterRemetentes: Restangular.one('relatorios/', 'pesquisar-remetente').customPOST,
+            obterDadosReuniao: Restangular.one('relatorios/', 'solicitar-reuniao').customPOST
         };
     }
 })();

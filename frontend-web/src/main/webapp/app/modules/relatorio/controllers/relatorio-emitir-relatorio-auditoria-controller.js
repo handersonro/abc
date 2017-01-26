@@ -4,7 +4,7 @@
         .controller('RelatorioEmitirRelatorioAuditoriaController', RelatorioEmitirRelatorioAuditoriaController);
 
     /* @ngInject */
-    function RelatorioEmitirRelatorioAuditoriaController($scope, $timeout, AlertsService){
+    function RelatorioEmitirRelatorioAuditoriaController($scope, $state, $timeout, AlertsService){
         var vm = this;
         vm.title = "Relatório de auditoria";
         vm.autoridade = "Ministro";
@@ -25,6 +25,7 @@
           vm.auditoria = {};
         }
         function gerarRelatorio (){
+            $state.go('app.private.relatorio.solicitar-auditoria');
             vm.auditoria = {};
         }
 
