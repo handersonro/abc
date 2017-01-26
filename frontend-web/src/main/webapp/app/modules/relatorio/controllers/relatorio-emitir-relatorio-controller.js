@@ -44,7 +44,6 @@
         inicializar();
         function inicializar() {
             vm.filtro = {};
-            console.log('A1 ');
         }
 
         function gerarRelatorio() {
@@ -59,9 +58,7 @@
 
         }
 
-
-
-        vm.gerarRelatorioDraw = function (){
+        /*vm.gerarRelatorioDraw = function (){
             window.status = "loaded";
             //var reportData = '{"path":"http://192.168.56.10:28080/sisagm-backend/api/eventos/localidades/bra","name":"relatorio-remetente"}';
             //var reportData = '{"path":"http://192.168.56.10:9011/#/private/relatorio/emitir-relatorio","name":"relatorio-remetente"}';
@@ -85,41 +82,7 @@
                     $window.open(fileURL, '_blank', 'location=yes');
                 });
 
-        }
+        }*/
 
-
-
-
-        function debounce(func, wait, context) {
-          var timer;
-
-          return function debounced() {
-            var context = $scope,
-                args = Array.prototype.slice.call(arguments);
-            $timeout.cancel(timer);
-            timer = $timeout(function() {
-              timer = undefined;
-              func.apply(context, args);
-            }, wait || 10);
-          };
-        }
-        /*DIALOG*/
-        vm.showConfirm = function(ev) {
-        // Appending dialog to document.body to cover sidenav in docs app
-            var confirm = $mdDialog.confirm()
-              .title('Atenção')
-              .textContent('Tem certeza que deseja remover esse registro?')
-              .ariaLabel('Lucky day')
-              .targetEvent(ev)
-              .ok('Sim')
-              .cancel('Não');
-
-            $mdDialog.show(confirm).then(function() {
-              $scope.status = 'You decided to get rid of your debt.';
-            }, function() {
-              $scope.status = 'You decided to keep your debt.';
-            });
-        };
-        /*DIALOG*/
     }
 })();

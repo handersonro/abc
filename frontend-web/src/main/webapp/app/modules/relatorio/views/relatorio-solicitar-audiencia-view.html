@@ -76,28 +76,28 @@
     </div>
 </div>
 
-xxx {{vm.lista}}
+<!--xxx {{vm.lista}}-->
 
 <!-- Início ROW dinâmica -->
-<div class="row dinamica pt10 text-center" >
+<div class="row dinamica pt10 text-center"  ng-repeat="item in vm.lista">
     <div class="col-md-1 bdr">
-        <p>{{ item.dtInicioEvento }}</p>
+        <p>{{ item.dtCadastro | date : 'dd/MM/yyyy HH:mm'}}</p>
     </div>
 
     <div class="col-md-1 bdr">
-        <p>{nu_pessoa}</p>
+        <p>{{item.remetente.noRemetente}}</p>
     </div>
 
     <div class="col-md-4 bdr">
-        <p>{no_assunto}</p>
+        <p><span ta-bind ng-model="item.noAssunto">{{item.noAssunto}}</span></p>
     </div>
 
     <div class="col-md-4 bdr">
-        <p>{no_observacao}</p>
+        <p><span ta-bind ng-model="item.noObservacao">{{item.noObservacao}}</span></p>
     </div>
 
     <div class="col-md-1">
-        <p>{no_despacho}</p>
+        <p>{{item.noDespacho}}</p>
     </div>
 </div>
 <!-- Fim ROW dinâmica -->

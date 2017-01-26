@@ -9,7 +9,6 @@
 
         vm.reuniao = $state.current.reuniao;
         vm.participantes = [];
-        console.log("Aqui",vm.reuniao.id);
         inicializar();
         ///////////////////////////////////
         function inicializar(){

@@ -35,14 +35,13 @@
         inicializar();
         ///////////////////////////////////
 
-
         function inicializar() {
             vm.reuniao = {
                 dtCadastro: new Date()
             };
+
+
         }
-
-
 
         function showBtnSalvar() {
             return $scope.formReuniao.$invalid;
@@ -145,7 +144,6 @@
 
         /*CHIP*/
 
-
         /*MODAL*/
         function help(ev) {
             $mdDialog.show({
@@ -160,9 +158,6 @@
             $mdDialog.cancel();
         };
         /*MODAL*/
-
-
     }
-
 
 })();
