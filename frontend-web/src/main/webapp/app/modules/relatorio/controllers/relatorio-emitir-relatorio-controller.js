@@ -9,16 +9,8 @@
         vm.dto = new DTO();
         vm.gerarRelatorio = gerarRelatorio;
         vm.filtro = {};
-        vm.filtroAudiencia = {
-            "currentPage": "1",
-            "pageSize": "20",
-            "totalResults": "1",
-            "sortFields": "id",
-            "sortDirections": "asc",
-            "filtros": {
-                //"idLocalidade":7339
-            }
-        }
+        var tipoEvento = {id: 1,noTipoEvento: 'AUDIENCIA'};
+
         vm.relatorio ={};
         vm.procurarLocal = ConviteRestService.obterLocais;
         ///////////////////////////////////
@@ -47,18 +39,28 @@
         }
 
         function gerarRelatorio() {
-
             var tipoEvento = {id: 1,noTipoEvento: 'AUDIENCIA'};
 
-            $state.params.filtro.filtros.tipoEvento = tipoEvento;
             $state.params.filtro.currentPage = 1;
+
+            vm.filtroAudiencia = {
+                "currentPage": $state.params.filtro.currentPage,
+                "pageSize": "20",
+                "totalResults": "1",
+                "sortFields": "id",
+                "sortDirections": "asc",
+                "filtros": {
+                    "tipoEvento":tipoEvento
+                }
+            };
+
 
             $state.get('app.private.relatorio.relatorio-solicitar-audiencia').filtroAudiencia = vm.filtroAudiencia;
             $state.go('app.private.relatorio.relatorio-solicitar-audiencia');
 
         }
 
-        /*vm.gerarRelatorioDraw = function (){
+        vm.gerarRelatorioDraw = function (){
             window.status = "loaded";
             //var reportData = '{"path":"http://192.168.56.10:28080/sisagm-backend/api/eventos/localidades/bra","name":"relatorio-remetente"}';
             //var reportData = '{"path":"http://192.168.56.10:9011/#/private/relatorio/emitir-relatorio","name":"relatorio-remetente"}';
@@ -82,7 +84,7 @@
                     $window.open(fileURL, '_blank', 'location=yes');
                 });
 
-        }*/
+        }
 
     }
 })();

@@ -102,7 +102,7 @@
             templateUrl: MODULE_PATH+'views/relatorio-solicitar-audiencia-view.html',
             params: {
                 filtro: {
-                    filtros: { noObservacao: '',noRemetente: '',noDespacho: '', tipoEvento: '', noLocalEvento : '', noAssunto:'',descricao:'', noPauta:'', dtInicioEvento:'',dtFimEvento:'',dataCadInicial:'',dataCadFinal:'',conviteValidacao:'',participantes: ''},
+                    filtros: {},
                     currentPage: 1,
                     pageSize: 20,
                     sortFields: 'id',
