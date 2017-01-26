@@ -1,58 +1,36 @@
 (function(){
     angular
         .module('sisagmApp.relatorio.controllers')
-        .controller('RelatorioEmitirRelatorioConviteController', RelatorioEmitirRelatorioConviteController);
+        .controller('RelatorioInserirRelatorioController', RelatorioInserirRelatorioController);
 
     /* @ngInject */
-    function RelatorioEmitirRelatorioConviteController($scope, $mdDialog, $timeout, ConviteRestService){
+    function RelatorioInserirRelatorioController($scope, $mdDialog, $timeout, ConviteRestService){
         var vm = this;
         vm.procurarLocal = ConviteRestService.obterLocais;
-        vm.title = "Relatório de convite";
-        vm.autoridade = "Ministro";
-        vm.tipoEvento = {};
-        vm.tiposSaida = {};
-        vm.ordenacoes = {};
-        vm.direcoes = {};
-        inicializar();
         ///////////////////////////////////
-        function inicializar(){
-            vm.tipoEvento=[
-              {evento : 'Nacional'},
-              {evento : 'Internacional'}
-            ];
-            vm.tiposSaida = [
-                {tipo: 'PDF'},
-                {tipo: 'WORD'}
-            ];
-            vm.ordenacoes = [
-                {ordenacao: 'Data de cadastro'},
-                {ordenacao: 'Data do evento'},
-                {ordenacao: 'Descrição'},
-                {ordenacao: 'Local do evento'},
-                {ordenacao: 'Nome do remetente'}
-            ];
-            vm.direcoes = [
-                {direcao: 'Crescente'},
-                {direcao: 'Decrescente'}
-            ];
-        }
-
+        vm.title = "Relatório de audiência";
+        vm.autoridade = "Ministro";
+        vm.tiposSaida = [
+            {tipo: 'PDF'},
+            {tipo: 'WORD'}
+        ];
+        vm.ordenacoes = [
+            {ordenacao: 'Data de cadastro'},
+            {ordenacao: 'Nome do solicitante'},
+            {ordenacao: 'Assunto'}
+        ];
+        vm.direcoes = [
+            {direcao: 'Crescente'},
+            {direcao: 'Decrescente'}
+        ];
 
         vm.limpar = function(){
-
-        }
-        vm.backTlPesquisa = function(){
-            vm.title = "Relatório de convite";
-
-        }
-        vm.gerarRelatorio = function(){
+         
         }
         vm.carregarListConvite = function(){
 
-            console.log('carregarListConvite >>>>>');
-
-             /*ConviteRestService
-                 .obterLista({})
+             ConviteRestService
+                 .obterListaConvite({})
                  .then(
                      function(data){
                          $scope.listaConvites = data;
@@ -60,7 +38,7 @@
                      function(error){
 
                      }
-                 );*/
+                 );
         };
         vm.carregarListConvite();
 

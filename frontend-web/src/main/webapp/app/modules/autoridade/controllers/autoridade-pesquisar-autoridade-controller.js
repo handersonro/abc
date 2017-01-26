@@ -4,7 +4,7 @@
         .controller('AutoridadePesquisarAutoridadeController', AutoridadePesquisarAutoridadeController);
 
     /* @ngInject */
-    function AutoridadePesquisarAutoridadeController($scope, $timeout, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, DTO, AutoridadeService){
+    function AutoridadePesquisarAutoridadeController($scope, $timeout, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, UsuarioRestService, ConviteRestService, DTO){
     var vm = this;
     var _itens = [];
     vm.dto = new DTO();
@@ -13,59 +13,47 @@
     vm.tbResultado = false;
     vm.pesquisar = pesquisar;
     vm.editar = editar;
-    vm.filtro = {
-        noAutoridade: '',
-        noEmail: ''
-    };
+    vm.filtro = {};
     vm.limpar = limpar;
+    vm.listaAutoridades = {};
+    vm.procurarUsuario = UsuarioRestService.obterUsuarios;
+    vm.procurarLocal = ConviteRestService.obterLocais;
     inicializar();
     ///////////////////////////////////
     function inicializar (){
-
+        vm.listaAutoridades = [
+            {autoridade: "Ministro do Turismo"},
+            {autoridade: "Secretário Executivo"},
+            {autoridade: "Secretário Nacional de Estruturação do Turismo"},
+            {autoridade: "Secretário Nacional de Qualificação e Promoção do Turismo"}
+        ];
     }
     function pesquisar (){
-
-        $state.params.filtro.filtros.noAutoridade = vm.filtro.noAutoridade;
-        $state.params.filtro.filtros.noEmail = vm.filtro.noEmail;
-        $state.params.filtro.currentPage = 1;
-        getMoreInfinityScrollData($state.params.filtro.currentPage);
+        vm.tbResultado = true;
+        $location.hash('result-pesquisa');
+        // call $anchorScroll()
+        $anchorScroll();
     }
-
-    function getMoreInfinityScrollData(pageNumber){
-        $state.params.filtro.currentPage = pageNumber;
-
-        console.log($state.params.filtro);
-
-        var promiseLoadMoreData = AutoridadeService.consultarComFiltroSemLoader($state.params.filtro);
-
-        promiseLoadMoreData.then(
-            function(data) {
-                vm.tbResultado = true;
-    
-                $location.hash('result-pesquisa');
-    
-                vm.dto.totalResults = data.totalResults;
-                vm.dto.list = data.list;
-                $anchorScroll();
-            }, function (error) {
-                vm.tbResultado = false;
-                vm.dto.totalResults = 0;
-                vm.dto.list = [];
-            }
-        );
-
-        return promiseLoadMoreData;
-    }
-
     function editar (autoridade){
         $state.go('app.private.autoridade.editar-autoridade', {autoridade: autoridade});
     }
 
+    vm.carregarListConvite = function(){
+    	$http
+    	.get('modules/convite/data/list-convite.json')
+    	.success (function(data){
+    		_itens = data;
+    		vm.dto.totalResults = data.length;
+    		vm.dto.list = _itens.slice(0, vm.dto.pageSize);
+    	})
+    	.error(function(){
+    		alert('Não fooi possivel carregar os dados');
+    	});
+    };
+    vm.carregarListConvite();
     function changePage(page){
     	vm.dto.currentPage = page;
     	vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
-
-        getMoreInfinityScrollData(vm.dto.currentPage);
     }
     $scope.changePage = changePage;
 

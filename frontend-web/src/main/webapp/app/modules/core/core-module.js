@@ -3,8 +3,6 @@
     angular.module('sisagmApp.core.config', []);
     angular.module('sisagmApp.core.services', ['restangular']);
     angular.module('sisagmApp.core.filters', []);
-
-    angular.module('sisagmApp.core.autorizacao', ['restangular']);
     angular.module('sisagmApp.core.test', ['ngTable', 'ui.router', 'ngMaterial', 'restangular', 'oc.lazyLoad']);
 
 
@@ -13,8 +11,6 @@
             'sisagmApp.core.directives',
             'sisagmApp.core.services',
             'sisagmApp.core.filters',
-            'sisagmApp.core.config',
-            'sisagmApp.core.autorizacao'
-
+            'sisagmApp.core.config'
         ]);
 })();

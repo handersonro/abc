@@ -2,49 +2,49 @@
     'use strict';
 
     angular
-        .module('sisagmApp.convite.controllers')
-        .service('ConviteRestService', ConviteRestService);
+        .module('sisagmApp.audiencia.controllers')
+        .service('UsuarioRestService', UsuarioRestService);
 
     /* @ngInject */
-    function ConviteRestService($q, $http){
+    function UsuarioRestService($q, $http){
         var service = this;
 
-        service.obterListaConvite = obterListaConvite;
-        service.obterLocais = obterLocais;
+        service.obterListaUsuario = obterListaUsuario;
+        service.obterUsuarios = obterUsuarios;
 
         ////////////////////////////
-        function obterLocais(dto){
+        function obterUsuarios(dto){
             var retorno = $q.defer();
 
             retorno.resolve(
                 [
                     {
                         id: 1,
-                        local: 'CLN 312 Bloco E'
+                        usuario: 'Amanda Silva Mendes'
                     },
                     {
                         id: 2,
-                        local: 'CLS 205'
+                        usuario: 'Maria Madalena'
                     },
                     {
                         id: 3,
-                        local: 'Condomínio Solar de Brasília'
+                        usuario: 'José Ricardo'
                     },
                     {
                         id: 4,
-                        local: 'Condomínio Parque do Mirante'
+                        usuario: 'João Araújo'
                     },
                     {
                         id: 5,
-                        local: 'Condomíno Santa Bárbara'
+                        usuario: 'Marcelo dos Santos'
                     },
                     {
                         id: 6,
-                        local: 'Condomínio São Francisco'
+                        usuario: 'Bruno Medeiros'
                     },
                     {
                         id: 7,
-                        local: 'Lago Sul'
+                        usuario: 'Zilma dos Reis'
                     }
                 ]
             );
@@ -52,10 +52,10 @@
             return retorno.promise;
         }
 
-        function obterListaConvite(dto){
+        function obterListaUsuario(dto){
             var retorno = $q.defer();
             $http
-                 .get('modules/convite/data/list-convite.json')
+                 .get('modules/audiencia/data/list-usuario.json')
                  .success (function(data){
                     retorno.resolve(data);
                  })

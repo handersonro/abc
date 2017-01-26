@@ -4,17 +4,9 @@
         .controller('LoginController', LoginController);
 
     /* @ngInject */
-    function LoginController($scope,$state,Principal){
-        var vm = this;
+    function LoginController($scope){
 
-        vm.isAuthenticated = Principal.isAuthenticated();
-        // if(vm.isAuthenticated){
-        //     $state.go("app.public.home.pagina-inicial");
-        // }
-
-        // $scope.login =function(){
-        //     location.reload();grunt
-        // }
+        ///////////////////////////////////
 
     }
 })();

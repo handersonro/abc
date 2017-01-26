@@ -6,7 +6,7 @@
 <md-content class="box">
     <!-- TELA DE BUSCA -->
     <div class="md-padding">
-      <form name="formPesquisaParticipante">
+      <form name="formPesquisaRemetente">
         <!-- conteudo -->
         <div layout="row" layout-xs="column">
           <md-input-container flex=50 class="md-icon-float md-block">
@@ -14,8 +14,8 @@
                   Nome
               </label>
               <md-icon>&#xE8A6;</md-icon>
-              <input type="text" ng-model="vm.filtro.nome" name="nome" md-maxlength="50" maxlength="50"/>
-              <div ng-messages="formPesquisaParticipante.nome.$error">
+              <input type="text" ng-model="vm.filtro.nome" name="nome" md-maxlength="50"/>
+              <div ng-messages="formPesquisaRemetente.nome.$error">
                 <div ng-message="md-maxlength">Mínimo ou igual à 50 caracter</div>
               </div>
           </md-input-container>
@@ -24,8 +24,8 @@
                   E-mail
               </label>
               <md-icon>&#xE0BE;</md-icon>
-              <input type="text" ng-model="vm.filtro.email"  md-maxlength="50" maxlength="50"/>
-              <div ng-messages="formPesquisaParticipante.nome.$error">
+              <input type="email" ng-model="vm.filtro.email"  md-maxlength="50" />
+              <div ng-messages="formPesquisaRemetente.nome.$error">
                 <div ng-message="md-maxlength">Mínimo ou igual à 50 caracter</div>
               </div>
           </md-input-container>
@@ -45,7 +45,6 @@
                 </label>
                 <md-icon>&#xE0CF;</md-icon>
                 <input name="telefone" type="text" ng-model="vm.filtro.tel" mask="(99) 9?9999-9999"/>
-                <custom-validator-messages input-name="telefone" custom-message-mask="Telefone inválido"></custom-validator-messages>
             </md-input-container>
         </div>
         <!-- conteudo -->
@@ -95,7 +94,7 @@
                                   </md-button>
                                 </md-menu-item>
                                 <md-menu-item>
-                                  <md-button ng-click="showConfirm($event, item)">
+                                  <md-button ng-click="showConfirm($event)">
                                     <md-icon>&#xE92B;</md-icon>
                                     Remover
                                   </md-button>
@@ -106,7 +105,7 @@
                       <td>{{ item.nome }}</td>
                       <td>{{ item.cargo }}</td>
                       <td>{{ item.email }}</td>
-                      <td>{{ item.tel | mask:"(99) 9?9999-9999"}}</td>
+                      <td>{{ item.tel }}</td>
                     </tr>
                   </tbody>
                 </table>

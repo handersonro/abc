@@ -6,10 +6,10 @@
     </md-toolbar>
 </div>
 <md-content class="box">
-    <!-- TELA DE CADASTRO -->
+<!-- TELA DE CADASTRO -->
     <div class="md-padding">
 
-        <form name="formAutoridade" ng-submit="vm.salvar(vm.autoridade)">
+        <form name="formAutoridade" ng-submit="vm.salvar()">
             <!-- conteudo -->
             <div layout="row" layout-xs="column">
                 <md-input-container flex=50 class="md-icon-float md-block">
@@ -17,7 +17,7 @@
                         Descrição da autoridade
                     </label>
                     <md-icon>&#xE8A6;</md-icon>
-                    <input type="text" ng-model="vm.autoridade.noAutoridade" name="desAutoridade" md-maxlength="50" required/>
+                    <input type="text" ng-model="vm.autoridade.desAutoridade" name="desAutoridade" md-maxlength="50" required/>
                     <custom-validator-messages input-name="desAutoridade" ></custom-validator-messages>
                 </md-input-container>
                 <md-input-container flex class="md-icon-float md-block">
@@ -25,12 +25,12 @@
                         E-mail
                     </label>
                     <md-icon>&#xE0BE;</md-icon>
-                    <input name="email" type="email" ng-model="vm.autoridade.noEmail" required md-maxlength="50"/>
+                    <input name="email" type="email" ng-model="vm.autoridade.email" required md-maxlength="50"/>
                     <custom-validator-messages input-name="email" ></custom-validator-messages>
                 </md-input-container>
             </div>
             <section class="md-padding action" layout="row" layout-align="end center"
-                     layout-wrap>
+            layout-wrap>
                 <md-button class="md-raised md-primary" ng-disabled="vm.showBtnSalvar()" type="submit">
                     <md-icon>
                         &#xE161;

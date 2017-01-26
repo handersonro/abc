@@ -2,18 +2,11 @@
     'use strict';
 
     angular
-        .module('sisagmApp')
+        .module('sisagmApp.public.routes')
         .config(configPublicRoutes);
 
     /* @ngInject */
-    function configPublicRoutes($stateProvider,$injector) {
-
-        console.log('A1 ');
-
-            // $http({method: 'GET', url: 'http://localhost:8080/sisagm/api/autenticar/account', headers: {
-            //     'Authorization': 'Bearer '+ retorno.id_token}
-            // });
-
+    function configPublicRoutes($stateProvider) {
         $stateProvider
             .state( 'app.public', {
                 url: '/public',
@@ -27,12 +20,8 @@
                     skip: true
                 },
                 params: {
-                    callback: function(){
-
-                            console.log('A6');
-                    }
+                    callback: null
                 }
             });
-
     }
 })();

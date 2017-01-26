@@ -1,10 +1,10 @@
 (function(){
     angular
         .module('sisagmApp.relatorio.controllers')
-        .controller('RelatorioEmitirRelatorioAuditoriaController', RelatorioEmitirRelatorioAuditoriaController);
+        .controller('RelatorioInserirRelatorioAuditoriaController', RelatorioInserirRelatorioAuditoriaController);
 
     /* @ngInject */
-    function RelatorioEmitirRelatorioAuditoriaController($scope, $timeout, AlertsService){
+    function RelatorioInserirRelatorioAuditoriaController($scope, $timeout, AlertsService){
         var vm = this;
         vm.title = "Relatório de auditoria";
         vm.autoridade = "Ministro";

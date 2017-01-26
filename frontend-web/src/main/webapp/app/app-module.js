@@ -14,7 +14,6 @@
             'ngMaterialDatePicker',
             'pascalprecht.translate',
             'ncy-angular-breadcrumb',
-            'colorpicker.module',
 
             'sisagmApp.routes',
             'sisagmApp.core',
@@ -30,9 +29,8 @@
             'sisagmApp.audiencia',
             'sisagmApp.autoridade',
             'sisagmApp.relatorio',
-            'sisagmApp.evento',
             'menu',
-            'ngStorage',
+
             '$alerts',
 
 

@@ -1,20 +1,18 @@
 (function(){
     angular
         .module('sisagmApp.relatorio.controllers')
-        .controller('RelatorioEmitirRelatorioReunioesController', RelatorioEmitirRelatorioReunioesController);
+        .controller('RelatorioInserirRelatorioConviteController', RelatorioInserirRelatorioConviteController);
 
     /* @ngInject */
-    function RelatorioEmitirRelatorioReunioesController($scope, $mdDialog, $timeout, EventoService){
+    function RelatorioInserirRelatorioConviteController($scope, $mdDialog, $timeout, ConviteRestService){
         var vm = this;
-        vm.procurarLocal = null;//ConviteRestService.obterLocais;
-        vm.procurarUsuario = null//EventoService.obterUsuarios;
-        vm.title = "Relatório de reuniões";
+        vm.procurarLocal = ConviteRestService.obterLocais;
+        vm.title = "Relatório de convite";
         vm.autoridade = "Ministro";
         vm.tipoEvento = {};
         vm.tiposSaida = {};
         vm.ordenacoes = {};
         vm.direcoes = {};
-        vm.reuniao = {};
         inicializar();
         ///////////////////////////////////
         function inicializar(){
@@ -27,9 +25,11 @@
                 {tipo: 'WORD'}
             ];
             vm.ordenacoes = [
-                {ordenacao: 'Data da reunião'},
-                {ordenacao: 'Local da reunião'},
-                {ordenacao: 'Assunto pauta da reunião'}
+                {ordenacao: 'Data de cadastro'},
+                {ordenacao: 'Data do evento'},
+                {ordenacao: 'Descrição'},
+                {ordenacao: 'Local do evento'},
+                {ordenacao: 'Nome do remetente'}
             ];
             vm.direcoes = [
                 {direcao: 'Crescente'},
@@ -39,21 +39,17 @@
 
 
         vm.limpar = function(){
-          vm.reuniao = {};
+
         }
         vm.backTlPesquisa = function(){
             vm.title = "Relatório de convite";
-            vm.telaPesquisa = true;
-            vm.telaCadastro = false;
-            vm.tbResultado = false;
+
         }
         vm.gerarRelatorio = function(){
-
         }
         vm.carregarListConvite = function(){
 
-            console.log('carregarListConvite >>>>>>>>>>>>>>>>')
-             /*ConviteRestService
+             ConviteRestService
                  .obterListaConvite({})
                  .then(
                      function(data){
@@ -62,7 +58,7 @@
                      function(error){
 
                      }
-                 );*/
+                 );
         };
         vm.carregarListConvite();
 

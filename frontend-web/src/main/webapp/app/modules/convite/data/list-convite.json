@@ -1,9 +1,9 @@
 [
     {
      "id":1,
-     "dataEventoInicio": "10102016",
-     "dataEventoFim": "10122016",
-     "dataCadastro": "10102016",
+     "dataEventoInicio": "10/10/2016",
+     "dataEventoFim": "10/12/2016",
+     "dataCadastro": "10/10/2016",
      "usuario": "João Guerreiro",
      "autoridade": "Ministro",
      "email": "empresa@empresa.com",
@@ -25,9 +25,9 @@
     },
     {
      "id":2,
-     "dataEventoInicio": "10052016",
-     "dataEventoFim": "10082016",
-     "dataCadastro": "02102016",
+     "dataEventoInicio": "10/05/2016",
+     "dataEventoFim": "10/08/2016",
+     "dataCadastro": "2/10/2016",
      "usuario": "Camila Leão",
      "autoridade": "Ministro",
      "email": "fulanoSilva@mtur.gov.br",
@@ -49,9 +49,9 @@
    },
    {
     "id":3,
-    "dataEventoInicio": "10012015",
-    "dataEventoFim": "10032016",
-    "dataCadastro": "01012015",
+    "dataEventoInicio": "10/01/2015",
+    "dataEventoFim": "10/03/2016",
+    "dataCadastro": "01/01/2015",
     "usuario": "Celso Castilho",
     "autoridade": "Ministro",
     "email": "otavioMesquita@mec.gov.br",

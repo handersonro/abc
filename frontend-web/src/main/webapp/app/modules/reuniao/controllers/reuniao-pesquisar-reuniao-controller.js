@@ -4,7 +4,7 @@
         .controller('ReuniaoPesquisarReuniaoController', ReuniaoPesquisarReuniaoController);
 
     /* @ngInject */
-    function ReuniaoPesquisarReuniaoController($scope, $timeout, $log, $http, $mdDialog, $state,$location, $anchorScroll, AlertsService, DTO){
+    function ReuniaoPesquisarReuniaoController($scope, $timeout, $log, $http, $mdDialog, $state,$location, $anchorScroll, AlertsService, UsuarioRestService, ConviteRestService, DTO){
     var vm = this;
     var _itens = [];
     vm.dto = new DTO();
@@ -16,6 +16,8 @@
     vm.filtro = {};
     vm.limpar = limpar;
     vm.listaAutoridades = {};
+    vm.procurarUsuario = UsuarioRestService.obterUsuarios;
+    vm.procurarLocal = ConviteRestService.obterLocais;
     inicializar();
     ///////////////////////////////////
     function inicializar (){

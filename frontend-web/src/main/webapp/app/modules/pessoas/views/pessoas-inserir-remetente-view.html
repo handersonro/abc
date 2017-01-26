@@ -1,43 +1,36 @@
 <div id="title">
     <md-toolbar class=" md-toolbar-tools">
         <h1 class="md-toolbar-tools">{{vm.title}}</h1>
-        <span flex></span>
-        <md-button class="md-fab md-mini md-acoes" aria-label="Use Android" ng-click="vm.help($event)">
-            <md-tooltip md-direction="left">
-                Ajuda
-            </md-tooltip>
-            <md-icon>&#xE8FD;</md-icon>
-        </md-button>
     </md-toolbar>
 </div>
 <md-content class="box">
     <div class="md-padding">
-        <form name="formRemetente" novalidate ng-submit="!formRemetente.$invalid && vm.salvar(vm.remetente)">
+        <form name="formRemetente" novalidate ng-submit="vm.salvar()">
             <div layout="row" layout-xs="column">
-                <md-input-container flex="50" flex-xs="100" class="md-icon-float md-block">
+                <md-input-container flex=50 class="md-icon-float md-block">
                     <label>
                         Nome
                     </label>
                     <md-icon>&#xE8A6;</md-icon>
-                    <input type="text" ng-model="vm.remetente.noRemetente" name="nome" ng-required="true" md-maxlength="50" maxlength="50" />
+                    <input type="text" ng-model="vm.remetente.nome" name="nome" ng-required="true" md-maxlength="50" maxlength="50" />
                     <custom-validator-messages input-name="nome" ></custom-validator-messages>
                 </md-input-container>
-                <md-input-container flex="50" flex-xs="100" class="md-icon-float md-block">
+                <md-input-container flex=50 class="md-icon-float md-block">
                     <label>
                         E-mail
                     </label>
                     <md-icon>&#xE0BE;</md-icon>
-                    <input name="email" type="email" ng-model="vm.remetente.noEmail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$" md-maxlength="50" maxlength="50" required/>
-                    <custom-validator-messages input-name="email" custom-message-pattern="Email inválido"></custom-validator-messages>
+                    <input name="email" type="email" ng-model="vm.remetente.email"  md-maxlength="50" required/>
+                    <custom-validator-messages input-name="email" ></custom-validator-messages>
                 </md-input-container>
             </div>
             <div layout="row" layout-xs="column">
-              <md-input-container flex="70" flex-xs="100" class=" md-icon-float md-block">
+              <md-input-container flex="70" class=" md-icon-float md-block">
                   <label>
                       Cargo
                   </label>
                   <md-icon>&#xE8F8;</md-icon>
-                  <input name="cargo" type="text" ng-model="vm.remetente.noCargo" required md-maxlength="250" maxlength="250" />
+                  <input name="cargo" type="text" ng-model="vm.remetente.cargo" required md-maxlength="250" maxlength="250" />
                   <custom-validator-messages input-name="cargo" ></custom-validator-messages>
               </md-input-container>
 
@@ -46,8 +39,8 @@
                         Telefone
                     </label>
                     <md-icon>&#xE0CF;</md-icon>
-                    <input name="telefone" type="text" ng-model="vm.remetente.nuTelefone" mask="(99) 9?9999-9999" required="true"/>
-                    <custom-validator-messages input-name="telefone" custom-message-mask="Telefone inválido"></custom-validator-messages>
+                    <input name="telefone" type="text" ng-model="vm.remetente.tel" mask="(99) 9?9999-9999" required="true" />
+                    <custom-validator-messages input-name="telefone" ></custom-validator-messages>
                 </md-input-container>
             </div>
 
