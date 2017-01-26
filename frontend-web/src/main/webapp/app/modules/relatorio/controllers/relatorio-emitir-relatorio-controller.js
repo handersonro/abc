@@ -9,7 +9,8 @@
         vm.dto = new DTO();
         vm.gerarRelatorio = gerarRelatorio;
         vm.filtro = {};
-        var tipoEvento = {id: 1,noTipoEvento: 'AUDIENCIA'};
+        $state.params.filtro.filtros = {'tipoEvento.id' : 1 };
+
 
         vm.relatorio ={};
         vm.procurarLocal = ConviteRestService.obterLocais;
@@ -39,9 +40,7 @@
         }
 
         function gerarRelatorio() {
-            var tipoEvento = {id: 1,noTipoEvento: 'AUDIENCIA'};
 
-            $state.params.filtro.currentPage = 1;
 
             vm.filtroAudiencia = {
                 "currentPage": $state.params.filtro.currentPage,
@@ -50,7 +49,12 @@
                 "sortFields": "id",
                 "sortDirections": "asc",
                 "filtros": {
-                    "tipoEvento":tipoEvento
+                    "tipoEvento.id": 1,
+                    "remetente.noCargo" : vm.filtro.cargoSolicitante,
+                    "remetente.noRemetente" : vm.filtro.solicitante,
+                    "noObservacao" : vm.filtro.observacao,
+                    "noDespacho" : vm.filtro.despacho,
+                    "noAssunto" : vm.filtro.assunto
                 }
             };
 
