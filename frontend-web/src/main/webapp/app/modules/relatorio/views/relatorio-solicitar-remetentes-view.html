@@ -53,15 +53,15 @@
 </div>
 
 <div class="row cinza pt10 text-center">
-    <div class="col-md-1">
+    <div class="col-md-4">
         <p>Nome Completo</p>
     </div>
 
-    <div class="col-md-1">
+    <div class="col-md-2">
         <p>Cargo/Tratamento</p>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-2">
         <p>Telefone</p>
     </div>
 
@@ -71,21 +71,21 @@
 </div>
 
 <!-- Início ROW dinâmica -->
-<div class="row dinamica pt10 text-center">
-    <div class="col-md-1 bdr">
-        <p>{no_remetente}</p>
+<div class="row dinamica pt10 text-center" ng-repeat="item in vm.lista">
+    <div class="col-md-4 bdr">
+        <p>{{item.noRemetente}}</p>
     </div>
 
-    <div class="col-md-1 bdr">
-        <p>{{no_cargo}}</p>
+    <div class="col-md-2 bdr">
+        <p>{{item.noCargo}}</p>
+    </div>
+
+    <div class="col-md-2 bdr">
+        <p>{{item.nuTelefone}}</p>
     </div>
 
     <div class="col-md-4 bdr">
-        <p>{{no_telefone}}</p>
-    </div>
-
-    <div class="col-md-4 bdr">
-        <p>{{no_email}}</p>
+        <p>{{item.noEmail}}</p>
     </div>
 </div>
 <!-- Fim ROW dinâmica -->
@@ -97,6 +97,6 @@
 
     </div>
     <div class="col-md-2">
-        Relatório gerado em dd/mm/aaaa HH:MM:SS
+        Relatório gerado em {{vm.dataAtual | date: 'dd/MM/yyyy HH:mm:ss'}}
     </div>
 </div>

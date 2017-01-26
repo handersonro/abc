@@ -17,7 +17,8 @@
     function RelatorioService(Restangular,$http,baseURL) {
 
         return {
-            obterDados: Restangular.one('relatorios/', 'relatorio-audiencia').customPOST
+            obterDados: Restangular.one('relatorios/', 'relatorio-audiencia').customPOST,
+            obterRemetentes: Restangular.one('relatorios/', 'pesquisar-remetente').customPOST
         };
     }
 })();
