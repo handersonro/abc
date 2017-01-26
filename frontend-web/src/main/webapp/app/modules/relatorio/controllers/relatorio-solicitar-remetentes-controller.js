@@ -6,7 +6,7 @@
     /* @ngInject */
     function RelatorioSolicitarRemetentesController($state, DTO,RelatorioService){
         var vm = this;
-        vm.dto = new DTO();
+
         vm.filtro = {};
         vm.filtroPaginacao = {
             "currentPage": "1",
@@ -18,6 +18,7 @@
             }
         }
         vm.relatorio ={};
+        vm.dataAtual = new Date();
 
         ///////////////////////////////////
         vm.title = "Relatório de Remetentes";
