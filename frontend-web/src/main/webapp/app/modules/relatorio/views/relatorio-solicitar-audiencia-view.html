@@ -46,12 +46,13 @@
     }
 </style>
 
+<!--{{vm.lista}}-->
 <div class="row text-left bold mt30">
     <div class="col-md-12">
         <br />
         <p>MTUR - Ministério do Turismo</p>
         <p>Solicitações de Audiência</p>
-        <p>Autoridade {{vm.audiencia.autoridade.noAutoridade}}</p>
+        <p>Autoridade {{vm.autoridade}}</p>
     </div>
 </div>
 <div class="row cinza pt10 text-center">
@@ -75,8 +76,6 @@
         <p>Despacho</p>
     </div>
 </div>
-
-<!--xxx {{vm.lista}}-->
 
 <!-- Início ROW dinâmica -->
 <div class="row dinamica pt10 text-center"  ng-repeat="item in vm.lista">

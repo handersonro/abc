@@ -4,10 +4,14 @@
         .controller('RelatorioSolicitarAudienciaController', RelatorioSolicitarAudienciaController);
 
     /* @ngInject */
-    function RelatorioSolicitarAudienciaController($state,RelatorioService){
+    function RelatorioSolicitarAudienciaController($state, RelatorioService, Principal){
 
         var vm = this;
         vm.lista=  {}
+
+        Principal.identity().then(function(account) {
+            vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
+        });
 
         ///////////////////////////////////
         inicializar();
