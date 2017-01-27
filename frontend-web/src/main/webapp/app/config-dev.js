@@ -1,7 +1,7 @@
 (function(){
     angular
         .module('sisagmApp')
-        .constant('baseURL','http://sturdeswildfly01:8080/sisagm/sisagm-backend/api/')
+        .constant('baseURL','http://sturdeswildfly01:8080/sisagm-backend/api/')
         .constant('versaoProjeto','${project.version}')
         .constant('ambiente','${ambiente.nome}')
         .config(configDev);
