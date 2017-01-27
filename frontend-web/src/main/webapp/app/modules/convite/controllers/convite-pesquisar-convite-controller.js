@@ -51,7 +51,7 @@
         vm.tipoEvento = {};
         vm.validacoes = {};
         vm.procurarLocal = ConviteRestService.obterLocais;
-        vm.buscarRemetentePeloNome = buscarRemetentePeloNome;
+        vm.buscarRemetentePeloNome = ConviteRestService.obterRemetentes;
         vm.procurarPaises = ConviteRestService.obterPaises;
         vm.trocaOrdenacao = trocaOrdenacao;
         inicializar();
@@ -294,7 +294,7 @@
             getMoreInfinityScrollData(vm.dto.currentPage);
         }
 
-        function buscarRemetentePeloNome(noUsuario) {
+        /*function buscarRemetentePeloNome(noUsuario) {
             var retorno = $q.defer();
             EventoService.obterRemetentesPeloNome(noUsuario,false)
                 .success(function (data) {
@@ -304,7 +304,7 @@
                     retorno.reject(alert('Não foi possivel carregar os dados'));
                 });
             return retorno.promise;
-        }
+        }*/
 
         function trocaOrdenacao() {
 
