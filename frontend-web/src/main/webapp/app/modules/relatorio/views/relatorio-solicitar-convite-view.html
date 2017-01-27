@@ -54,47 +54,47 @@
 </div>
 
 <div class="row cinza pt10 text-center">
-    <div class="col-md-1">
+    <div class="col-md-2">
         <p>Quem convidou</p>
     </div>
 
-    <div class="col-md-1">
+    <div class="col-md-3">
         <p>Descrição</p>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-2">
         <p>Data do Evento</p>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-2">
         <p>Local do Evento</p>
     </div>
 
-    <div class="col-md-1">
+    <div class="col-md-3">
         <p>Despacho</p>
     </div>
 </div>
 
 <!-- Início ROW dinâmica -->
-<div class="row dinamica pt10 text-center">
-    <div class="col-md-1 bdr">
-        <p>{Quem convidou}</p>
+<div class="row dinamica pt10 text-center" ng-repeat="item in vm.lista">
+    <div class="col-md-2 bdr">
+        <p>{{item.remetente.noRemetente}}</p>
     </div>
 
-    <div class="col-md-1 bdr">
-        <p>{descricao}</p>
+    <div class="col-md-3 bdr">
+        <p>{{item.descricao}}</p>
     </div>
 
-    <div class="col-md-4 bdr">
-        <p>{data_evento}</p>
+    <div class="col-md-2 bdr">
+        <p>{{item.dtInicioEvento | date:'dd/MM/yyyy: HH:mm'}}</p>
     </div>
 
-    <div class="col-md-4 bdr">
-        <p>{local_evento}</p>
+    <div class="col-md-2 bdr">
+        <p>{{item.noLocalEvento}}</p>
     </div>
 
-    <div class="col-md-1">
-        <p>{no_despacho}</p>
+    <div class="col-md-3">
+        <p>{{item.noDespacho}}</p>
     </div>
 </div>
 <!-- Fim ROW dinâmica -->
@@ -106,6 +106,6 @@
 
     </div>
     <div class="col-md-2">
-        Relatório gerado em dd/mm/aaaa HH:MM:SS
+        Relatório gerado em {{vm.dataAtual | date: 'dd/MM/yyyy HH:mm:ss'}}
     </div>
 </div>

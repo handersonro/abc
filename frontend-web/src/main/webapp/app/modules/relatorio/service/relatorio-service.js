@@ -18,6 +18,7 @@
 
         return {
             obterDados: Restangular.one('relatorios/', 'relatorio-audiencia').customPOST,
+            obterDadosConvite: Restangular.one('relatorios/', 'relatorio-convite').customPOST,
             obterRemetentes: Restangular.one('relatorios/', 'pesquisar-remetente').customPOST,
             obterDadosReuniao: Restangular.one('relatorios/', 'solicitar-reuniao').customPOST
         };

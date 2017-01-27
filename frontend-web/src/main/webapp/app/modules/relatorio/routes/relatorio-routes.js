@@ -56,6 +56,16 @@
                 controller: 'RelatorioEmitirRelatorioConviteController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/relatorio-emitir-relatorio-convite-view.html',
+                params: {
+                    filtro: {
+                        filtros: {},
+                        currentPage: 1,
+                        pageSize: 20,
+                        sortFields: 'id',
+                        sortDirections: 'asc'
+                    }
+
+                },
                 resolve: {
                 },
                 data: {
