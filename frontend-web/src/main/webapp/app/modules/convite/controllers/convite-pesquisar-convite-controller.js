@@ -97,8 +97,6 @@
        function pesquisar() {
            var tipoEvento = {id: 2,noTipoEvento: 'CONVITE'};
 
-
-            vm.flEventoInternacional = vm.filtro.tipoSaida;
             var dataCadInicial = new Date(vm.filtro.dataCadInicial).getTime();
             var dataCadFinal = new Date(vm.filtro.dataCadFinal).getTime();
 
@@ -113,11 +111,12 @@
                 vm.filtro.validado = "NAO";
             }
 
-            if(vm.filtro.tipoSaida ==="Internacional"){
+            if(vm.filtro.tipoSaida ==="Evento internacional"){
                 vm.filtro.tipoSaida = true;
-            }else if(vm.filtro.tipoSaida ==="Nacional"){
+            }else if(vm.filtro.tipoSaida ==="Evento nacional"){
                 vm.filtro.tipoSaida = false;
             }
+            console.log(vm.filtro.tipoSaida);
 
             $state.params.filtro.filtros.noObservacao = vm.filtro.noObservacao;
             $state.params.filtro.filtros.noDespacho = vm.filtro.noDespacho;
