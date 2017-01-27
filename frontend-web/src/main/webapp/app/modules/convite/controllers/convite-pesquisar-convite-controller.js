@@ -104,7 +104,7 @@
             var dataCadFinal = new Date(vm.filtro.dataCadFinal).getTime();
 
             var dtInicioEvento = new Date(vm.filtro.dtInicioEvento).getTime();
-            var dtFimEvento = new Date(vm.filtro.dataCadFinal).getTime();
+            var dtFimEvento = new Date(vm.filtro.dtFimEvento).getTime();
 
             if(vm.filtro.validado ==="Indiferente"){
                 vm.filtro.validado = "INDIFERENTE";
@@ -119,7 +119,6 @@
             }else if(vm.filtro.tipoSaida ==="Evento nacional"){
                 vm.filtro.tipoSaida = false;
             }
-            console.log(vm.filtro.tipoSaida);
 
             $state.params.filtro.filtros.noObservacao = vm.filtro.noObservacao;
             $state.params.filtro.filtros.noDespacho = vm.filtro.noDespacho;
@@ -136,6 +135,8 @@
             $state.params.filtro.filtros.idPais = vm.filtro.idPais.id;
             $state.params.filtro.filtros.noCidadeInternacional = vm.filtro.noCidadeInternacional;
             $state.params.filtro.currentPage = 1;
+
+            console.log(dtInicioEvento, dtFimEvento);
 
             getMoreInfinityScrollData($state.params.filtro.currentPage);
         }
