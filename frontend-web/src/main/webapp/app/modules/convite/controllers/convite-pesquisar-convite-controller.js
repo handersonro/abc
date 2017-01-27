@@ -50,9 +50,10 @@
         vm.dasabilitaCampo = dasabilitaCampo;
         vm.tipoEvento = {};
         vm.validacoes = {};
-         vm.procurarLocal = ConviteRestService.obterLocais;
+        vm.procurarLocal = ConviteRestService.obterLocais;
         vm.buscarRemetentePeloNome = buscarRemetentePeloNome;
-         vm.trocaOrdenacao = trocaOrdenacao;
+        vm.procurarPaises = ConviteRestService.obterPaises;
+        vm.trocaOrdenacao = trocaOrdenacao;
         inicializar();
         ///////////////////////////////////
         function inicializar() {
@@ -78,7 +79,9 @@
                 dtInicioEvento:'',
                 dtFimEvento:'',
                 dataCadInicial:'',
-                dataCadFinal:''
+                dataCadFinal:'',
+                idPais: '',
+                noCidadeInternacional: '',
             };
 
         }
@@ -130,6 +133,8 @@
             $state.params.filtro.filtros.dataCadFinal   = dataCadFinal;
             $state.params.filtro.filtros.conviteValidacao = vm.filtro.validado;
             $state.params.filtro.filtros.flEventoInternacional = vm.filtro.tipoSaida;
+            $state.params.filtro.filtros.idPais = vm.filtro.idPais.id;
+            $state.params.filtro.filtros.noCidadeInternacional = vm.filtro.noCidadeInternacional;
             $state.params.filtro.currentPage = 1;
 
             getMoreInfinityScrollData($state.params.filtro.currentPage);
@@ -307,6 +312,21 @@
             $state.params.filtro.pageSize = vm.dto.pageSize;
 
             getMoreInfinityScrollData(vm.dto.currentPage);
+        }
+
+        /**
+         * Obterm os paises da base do
+         * */
+        function obterPaises(noPais) {
+            var retorno = $q.defer();
+            $http.get('evento/paises?noPais=' + noPais)
+                .success(function (data) {
+                    retorno.resolve(data);
+                })
+                .error(function () {
+                    retorno.reject(alert('Não fooi possivel carregar os dados'));
+                });
+            return retorno.promise;
         }
 
         vm.changePage = changePage;
