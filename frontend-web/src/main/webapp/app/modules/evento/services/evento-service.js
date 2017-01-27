@@ -30,6 +30,12 @@
 
         }
 
+        function obterCargosRemetentesPeloNome(noCargo){
+            var retorno = $q.defer();
+            retorno =  $http.get(baseURL+ 'remetentes?noCargo=' + noCargo);
+            return retorno;
+        }
+
         function obterLocalidadePeloId(id) {
             return $http.get(baseURL+'eventos/localidades?idLocalidade='+id);
         }
@@ -58,6 +64,7 @@
             consultarComFiltroSemLoader: Restangular.one('eventos/', 'pesquisar').withHttpConfig({'da-loader': false}).customPOST,
             obterParticipanteExterno: obterParticipanteExterno,
             obterRemetentesPeloNome: buscaRemetentePeloNome,
+            obterCargosRemetentesPeloNome: obterCargosRemetentesPeloNome,
             obterLocalidadePeloId: obterLocalidadePeloId,
             obterParticipanteExternoPorIdPessoa: obterParticipanteExternoPorIdPessoa,
             obterParticipanteInternoPorId: obterParticipanteInternoPorId,

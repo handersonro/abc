@@ -34,36 +34,54 @@
           </div>
           <div layout="row" layout-xs="column">
               <md-input-container flex="50" flex-xs="100" class="md-icon-float md-block">
-                  <label>
-                      Solicitante
-                  </label>
-                  <md-icon>
-                      &#xE8A6;
-                  </md-icon>
-                  <input name="solicitante" type="text" ng-model="vm.filtro.solicitante" md-maxlength="50"
-                  />
-                  <div ng-messages="formPesquisaAudiencia.solicitante.$error">
-                      <div ng-message="md-maxlength">
-                          Mínimo ou igual à 50 caracter
-                      </div>
-                  </div>
+                  <md-autocomplete
+                          flex
+                          md-input-name="remetente"
+                          md-no-cache="true"
+                          md-selected-item="vm.filtro.solicitante"
+                          md-input-name="local"
+                          md-search-text="noRemetente"
+                          md-items="item in vm.buscarRemetentePeloNome(noRemetente)"
+                          md-item-text="item.noRemetente"
+                          md-min-length="3"
+                          md-match-case-insensitive="true"
+                          md-input-maxlength="50"
+                          md-floating-label="Solicitante">
+                      <md-item-template>
+                          <span md-highlight-text="noRemetente" md-highlight-flags="^i">{{item.noRemetente}}</span>
+                      </md-item-template>
+                      <md-not-found>
+                          Nenhum usuário "{{noRemetente}}" foi encontrado
+                      </md-not-found>
+                      <custom-validator-messages input-name="usuario" ></custom-validator-messages>
+                  </md-autocomplete>
               </md-input-container>
-              <md-input-container flex class="md-icon-float md-block">
-                  <label>
-                      Cargo solicitante
-                  </label>
-                  <md-icon>&#xE8F8;</md-icon>
-                  <input name="cargoSolicitante" type="text" ng-model="vm.filtro.cargoSolicitante" md-maxlength="50"
-                  />
-                  <div ng-messages="formPesquisaAudiencia.cargoSolicitante.$error">
-                      <div ng-message="md-maxlength">
-                          Mínimo ou igual à 50 caracter
-                      </div>
-                  </div>
+              <md-input-container flex="50" flex-xs="100" class="md-icon-float md-block">
+                  <md-autocomplete
+                          flex
+                          md-input-name="cargoSolicitante"
+                          md-no-cache="true"
+                          md-selected-item="vm.filtro.cargoSolicitante"
+                          md-input-name="noCargo"
+                          md-search-text="noCargo"
+                          md-items="item in vm.buscarCargoRemetentePeloNome(noCargo)"
+                          md-item-text="item.noCargo"
+                          md-min-length="3"
+                          md-match-case-insensitive="true"
+                          md-input-maxlength="50"
+                          md-floating-label="Cargo solicitante">
+                      <md-item-template>
+                          <span md-highlight-text="noCargo" md-highlight-flags="^i">{{item.noCargo}}</span>
+                      </md-item-template>
+                      <md-not-found>
+                          Nenhum cargo "{{noCargo}}" foi encontrado
+                      </md-not-found>
+                      <custom-validator-messages input-name="noCargo" ></custom-validator-messages>
+                  </md-autocomplete>
               </md-input-container>
           </div>
           <div layout="row" layout-align="start">
-              <md-checkbox ng-model="myForm.$invalid">Inverter cargo solicitante</md-checkbox>
+              <md-checkbox ng-model="vm.filtro.notCargo">Inverter cargo solicitante</md-checkbox>
           </div>
           <div layout="row" layout-xs="column">
               <md-autocomplete
@@ -92,8 +110,8 @@
                   <md-icon>
                       &#xE834;
                   </md-icon>
-                  <md-select ng-model="vm.filtro.validado" md-maxlength="255" maxlength="255">
-                      <md-option ng-repeat="item in listaConvites" value="{{item.validado}}">
+                  <md-select ng-model="vm.filtro.validado">
+                      <md-option ng-repeat="item in vm.validacoes" value="{{item.validado}}">
                           {{item.validado}}
                       </md-option>
                   </md-select>

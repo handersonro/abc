@@ -73,7 +73,7 @@
                 tipoEvento: '',
                 noDespacho: '',
                 idLocalidade: '',
-                noRemetente: '',
+                remetente: '',
                 descricao: '',
                 flEventoInternacional: '',
                 dtInicioEvento:'',
@@ -123,8 +123,8 @@
             $state.params.filtro.filtros.noObservacao = vm.filtro.noObservacao;
             $state.params.filtro.filtros.noDespacho = vm.filtro.noDespacho;
             $state.params.filtro.filtros.tipoEvento = tipoEvento;
-            $state.params.filtro.filtros.idLocalidade = vm.filtro.idLocalidade != undefined ? vm.filtro.idLocalidade.id : '';
-            $state.params.filtro.filtros.noRemetente = vm.filtro.remetente != undefined ? vm.filtro.remetente.noRemetente : '';
+            $state.params.filtro.filtros.idLocalidade = vm.filtro.idLocalidade != null ? vm.filtro.idLocalidade.id : '';
+            $state.params.filtro.filtros.noRemetente = vm.filtro.remetente != null ? vm.filtro.remetente.noRemetente : '';
             $state.params.filtro.filtros.descricao = vm.filtro.descricao;
             $state.params.filtro.filtros.dtInicioEvento = dtInicioEvento;
             $state.params.filtro.filtros.dtFimEvento = dtFimEvento;
