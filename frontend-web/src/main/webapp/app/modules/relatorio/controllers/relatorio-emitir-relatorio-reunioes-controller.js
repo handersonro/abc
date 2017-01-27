@@ -4,7 +4,7 @@
         .controller('RelatorioEmitirRelatorioReunioesController', RelatorioEmitirRelatorioReunioesController);
 
     /* @ngInject */
-    function RelatorioEmitirRelatorioReunioesController($state, $scope, $mdDialog, $timeout, EventoService){
+    function RelatorioEmitirRelatorioReunioesController($state, $scope, $mdDialog, $timeout, EventoService, $q, $mdSidenav, $log, AlertsService, ConviteRestService, ReuniaoService,EventoService,Principal){
         var vm = this;
         vm.procurarLocal = null;//ConviteRestService.obterLocais;
         vm.procurarUsuario = null//EventoService.obterUsuarios;
@@ -28,6 +28,21 @@
                 "noAssunto" : vm.reuniao.assunto
             }
         }
+
+        /*chip*/
+        vm.readonly = false;
+        vm.selectedItem = null;
+        vm.searchText = null;
+        vm.querySearch = querySearch;
+        vm.participantes = [];
+        vm.numberChips = [];
+        vm.numberChips2 = [];
+        vm.listSistemas = [];
+        vm.numberBuffer = '';
+        vm.autocompleteDemoRequireMatch = true;
+        vm.transformChip = transformChip;
+        /*chip*/
+
         inicializar();
         ///////////////////////////////////
         function inicializar(){
@@ -114,6 +129,33 @@
               $scope.status = 'You decided to keep your debt.';
             });
         };
+
+        /*CHIP*/
+        function transformChip(chip) {
+            // If it is an object, it's already a known chip
+            if (angular.isObject(chip)) {
+                return chip;
+            }
+
+            // Otherwise, create a new one
+            return {name: chip, type: 'new'}
+        }
+
+        /**
+         * Obterm as Participantes apartir do terceiro caracter pesquisado
+         * */
+        function querySearch (query) {
+            var resolve = $q.defer();
+            ReuniaoService.buscarPorNome(query)
+                .success(function (data) {
+                    resolve.resolve(data);
+                })
+                .error(function () {
+                    retorno.reject(alert('Não foi possivel carregar os dados'));
+                });
+
+            return resolve.promise;
+        }
         /*DIALOG*/
     }
 })();
