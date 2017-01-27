@@ -11,7 +11,6 @@
   </div>
   <div class="md-padding">
       <form name="formPesquisaRelatorioAudiencia">
-          vm.filtro:{{vm.filtro}} <br>
           <!-- conteudo -->
           <div layout="row" layout-xs="column">
               <div flex="50" flex-xs="100">
@@ -22,26 +21,26 @@
                           </h3>
                       </div>
                       <div class="panel-body" layout="row" layout-xs="column">
-
-                                <md-input-container flex="50" flex-xs="100">
-                                  <label>
-                                      Data inicial
-                                  </label>
-                                  <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
-                                          min-date="minDate"
-                                          format="DD/MM/YYYY HH:mm"
-                                          ng-model="vm.filtro.dataInicio">
-                                </md-input-container>
-                                <md-input-container flex>
-                                  <label>
-                                      Data final
-                                  </label>
-                                  <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
-                                          min-date="minDate"
-                                          format="DD/MM/YYYY HH:mm"
-                                          ng-model="vm.filtro.dataFim">
-                                </md-input-container>
-
+                          <md-input-container flex="50" flex-xs="100">
+                              <label>
+                                  Data inicial
+                              </label>
+                              <input mdc-datetime-picker ng-disabled="!vm.filtro.dataCadInicial === false" date="true" time="true" type="text" short-time="true"
+                                     min-date="minDate"
+                                     format="DD/MM/YYYY HH:mm"
+                                     ng-model="vm.filtro.dtInicioEvento"
+                                     text-cancel="Cancelar">
+                          </md-input-container>
+                          <md-input-container flex>
+                              <label>
+                                  Data final
+                              </label>
+                              <input mdc-datetime-picker ng-disabled="!vm.filtro.dataCadInicial === false" date="true" time="true" type="text" short-time="true"
+                                     min-date="minDate"
+                                     format="DD/MM/YYYY HH:mm"
+                                     ng-model="vm.filtro.dtFimEvento"
+                                     text-cancel="Cancelar">
+                          </md-input-container>
                       </div>
                   </div>
               </div>
@@ -53,33 +52,52 @@
                           </h3>
                       </div>
                       <div class="panel-body" layout="row" layout-xs="column">
+                          <md-input-container flex="50" flex-xs="100">
+                              <label>
+                                  Data inicial
+                              </label>
+                              <input mdc-datetime-picker date="true" ng-disabled="!vm.filtro.dtInicioEvento === false" time="true" type="text" short-time="true"
+                                     min-date="minDate"
+                                     format="DD/MM/YYYY HH:mm"
+                                     ng-model="vm.filtro.dataCadInicial"
+                                     text-cancel="Cancelar">
+                          </md-input-container>
 
-                                <md-input-container flex="50" flex-xs="100">
-                                  <label>
-                                      Data inicial
-                                  </label>
-                                  <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
-                                          min-date="minDate"
-                                          format="DD/MM/YYYY HH:mm"
-                                          ng-model="vm.filtro.dataCadInicial">
-                                </md-input-container>
-
-                                <md-input-container flex>
-                                  <label>
-                                      Data final
-                                  </label>
-                                  <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
-                                          min-date="minDate"
-                                          format="DD/MM/YYYY HH:mm"
-                                          ng-model="vm.filtro.dataCadFinal">
-                                </md-input-container>
-
+                          <md-input-container flex>
+                              <label>
+                                  Data final
+                              </label>
+                              <input mdc-datetime-picker date="true" ng-disabled="!vm.filtro.dtInicioEvento === false" time="true" type="text" short-time="true"
+                                     min-date="minDate"
+                                     format="DD/MM/YYYY HH:mm"
+                                     ng-model="vm.filtro.dataCadFinal"
+                                     text-cancel="Cancelar">
+                          </md-input-container>
                       </div>
                   </div>
               </div>
           </div>
           <div layout-gt-xs="row">
-              <md-input-container flex-gt-xs class="md-icon-float md-block">
+              <md-autocomplete
+                      flex
+                      md-no-cache="true"
+                      md-selected-item="vm.filtro.remetente"
+                      md-input-name="remetente"
+                      md-search-text="noRemetente"
+                      md-items="item in vm.procurarRemetente(noRemetente)"
+                      md-item-text="item.noRemetente"
+                      md-min-length="3"
+                      md-match-case-insensitive="true"
+                      md-floating-label="Remetente"
+                      md-icon="&#xE8A6">
+                  <md-item-template>
+                      <span md-highlight-text="noRemetente" md-highlight-flags="^i">{{item.noRemetente}}</span>
+                  </md-item-template>
+                  <md-not-found>
+                      Nenhum local de evento "{{noRemetente}}" foi encontrado
+                  </md-not-found>
+              </md-autocomplete>
+             <!-- <md-input-container flex-gt-xs class="md-icon-float md-block">
                   <label>
                       Remetente
                   </label>
@@ -93,7 +111,7 @@
                           Mínimo ou igual à 50 caracter
                       </div>
                   </div>
-              </md-input-container>
+              </md-input-container>-->
           </div>
           <div class="row">
               <md-radio-group ng-model="vm.filtro.flEventoInternacional">
@@ -121,7 +139,7 @@
                       <span md-highlight-text="textoLocal" md-highlight-flags="^i">{{item.noPais}}</span>
                   </md-item-template>
                   <md-not-found>
-                      Nenhum local de evento "{{textoLocal}}" foi encontrado
+                      Nenhum país "{{textoLocal}}" foi encontrado
                   </md-not-found>
               </md-autocomplete>
 
@@ -157,6 +175,7 @@
                   </md-not-found>
               </md-autocomplete>
           </div>
+          <div layout="row" layout-xs="column">
               <md-input-container class="md-icon-float md-block" flex>
                   <label>
                       Validado
@@ -164,35 +183,36 @@
                   <md-icon>
                       &#xE834;
                   </md-icon>
-                  <md-select ng-model="vm.filtro.validado" md-maxlength="255" maxlength="255">
+                  <md-select ng-model="vm.filtro.validado">
                       <md-option ng-repeat="item in vm.validado" value="{{item.validado}}">
                           {{item.validado}}
                       </md-option>
                   </md-select>
               </md-input-container>
+
+              <md-input-container class="md-block" flex>
+                  <label>
+                      Despacho
+                  </label>
+                  <textarea ng-model="vm.filtro.despacho" md-maxlength="150" maxlength="150" rows="1" md-select-on-focus>
+                    </textarea>
+              </md-input-container>
+          </div>
           <div layout="row" layout-xs="column">
               <md-input-container flex="50" flex-xs="100" class="md-block">
                   <label>
                       Observação
                   </label>
-                  <textarea ng-model="vm.filtro.observacao" rows="3" md-maxlength="255" maxlength="255" md-select-on-focus>
-                  </textarea>
+                  <textarea ng-model="vm.filtro.observacao" md-maxlength="255" maxlength="255" rows="3" md-select-on-focus>
+                    </textarea>
               </md-input-container>
-              <md-input-container class="md-block" flex flex-xs="100">
-                  <label>
-                      Despacho
-                  </label>
-                  <textarea ng-model="vm.filtro.despacho" md-maxlength="150" maxlength="150" rows="3" md-select-on-focus>
-                  </textarea>
-              </md-input-container>
-          </div>
-          <div class="row">
-              <md-input-container class="md-block" flex-xs="100">
+
+              <md-input-container flex="50" class="md-block" flex-xs="100">
                   <label>
                       Descrição
                   </label>
                   <textarea ng-model="vm.filtro.descricao" md-maxlength="255" maxlength="255" rows="3" md-select-on-focus>
-                  </textarea>
+                    </textarea>
               </md-input-container>
           </div>
           <div layout-gt-sm="row">
@@ -214,7 +234,7 @@
                     &#xE152;
                 </md-icon>
                 <md-select ng-model="vm.filtro.ordenacao">
-                  <md-option ng-repeat="item in vm.ordenacoes" value="{{item.ordenacao}}">
+                  <md-option ng-repeat="item in vm.ordenacoes" value="{{item.value}}">
                     {{item.ordenacao}}
                   </md-option>
                 </md-select>
@@ -226,7 +246,7 @@
                     &#xE152;
                 </md-icon>
                 <md-select ng-model="vm.filtro.direcao">
-                  <md-option ng-repeat="item in vm.direcoes" value="{{item.direcao}}">
+                  <md-option ng-repeat="item in vm.direcoes" value="{{item.value}}">
                     {{item.direcao}}
                   </md-option>
                 </md-select>
@@ -241,7 +261,7 @@
                   </md-icon>
                   Gerar relatório
               </md-button>
-              <md-button class="md-raised" ng-click="vm.gerarRelatorio()">
+              <md-button class="md-raised" ng-click=" vm.limpar()">
                   <md-icon>
                       &#xE5D5;
                   </md-icon>

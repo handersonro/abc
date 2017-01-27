@@ -8,6 +8,7 @@
         var vm = this;
         vm.procurarLocal = ConviteRestService.obterLocais;
         vm.procurarPaises = ConviteRestService.obterPaises;
+        vm.procurarRemetente = ConviteRestService.obterRemetentes;
         vm.title = "Relatório de convite";
         vm.autoridade = "Ministro";
 
@@ -36,57 +37,98 @@
             {tipo: 'WORD'}
         ];
         vm.ordenacoes = [
-            {ordenacao: 'Data de cadastro'},
-            {ordenacao: 'Data do evento'},
-            {ordenacao: 'Descrição'},
-            {ordenacao: 'Local do evento'},
-            {ordenacao: 'Nome do remetente'}
+            {ordenacao: 'Data de cadastro', value: "dtCadastro"},
+            {ordenacao: 'Data do evento', value: "dtInicioEvento"},
+            {ordenacao: 'Local do evento', value: "noLocalEvento"},
+            {ordenacao: 'Nome do remetente', value: "remetente.noRemetente"}
         ];
         vm.direcoes = [
-            {direcao: 'Crescente'},
-            {direcao: 'Decrescente'}
+            {direcao: 'Crescente', value: "asc"},
+            {direcao: 'Decrescente', value: "desc"}
         ];
 
         vm.limpar = function(){
-
+            vm.filtro.ordenacao = undefined;
+            vm.filtro.direcao = undefined;
+            vm.filtro.remetente = undefined;
+            vm.filtro.flEventoInternacional = undefined;
+            vm.filtro.despacho = undefined;
+            vm.filtro.descricao = undefined;
+            vm.filtro.observacao = undefined;
+            vm.filtro.idPais = undefined;
+            vm.filtro.noCidadeInternacional = undefined;
+            vm.filtro.idLocalidade = undefined;
+            vm.filtro.validado = undefined;
+            vm.filtro.dtInicioEvento = undefined;
+            vm.filtro.dtFimEvento = undefined;
+            vm.filtro.dataCadInicial = undefined;
+            vm.filtro.dataCadFina = undefined;
         }
         vm.backTlPesquisa = function(){
             vm.title = "Relatório de convite";
 
         }
         function gerarRelatorio() {
+            tratarCamposParaGerarRelatorio();
+            var filtroPaginacao = montarFiltros();
+            $state.get('app.private.relatorio.relatorio-solicitar-convite').filtroPaginacao = filtroPaginacao;
+            $state.go('app.private.relatorio.relatorio-solicitar-convite');
+        }
 
+        function tratarCamposParaGerarRelatorio(){
             if(vm.filtro.idPais == undefined || vm.filtro.idPais == "") {
                 vm.filtro.idPais = {};
+            }
+            if(vm.filtro.remetente == null || vm.filtro.remetente == undefined || vm.filtro.remetente == ""){
+                vm.filtro.remetente = {};
             }
             if(vm.filtro.idLocalidade == undefined || vm.filtro.idLocalidade == "") {
                 vm.filtro.idLocalidade = {};
             }
+            if(vm.filtro.ordenacao == undefined){
+                vm.filtro.ordenacao = "dtCadastro";
+            }
+            if(vm.filtro.ordenacao == undefined){
+                vm.filtro.ordenacao = "dtCadastro";
+            }
+            if(vm.filtro.direcao == undefined){
+                vm.filtro.direcao = "asc"
+            }
+            switch(vm.filtro.validado){
+                case "Sim":
+                    vm.filtro.validado = "SIM";
+                    break;
+                case "Não":
+                    vm.filtro.validado = "NAO";
+                    break;
+                default:
+                    vm.filtro.validado = undefined;
+            }
+        }
 
-            var idPais =
-            vm.filtroPaginacao = {
+        function montarFiltros(){
+            return {
                 "currentPage": $state.params.filtro.currentPage,
                 "pageSize": "20",
                 "totalResults": "1",
-                "sortFields": "id",
-                "sortDirections": "asc",
+                "sortFields": vm.filtro.ordenacao,
+                "sortDirections": vm.filtro.direcao,
                 "filtros": {
-                    "tipoEvento.id": 2,
-                    "remetente.noRemetente" : vm.filtro.remetente,
+                    "remetente.noRemetente" : vm.filtro.remetente.noRemetente,
                     "flEventoInternacional" : vm.filtro.flEventoInternacional,
                     "noDespacho" : vm.filtro.despacho,
                     "descricao" : vm.filtro.descricao,
+                    "noObservacao" : vm.filtro.observacao,
                     "idPais" : vm.filtro.idPais.id,
                     "noCidadeInternacional" : vm.filtro.noCidadeInternacional,
                     "idLocalidade" : vm.filtro.idLocalidade.id,
                     "conviteValidacao" : vm.filtro.validado,
-                    "noObservacao" : vm.filtro.observacao,
+                    "dtInicioEvento" : vm.filtro.dtInicioEvento,
+                    "dtFimEvento" : vm.filtro.dtFimEvento,
+                    "dataCadInicial" : vm.filtro.dataCadInicial,
+                    "dataCadFinal" : vm.filtro.dataCadFinal
                 }
             };
-
-            $state.get('app.private.relatorio.relatorio-solicitar-convite').filtroPaginacao = vm.filtroPaginacao;
-            $state.go('app.private.relatorio.relatorio-solicitar-convite');
-
         }
 
         vm.carregarListConvite = function(){
