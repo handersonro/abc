@@ -113,8 +113,10 @@
 
             if(vm.convite.flEventoInternacional =='Evento nacional'){
                 vm.convite.flEventoInternacional = 0;
+                vm.convite.noLocalEvento = vm.convite.idLocalidade.localidadesUf;
                 vm.convite.idLocalidade = vm.convite.idLocalidade.id;
                 vm.convite.idPais = null;
+                vm.convite.noCidadeInternacional = null;
             }else if(vm.convite.flEventoInternacional =='Evento internacional'){
                 vm.convite.flEventoInternacional = 1;
                 vm.convite.noLocalEvento = vm.convite.idPais.noPais;
@@ -122,6 +124,7 @@
                 vm.convite.idLocalidade = null;
 
             }
+
             ConviteRestService.editar(convite).then(
                 function (retorno) {
                     AlertsService.success('Registro alterado com sucesso.');
