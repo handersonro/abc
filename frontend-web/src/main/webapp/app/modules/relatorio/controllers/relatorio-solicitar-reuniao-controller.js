@@ -6,7 +6,7 @@
     /* @ngInject */
     function RelatorioSolicitarReuniaoController($state, RelatorioService, Principal){
 
-        console.log("Chega na RelatorioSolicitarReuniaoController");
+        // console.log("Chega na RelatorioSolicitarReuniaoController");
 
         var vm = this;
         vm.lista=  {}

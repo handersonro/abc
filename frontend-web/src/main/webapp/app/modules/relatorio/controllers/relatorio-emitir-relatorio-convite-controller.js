@@ -94,9 +94,6 @@
             if(vm.filtro.ordenacao == undefined){
                 vm.filtro.ordenacao = "dtCadastro";
             }
-            if(vm.filtro.ordenacao == undefined){
-                vm.filtro.ordenacao = "dtCadastro";
-            }
             if(vm.filtro.direcao == undefined){
                 vm.filtro.direcao = "asc"
             }

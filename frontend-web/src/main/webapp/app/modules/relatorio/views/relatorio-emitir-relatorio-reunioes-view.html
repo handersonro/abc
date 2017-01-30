@@ -92,7 +92,7 @@
                     <label>
                         Despacho
                     </label>
-                    <textarea ng-model="vm.reuniao.despacho" md-maxlength="150" maxlength="150"
+                    <textarea ng-model="vm.filtro.despacho" md-maxlength="150" maxlength="150"
                               rows="3" md-select-on-focus>
                     </textarea>
                 </md-input-container>
@@ -102,7 +102,7 @@
                     <label>
                         Local da reunião
                     </label>
-                    <textarea ng-model="vm.reuniao.localReuniao" rows="3" md-maxlength="150"
+                    <textarea ng-model="vm.filtro.localReuniao" rows="3" md-maxlength="150"
                               maxlength="150" md-select-on-focus>
                     </textarea>
                 </md-input-container>
@@ -112,7 +112,7 @@
                     <label>
                         Assunto
                     </label>
-                    <textarea ng-model="vm.reuniao.assunto" rows="3" md-maxlength="255" maxlength="255"
+                    <textarea ng-model="vm.filtro.assunto" rows="3" md-maxlength="255" maxlength="255"
                               md-select-on-focus>
                     </textarea>
                 </md-input-container>
@@ -122,7 +122,7 @@
                     <label>
                         Pauta da reunião
                     </label>
-                    <textarea ng-model="vm.reuniao.pautaReuniao" md-maxlength="255" maxlength="255"
+                    <textarea ng-model="vm.filtro.pautaReuniao" md-maxlength="255" maxlength="255"
                               rows="3" md-select-on-focus>
                     </textarea>
                 </md-input-container>
@@ -149,7 +149,7 @@
                         &#xE152;
                     </md-icon>
                     <md-select ng-model="vm.filtro.ordenacao">
-                        <md-option ng-repeat="item in vm.ordenacoes" value="{{item.ordenacao}}">
+                        <md-option ng-repeat="item in vm.ordenacoes" value="{{item.value}}">
                             {{item.ordenacao}}
                         </md-option>
                     </md-select>
@@ -162,7 +162,7 @@
                         &#xE152;
                     </md-icon>
                     <md-select ng-model="vm.filtro.direcao">
-                        <md-option ng-repeat="item in vm.direcoes" value="{{item.direcao}}">
+                        <md-option ng-repeat="item in vm.direcoes" value="{{item.value}}">
                             {{item.direcao}}
                         </md-option>
                     </md-select>

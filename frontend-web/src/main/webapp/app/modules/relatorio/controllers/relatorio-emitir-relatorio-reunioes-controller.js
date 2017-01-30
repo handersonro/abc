@@ -17,17 +17,6 @@
         vm.reuniao = {};
         vm.gerarRelatorio = gerarRelatorio;
         vm.filtro = {};
-        vm.filtroReuniao = {
-            "currentPage": "1",
-            "pageSize": "20",
-            "totalResults": "1",
-            "sortFields": "id",
-            "sortDirections": "asc",
-            "filtros": {
-                "tipoEvento.id": 3,
-                "noAssunto" : vm.reuniao.assunto
-            }
-        }
 
         /*chip*/
         vm.readonly = false;
@@ -55,13 +44,13 @@
                 {tipo: 'WORD'}
             ];
             vm.ordenacoes = [
-                {ordenacao: 'Data da reunião'},
-                {ordenacao: 'Local da reunião'},
-                {ordenacao: 'Assunto pauta da reunião'}
+                {ordenacao: 'Data da reunião', value: "dtCadastro"},
+                {ordenacao: 'Local da reunião', value: "noLocalEvento"},
+                {ordenacao: 'Assunto pauta da reunião', value: "noPauta"}
             ];
             vm.direcoes = [
-                {direcao: 'Crescente'},
-                {direcao: 'Decrescente'}
+                {direcao: 'Crescente', value: "asc"},
+                {direcao: 'Decrescente', value: "desc"}
             ];
         }
 
@@ -76,6 +65,44 @@
             vm.tbResultado = false;
         }
         function gerarRelatorio() {
+
+            if(vm.filtro.ordenacao == undefined){
+                vm.filtro.ordenacao = "e.dtCadastro";
+            }
+            if(vm.filtro.direcao == undefined){
+                vm.filtro.direcao = "asc"
+            }
+
+            var idPessoa = [];
+
+            if(vm.participantes != undefined){
+                vm.participantes.forEach(function (participante) {
+                    idPessoa.push(participante.pessoa.id);
+                });
+            }
+
+            $state.params.filtro.filtros.participantes  = vm.participantes != undefined ? idPessoa : '';
+
+            vm.filtroReuniao = {
+                "currentPage": "1",
+                "pageSize": "20",
+                "totalResults": "1",
+                "sortFields": vm.filtro.ordenacao,
+                "sortDirections": vm.filtro.direcao,
+                "filtros": {
+                    "tipoEvento.id": 3,
+                    "dtInicioEvento" : vm.filtro.dataInicio,
+                    "dtFimEvento" : vm.filtro.dataFim,
+                    "dtCadastro" : vm.filtro.dataInicialCad,
+                    "dtFimCadastro" : vm.filtro.dataFimCad,
+                    "noDespacho" : vm.filtro.despacho,
+                    "noAssunto" : vm.filtro.assunto,
+                    "noLocalEvento" : vm.filtro.localReuniao,
+                    "noPauta" : vm.filtro.pautaReuniao,
+                    "tipoSaida" : vm.filtro.tipoSaida,
+                    "participantes" : idPessoa,
+                }
+            }
 
             $state.params.filtro.currentPage = 1;
 
