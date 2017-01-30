@@ -76,6 +76,12 @@
         }
 
         function tratarCamposParaGerarRelatorio(){
+
+            vm.filtro.dtInicioEvento = vm.filtro.dtInicioEvento != undefined ? new Date(vm.filtro.dtInicioEvento).getTime() : "";
+            vm.filtro.dtFimEvento = vm.filtro.dtFimEvento != undefined ? new Date(vm.filtro.dtFimEvento).getTime() : "";
+            vm.filtro.dataCadInicial = vm.filtro.dataCadInicial != undefined ? new Date( vm.filtro.dataCadInicial).getTime() : "";
+            vm.filtro.dataCadFinal = vm.filtro.dataCadFinal != undefined ? new Date(vm.filtro.dataCadFinal).getTime() : "";
+
             if(vm.filtro.idPais == undefined || vm.filtro.idPais == "") {
                 vm.filtro.idPais = {};
             }
