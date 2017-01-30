@@ -69,7 +69,6 @@
             vm.convite.flEventoAtivo = true;
             if(vm.convite.flEventoInternacional =='Evento nacional'){
                 vm.convite.flEventoInternacional = 0;
-                vm.convite.idPais = 1;
             }else if(vm.convite.flEventoInternacional =='Evento internacional'){
                 vm.convite.flEventoInternacional = 1;
                 vm.convite.noLocalEvento = vm.convite.idPais.noPais;
