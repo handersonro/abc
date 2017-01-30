@@ -45,6 +45,11 @@
                 {validado : 'Não'},
                 {validado : 'Indiferente'}
             ];
+
+            EventoService.obterLocalidadePeloId(1778)
+                .success(function (data) {
+                    vm.localidade = data;
+                });
         }
 
         $scope.$watch('vm.audiencia.noDespacho', function () {
