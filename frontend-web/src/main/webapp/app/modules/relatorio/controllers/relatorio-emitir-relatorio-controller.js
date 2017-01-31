@@ -81,8 +81,8 @@
                     vm.filtro.tipoSaida = false;
                 }
 
-                var dtInicioEvento = new Date(vm.filtro.dataInicial);
-                var dtFimEvento = new Date(vm.filtro.dataFinal);
+                var dtInicioEvento = new Date(vm.filtro.dataInicial).getTime();
+                var dtFimEvento = new Date(vm.filtro.dataFinal).getTime();
 
                 vm.filtro.cargoSolicitante = vm.filtro.cargoSolicitante != null ? vm.filtro.cargoSolicitante.noCargo : '';
                 vm.filtro.solicitante = vm.filtro.solicitante != null ? vm.filtro.solicitante.noRemetente : '';

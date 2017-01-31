@@ -81,6 +81,11 @@
                 });
             }
 
+            var dtInicioEvento = new Date(vm.filtro.dataInicio).getTime();
+            var dtFimEvento = new Date(vm.filtro.dataFim).getTime();
+            var dtCadastro = new Date(vm.filtro.dataInicialCad).getTime();
+            var dtFimCadastro = new Date(vm.filtro.dataFimCad).getTime();
+
             $state.params.filtro.filtros.participantes  = vm.participantes != undefined ? idPessoa : '';
 
             vm.filtroReuniao = {
@@ -91,10 +96,10 @@
                 "sortDirections": vm.filtro.direcao,
                 "filtros": {
                     "tipoEvento.id": 3,
-                    "dtInicioEvento" : vm.filtro.dataInicio,
-                    "dtFimEvento" : vm.filtro.dataFim,
-                    "dtCadastro" : vm.filtro.dataInicialCad,
-                    "dtFimCadastro" : vm.filtro.dataFimCad,
+                    "dtInicioEvento" : dtInicioEvento,
+                    "dtFimEvento" : dtFimEvento,
+                    "dtCadastro" : dtCadastro,
+                    "dtFimCadastro" : dtFimCadastro,
                     "noDespacho" : vm.filtro.despacho,
                     "noAssunto" : vm.filtro.assunto,
                     "noLocalEvento" : vm.filtro.localReuniao,
