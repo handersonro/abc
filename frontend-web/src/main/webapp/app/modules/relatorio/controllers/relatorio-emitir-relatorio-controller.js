@@ -4,7 +4,7 @@
             .controller('RelatorioEmitirRelatorioController', RelatorioEmitirRelatorioController);
 
         /* @ngInject */
-        function RelatorioEmitirRelatorioController($scope, $state, $mdDialog,$q,$window, $timeout,ConviteRestService,DTO,EventoService,$http,baseURL ){
+        function RelatorioEmitirRelatorioController($scope, $state, $mdDialog,$q,$window, $timeout,ConviteRestService,DTO,EventoService,$http,baseURL,Principal ){
             var vm = this;
             vm.dto = new DTO();
             vm.gerarRelatorio = gerarRelatorio;
@@ -19,7 +19,11 @@
             vm.buscarCargoRemetentePeloNome = buscarCargoRemetentePeloNome;
             ///////////////////////////////////
             vm.title = "Relatório de audiência";
-            vm.autoridade = "Ministro";
+
+            Principal.identity().then(function(account) {
+                vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
+            });
+
             vm.tiposSaida = [
                 {tipo: 'PDF'},
                 {tipo: 'WORD'}
@@ -40,9 +44,7 @@
             inicializar();
             function inicializar() {
 
-                $window.status = "relatorio-loaded";
 
-                console.log('XXXXXXX');
 
                 vm.filtro = {};
                 vm.flEventoInternacional = [
@@ -84,7 +86,8 @@
                 var dtInicioEvento = new Date(vm.filtro.dataInicial).getTime();
                 var dtFimEvento = new Date(vm.filtro.dataFinal).getTime();
 
-                vm.filtro.cargoSolicitante = vm.filtro.cargoSolicitante != null ? vm.filtro.cargoSolicitante.noCargo : '';
+
+                vm.filtro.cargoSolicitante = vm.filtro.cargoSolicitante != null ? vm.filtro.cargoSolicitante : '';
                 vm.filtro.solicitante = vm.filtro.solicitante != null ? vm.filtro.solicitante.noRemetente : '';
                 vm.filtro.idLocalidade = vm.filtro.idLocalidade != null ? vm.filtro.idLocalidade.id : '';
                 vm.filtro.observacao = vm.filtro.observacao != null ? vm.filtro.observacao : '';
@@ -102,7 +105,7 @@
                     "sortDirections": "asc",
                     "filtros": {
                         "tipoEvento.id": 1,
-                        "noCargo" : vm.filtro.cargoSolicitante.noCargo,
+                        "noCargo" : vm.filtro.cargoSolicitante,
                         "noRemetente" : vm.filtro.solicitante,
                         "noObservacao" : vm.filtro.observacao,
                         "noDespacho" : vm.filtro.despacho,
@@ -164,54 +167,61 @@
                     vm.filtro.validado = "NAO";
                 }
 
+
                 if(vm.filtro.direcao == "Crescente"){
                     vm.filtro.direcao = "ASC";
                 }else if(vm.filtro.direcao == "Decrescente"){
                     vm.filtro.direcao = "DESC";
+                }else{
+                    vm.filtro.direcao = "ASC";
                 }
+
                 console.log(vm.filtro.direcao);
 
+                vm.filtro.tipoSaida = true;
                 if(vm.filtro.tipoSaida ==="Internacional"){
                     vm.filtro.tipoSaida = true;
                 }else if(vm.filtro.tipoSaida ==="Nacional"){
                     vm.filtro.tipoSaida = false;
                 }
 
-                var dtInicioEvento = new Date(vm.filtro.dataInicial);
-                var dtFimEvento = new Date(vm.filtro.dataFinal);
+                var dtInicioEvento = (null == vm.filtro.dataInicial ) ? '' : new Date(vm.filtro.dataInicial).getTime();
+                var dtFimEvento = (null == vm.filtro.dataFinal ) ? '' : new Date(vm.filtro.dataFinal).getTime();
 
-                vm.filtro.cargoSolicitante = vm.filtro.cargoSolicitante != null ? vm.filtro.cargoSolicitante.noCargo : '';
+                //vm.filtro.cargoSolicitante = '';
+
+
+                vm.filtro.cargoSolicitante = vm.filtro.cargoSolicitante != null ? vm.filtro.cargoSolicitante : '';
                 vm.filtro.solicitante = vm.filtro.solicitante != null ? vm.filtro.solicitante.noRemetente : '';
                 vm.filtro.idLocalidade = vm.filtro.idLocalidade != null ? vm.filtro.idLocalidade.id : '';
                 vm.filtro.observacao = vm.filtro.observacao != null ? vm.filtro.observacao : '';
                 vm.filtro.despacho = vm.filtro.despacho != null ? vm.filtro.despacho : '';
                 vm.filtro.validado = vm.filtro.validado != null ? vm.filtro.validado : '';
                 vm.filtro.tipoSaida = vm.filtro.tipoSaida != null ? vm.filtro.tipoSaida : '';
+                vm.filtro.assunto = vm.filtro.assunto != null ? vm.filtro.assunto : '';
 
-                //@todo passar somente os campos preenchidos e testar o querybuilder
-
-               /* vm.filtroAudiencia = '{'+
-                    '"currentPage": '+$state.params.filtro.currentPage+','+
-                    '"pageSize": "20",'+
+                 vm.filtroAudiencia = '{'+
+                    '"currentPage":'+$state.params.filtro.currentPage+','+
+                    '"pageSize":"20",'+
                     '"totalResults": "1",'+
-                    '"sortFields": "id",'+
-                    '"sortDirections": "asc",'+
-                    '"filtros": {'+
-                    '"filtros": {'+
-                    '"tipoEvento.id": 1,'+
-                    '"filtros": {'+
-                    '"noCargo" : '+vm.filtro.cargoSolicitante.noCargo+','+
-                        '"noRemetente" : '+vm.filtro.solicitante+','+
-                        '"noObservacao" : '+vm.filtro.observacao+','+
-                        '"noDespacho" : '+vm.filtro.despacho+','+
-                        '"noAssunto" : '+vm.filtro.assunto+','+
-                        '"idLocalidade" : '+vm.filtro.idLocalidade+','+
-                        '"conviteValidacao": '+vm.filtro.validado+','+
-                        '"flEventoInternacional" : '+vm.filtro.tipoSaida+','+
-                        '"dataCadInicial" : '+dtInicioEvento+','+
-                        '"dataCadFinal": '+dtFimEvento+
+                    '"sortFields":"id",'+
+                    '"sortDirections":"'+vm.filtro.direcao+'",'+
+                    '"filtros":{'+
+                    '"tipoEvento.id":1,'+
+                    '"noCargo":"'+vm.filtro.cargoSolicitante+'",'+
+                    '"noRemetente":"'+vm.filtro.solicitante+'",'+
+                    '"noObservacao": "'+vm.filtro.observacao+'",'+
+                    '"noDespacho":"'+vm.filtro.despacho+'",'+
+                    '"noAssunto":"'+vm.filtro.assunto+'",'+
+                    '"idLocalidade":"'+vm.filtro.idLocalidade+'",'+
+                    '"conviteValidacao": "'+vm.filtro.validado+'",'+
+                    '"flEventoInternacional" : '+vm.filtro.tipoSaida+','+
+                    '"dataCadInicial" : "'+dtInicioEvento+'",'+
+                    '"dataCadFinal": "'+dtFimEvento+'"'+
                     '}'+
-                '}';*/
+                '}';
+
+                console.log('dtInicioEvento>>>> ',dtInicioEvento);
 
 
                     vm.filtroAudiencia = '{'+
@@ -220,7 +230,7 @@
                     '"totalResults": "1",'+
                     '"sortFields": "id",'+
                     '"sortDirections": "asc",'+
-                    '"filtros": {}'+
+                    '"filtros": '+vm.filtroAudiencia+
                     '}';
 
 
@@ -231,7 +241,7 @@
 
                 //@todo passar o path dinâmicamente
 
-                var reportData = '{"path":"http://localhost:28080/sisagm/#/private/relatorio/solicitar-audiencia","stateName":"app.private.relatorio.relatorio-solicitar-audiencia","filtroReport":'+vm.filtroAudiencia+'}';
+                var reportData = '{"path":"http://localhost:28080/sisagm/#/private/relatorio/solicitar-audiencia","stateName":"app.private.relatorio.relatorio-solicitar-audiencia","PaginacaoDTO":'+vm.filtroAudiencia+',"noAutoridade":"'+vm.autoridade+'"}';
 
                 $http.defaults.headers.common.report = reportData;
                 $http.post(baseURL+'relatorios/relatorio-remetente',{
@@ -241,6 +251,7 @@
                     "sortFields": "id",
                     "sortDirections": "asc",
                     "filtros": {
+                        "tipoEvento.id": 1
                     }
                 }, {responseType:'arraybuffer'})
                     .success(function (response) {
