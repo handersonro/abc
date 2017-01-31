@@ -4,7 +4,7 @@
             .controller('RelatorioEmitirRelatorioController', RelatorioEmitirRelatorioController);
 
         /* @ngInject */
-        function RelatorioEmitirRelatorioController($scope, $state, $mdDialog,$q,$window, $timeout,ConviteRestService,DTO,EventoService,$http,baseURL ){
+        function RelatorioEmitirRelatorioController($scope, $state, $mdDialog,$q,$window, $timeout,ConviteRestService,DTO,EventoService,$http,baseURL, Principal){
             var vm = this;
             vm.dto = new DTO();
             vm.gerarRelatorio = gerarRelatorio;
@@ -19,7 +19,9 @@
             vm.buscarCargoRemetentePeloNome = buscarCargoRemetentePeloNome;
             ///////////////////////////////////
             vm.title = "Relatório de audiência";
-            vm.autoridade = "Ministro";
+            Principal.identity().then(function(account) {
+                vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
+            });
             vm.tiposSaida = [
                 {tipo: 'PDF'},
                 {tipo: 'WORD'}

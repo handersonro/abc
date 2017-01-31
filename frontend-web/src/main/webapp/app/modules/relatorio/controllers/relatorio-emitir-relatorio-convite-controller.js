@@ -4,13 +4,15 @@
         .controller('RelatorioEmitirRelatorioConviteController', RelatorioEmitirRelatorioConviteController);
 
     /* @ngInject */
-    function RelatorioEmitirRelatorioConviteController($scope, $mdDialog, $timeout, ConviteRestService, DTO, $state){
+    function RelatorioEmitirRelatorioConviteController($scope, $mdDialog, $timeout, ConviteRestService, DTO, $state, Principal){
         var vm = this;
         vm.procurarLocal = ConviteRestService.obterLocais;
         vm.procurarPaises = ConviteRestService.obterPaises;
         vm.procurarRemetente = ConviteRestService.obterRemetentes;
         vm.title = "Relatório de convite";
-        vm.autoridade = "Ministro";
+        Principal.identity().then(function(account) {
+            vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
+        });
 
         vm.dto = new DTO();
         vm.gerarRelatorio = gerarRelatorio;

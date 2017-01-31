@@ -9,7 +9,9 @@
         vm.procurarLocal = null;//ConviteRestService.obterLocais;
         vm.procurarUsuario = null//EventoService.obterUsuarios;
         vm.title = "Relatório de reuniões";
-        vm.autoridade = "Ministro";
+        Principal.identity().then(function(account) {
+            vm.autoridade  = account.userAutenticado.autoridade.noAutoridade;
+        });
         vm.tipoEvento = {};
         vm.tiposSaida = {};
         vm.ordenacoes = {};
