@@ -39,6 +39,11 @@
             }
             inicializar();
             function inicializar() {
+
+                $window.status = "relatorio-loaded";
+
+                console.log('XXXXXXX');
+
                 vm.filtro = {};
                 vm.flEventoInternacional = [
                     {evento: 'Nacional'},
@@ -147,7 +152,86 @@
                 //var reportData = '{"path":"http://192.168.56.10:28080/sisagm-backend/api/eventos/localidades/bra","name":"relatorio-remetente"}';
                 //var reportData = '{"path":"http://192.168.56.10:9011/#/private/relatorio/emitir-relatorio","name":"relatorio-remetente"}';
                 //var reportData = '{"path":"http://debian-dev:9011/#/public/login/entrar","name":"relatorio-remetente"}';
-                var reportData = '{"path":"http://sturdeswildfly01:8080/sisagm/#/public/login/entrar","name":"relatorio-remetente"}';
+
+
+
+
+                if(vm.filtro.validado ==="Indiferente"){
+                    vm.filtro.validado = "INDIFERENTE";
+                }else if(vm.filtro.validado ==="Sim"){
+                    vm.filtro.validado = "SIM";
+                }else if(vm.filtro.validado ==="Não"){
+                    vm.filtro.validado = "NAO";
+                }
+
+                if(vm.filtro.direcao == "Crescente"){
+                    vm.filtro.direcao = "ASC";
+                }else if(vm.filtro.direcao == "Decrescente"){
+                    vm.filtro.direcao = "DESC";
+                }
+                console.log(vm.filtro.direcao);
+
+                if(vm.filtro.tipoSaida ==="Internacional"){
+                    vm.filtro.tipoSaida = true;
+                }else if(vm.filtro.tipoSaida ==="Nacional"){
+                    vm.filtro.tipoSaida = false;
+                }
+
+                var dtInicioEvento = new Date(vm.filtro.dataInicial);
+                var dtFimEvento = new Date(vm.filtro.dataFinal);
+
+                vm.filtro.cargoSolicitante = vm.filtro.cargoSolicitante != null ? vm.filtro.cargoSolicitante.noCargo : '';
+                vm.filtro.solicitante = vm.filtro.solicitante != null ? vm.filtro.solicitante.noRemetente : '';
+                vm.filtro.idLocalidade = vm.filtro.idLocalidade != null ? vm.filtro.idLocalidade.id : '';
+                vm.filtro.observacao = vm.filtro.observacao != null ? vm.filtro.observacao : '';
+                vm.filtro.despacho = vm.filtro.despacho != null ? vm.filtro.despacho : '';
+                vm.filtro.validado = vm.filtro.validado != null ? vm.filtro.validado : '';
+                vm.filtro.tipoSaida = vm.filtro.tipoSaida != null ? vm.filtro.tipoSaida : '';
+
+                //@todo passar somente os campos preenchidos e testar o querybuilder
+
+               /* vm.filtroAudiencia = '{'+
+                    '"currentPage": '+$state.params.filtro.currentPage+','+
+                    '"pageSize": "20",'+
+                    '"totalResults": "1",'+
+                    '"sortFields": "id",'+
+                    '"sortDirections": "asc",'+
+                    '"filtros": {'+
+                    '"filtros": {'+
+                    '"tipoEvento.id": 1,'+
+                    '"filtros": {'+
+                    '"noCargo" : '+vm.filtro.cargoSolicitante.noCargo+','+
+                        '"noRemetente" : '+vm.filtro.solicitante+','+
+                        '"noObservacao" : '+vm.filtro.observacao+','+
+                        '"noDespacho" : '+vm.filtro.despacho+','+
+                        '"noAssunto" : '+vm.filtro.assunto+','+
+                        '"idLocalidade" : '+vm.filtro.idLocalidade+','+
+                        '"conviteValidacao": '+vm.filtro.validado+','+
+                        '"flEventoInternacional" : '+vm.filtro.tipoSaida+','+
+                        '"dataCadInicial" : '+dtInicioEvento+','+
+                        '"dataCadFinal": '+dtFimEvento+
+                    '}'+
+                '}';*/
+
+
+                    vm.filtroAudiencia = '{'+
+                    '"currentPage": '+$state.params.filtro.currentPage+','+
+                    '"pageSize": "20",'+
+                    '"totalResults": "1",'+
+                    '"sortFields": "id",'+
+                    '"sortDirections": "asc",'+
+                    '"filtros": {}'+
+                    '}';
+
+
+
+                //$state.get('app.private.relatorio.relatorio-solicitar-audiencia').filtroAudiencia = vm.filtroAudiencia;
+                //$state.go('app.private.relatorio.relatorio-solicitar-audiencia');
+
+
+                //@todo passar o path dinâmicamente
+
+                var reportData = '{"path":"http://localhost:28080/sisagm/#/private/relatorio/solicitar-audiencia","stateName":"app.private.relatorio.relatorio-solicitar-audiencia","filtroReport":'+vm.filtroAudiencia+'}';
 
                 $http.defaults.headers.common.report = reportData;
                 $http.post(baseURL+'relatorios/relatorio-remetente',{
