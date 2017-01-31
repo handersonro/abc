@@ -224,7 +224,7 @@
                 console.log('dtInicioEvento>>>> ',dtInicioEvento);
 
 
-                    vm.filtroAudiencia = '{'+
+                    vm.PaginacaoDTO = '{'+
                     '"currentPage": '+$state.params.filtro.currentPage+','+
                     '"pageSize": "20",'+
                     '"totalResults": "1",'+
@@ -241,7 +241,7 @@
 
                 //@todo passar o path dinâmicamente
 
-                var reportData = '{"path":"http://localhost:28080/sisagm/#/private/relatorio/solicitar-audiencia","stateName":"app.private.relatorio.relatorio-solicitar-audiencia","PaginacaoDTO":'+vm.filtroAudiencia+',"noAutoridade":"'+vm.autoridade+'"}';
+                var reportData = '{"path":"http://localhost:28080/sisagm/#/private/relatorio/solicitar-audiencia","stateName":"app.private.relatorio.relatorio-solicitar-audiencia","PaginacaoDTO":'+vm.PaginacaoDTO+',"noAutoridade":"'+vm.autoridade+'"}';
 
                 $http.defaults.headers.common.report = reportData;
                 $http.post(baseURL+'relatorios/relatorio-remetente',{
