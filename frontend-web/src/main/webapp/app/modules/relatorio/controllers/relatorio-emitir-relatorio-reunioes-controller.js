@@ -4,7 +4,7 @@
         .controller('RelatorioEmitirRelatorioReunioesController', RelatorioEmitirRelatorioReunioesController);
 
     /* @ngInject */
-    function RelatorioEmitirRelatorioReunioesController($state, $scope, $mdDialog, $timeout, EventoService, $q, $mdSidenav, $log, AlertsService, ConviteRestService, ReuniaoService,EventoService,Principal){
+    function RelatorioEmitirRelatorioReunioesController($state, $scope, $mdDialog, $timeout, EventoService, $q, $mdSidenav, $log, AlertsService, ConviteRestService, ReuniaoService,EventoService,Principal, $http, baseURL){
         var vm = this;
         vm.procurarLocal = null;//ConviteRestService.obterLocais;
         vm.procurarUsuario = null//EventoService.obterUsuarios;
@@ -190,6 +190,115 @@
 
             return resolve.promise;
         }
-        /*DIALOG*/
+
+        // Gera PDF
+        vm.gerarRelatorioPDF = function (){
+
+            window.status = "loaded";
+
+            if(vm.filtro.validado ==="Indiferente"){
+                vm.filtro.validado = "INDIFERENTE";
+            }else if(vm.filtro.validado ==="Sim"){
+                vm.filtro.validado = "SIM";
+            }else if(vm.filtro.validado ==="Não"){
+                vm.filtro.validado = "NAO";
+            }
+
+            if(vm.filtro.ordenacao == undefined){
+                vm.filtro.ordenacao = "e.dtCadastro";
+            }
+            if(vm.filtro.direcao == undefined){
+                vm.filtro.direcao = "asc"
+            }
+
+            if(vm.filtro.direcao == "Crescente"){
+                vm.filtro.direcao = "ASC";
+            }else if(vm.filtro.direcao == "Decrescente"){
+                vm.filtro.direcao = "DESC";
+            }else{
+                vm.filtro.direcao = "ASC";
+            }
+
+            console.log(vm.filtro.direcao);
+
+            vm.filtro.tipoSaida = true;
+            if(vm.filtro.tipoSaida ==="Internacional"){
+                vm.filtro.tipoSaida = true;
+            }else if(vm.filtro.tipoSaida ==="Nacional"){
+                vm.filtro.tipoSaida = false;
+            }
+
+            var dtInicioEvento = (null == vm.filtro.dataInicio) ? '' : new Date(vm.filtro.dataInicio).getTime();
+            var dtFimEvento = (null == vm.filtro.dataFim) ? '' : new Date(vm.filtro.dataFim).getTime();
+            var dtCadastro = (vm.filtro.dataInicialCad) ? '' : new Date(vm.filtro.dataInicialCad).getTime();
+            var dtFimCadastro = (vm.filtro.dataFimCad) ? '' : new Date(vm.filtro.dataFimCad).getTime();
+
+            var idPessoa = [];
+
+            if(vm.participantes != undefined){
+                vm.participantes.forEach(function (participante) {
+                    idPessoa.push(participante.pessoa.id);
+                });
+            }
+
+            vm.filtro.observacao = vm.filtro.observacao != null ? vm.filtro.observacao : '';
+            vm.filtro.despacho = vm.filtro.despacho != null ? vm.filtro.despacho : '';
+
+            vm.filtroReuniao = {
+                "currentPage": $state.params.filtro.currentPage,
+                "pageSize": "20",
+                "totalResults": "1",
+                "sortFields": vm.filtro.ordenacao,
+                "sortDirections": vm.filtro.direcao,
+                "filtros": {
+                    "tipoEvento.id": 3,
+                    "dtInicioEvento" : dtInicioEvento,
+                    "dtFimEvento" : dtFimEvento,
+                    "dtCadastro" : dtCadastro,
+                    "dtFimCadastro" : dtFimCadastro,
+                    "noDespacho" : vm.filtro.despacho,
+                    "noAssunto" : vm.filtro.assunto,
+                    "noLocalEvento" : vm.filtro.localReuniao,
+                    "noPauta" : vm.filtro.pautaReuniao,
+                    "tipoSaida" : vm.filtro.tipoSaida,
+                    "participantes" : idPessoa,
+                }
+            };
+
+            vm.PaginacaoDTO = {
+                "currentPage": $state.params.filtro.currentPage,
+                "pageSize": "20",
+                "totalResults": "1",
+                "sortFields": "id",
+                "sortDirections": "asc",
+                "filtros": vm.filtroReuniao
+            };
+
+            vm.PaginacaoDTO = JSON.stringify(vm.PaginacaoDTO);
+
+            console.log(vm.PaginacaoDTO);
+
+            //@todo passar o path dinâmicamente
+
+            var reportData = '{"path":"http://localhost:28080/sisagm/#/private/relatorio/relatorio-reuniao","stateName":"app.private.relatorio.relatorio-solicitar-reuniao","PaginacaoDTO":'+vm.PaginacaoDTO+',"noAutoridade":"'+vm.autoridade+'"}';
+
+            $http.defaults.headers.common.report = reportData;
+            $http.post(baseURL+'relatorios/relatorio-remetente',{
+                "currentPage": "1",
+                "pageSize": "20",
+                "totalResults": "1",
+                "sortFields": "id",
+                "sortDirections": "asc",
+                "filtros": {
+                    "tipoEvento.id": 1
+                }
+            }, {responseType:'arraybuffer'})
+                .success(function (response) {
+                    console.log('chegou');
+                    var file = new Blob([response], {type: 'application/pdf'});
+                    var fileURL = URL.createObjectURL(file);
+                    $window.open(fileURL, '_blank', 'location=yes');
+                });
+        }
     }
 })();
