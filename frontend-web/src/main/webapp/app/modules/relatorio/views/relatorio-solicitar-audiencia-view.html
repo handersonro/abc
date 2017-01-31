@@ -8,6 +8,14 @@
     body {
         font-family: 'Roboto', sans-serif !important;
         font-size: 1.2em !important;
+
+
+    }
+
+    .fundo{
+        background-color: #FFF !important;
+        min-height: 670px !important;
+
     }
 
     .pt10 {
@@ -44,19 +52,30 @@
     .bdr {
         border-right: solid 1px #d2d2d2;
     }
-</style>
 
+    .largura{
+        width: 140% !important;
+        margin-left: -15% !important;
+    }
+
+    .ng-scope{
+        background-color: #FFF !important;
+    }
+
+
+</style>
+<div class="fundo">
 <!--{{vm.lista}}-->
-<div class="row text-left bold mt30">
-    <div class="col-md-12">
+<div class="row text-left bold mt30 largura" >
+    <div class="col-md-12" ng-cloak>
         <br />
         <p>MTUR - Ministério do Turismo</p>
         <p>Solicitações de Audiência</p>
         <p>Autoridade {{vm.autoridade}}</p>
     </div>
 </div>
-<div class="row cinza pt10 text-center">
-    <div class="col-md-1">
+<div class="row cinza pt10 text-center largura"  ng-cloak>
+    <div class="col-md-2">
         <p>Data de Cadastro</p>
     </div>
 
@@ -64,22 +83,22 @@
         <p>Solicitante</p>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-3">
         <p>Assunto</p>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-3">
         <p>Observação</p>
     </div>
 
-    <div class="col-md-1">
+    <div class="col-md-3">
         <p>Despacho</p>
     </div>
 </div>
 
 <!-- Início ROW dinâmica -->
-<div class="row dinamica pt10 text-center"  ng-repeat="item in vm.lista">
-    <div class="col-md-1 bdr">
+<div class="row dinamica pt10 text-center largura"  ng-repeat="item in vm.lista">
+    <div class="col-md-2 bdr">
         <p>{{ item.dtCadastro | date : 'dd/MM/yyyy HH:mm'}}</p>
     </div>
 
@@ -87,30 +106,31 @@
         <p>{{item.remetente.noRemetente}}</p>
     </div>
 
-    <div class="col-md-4 bdr">
+    <div class="col-md-3 bdr">
         <p><span ta-bind ng-model="item.noAssunto">{{item.noAssunto}}</span></p>
     </div>
 
-    <div class="col-md-4 bdr">
+    <div class="col-md-3 bdr">
         <p><span ta-bind ng-model="item.noObservacao">{{item.noObservacao}}</span></p>
     </div>
 
-    <div class="col-md-1">
+    <div class="col-md-3">
         <p>{{item.noDespacho}}</p>
     </div>
 </div>
 <!-- Fim ROW dinâmica -->
-<div class="row mt30">
-    <div class="col-md-2">
-        Página xx de xx
+<div class="row mt30 largura">
+    <div class="col-md-4">
+        Página {{vm.pagina}} de {{vm.paginas}}
     </div>
-    <div class="col-md-8">
+    <div class="col-md-2">
 
     </div>
-    <div class="col-md-2">
+    <div class="col-md-6 text-right" >
         Relatório gerado em {{vm.dataAtual | date: 'dd/MM/yyyy HH:mm:ss'}}
     </div>
 
 </div>
 
-<hr />
+<hr class="largura"/>
+</div>
