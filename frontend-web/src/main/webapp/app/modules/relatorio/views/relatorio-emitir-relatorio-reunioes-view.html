@@ -28,14 +28,14 @@
                                 <label>
                                     Data inicial
                                 </label>
-                                <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                <input mdc-datetime-picker ng-disabled="!vm.filtro.dataInicialCad === false" date="true" time="true" type="text" short-time="true"
                                        min-date="minDate" format="DD/MM/YYYY HH:mm" ng-model="vm.filtro.dataInicio">
                             </md-input-container>
                             <md-input-container flex>
                                 <label>
                                     Data final
                                 </label>
-                                <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                <input mdc-datetime-picker ng-disabled="!vm.filtro.dataInicialCad === false" date="true" time="true" type="text" short-time="true"
                                        min-date="minDate" format="DD/MM/YYYY HH:mm" ng-model="vm.filtro.dataFim">
                             </md-input-container>
                         </div>
@@ -53,14 +53,14 @@
                                 <label>
                                     Data inicial
                                 </label>
-                                <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                <input mdc-datetime-picker ng-disabled="!vm.filtro.dataInicio === false" date="true" time="true" type="text" short-time="true"
                                        min-date="minDate" format="DD/MM/YYYY HH:mm" ng-model="vm.filtro.dataInicialCad">
                             </md-input-container>
                             <md-input-container flex>
                                 <label>
                                     Data final
                                 </label>
-                                <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                <input mdc-datetime-picker ng-disabled="!vm.filtro.dataInicio === false" date="true" time="true" type="text" short-time="true"
                                        min-date="minDate" format="DD/MM/YYYY HH:mm" ng-model="vm.filtro.dataFimCad">
                             </md-input-container>
                         </div>

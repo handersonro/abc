@@ -22,14 +22,14 @@
 
          console.log('>>>>>>> ',filtro);
 
-         window.status = 'loaded';
+         //window.status = 'loaded';
 
          //@todo passar o filtro aqui;
 
-        // RelatorioService.obterDados(filtro)
-        //     .then(function (data) {
-        //         vm.lista = data;
-        //     });
+        RelatorioService.obterDados(filtro)
+             .then(function (data) {
+                 vm.lista = data;
+             });
         }
     }
 })();
