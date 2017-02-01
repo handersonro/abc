@@ -16,6 +16,46 @@
     /* @ngInject */
     function RelatorioService(Restangular,$http,baseURL) {
 
+        function removerLayout(){
+            angular.element( document.querySelector('.header-topo')).css('display','none');
+            angular.element( document.querySelector('.menu-bar')).css('display','none');
+            angular.element( document.querySelector('.flex')).css('display','none');
+            //angular.element( document.querySelector('.flex')).css('margin-left','20px !important');
+
+
+            var elems = angular.element( document.querySelector('.flex'));
+            for (var index=0; index < elems.length; index++) {
+                angular.element(angular.element(elems)[index]).css('display','none');
+                // do something with subElement
+            }
+
+            elems = angular.element( document.querySelector('.menu-bar') );
+            for (var index=0; index < elems.length; index++) {
+                angular.element(angular.element(elems)[index]).css('display','none');
+                // do something with subElement
+            }
+        }
+
+        function mostrarLayout(){
+            angular.element( document.querySelector('.header-topo')).css('display','');
+            angular.element( document.querySelector('.menu-bar')).css('display','');
+            angular.element( document.querySelector('.flex')).css('display','');
+            //angular.element( document.querySelector('.flex')).css('margin-left','20px !important');
+
+
+            var elems = angular.element( document.querySelector('.flex'));
+            for (var index=0; index < elems.length; index++) {
+                angular.element(angular.element(elems)[index]).css('display','');
+                // do something with subElement
+            }
+
+            elems = angular.element( document.querySelector('.menu-bar') );
+            for (var index=0; index < elems.length; index++) {
+                angular.element(angular.element(elems)[index]).css('display','');
+                // do something with subElement
+            }
+        }
+
         function getQueryParam(name) {
             name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
             var regexS = "[\\?&]"+name+"=([^&#]*)";
@@ -89,7 +129,9 @@
             obterRemetentes: Restangular.one('relatorios/', 'pesquisar-remetente').customPOST,
             obterDadosReuniao: Restangular.one('relatorios/', 'pesquisar-reuniao').customPOST,
             base64_decode : base64_decode,
-            getQueryParam :getQueryParam
+            getQueryParam :getQueryParam,
+            removerLayout:removerLayout,
+            mostrarLayout:mostrarLayout
         };
 
 

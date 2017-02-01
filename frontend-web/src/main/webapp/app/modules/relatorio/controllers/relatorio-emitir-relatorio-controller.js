@@ -4,7 +4,7 @@
         .controller('RelatorioEmitirRelatorioController', RelatorioEmitirRelatorioController);
 
     /* @ngInject */
-    function RelatorioEmitirRelatorioController($scope, $state, $mdDialog,$q,$window, $timeout,ConviteRestService,DTO,EventoService,$http,baseURL,Principal,appURL ){
+    function RelatorioEmitirRelatorioController($scope, $state, $mdDialog,$q,$window, $timeout,ConviteRestService,DTO,EventoService,$http,baseURL,Principal,appURL,RelatorioService ){
         var vm = this;
         vm.dto = new DTO();
         vm.gerarRelatorio = gerarRelatorio;
@@ -44,7 +44,7 @@
         inicializar();
         function inicializar() {
 
-
+            RelatorioService.mostrarLayout();
 
             vm.filtro = {};
             vm.flEventoInternacional = [
