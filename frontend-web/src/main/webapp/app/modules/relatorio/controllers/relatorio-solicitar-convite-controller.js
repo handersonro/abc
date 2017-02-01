@@ -41,6 +41,7 @@
             }
 
             //@todo passar o filtro aqui;
+/*
             RelatorioService.obterDadosConvite(filtro)
                 .then(function (data) {
                         vm.lista = data;
@@ -50,11 +51,12 @@
                         window.status = 'loaded';
                     }
                 );
+*/
 
-            /*RelatorioService.obterDadosConvite($state.current.filtroPaginacao)
+            RelatorioService.obterDadosConvite($state.current.filtroPaginacao)
                 .then(function (data) {
                     vm.lista = data;
-                });*/
+                });
         }
     }
 })();

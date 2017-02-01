@@ -158,7 +158,7 @@
 
             //@todo passar o path dinâmicamente
 
-            var reportData = '{"path":"http://localhost:28080/sisagm/#/private/relatorio/solicitar-convite","stateName":"app.private.relatorio.relatorio-solicitar-convite","PaginacaoDTO":'+vm.filtroConvite+',"noAutoridade":"'+vm.autoridade+'"}';
+            var reportData = '{"path":"'+appURL+'/#/private/relatorio/solicitar-convite","stateName":"app.private.relatorio.relatorio-solicitar-convite","PaginacaoDTO":'+vm.filtroConvite+',"noAutoridade":"'+vm.autoridade+'"}';
 
             $http.defaults.headers.common.report = reportData;
             $http.post(baseURL+'relatorios/pesquisar-convite',{
@@ -194,7 +194,7 @@
          tratarCamposParaGerarRelatorio();
          var filtroPaginacao = montarFiltros();
 
-         var reportData = '{"path":"http://localhost:28080/sisagm/#/private/relatorio/solicitar-convite","stateName":"app.private.relatorio.relatorio-solicitar-convite","PaginacaoDTO":'+JSON.stringify(filtroPaginacao)+',"noAutoridade":"'+vm.autoridade+'"}';
+         var reportData = '{"path":"http://localhost:8080/sisagm/#/private/relatorio/solicitar-convite","stateName":"app.private.relatorio.relatorio-solicitar-convite","PaginacaoDTO":'+JSON.stringify(filtroPaginacao)+',"noAutoridade":"'+vm.autoridade+'"}';
 
          $http.defaults.headers.common.report = reportData;
          $http.post(baseURL+'relatorios/relatorio-convite',{
