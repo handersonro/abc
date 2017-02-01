@@ -106,7 +106,7 @@
                 "filtros": {
                     "tipoEvento.id": 1,
                     "noCargo" : vm.filtro.cargoSolicitante,
-                    "noRemetente" : vm.filtro.solicitante,
+                    "remetente.noRemetente" : vm.filtro.solicitante,
                     "noObservacao" : vm.filtro.observacao,
                     "noDespacho" : vm.filtro.despacho,
                     "noAssunto" : vm.filtro.assunto,
