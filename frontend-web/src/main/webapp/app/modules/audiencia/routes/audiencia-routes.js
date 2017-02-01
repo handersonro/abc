@@ -25,6 +25,9 @@
                 },
                 params: {
                     callback: null
+                },
+                data: {
+                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.inserir-audiencia', {
@@ -33,6 +36,9 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/audiencia-inserir-audiencia-view.html',
                 resolve: {
+                },
+                data: {
+                    authorities: ['INCLUIR_AUDIENCIA']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.editar-audiencia', {
@@ -44,6 +50,9 @@
                 },
                 params: {
                     audiencia: null
+                },
+                data: {
+                    authorities: ['PESQUISAR_AUDIENCIA']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.pesquisar-audiencia', {
@@ -51,7 +60,19 @@
                 controller: 'AudienciaPesquisarAudienciaController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/audiencia-pesquisar-audiencia-view.html',
+                params: {
+                    filtro: {
+                        filtros: {'conviteValidacao':''},
+                        currentPage: 1,
+                        pageSize: 20,
+                        sortFields: 'id',
+                        sortDirections: 'asc'
+                    }
+                },
                 resolve: {
+                },
+                data: {
+                    authorities: ['PESQUISAR_AUDIENCIA']
                 }
             });
     }

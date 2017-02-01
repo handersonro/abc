@@ -1,0 +1,36 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Editar Remetente</h2>
+                <span flex></span>
+                <md-button class="md-icon-button md-acoes" ng-click="close()">
+                    <md-icon>&#xE5CD;</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+
+            <div ng-cloak>
+                <md-content>
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="Como Editar Remetente">
+                            <md-content class="md-padding">
+                                <div ng-include="'modules/pessoas/help/editar-remetente.html'"></div>
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </md-content>
+            </div>
+
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <div flex></div>
+            <md-button ng-click="close()">
+                <md-icon>&#xE5CD;</md-icon>  Fechar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

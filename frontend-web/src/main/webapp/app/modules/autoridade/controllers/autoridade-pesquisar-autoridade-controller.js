@@ -4,7 +4,7 @@
         .controller('AutoridadePesquisarAutoridadeController', AutoridadePesquisarAutoridadeController);
 
     /* @ngInject */
-    function AutoridadePesquisarAutoridadeController($scope, $timeout, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, UsuarioRestService, ConviteRestService, DTO){
+    function AutoridadePesquisarAutoridadeController($scope, $timeout, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, DTO, AutoridadeService){
     var vm = this;
     var _itens = [];
     vm.dto = new DTO();
@@ -12,53 +12,91 @@
     vm.autoridade = 'Ministro';
     vm.tbResultado = false;
     vm.pesquisar = pesquisar;
+    vm.help = help;
     vm.editar = editar;
-    vm.filtro = {};
+    vm.trocaOrdenacao = trocaOrdenacao;
+    vm.changePage = changePage;
+    vm.filtro = {
+        noAutoridade: '',
+        noEmail: ''
+    };
     vm.limpar = limpar;
-    vm.listaAutoridades = {};
-    vm.procurarUsuario = UsuarioRestService.obterUsuarios;
-    vm.procurarLocal = ConviteRestService.obterLocais;
     inicializar();
     ///////////////////////////////////
     function inicializar (){
-        vm.listaAutoridades = [
-            {autoridade: "Ministro do Turismo"},
-            {autoridade: "Secretário Executivo"},
-            {autoridade: "Secretário Nacional de Estruturação do Turismo"},
-            {autoridade: "Secretário Nacional de Qualificação e Promoção do Turismo"}
-        ];
+
     }
     function pesquisar (){
-        vm.tbResultado = true;
-        $location.hash('result-pesquisa');
-        // call $anchorScroll()
-        $anchorScroll();
+
+        $state.params.filtro.filtros.noAutoridade = vm.filtro.noAutoridade;
+        $state.params.filtro.filtros.noEmail = vm.filtro.noEmail;
+        $state.params.filtro.currentPage = 1;
+        getMoreInfinityScrollData($state.params.filtro.currentPage);
     }
+
+    function getMoreInfinityScrollData(pageNumber){
+        $state.params.filtro.currentPage = pageNumber;
+        vm.dto.list = {};
+        console.log($state.params.filtro);
+
+        var promiseLoadMoreData = AutoridadeService.consultarComFiltroSemLoader($state.params.filtro);
+
+        promiseLoadMoreData.then(
+            function(data) {
+                vm.tbResultado = true;
+    
+                $location.hash('result-pesquisa');
+    
+                vm.dto.totalResults = data.totalResults;
+                vm.dto.list = data.list;
+                $timeout(function () {
+                    $anchorScroll();
+                },0);
+            }, function (error) {
+                vm.tbResultado = false;
+                vm.dto.totalResults = 0;
+                vm.dto.list = [];
+            }
+        );
+
+        return promiseLoadMoreData;
+    }
+
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: AutoridadePesquisarAutoridadeController,
+                templateUrl: 'modules/autoridade/help/modal-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
+
     function editar (autoridade){
         $state.go('app.private.autoridade.editar-autoridade', {autoridade: autoridade});
     }
 
-    vm.carregarListConvite = function(){
-    	$http
-    	.get('modules/convite/data/list-convite.json')
-    	.success (function(data){
-    		_itens = data;
-    		vm.dto.totalResults = data.length;
-    		vm.dto.list = _itens.slice(0, vm.dto.pageSize);
-    	})
-    	.error(function(){
-    		alert('Não fooi possivel carregar os dados');
-    	});
-    };
-    vm.carregarListConvite();
     function changePage(page){
     	vm.dto.currentPage = page;
     	vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+
+        getMoreInfinityScrollData(vm.dto.currentPage);
     }
     $scope.changePage = changePage;
 
     function limpar(){
-        vm.filtro = {};
+        Object.getOwnPropertyNames(vm.filtro).forEach(function (prop) {
+            vm.filtro[prop] = '';
+        });
+
+        vm.tbResultado = false;
+        vm.dto.totalResults = 0;
+        vm.dto.list = [];
     }
     function debounce(func, wait, context) {
       var timer;
@@ -116,6 +154,14 @@
             $log.debug("toggle " + navID + " is done");
           });
       }
+    }
+
+    function trocaOrdenacao() {
+        $state.params.filtro.sortFields = vm.dto.order;
+        $state.params.filtro.sortDirections = vm.dto.orderDirection;
+        $state.params.filtro.pageSize = vm.dto.pageSize;
+
+        getMoreInfinityScrollData(vm.dto.currentPage);
     }
   }
 

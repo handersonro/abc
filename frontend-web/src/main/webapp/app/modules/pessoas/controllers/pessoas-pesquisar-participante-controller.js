@@ -4,29 +4,87 @@
         .controller('PessoasPesquisarParticipanteController', PessoasPesquisarParticipanteController);
 
     /* @ngInject */
-    function PessoasPesquisarParticipanteController($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, DTO){
+    function PessoasPesquisarParticipanteController($scope, $timeout, $window, $mdSidenav, $log, $http, $mdDialog, $state, $location, $anchorScroll, AlertsService, DTO, ParticipanteInternoService, ParticipanteExternoService){
         var vm = this;
         var _itens = [];
-        vm.tbResultado = false;
         vm.editar = editar;
         vm.pesquisar = pesquisar;
+        vm.help = help;
         vm.filtro = {};
         vm.dto = new DTO();
         vm.title = "Pesquisar participante";
 
         vm.changePage = changePage;
+        vm.trocaOrdenacao = trocaOrdenacao;
+
+        vm.filtro = {
+            nome: '',
+            cargo: '',
+            email: '',
+            tel: ''
+        };
 
         ///////////////////////////////////
 
         vm.limpar = function(){
-            vm.filtro ={};
+            Object.getOwnPropertyNames(vm.filtro).forEach(function (prop) {
+                vm.filtro[prop] = '';
+            });
+
+            vm.dto.totalResults = 0;
+            vm.dto.list = [];
         }
         function pesquisar (){
-            vm.tbResultado = true;
-            $location.hash('result-pesquisa');
-            // call $anchorScroll()
-            $anchorScroll();
+            vm.dto.list = [];
+            vm.dto.totalResults = 0;
+            $state.params.filtro.filtros.noParticipanteExterno = vm.filtro.nome;
+            $state.params.filtro.filtros.noCargo = vm.filtro.cargo;
+            $state.params.filtro.filtros.noEmail = vm.filtro.email;
+            $state.params.filtro.filtros.nuTelefone = vm.filtro.tel.replace(/[^0-9]/g,'');
+            $state.params.filtro.currentPage = 1;
+            getMoreInfinityScrollData($state.params.filtro.currentPage);
         }
+
+        function getMoreInfinityScrollData(pageNumber){
+            vm.dto.list = [];
+            $state.params.filtro.currentPage = pageNumber;
+
+            var promiseLoadMoreData = ParticipanteExternoService.consultarComFiltroSemLoader($state.params.filtro);
+
+            promiseLoadMoreData.then(
+                function(data){
+                    $location.hash('result-pesquisa');
+                    vm.dto.totalResults = data.totalResults;
+                    angular.forEach(data.list, function (value, key){
+
+                        vm.dto.list.push(
+                            {
+                                id: value.id,
+                                nome: value.noParticipanteExterno,
+                                cargo: value.noCargo,
+                                email: value.noEmail,
+                                tel: value.nuTelefone,
+                                pessoa:{
+                                    id: value.pessoa.id,
+                                    flPessoaAtivo: value.pessoa.id
+                                }
+                            }
+                        );
+                    });
+
+                    $timeout(function () {
+                        $anchorScroll();
+                    },0);
+
+                },function (error) {
+                    vm.dto.totalResults = 0;
+                    vm.dto.list = [];
+                }
+            );
+
+            return promiseLoadMoreData;
+        }
+
         function editar (participante){
             $state.go('app.private.pessoas.editar-participante', {participante: participante});
         }
@@ -34,30 +92,38 @@
 
         $scope.carregaLista = function(){
             $http
-            .get('modules/pessoas/data/list-pessoas.json')
-            .success (function(data){
-                _itens = data;
-                vm.dto.totalResults = data.length;
-                vm.dto.list = _itens.slice(0, vm.dto.pageSize);
-            })
-            .error(function(){
-                alert('Não fooi possivel carregar os dados');
-            });
+                .get('modules/pessoas/data/list-pessoas.json')
+                .success (function(data){
+                    _itens = data;
+                    vm.dto.totalResults = data.length;
+                    vm.dto.list = _itens.slice(0, vm.dto.pageSize);
+                })
+                .error(function(){
+                    alert('Não fooi possivel carregar os dados');
+                });
         };
-        $scope.carregaLista();
+        //$scope.carregaLista();
 
         /*DIALOG*/
-        $scope.showConfirm = function(ev) {
+        $scope.showConfirm = function(ev, participante) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
-            .title('Atenção')
-            .textContent('Tem certeza que deseja remover esse registro?')
-            .ariaLabel('Lucky day')
-            .targetEvent(ev)
-            .ok('Ok')
-            .cancel('Cancelar');
-
+                .title('Atenção')
+                .textContent('Tem certeza que deseja remover esse registro?')
+                .ariaLabel('Lucky day')
+                .targetEvent(ev)
+                .ok('Ok')
+                .cancel('Cancelar');
             $mdDialog.show(confirm).then(function() {
+                ParticipanteExternoService.excluirPorId(participante.id).then(
+                    function (sucesso){
+                        AlertsService.success('Participante removido com sucesso.');
+                        var index = vm.dto.list.indexOf(participante);
+                        vm.dto.list.splice(index,1);
+
+                        $window.scrollTo(0, 0);
+                    }
+                );
                 $scope.status = 'You decided to get rid of your debt.';
             }, function() {
                 $scope.status = 'You decided to keep your debt.';
@@ -65,10 +131,25 @@
         };
         /*DIALOG*/
 
+        /*MODAL*/
+        function help(ev) {
+            $mdDialog.show({
+                controller: PessoasPesquisarParticipanteController,
+                templateUrl: 'modules/pessoas/help/modal-pesquisar-p-help.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+        };
+        $scope.close = function() {
+            $mdDialog.cancel();
+        };
+        /*MODAL*/
+
         /**
-        * Supplies a function that will continue to operate until the
-        * time is up.
-        */
+         * Supplies a function that will continue to operate until the
+         * time is up.
+         */
         $scope.toggleLeft = buildDelayedToggler('left');
         $scope.toggleRight = buildToggler('right');
         $scope.isOpenRight = function(){
@@ -80,7 +161,7 @@
 
             return function debounced() {
                 var context = $scope,
-                args = Array.prototype.slice.call(arguments);
+                    args = Array.prototype.slice.call(arguments);
                 $timeout.cancel(timer);
                 timer = $timeout(function() {
                     timer = undefined;
@@ -90,17 +171,17 @@
         }
 
         /**
-        * Build handler to open/close a SideNav; when animation finishes
-        * report completion in console
-        */
+         * Build handler to open/close a SideNav; when animation finishes
+         * report completion in console
+         */
         function buildDelayedToggler(navID) {
             return debounce(function() {
                 // Component lookup should always be available since we are not using `ng-if`
                 $mdSidenav(navID)
-                .toggle()
-                .then(function () {
-                    $log.debug("toggle " + navID + " is done");
-                });
+                    .toggle()
+                    .then(function () {
+                        $log.debug("toggle " + navID + " is done");
+                    });
             }, 200);
         }
 
@@ -108,17 +189,29 @@
             return function() {
                 // Component lookup should always be available since we are not using `ng-if`
                 $mdSidenav(navID)
-                .toggle()
-                .then(function () {
-                    $log.debug("toggle " + navID + " is done");
-                });
+                    .toggle()
+                    .then(function () {
+                        $log.debug("toggle " + navID + " is done");
+                    });
             }
         }
 
         function changePage(page){
             vm.dto.currentPage = page;
             vm.dto.list = _itens.slice(((vm.dto.currentPage-1)*vm.dto.pageSize), vm.dto.pageSize*vm.dto.currentPage);
+
+            getMoreInfinityScrollData(vm.dto.currentPage);
         }
+
+        function trocaOrdenacao() {
+
+            $state.params.filtro.sortFields = vm.dto.order;
+            $state.params.filtro.sortDirections = vm.dto.orderDirection;
+            $state.params.filtro.pageSize = vm.dto.pageSize;
+
+            getMoreInfinityScrollData(vm.dto.currentPage);
+        }
+
         $scope.changePage = changePage;
     }
 })();

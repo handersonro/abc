@@ -12,26 +12,24 @@
                         Login
                     </label>
                     <md-icon>&#xE8A6;</md-icon>
-                    <input type="text" name="login" md-maxlength="20" ng-model="item.login" required/>
+                    <input type="text" name="login" ng-model="vm.user.edEmail" required/>
                     <div ng-messages="formLogin.login.$error">
                         <div ng-message="required">Campo obrigatório</div>
-                        <div ng-message="md-maxlength">Mínimo ou igual à 20 caracter</div>
                     </div>
                 </md-input-container>
                 <md-input-container flex class="md-icon-float md-block">
+
+                    <md-icon>&#xE0DA;</md-icon>
+                    <input type="password" name="senha" ng-model="vm.user.noSenhaCrypto" aria-label="Mango (Fruit)" required/>
+                    <div ng-messages="formLogin.senha.$error">
+                        <div ng-message="required">Campo obrigatório</div>
+                    </div>
                     <label>
                         Senha
                     </label>
-                    <md-icon>&#xE0DA;</md-icon>
-                    <input type="password" md-maxlength="60" name="senha" ng-model="item.senha" required/>
-                    <div ng-messages="formLogin.senha.$error">
-                        <div ng-message="required">Campo obrigatório</div>
-                        <div ng-message="md-maxlength">Mínimo ou igual à 60 caracter</div>
-                    </div>
                 </md-input-container>
                 <div layout="row" layout-align="center center">
-                    <md-button class="md-raised md-primary" type="submit" ng-click="logar(item)" ng-disabled="!item.login.length > 0 || !item.senha.length > 0"
-                        ui-sref="app.public.home.pagina-inicial">
+                    <md-button class="md-raised md-primary" type="submit" ng-click="vm.logar()" ng-disabled="!vm.user.edEmail.length > 0 || !vm.user.noSenhaCrypto.length > 0">
                         Entrar
                     </md-button>
                 </div>

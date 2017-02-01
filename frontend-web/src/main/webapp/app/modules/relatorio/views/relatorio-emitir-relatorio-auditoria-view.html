@@ -1,0 +1,82 @@
+<div id="title">
+    <md-toolbar class=" md-toolbar-tools">
+        <h1 class="md-toolbar-tools">
+            {{vm.title}}
+        </h1>
+    </md-toolbar>
+</div>
+<md-content class="box">
+  <div class="md-padding header-info" layout="row"  layout-align="end center">
+    <strong>Autoridade: &nbsp;</strong> {{vm.autoridade}}
+  </div>
+  <div class="md-padding">
+      <form name="formPesquisaRelatorioAudiencia">
+          <!-- conteudo -->
+          <div class="panel">
+              <div class="panel-title bg-panel-default">
+                  <h3>
+                      Data do cadastro
+                  </h3>
+              </div>
+              <div class="panel-body">
+                  <div layout="row" layout-xs="column">
+                    <md-input-container flex="50" flex-xs="100">
+                        <label>
+                            Data inicial
+                        </label>
+                        <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                min-date="minDate"
+                                format="DD/MM/YYYY HH:mm"
+                                ng-model="vm.filtro.dataInicial">
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>
+                            Data final
+                        </label>
+                        <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                min-date="minDate"
+                                format="DD/MM/YYYY HH:mm"
+                                ng-model="vm.filtro.dataFinal">
+                    </md-input-container>
+                  </div>
+              </div>
+          </div>
+          <div layout-gt-sm="row">
+              <md-input-container class="md-block md-icon-float" flex-gt-sm>
+                <label>Tipo de saída</label>
+                <md-icon>
+                    &#xE873;
+                </md-icon>
+                <md-select ng-model="vm.auditoria.tipoSaida">
+                  <md-option ng-repeat="item in vm.tiposSaida" value="{{item.tipo}}">
+                    {{item.tipo}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+          <!-- footer button-->
+          <section class="md-padding action" layout="row" layout-align="end center"
+          layout-wrap>
+              <md-button class="md-raised md-primary" ng-click="vm.gerarRelatorio()">
+                  <md-icon>
+                    &#xE876;
+                  </md-icon>
+                  Gerar relatório
+              </md-button>
+              <md-button class="md-raised" ng-click="vm.limpar()">
+                  <md-icon>
+                      &#xE5D5;
+                  </md-icon>
+                  Limpar
+              </md-button>
+              <md-button class="md-raised" ui-sref="app.private.home.pagina-inicial">
+                  <md-icon>
+                      &#xE5CD;
+                  </md-icon>
+                  Cancelar
+              </md-button>
+          </section>
+          <!-- footer button-->
+      </form>
+  </div>
+</md-content>

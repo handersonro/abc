@@ -3,11 +3,13 @@
     .module('$alerts')
     .factory('httpMessageHandleInterceptor', httpMessageHandleInterceptor);
 
-    function httpMessageHandleInterceptor($q, $log, $rootScope){
+    function httpMessageHandleInterceptor($q, $log, $rootScope,$localStorage, $sessionStorage,$injector,$location){
         return {
             // optional method
             'request': function(config) {
-                // do something on success
+
+
+
                 return config;
             },
 
@@ -25,6 +27,7 @@
             // optional method
             'responseError': function(rejection) {
                 var exceptions = rejection && rejection.data && rejection.data.erros || [];
+
                 if( exceptions.length ){
                     for( var i in exceptions ){
                         $rootScope.$broadcast('responseErrorEvent', { type: exceptions[i].type, msg: exceptions[i].msg });

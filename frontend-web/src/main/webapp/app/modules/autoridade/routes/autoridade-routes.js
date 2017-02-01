@@ -25,6 +25,9 @@
                 },
                 params: {
                     callback: null
+                },
+                data: {
+                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.inserir-autoridade', {
@@ -33,6 +36,20 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/autoridade-inserir-autoridade-view.html',
                 resolve: {
+                },
+                data: {
+                    authorities: ['INCLUIR_AUTORIDADE']
+                }
+            })
+            .state(STATE_PATH+MODULE_NAME+'.vincular-autoridade', {
+                url: '/vincular-autoridade',
+                controller: 'AutoridadeVincularAutoridadeController',
+                controllerAs: 'vm',
+                templateUrl: MODULE_PATH+'views/autoridade-vincular-autoridade-view.html',
+                resolve: {
+                },
+                data: {
+                    authorities: ['VINCULAR_AUTORIDADE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.editar-autoridade', {
@@ -44,6 +61,9 @@
                 },
                 params: {
                     autoridade: null
+                },
+                data: {
+                    authorities: ['PESQUISAR_AUTORIDADE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.pesquisar-autoridade', {
@@ -51,7 +71,19 @@
                 controller: 'AutoridadePesquisarAutoridadeController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/autoridade-pesquisar-autoridade-view.html',
+                params: {
+                    filtro: {
+                        filtros: { noAutoridade : '', noEmail : ''},
+                        currentPage: 1,
+                        pageSize: 20,
+                        sortFields: 'id',
+                        sortDirections: 'asc'
+                    }
+                },
                 resolve: {
+                },
+                data: {
+                    authorities: ['PESQUISAR_AUTORIDADE']
                 }
             });
     }
