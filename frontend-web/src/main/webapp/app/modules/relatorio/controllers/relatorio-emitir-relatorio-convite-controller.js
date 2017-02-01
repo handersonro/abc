@@ -4,7 +4,7 @@
         .controller('RelatorioEmitirRelatorioConviteController', RelatorioEmitirRelatorioConviteController);
 
     /* @ngInject */
-    function RelatorioEmitirRelatorioConviteController($scope, $mdDialog, $timeout, ConviteRestService, DTO,$window, $state,$http,baseURL,Principal,appURL){
+    function RelatorioEmitirRelatorioConviteController($scope, $mdDialog, $timeout, ConviteRestService, DTO,$window, $state,$http,baseURL,Principal){
         var vm = this;
         vm.procurarLocal = ConviteRestService.obterLocais;
         vm.procurarPaises = ConviteRestService.obterPaises;
@@ -15,7 +15,6 @@
         });
 
         vm.dto = new DTO();
-        vm.gerarRelatorio = gerarRelatorio;
         vm.gerarRelatorioDraw = gerarRelatorioDraw;
         vm.filtro = {};
         $state.params.filtro.filtros = {'tipoEvento.id' : 2 };
@@ -71,30 +70,104 @@
             vm.title = "Relatório de convite";
 
         }
-        function gerarRelatorio() {
-            tratarCamposParaGerarRelatorio();
-            var filtroPaginacao = montarFiltros();
-            $state.get('app.private.relatorio.relatorio-solicitar-convite').filtroPaginacao = filtroPaginacao;
-            $state.go('app.private.relatorio.relatorio-solicitar-convite');
-        }
 
-        function gerarRelatorioDraw() {
-            tratarCamposParaGerarRelatorio();
-            var filtroPaginacao = montarFiltros();
 
-            var reportData = '{"path":'+appURL+'"#/private/relatorio/solicitar-convite","stateName":"app.private.relatorio.relatorio-solicitar-convite","PaginacaoDTO":'+JSON.stringify(filtroPaginacao)+',"noAutoridade":"'+vm.autoridade+'"}';
+        function gerarRelatorioDraw () {
+            window.status = "loaded";
 
-            console.log('reportData');
-            console.log(reportData);
+            if(vm.filtro.validado ==="Indiferente"){
+                vm.filtro.validado = "INDIFERENTE";
+            }else if(vm.filtro.validado ==="Sim"){
+                vm.filtro.validado = "SIM";
+            }else if(vm.filtro.validado ==="Não"){
+                vm.filtro.validado = "NAO";
+            }
 
-            /*$http.defaults.headers.common.report = reportData;
-            $http.post(baseURL+'relatorios/relatorio-convite',{
+
+            if(vm.filtro.direcao == "Crescente"){
+                vm.filtro.direcao = "ASC";
+            }else if(vm.filtro.direcao == "Decrescente"){
+                vm.filtro.direcao = "DESC";
+            }else{
+                vm.filtro.direcao = "ASC";
+            }
+
+            console.log(vm.filtro.direcao);
+
+            vm.filtro.tipoSaida = true;
+            if(vm.filtro.tipoSaida ==="Internacional"){
+                vm.filtro.tipoSaida = true;
+            }else if(vm.filtro.tipoSaida ==="Nacional"){
+                vm.filtro.tipoSaida = false;
+            }
+
+            var dtInicioEvento = (null == vm.filtro.dataInicial ) ? '' : new Date(vm.filtro.dataInicial).getTime();
+            var dtFimEvento = (null == vm.filtro.dataFinal ) ? '' : new Date(vm.filtro.dataFinal).getTime();
+
+            //vm.filtro.cargoSolicitante = '';
+
+
+            vm.filtro.cargoSolicitante = vm.filtro.cargoSolicitante != null ? vm.filtro.cargoSolicitante : '';
+            vm.filtro.solicitante = vm.filtro.solicitante != null ? vm.filtro.solicitante.noRemetente : '';
+            vm.filtro.idLocalidade = vm.filtro.idLocalidade != null ? vm.filtro.idLocalidade.id : '';
+            vm.filtro.observacao = vm.filtro.observacao != null ? vm.filtro.observacao : '';
+            vm.filtro.despacho = vm.filtro.despacho != null ? vm.filtro.despacho : '';
+            vm.filtro.validado = vm.filtro.validado != null ? vm.filtro.validado : '';
+            vm.filtro.tipoSaida = vm.filtro.tipoSaida != null ? vm.filtro.tipoSaida : '';
+            vm.filtro.assunto = vm.filtro.assunto != null ? vm.filtro.assunto : '';
+
+            vm.filtroConvite = '{'+
+                '"currentPage":'+$state.params.filtro.currentPage+','+
+                '"pageSize":"20",'+
+                '"totalResults": "1",'+
+                '"sortFields":"id",'+
+                '"sortDirections":"'+vm.filtro.direcao+'",'+
+                '"filtros":{'+
+                '"tipoEvento.id":1,'+
+                '"noCargo":"'+vm.filtro.cargoSolicitante+'",'+
+                '"noRemetente":"'+vm.filtro.solicitante+'",'+
+                '"noObservacao": "'+vm.filtro.observacao+'",'+
+                '"noDespacho":"'+vm.filtro.despacho+'",'+
+                '"noAssunto":"'+vm.filtro.assunto+'",'+
+                '"idLocalidade":"'+vm.filtro.idLocalidade+'",'+
+                '"conviteValidacao": "'+vm.filtro.validado+'",'+
+                '"flEventoInternacional" : '+vm.filtro.tipoSaida+','+
+                '"dataCadInicial" : "'+dtInicioEvento+'",'+
+                '"dataCadFinal": "'+dtFimEvento+'"'+
+                '}'+
+                '}';
+
+            console.log('dtInicioEvento>>>> ',dtInicioEvento);
+
+
+            vm.filtroConvite = '{'+
+                '"currentPage": '+$state.params.filtro.currentPage+','+
+                '"pageSize": "20",'+
+                '"totalResults": "1",'+
+                '"sortFields": "id",'+
+                '"sortDirections": "asc",'+
+                '"filtros": '+vm.filtroConvite+
+                '}';
+
+
+
+            //$state.get('app.private.relatorio.relatorio-solicitar-audiencia').filtroAudiencia = vm.filtroAudiencia;
+            //$state.go('app.private.relatorio.relatorio-solicitar-audiencia');
+
+
+            //@todo passar o path dinâmicamente
+
+            var reportData = '{"path":"http://localhost:8080/sisagm/#/private/relatorio/relatorio-solicitar-convite","stateName":"app.private.relatorio.emitir-relatorio-convite","PaginacaoDTO":'+vm.filtroConvite+',"noAutoridade":"'+vm.autoridade+'"}';
+
+            $http.defaults.headers.common.report = reportData;
+            $http.post(baseURL+'relatorios/pesquisar-convite',{
                 "currentPage": "1",
                 "pageSize": "20",
                 "totalResults": "1",
                 "sortFields": "id",
                 "sortDirections": "asc",
                 "filtros": {
+                    "tipoEvento.id": 1
                 }
             }, {responseType:'arraybuffer'})
                 .success(function (response) {
@@ -102,117 +175,104 @@
                     var file = new Blob([response], {type: 'application/pdf'});
                     var fileURL = URL.createObjectURL(file);
                     $window.open(fileURL, '_blank', 'location=yes');
-                });*/
+                });
 
         }
 
-        function tratarCamposParaGerarRelatorio(){
 
-            vm.filtro.dtInicioEvento = vm.filtro.dtInicioEvento != null ? new Date(vm.filtro.dtInicioEvento).getTime() : "";
-            vm.filtro.dtFimEvento = vm.filtro.dtFimEvento != null ? new Date(vm.filtro.dtFimEvento).getTime() : "";
-            vm.filtro.dataCadInicial = vm.filtro.dataCadInicial != null ? new Date( vm.filtro.dataCadInicial).getTime() : "";
-            vm.filtro.dataCadFinal = vm.filtro.dataCadFinal != null ? new Date(vm.filtro.dataCadFinal).getTime() : "";
-            vm.filtro.noAssunto = vm.filtro.noAssunto != null ? vm.noAssunto : "";
 
-            if(vm.filtro.idPais == undefined || vm.filtro.idPais == "") {
-                vm.filtro.idPais = {};
-            }
-            if(vm.filtro.remetente == null || vm.filtro.remetente == undefined || vm.filtro.remetente == ""){
-                vm.filtro.remetente = {};
-            }
-            if(vm.filtro.idLocalidade == undefined || vm.filtro.idLocalidade == "") {
-                vm.filtro.idLocalidade = {};
-            }
-            if(vm.filtro.ordenacao == undefined){
-                vm.filtro.ordenacao = "dtCadastro";
-            }
-            if(vm.filtro.direcao == undefined){
-                vm.filtro.direcao = "asc"
-            }
-            switch(vm.filtro.validado){
-                case "Sim":
-                    vm.filtro.validado = "SIM";
-                    break;
-                case "Não":
-                    vm.filtro.validado = "NAO";
-                    break;
-                default:
-                    vm.filtro.validado = undefined;
-            }
+
+        function gerarRelatorio() {
+//            tratarCamposParaGerarRelatorio();
+            //          var filtroPaginacao = montarFiltros();
+            //        $state.get('app.private.relatorio.relatorio-solicitar-convite').filtroPaginacao = filtroPaginacao;
+            $state.go('app.private.relatorio.relatorio-solicitar-convite');
         }
 
-        function montarFiltros(){
-            return {
-                "currentPage": $state.params.filtro.currentPage,
-                "pageSize": "20",
-                "totalResults": "1",
-                "sortFields": vm.filtro.ordenacao,
-                "sortDirections": vm.filtro.direcao,
-                "filtros": {
-                    "remetente.noRemetente" : vm.filtro.remetente.noRemetente,
-                    "flEventoInternacional" : vm.filtro.flEventoInternacional,
-                    "noDespacho" : vm.filtro.despacho,
-                    "descricao" : vm.filtro.descricao,
-                    "noObservacao" : vm.filtro.observacao,
-                    "idPais" : vm.filtro.idPais.id,
-                    "noCidadeInternacional" : vm.filtro.noCidadeInternacional,
-                    "idLocalidade" : vm.filtro.idLocalidade.id,
-                    "conviteValidacao" : vm.filtro.validado,
-                    "dtInicioEvento" : vm.filtro.dtInicioEvento,
-                    "dtFimEvento" : vm.filtro.dtFimEvento,
-                    "dataCadInicial" : vm.filtro.dataCadInicial,
-                    "dataCadFinal" : vm.filtro.dataCadFinal
-                }
-            };
-        }
+        /*function gerarRelatorioDraw() {
+         tratarCamposParaGerarRelatorio();
+         var filtroPaginacao = montarFiltros();
 
-        vm.carregarListConvite = function(){
+         var reportData = '{"path":"http://localhost:28080/sisagm/#/private/relatorio/solicitar-convite","stateName":"app.private.relatorio.relatorio-solicitar-convite","PaginacaoDTO":'+JSON.stringify(filtroPaginacao)+',"noAutoridade":"'+vm.autoridade+'"}';
 
-            console.log('carregarListConvite >>>>>');
+         $http.defaults.headers.common.report = reportData;
+         $http.post(baseURL+'relatorios/relatorio-convite',{
+         "currentPage": "1",
+         "pageSize": "20",
+         "totalResults": "1",
+         "sortFields": "id",
+         "sortDirections": "asc",
+         "filtros": {
+         }
+         }, {responseType:'arraybuffer'})
+         .success(function (response) {
+         console.log('chegou');
+         var file = new Blob([response], {type: 'application/pdf'});
+         var fileURL = URL.createObjectURL(file);
+         $window.open(fileURL, '_blank', 'location=yes');
+         });
 
-             /*ConviteRestService
-                 .obterLista({})
-                 .then(
-                     function(data){
-                         $scope.listaConvites = data;
-                     },
-                     function(error){
+         }*/
 
-                     }
-                 );*/
-        };
-        vm.carregarListConvite();
+        /*function tratarCamposParaGerarRelatorio(){
 
-        function debounce(func, wait, context) {
-          var timer;
+         vm.filtro.dtInicioEvento = vm.filtro.dtInicioEvento != null ? new Date(vm.filtro.dtInicioEvento).getTime() : "";
+         vm.filtro.dtFimEvento = vm.filtro.dtFimEvento != null ? new Date(vm.filtro.dtFimEvento).getTime() : "";
+         vm.filtro.dataCadInicial = vm.filtro.dataCadInicial != null ? new Date( vm.filtro.dataCadInicial).getTime() : "";
+         vm.filtro.dataCadFinal = vm.filtro.dataCadFinal != null ? new Date(vm.filtro.dataCadFinal).getTime() : "";
+         vm.filtro.noAssunto = vm.filtro.noAssunto != null ? vm.noAssunto : "";
 
-          return function debounced() {
-            var context = $scope,
-                args = Array.prototype.slice.call(arguments);
-            $timeout.cancel(timer);
-            timer = $timeout(function() {
-              timer = undefined;
-              func.apply(context, args);
-            }, wait || 10);
-          };
-        }
-        /*DIALOG*/
-        vm.showConfirm = function(ev) {
-        // Appending dialog to document.body to cover sidenav in docs app
-            var confirm = $mdDialog.confirm()
-              .title('Atenção')
-              .textContent('Tem certeza que deseja remover esse registro?')
-              .ariaLabel('Lucky day')
-              .targetEvent(ev)
-              .ok('Sim')
-              .cancel('Não');
+         if(vm.filtro.idPais == undefined || vm.filtro.idPais == "") {
+         vm.filtro.idPais = {};
+         }
+         if(vm.filtro.remetente == null || vm.filtro.remetente == undefined || vm.filtro.remetente == ""){
+         vm.filtro.remetente = {};
+         }
+         if(vm.filtro.idLocalidade == undefined || vm.filtro.idLocalidade == "") {
+         vm.filtro.idLocalidade = {};
+         }
+         if(vm.filtro.ordenacao == undefined){
+         vm.filtro.ordenacao = "dtCadastro";
+         }
+         if(vm.filtro.direcao == undefined){
+         vm.filtro.direcao = "asc"
+         }
+         switch(vm.filtro.validado){
+         case "Sim":
+         vm.filtro.validado = "SIM";
+         break;
+         case "Não":
+         vm.filtro.validado = "NAO";
+         break;
+         default:
+         vm.filtro.validado = undefined;
+         }
+         }*/
 
-            $mdDialog.show(confirm).then(function() {
-              $scope.status = 'You decided to get rid of your debt.';
-            }, function() {
-              $scope.status = 'You decided to keep your debt.';
-            });
-        };
-        /*DIALOG*/
+        /* function montarFiltros(){
+         return {
+         "currentPage": $state.params.filtro.currentPage,
+         "pageSize": "20",
+         "totalResults": "1",
+         "sortFields": vm.filtro.ordenacao,
+         "sortDirections": vm.filtro.direcao,
+         "filtros": {
+         "remetente.noRemetente" : vm.filtro.remetente.noRemetente,
+         "flEventoInternacional" : vm.filtro.flEventoInternacional,
+         "noDespacho" : vm.filtro.despacho,
+         "descricao" : vm.filtro.descricao,
+         "noObservacao" : vm.filtro.observacao,
+         "idPais" : vm.filtro.idPais.id,
+         "noCidadeInternacional" : vm.filtro.noCidadeInternacional,
+         "idLocalidade" : vm.filtro.idLocalidade.id,
+         "conviteValidacao" : vm.filtro.validado,
+         "dtInicioEvento" : vm.filtro.dtInicioEvento,
+         "dtFimEvento" : vm.filtro.dtFimEvento,
+         "dataCadInicial" : vm.filtro.dataCadInicial,
+         "dataCadFinal" : vm.filtro.dataCadFinal
+         }
+         };
+         }*/
+
     }
 })();
