@@ -89,7 +89,7 @@
 
             vm.filtro.cargoSolicitante = vm.filtro.cargoSolicitante != null ? vm.filtro.cargoSolicitante : '';
             vm.filtro.solicitante = vm.filtro.solicitante != null ? vm.filtro.solicitante.noRemetente : '';
-            vm.filtro.idLocalidade = vm.filtro.idLocalidade != null ? vm.filtro.idLocalidade.id : '';
+            vm.filtro.idLocalidade = vm.filtro.idLocalidade != undefined ? vm.filtro.idLocalidade.id : '';
             vm.filtro.observacao = vm.filtro.observacao != null ? vm.filtro.observacao : '';
             vm.filtro.despacho = vm.filtro.despacho != null ? vm.filtro.despacho : '';
             vm.filtro.validado = vm.filtro.validado != null ? vm.filtro.validado : '';
