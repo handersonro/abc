@@ -32,7 +32,7 @@
 
         function obterCargosRemetentesPeloNome(noCargo){
             var retorno = $q.defer();
-            retorno =  $http.get(baseURL+ 'remetentes?noCargo=' + noCargo);
+            retorno =  $http.get(baseURL+ 'remetentes/pesquisar-cargo?noCargo=' + noCargo);
             return retorno;
         }
 
