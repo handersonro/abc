@@ -82,7 +82,7 @@
             vm.validacoes=[
                 {validado : {label:'Sim',value:'SIM'}},
                 {validado : {label:'Não',value:'NAO'}},
-                {validado : {label:'Indiferente',value:''}}
+                {validado : {label:'Indiferente',value: null}}
             ];
         }
 

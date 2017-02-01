@@ -97,7 +97,7 @@
             vm.filtro.flEventoInternacional = false;
 
             if(vm.filtro.validado === "Indiferente"){
-                vm.filtro.validado = "";
+                vm.filtro.validado = "INDIFERENTE";
             }else if(vm.filtro.validado ==="Sim"){
                 vm.filtro.validado = "SIM";
             }else if(vm.filtro.validado ==="Não"){
