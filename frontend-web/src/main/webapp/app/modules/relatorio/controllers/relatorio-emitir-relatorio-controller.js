@@ -4,7 +4,7 @@
         .controller('RelatorioEmitirRelatorioController', RelatorioEmitirRelatorioController);
 
     /* @ngInject */
-    function RelatorioEmitirRelatorioController($scope, $state, $mdDialog,$q,$window, $timeout,ConviteRestService,DTO,EventoService,$http,baseURL,Principal,appURL ){
+    function RelatorioEmitirRelatorioController($scope, $state, $mdDialog,$q,$window, $timeout,ConviteRestService,DTO,EventoService,$http,baseURL,Principal,appURL,RelatorioService ){
         var vm = this;
         vm.dto = new DTO();
         vm.gerarRelatorio = gerarRelatorio;
@@ -44,7 +44,7 @@
         inicializar();
         function inicializar() {
 
-
+            RelatorioService.mostrarLayout();
 
             vm.filtro = {};
             vm.flEventoInternacional = [
@@ -105,7 +105,7 @@
                 "sortDirections": "asc",
                 "filtros": {
                     "tipoEvento.id": 1,
-                    "noCargo" : vm.filtro.cargoSolicitante,
+                    "remetente.noCargo" : vm.filtro.cargoSolicitante.noCargo,
                     "remetente.noRemetente" : vm.filtro.solicitante,
                     "noObservacao" : vm.filtro.observacao,
                     "noDespacho" : vm.filtro.despacho,
@@ -118,6 +118,22 @@
                 }
             };
 
+            if(vm.filtro.notCargo == true){
+                vm.filtroAudiencia.filtros = {
+                    "tipoEvento.id": 1,
+                    "remetente.noCargo" : '',
+                    "remetente.noRemetente" : vm.filtro.solicitante,
+                    "noObservacao" : vm.filtro.observacao,
+                    "noDespacho" : vm.filtro.despacho,
+                    "noAssunto" : vm.filtro.assunto,
+                    "idLocalidade" : vm.filtro.idLocalidade,
+                    "conviteValidacao": vm.filtro.validado,
+                    "flEventoInternacional" : vm.filtro.tipoSaida,
+                    "dataCadInicial" : dtInicioEvento,
+                    "dataCadFinal": dtFimEvento
+                }
+                vm.filtroAudiencia.filtros.notCargo =  vm.filtro.cargoSolicitante.noCargo;
+            }
 
             $state.get('app.private.relatorio.relatorio-solicitar-audiencia').filtroAudiencia = vm.filtroAudiencia;
             $state.go('app.private.relatorio.relatorio-solicitar-audiencia');

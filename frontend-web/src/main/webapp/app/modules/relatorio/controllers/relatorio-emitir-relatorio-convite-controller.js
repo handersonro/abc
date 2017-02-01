@@ -4,8 +4,15 @@
         .controller('RelatorioEmitirRelatorioConviteController', RelatorioEmitirRelatorioConviteController);
 
     /* @ngInject */
-    function RelatorioEmitirRelatorioConviteController($scope, $mdDialog, $timeout, ConviteRestService, DTO,$window, $state,$http,baseURL,Principal){
+    function RelatorioEmitirRelatorioConviteController($scope, $mdDialog, $timeout, ConviteRestService, DTO,$window, $state,$http,baseURL,Principal,RelatorioService){
         var vm = this;
+
+
+        inicializar();
+        function inicializar() {
+            RelatorioService.mostrarLayout();
+        }
+
         vm.procurarLocal = ConviteRestService.obterLocais;
         vm.procurarPaises = ConviteRestService.obterPaises;
         vm.procurarRemetente = ConviteRestService.obterRemetentes;
