@@ -25,9 +25,6 @@
                 },
                 params: {
                     callback: null
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.pesquisar-participante', {
@@ -35,19 +32,7 @@
                 controller: 'PessoasPesquisarParticipanteController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/pessoas-pesquisar-participante-view.html',
-                params: {
-                    filtro: {
-                        filtros: { noParticipanteInterno : '', noCargo : '' , noEmail : '' , nuTelefone : ''},
-                        currentPage: 1,
-                        pageSize: 20,
-                        sortFields: 'id',
-                        sortDirections: 'asc'
-                    }
-                },
                 resolve: {
-                },
-                data: {
-                    authorities: ['PESQUISAR_PARTICIPANTE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.inserir-participante', {
@@ -56,9 +41,6 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/pessoas-inserir-participante-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: ['INCLUIR_PARTICIPANTE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.editar-participante', {
@@ -70,9 +52,6 @@
                 },
                 params: {
                     participante: null
-                },
-                data: {
-                    authorities: ['PESQUISAR_PARTICIPANTE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.inserir-remetente', {
@@ -81,9 +60,6 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/pessoas-inserir-remetente-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: ['INCLUIR_REMETENTE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.pesquisar-remetente', {
@@ -91,19 +67,7 @@
                 controller: 'PessoasPesquisarRemetenteController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/pessoas-pesquisar-remetente-view.html',
-                params: {
-                    filtro: {
-                        filtros: { noRemetente : '', noCargo : '' , noEmail : '' , nuTelefone : ''},
-                        currentPage: 1,
-                        pageSize: 20,
-                        sortFields: 'id',
-                        sortDirections: 'asc'
-                    }
-                },
                 resolve: {
-                },
-                data: {
-                    authorities: ['PESQUISAR_REMETENTE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.editar-remetente', {
@@ -115,24 +79,7 @@
                 },
                 params: {
                     remetente: null
-                },
-                data: {
-                    authorities: ['PESQUISAR_REMETENTE']
                 }
-            })
-            .state(STATE_PATH+MODULE_NAME+'.help', {
-            url: '/help',
-            controller: 'PessoasEditarRemetenteController',
-            controllerAs: 'vm',
-            templateUrl: MODULE_PATH+'views/pessoas-help.html',
-            resolve: {
-            },
-            params: {
-                remetente: null
-            },
-            data: {
-                authorities: []
-            }
-        });
+            });
     }
 })();

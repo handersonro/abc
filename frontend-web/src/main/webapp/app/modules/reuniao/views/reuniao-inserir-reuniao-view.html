@@ -3,13 +3,6 @@
         <h1 class="md-toolbar-tools">
             {{vm.title}}
         </h1>
-        <span flex></span>
-        <md-button class="md-fab md-mini md-acoes" aria-label="Use Android" ng-click="vm.help($event)">
-            <md-tooltip md-direction="left">
-                Ajuda
-            </md-tooltip>
-            <md-icon>&#xE8FD;</md-icon>
-        </md-button>
     </md-toolbar>
 </div>
 <md-content class="box">
@@ -19,7 +12,7 @@
 <!-- TELA DE CADASTRO -->
     <div class="md-padding">
 
-        <form name="formReuniao" id="formReuniao" ng-submit="vm.salvar(vm.reuniao)">
+        <form name="formReuniao" ng-submit="vm.salvar()">
             <!-- conteudo -->
 
             <div layout="row" layout-xs="column">
@@ -30,8 +23,8 @@
                     <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
                             min-date="minDate"
                             name="dataInicial"
-                            format="DD/MM/YYYY HH:mm"
-                            ng-model="vm.reuniao.dtInicioEvento" required>
+                            format="DD/MM/YYYY HH:mm a"
+                            ng-model="vm.reuniao.dataInicio" required>
                     <custom-validator-messages input-name="dataInicial" ></custom-validator-messages>
                 </md-input-container>
                 <md-input-container flex>
@@ -41,8 +34,8 @@
                     <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
                             min-date="minDate"
                             name="dataFim"
-                            format="DD/MM/YYYY HH:mm"
-                            ng-model="vm.reuniao.dtFimEvento" required>
+                            format="DD/MM/YYYY HH:mm a"
+                            ng-model="vm.reuniao.dataFim" required>
                     <custom-validator-messages input-name="dataFim" ></custom-validator-messages>
                 </md-input-container>
                 <md-input-container flex>
@@ -52,31 +45,28 @@
                     <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
                             min-date="minDate"
                             name="dataCadastramento"
-                            format="DD/MM/YYYY HH:mm"
-                            ng-model="vm.reuniao.dtCadastro" required>
+                            format="DD/MM/YYYY HH:mm a"
+                            ng-model="vm.reuniao.dataCadastramento" required>
                     <custom-validator-messages input-name="dataCadastramento" ></custom-validator-messages>
                 </md-input-container>
             </div>
             <md-input-container class="md-icon-float md-block padding-auto" flex>
                 <md-chips
-                        flex
-                        ng-model="vm.participantes"
-                        md-transform-chip="vm.transformChip($chip)"
-                        md-on-remove="vm.removeParticipante($chip)"
-                        md-require-match="true">
-                    <md-autocomplete
-                            ng-required="vm.participantes.length == 0 "
-                            md-selected-item="vm.selectedItem"
-                            md-search-text="vm.searchText"
-                            md-items="item in vm.querySearch(vm.searchText)"
-                            md-item-text="item.name"
-                            md-min-length="3"
-                            md-floating-label="Vincular participante">
-                        <span md-highlight-text="searchText">{{item.noParticipanteInterno}}</span>
-                    </md-autocomplete>
-                    <md-chip-template>
-                        <span>{{$chip.noParticipanteInterno}}</span>
-                    </md-chip-template>
+                          flex
+                          ng-model="vm.usuarios"
+                          md-transform-chip="vm.transformChip($chip)"
+                          md-require-match="true">
+                      <md-autocomplete
+                          md-selected-item="vm.selectedItem"
+                          md-search-text="vm.searchText"
+                          md-items="item in vm.querySearch(vm.searchText)"
+                          md-item-text="item.name"
+                          md-floating-label="Vincular participante">
+                        <span md-highlight-text="searchText">{{item.name}}</span>
+                      </md-autocomplete>
+                      <md-chip-template>
+                        <span>{{$chip.name}}</span>
+                      </md-chip-template>
                 </md-chips>
             </md-input-container>
             <div layout="row" layout-xs="column">
@@ -84,7 +74,7 @@
                     <label>
                         Despacho
                     </label>
-                    <textarea ng-model="vm.reuniao.noDespacho" md-maxlength="150" maxlength="150" rows="3" md-select-on-focus>
+                    <textarea ng-model="vm.reuniao.despacho" md-maxlength="150" maxlength="150" rows="3" md-select-on-focus>
                     </textarea>
                 </md-input-container>
             </div>
@@ -93,7 +83,7 @@
                     <label>
                         Local  da reunião
                     </label>
-                    <textarea ng-model="vm.reuniao.noLocalEvento" rows="3" md-maxlength="150" maxlength="150" required md-select-on-focus>
+                    <textarea ng-model="vm.reuniao.localReuniao" rows="3" md-maxlength="150" maxlength="150" required md-select-on-focus>
                     </textarea>
                 </md-input-container>
             </div>
@@ -102,7 +92,7 @@
                     <h3 class="toolbar-edit-textarea">
                     	Assunto
                     </h3>
-                <div text-angular ng-model="vm.reuniao.noAssunto" layout="column" name="assunto"></div>
+                <div text-angular ng-model="vm.reuniao.assunto" layout="column" required name="assunto"></div>
                 <custom-validator-messages input-name="assunto" ></custom-validator-messages>
                 </md-input-container>
             </div>
@@ -111,7 +101,7 @@
                     <h3 class="toolbar-edit-textarea">
                     	Pauta da reunião
                     </h3>
-                    <div text-angular ng-model="vm.reuniao.noPauta" layout="column" required name="pautaReuniao"></div>
+                    <div text-angular ng-model="vm.reuniao.pautaReuniao" layout="column" required name="pautaReuniao"></div>
                     <custom-validator-messages input-name="pautaReuniao" ></custom-validator-messages>
                 </md-input-container>
             </div>
@@ -123,13 +113,13 @@
                     </md-icon>
                     Salvar
                 </md-button>
-                <md-button class="md-raised" ng-if="!vm.isEdicao" ng-click="vm.limpar()" ng-if="!vm.isEdicao">
+                <md-button class="md-raised" ng-click="vm.limpar()">
                     <md-icon>
                         &#xE5D5;
                     </md-icon>
                     Limpar
                 </md-button>
-                <md-button class="md-raised" ui-sref="app.private.home.pagina-inicial">
+                <md-button class="md-raised" ui-sref="app.public.home.pagina-inicial">
                     <md-icon>
                         &#xE5CD;
                     </md-icon>

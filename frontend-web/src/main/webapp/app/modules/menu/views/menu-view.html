@@ -1,279 +1,258 @@
-<div layout="row" class="menu-bar">
-    <div flex></div>
+<div layout-xs="column" layout-sm="column" layout-md="row" layout-lg="row"  class="menu-bar">
     <div class="md-padding show-xs show-sm hide-md hide-lg hide-gt-lg" layout="row" layout-align="center center">
         <h1>SISAGM</H1>
         <span flex></span>
         <md-button class="md-fab md-mini md-primary" aria-label="More" ng-click="toggleLeft()">
-            <md-icon>&#xE8FE;</md-icon>
+           <md-icon>&#xE8FE;</md-icon>
         </md-button>
     </div>
-    <md-sidenav class="md-sidenav-left hide-md hide-lg hide-gt-lg" md-component-id="left" md-whiteframe="4">
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop md-whiteframe="4">
         <md-card>
             <img src="assets/img/logo-sisagm-xs.png" class="md-card-image" alt="Washed Out">
             <md-toolbar class="md-theme-indigo">
-                <h1 class="md-toolbar-tools">MENU
-                    <span class="flex"></span>
-                    <md-button class="md-icon-button" aria-label="More" ng-click="toggleLeft()">
-                        <md-icon>&#xE314;</md-icon>
-                    </md-button>
-                </h1>
+              <h1 class="md-toolbar-tools">MENU
+                  <span class="flex"></span>
+                  <md-button class="md-icon-button" aria-label="More" ng-click="toggleLeft()">
+                     <md-icon>&#xE314;</md-icon>
+                  </md-button>
+              </h1>
             </md-toolbar>
-        </md-card>
-        <md-content layout-margin>
-            <div has-any-authority="PESQUISAR_REMETENTE,INCLUIR_REMETENTE,PESQUISAR_PARTICIPANTE,INCLUIR_PARTICIPANTE">
-                <h4>Pessoa</h4>
-                <md-menu-item has-authority="PESQUISAR_REMETENTE">
-                    <md-button ui-sref="app.private.pessoas.pesquisar-remetente">
-                        Pesquisar remetente
-                    </md-button>
-                </md-menu-item>
-                <md-menu-item has-authority="INCLUIR_REMETENTE">
-                    <md-button ui-sref="app.private.pessoas.inserir-remetente" class="item-menu">
-                        Incluir remetente
-                    </md-button>
-                </md-menu-item>
-                <md-menu-item  has-authority="PESQUISAR_PARTICIPANTE">
-                    <md-button ui-sref="app.private.pessoas.pesquisar-participante" class="item-menu">
-                        Pesquisar participante
-                    </md-button>
-                </md-menu-item>
-                <md-menu-item has-authority="INCLUIR_PARTICIPANTE">
-                    <md-button ui-sref="app.private.pessoas.inserir-participante" class="item-menu">
-                        Incluir participante
-                    </md-button>
-                </md-menu-item>
-            </div>
-            <div has-any-authority="PESQUISAR_CONVITE,INCLUIR_CONVITE">
-                <h4>Convites</h4>
-                <md-menu-item has-authority="PESQUISAR_CONVITE">
-                    <md-button ui-sref="app.private.convite.pesquisar-convite" class="item-menu">
-                        Pesquisar convite
-                    </md-button>
-                </md-menu-item>
-                <md-menu-item has-authority="INCLUIR_CONVITE">
-                    <md-button ui-sref="app.private.convite.inserir-convite" class="item-menu">
-                        Incluir convite
-                    </md-button>
-                </md-menu-item>
-            </div>
+          </md-card>
 
-            <div has-any-authority="PESQUISAR_AUDIENCIA,INCLUIR_AUDIENCIA">
-                <h4>Audiências</h4>
-                <md-menu-item has-authority="PESQUISAR_AUDIENCIA">
-                    <md-button ui-sref="app.private.audiencia.pesquisar-audiencia" class="item-menu">
-                        Pesquisar audiências
-                    </md-button>
-                </md-menu-item>
-                <md-menu-item has-authority="INCLUIR_AUDIENCIA">
-                    <md-button ui-sref="app.private.audiencia.inserir-audiencia" class="item-menu">
-                        Incluir audiência
-                    </md-button>
-                </md-menu-item>
-            </div>
-            <div has-any-authority="PESQUISAR_REUNIAO,INCLUIR_REUNIAO">
-                <h4>Reunião</h4>
-                <md-menu-item has-authority="PESQUISAR_REUNIAO">
-                    <md-button ui-sref="app.private.reuniao.pesquisar-reuniao" class="item-menu">
-                        Pesquisar reunião
-                    </md-button>
-                </md-menu-item>
-                <md-menu-item has-authority="INCLUIR_REUNIAO">
-                    <md-button ui-sref="app.private.reuniao.inserir-reuniao" class="item-menu">
-                        Incluir reunião
-                    </md-button>
-                </md-menu-item>
-            </div>
-            <div has-any-authority="PESQUISAR_AUTORIDADE,INCLUIR_AUTORIDADE,VINCULAR_AUTORIDADE">
-                <h4>Autoridade</h4>
-                <md-menu-item has-authority="PESQUISAR_AUTORIDADE">
-                    <md-button ui-sref="app.private.autoridade.pesquisar-autoridade" class="item-menu">
-                        Pesquisar autoridade
-                    </md-button>
-                </md-menu-item>
-                <md-menu-item has-authority="INCLUIR_AUTORIDADE">
-                    <md-button ui-sref="app.private.autoridade.inserir-autoridade" class="item-menu">
-                        Incluir autoridade
-                    </md-button>
-                </md-menu-item>
-                <md-menu-item has-authority="VINCULAR_AUTORIDADE">
-                    <md-button ui-sref="app.private.autoridade.vincular-autoridade" class="item-menu">
-                        Vincular autoridade
-                    </md-button>
-                </md-menu-item>
-            </div>
+          <md-content layout-margin>
+              <h4>Pessoas</h4>
+              <md-menu-item>
+                  <md-button ui-sref="app.private.pessoas.pesquisar-remetente">
+                      Pesquisar remetente
+                  </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                  <md-button ui-sref="app.private.pessoas.inserir-remetente" class="item-menu">
+                      Incluir remetente
+                  </md-button>
+              </md-menu-item>
+              <md-menu-item >
+                  <md-button ui-sref="app.private.pessoas.pesquisar-participante" class="item-menu">
+                      Pesquisar participante
+                  </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                  <md-button ui-sref="app.private.pessoas.inserir-participante" class="item-menu">
+                      Incluir participante
+                  </md-button>
+              </md-menu-item>
+              <h4>Convites</h4>
+              <md-menu-item>
+                  <md-button ui-sref="app.private.convite.pesquisar-convite" class="item-menu">
+                      Pesquisar convite
+                  </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                  <md-button ui-sref="app.private.convite.inserir-convite" class="item-menu">
+                      Incluir convite
+                  </md-button>
+              </md-menu-item>
+              <h4>Audiências</h4>
+              <md-menu-item >
+                  <md-button ui-sref="app.private.audiencia.pesquisar-audiencia" class="item-menu">
+                      Pesquisar audiências
+                  </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                  <md-button ui-sref="app.private.audiencia.inserir-audiencia" class="item-menu">
+                      Incluir audiências
+                  </md-button>
+              </md-menu-item>
+              <h4>Reunião</h4>
+              <md-menu-item>
+                  <md-button ui-sref="app.private.reuniao.pesquisar-reuniao" class="item-menu">
+                      Pesquisar reunião
+                  </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                  <md-button ui-sref="app.private.reuniao.inserir-reuniao" class="item-menu">
+                      Incluir reunião
+                  </md-button>
+              </md-menu-item>
+              <h4>Autoridade</h4>
+              <md-menu-item>
+                  <md-button ui-sref="app.private.autoridade.pesquisar-autoridade" class="item-menu">
+                      Pesquisar autoridade
+                  </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                  <md-button ui-sref="app.private.autoridade.inserir-autoridade" class="item-menu">
+                     Incluir autoridade
+                  </md-button>
+              </md-menu-item>
+              <h4>Relatórios</h4>
+              <md-menu-item>
+                  <md-button ui-sref="app.private.relatorio.inserir-relatorio" class="item-menu">
+                      Relatório de audiência
+                  </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                  <md-button ui-sref="app.private.relatorio.inserir-relatorio-auditoria" class="item-menu">
+                      Relatório de auditoria
+                  </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                  <md-button ng-click="backTlPesquisa()" ui-sref="app.private.relatorio.inserir-relatorio-convite" class="item-menu">
+                      Relatório de convite
+                  </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                  <md-button ui-sref="app.private.relatorio.inserir-relatorio-reunioes" class="item-menu">
+                      Relatório de reuniões
+                  </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                  <md-button class="item-menu">
+                      Relatório lista de remetentes
+                  </md-button>
+              </md-menu-item>
+          </md-content>
 
-            <div has-any-authority="RELATORIO_AUDIENCIA,RELATORIO_AUDITORIA,RELATORIO_CONVITE,RELATORIO_REUNIAO,RELATORIO_REMETENTE">
-                <h4>Relatórios</h4>
-                <md-menu-item has-authority="RELATORIO_AUDIENCIA">
-                    <md-button ui-sref="app.private.relatorio.inserir-relatorio" class="item-menu">
-                        Relatório de audiência
-                    </md-button>
-                </md-menu-item>
-                <md-menu-item has-authority="RELATORIO_AUDITORIA">
-                    <md-button ui-sref="app.private.relatorio.inserir-relatorio-auditoria" class="item-menu">
-                        Relatório de auditoria
-                    </md-button>
-                </md-menu-item>
-                <md-menu-item has-authority="RELATORIO_CONVITE">
-                    <md-button ng-click="backTlPesquisa()" ui-sref="app.private.relatorio.inserir-relatorio-convite" class="item-menu">
-                        Relatório de convite
-                    </md-button>
-                </md-menu-item>
-                <md-menu-item has-authority="RELATORIO_REUNIAO">
-                    <md-button ui-sref="app.private.relatorio.inserir-relatorio-reunioes" class="item-menu">
-                        Relatório de reuniões
-                    </md-button>
-                </md-menu-item>
-                <md-menu-item has-authority="RELATORIO_REMETENTE">
-                    <md-button class="item-menu" ui-sref="app.private.relatorio.relatorio-solicitar-remetentes">
-                        Relatório lista de remetentes
-                    </md-button>
-                </md-menu-item>
-
-            </div>
-        </md-content>
     </md-sidenav>
+    <div flex>
 
-    <div flex="80" class="menu-container hide-xs hide-sm">
+    </div>
+    <div flex="80"  class="hide-xs hide-sm">
         <div>
             <!--<md-toolbar class="md-menu-toolbar hide-xs hide-sm hide-md ">-->
-            <md-toolbar class="md-menu-toolbar " >
-
-                <md-toolbar class="md-menu-toolbar" ng-hide="hideMenu">
+            <md-toolbar class="md-menu-toolbar ">
+                <md-toolbar class="md-menu-toolbar">
                     <div layout="row" layout-align="center center">
+                        <h1 class="logo-padding-left show-gt-lg hide-gt-sm hide-gt-md hide-gt-xs">SISAGM</H1>
                         <span flex></span>
-                        <md-menu-bar class="menu-bar-item" >
-                            <md-menu has-any-authority="PESQUISAR_REMETENTE,INCLUIR_REMETENTE,PESQUISAR_PARTICIPANTE,INCLUIR_PARTICIPANTE">
+                        <md-menu-bar class="menu-bar-item">
+                            <md-menu>
                                 <button ng-click="$mdOpenMenu()">
                                     Pessoa   <md-icon class="icon-white">&#xE313;</md-icon>
                                 </button>
                                 <md-menu-content>
-                                    <md-menu-item has-authority="PESQUISAR_REMETENTE">
+                                    <md-menu-item >
                                         <md-button ui-sref="app.private.pessoas.pesquisar-remetente" class="item-menu">
                                             <md-icon>&#xE8B6;</md-icon> Pesquisar remetente
                                         </md-button>
                                     </md-menu-item>
-                                    <md-menu-item has-authority="INCLUIR_REMETENTE">
+                                    <md-menu-item>
                                         <md-button ui-sref="app.private.pessoas.inserir-remetente" class="item-menu">
                                             <md-icon>&#xE145;</md-icon> Incluir remetente
                                         </md-button>
                                     </md-menu-item>
-                                    <md-menu-divider has-authority="PESQUISAR_REMETENTE,PESQUISAR_PARTICIPANTE"></md-menu-divider>
-                                    <md-menu-item has-authority="PESQUISAR_PARTICIPANTE">
+                                    <md-menu-divider></md-menu-divider>
+                                    <md-menu-item >
                                         <md-button ui-sref="app.private.pessoas.pesquisar-participante" class="item-menu">
                                             <md-icon>&#xE8B6;</md-icon> Pesquisar participante
                                         </md-button>
                                     </md-menu-item>
-                                    <md-menu-item has-authority="INCLUIR_PARTICIPANTE">
+                                    <md-menu-item>
                                         <md-button ui-sref="app.private.pessoas.inserir-participante" class="item-menu">
                                             <md-icon>&#xE145;</md-icon> Incluir participante
                                         </md-button>
                                     </md-menu-item>
                                 </md-menu-content>
                             </md-menu>
-                            <md-menu has-any-authority="PESQUISAR_CONVITE,INCLUIR_CONVITE">
+                            <md-menu>
                                 <button ng-click="$mdOpenMenu()">
                                     Convites   <md-icon class="icon-white">&#xE313;</md-icon>
                                 </button>
                                 <md-menu-content>
-                                    <md-menu-item has-authority="PESQUISAR_CONVITE">
+                                    <md-menu-item>
                                         <md-button ui-sref="app.private.convite.pesquisar-convite" class="item-menu">
                                             <md-icon>&#xE8B6;</md-icon> Pesquisar convite
                                         </md-button>
                                     </md-menu-item>
-                                    <md-menu-item has-authority="INCLUIR_CONVITE">
+                                    <md-menu-item>
                                         <md-button ui-sref="app.private.convite.inserir-convite" class="item-menu">
                                             <md-icon>&#xE145;</md-icon> Incluir convite
                                         </md-button>
                                     </md-menu-item>
                                 </md-menu-content>
                             </md-menu>
-                            <md-menu has-any-authority="PESQUISAR_AUDIENCIA,INCLUIR_AUDIENCIA">
+                            <md-menu>
                                 <button ng-click="$mdOpenMenu()">
                                     Audiências   <md-icon class="icon-white">&#xE313;</md-icon>
                                 </button>
                                 <md-menu-content>
-                                    <md-menu-item has-authority="PESQUISAR_AUDIENCIA">
+                                    <md-menu-item >
                                         <md-button ui-sref="app.private.audiencia.pesquisar-audiencia" class="item-menu">
                                             <md-icon>&#xE8B6;</md-icon> Pesquisar audiências
                                         </md-button>
                                     </md-menu-item>
-                                    <md-menu-item  has-authority="INCLUIR_AUDIENCIA">
+                                    <md-menu-item>
                                         <md-button ui-sref="app.private.audiencia.inserir-audiencia" class="item-menu">
-                                            <md-icon>&#xE145;</md-icon> Incluir audiência
+                                            <md-icon>&#xE145;</md-icon> Incluir audiências
                                         </md-button>
                                     </md-menu-item>
                                 </md-menu-content>
                             </md-menu>
-                            <md-menu has-any-authority="PESQUISAR_REUNIAO,INCLUIR_REUNIAO">
+                            <md-menu>
                                 <button ng-click="$mdOpenMenu()">
                                     Reunião   <md-icon class="icon-white">&#xE313;</md-icon>
                                 </button>
                                 <md-menu-content>
-                                    <md-menu-item has-authority="PESQUISAR_REUNIAO">
+                                    <md-menu-item>
                                         <md-button ui-sref="app.private.reuniao.pesquisar-reuniao" class="item-menu">
                                             <md-icon>&#xE8B6;</md-icon> Pesquisar reunião
                                         </md-button>
                                     </md-menu-item>
-                                    <md-menu-item has-authority="INCLUIR_REUNIAO">
+                                    <md-menu-item>
                                         <md-button ui-sref="app.private.reuniao.inserir-reuniao" class="item-menu">
                                             <md-icon>&#xE145;</md-icon> Incluir reunião
                                         </md-button>
                                     </md-menu-item>
                                 </md-menu-content>
                             </md-menu>
-                            <md-menu has-any-authority="PESQUISAR_AUTORIDADE,INCLUIR_AUTORIDADE,VINCULAR_AUTORIDADE">
+                            <md-menu>
                                 <button ng-click="$mdOpenMenu()">
                                     Autoridade   <md-icon class="icon-white">&#xE313;</md-icon>
                                 </button>
                                 <md-menu-content>
-                                    <md-menu-item has-authority="PESQUISAR_AUTORIDADE">
+                                    <md-menu-item>
                                         <md-button ui-sref="app.private.autoridade.pesquisar-autoridade" class="item-menu">
                                             <md-icon>&#xE8B6;</md-icon> Pesquisar autoridade
                                         </md-button>
                                     </md-menu-item>
-                                    <md-menu-item has-authority="INCLUIR_AUTORIDADE">
+                                    <md-menu-item>
                                         <md-button ui-sref="app.private.autoridade.inserir-autoridade" class="item-menu">
                                             <md-icon>&#xE145;</md-icon> Incluir autoridade
                                         </md-button>
                                     </md-menu-item>
-                                    <md-menu-item has-authority="VINCULAR_AUTORIDADE">
-                                        <md-button ui-sref="app.private.autoridade.vincular-autoridade" class="item-menu">
-                                            <md-icon>&#xE145;</md-icon> Vincular autoridade
-                                        </md-button>
-                                    </md-menu-item>
                                 </md-menu-content>
                             </md-menu>
-                            <md-menu has-any-authority="RELATORIO_AUDIENCIA,RELATORIO_AUDITORIA,RELATORIO_CONVITE,RELATORIO_REUNIAO,RELATORIO_REMETENTE">
+                            <md-menu>
                                 <button ng-click="$mdOpenMenu()">
                                     Relatórios   <md-icon class="icon-white">&#xE313;</md-icon>
                                 </button>
                                 <md-menu-content>
-                                    <md-menu-item has-authority="RELATORIO_AUDIENCIA">
-                                        <md-button ui-sref="app.private.relatorio.emitir-relatorio" class="item-menu">
+                                    <md-menu-item>
+                                        <md-button ui-sref="app.private.relatorio.inserir-relatorio" class="item-menu">
                                             <md-icon>&#xE8B6;</md-icon> Relatório de audiência
                                         </md-button>
                                     </md-menu-item>
-                                    <md-menu-item has-authority="RELATORIO_AUDITORIA">
-                                        <md-button ui-sref="app.private.relatorio.emitir-relatorio-auditoria" class="item-menu">
+                                    <md-menu-item>
+                                        <md-button ui-sref="app.private.relatorio.inserir-relatorio-auditoria" class="item-menu">
                                             <md-icon>&#xE8B6;</md-icon> Relatório de auditoria
                                         </md-button>
                                     </md-menu-item>
-                                    <md-menu-item has-authority="RELATORIO_CONVITE">
-                                        <md-button ng-click="backTlPesquisa()" ui-sref="app.private.relatorio.emitir-relatorio-convite" class="item-menu">
+                                    <md-menu-item>
+                                        <md-button ng-click="backTlPesquisa()" ui-sref="app.private.relatorio.inserir-relatorio-convite" class="item-menu">
                                             <md-icon>&#xE8B6;</md-icon> Relatório de convite
                                         </md-button>
                                     </md-menu-item>
-                                    <md-menu-item has-authority="RELATORIO_REUNIAO">
-                                        <md-button ui-sref="app.private.relatorio.emitir-relatorio-reunioes" class="item-menu">
+                                    <md-menu-item>
+                                        <md-button ui-sref="app.private.relatorio.inserir-relatorio-reunioes" class="item-menu">
                                             <md-icon>&#xE8B6;</md-icon> Relatório de reuniões
                                         </md-button>
                                     </md-menu-item>
-                                    <md-menu-item has-authority="RELATORIO_REMETENTE">
-                                        <md-button class="item-menu"   ui-sref="app.private.relatorio.relatorio-solicitar-remetentes">
+                                    <md-menu-item>
+                                        <md-button class="item-menu">
                                             <md-icon>&#xE8B6;</md-icon> Relatório lista de remetentes
                                         </md-button>
                                     </md-menu-item>
+
                                 </md-menu-content>
                             </md-menu>
                         </md-menu-bar>
@@ -282,5 +261,7 @@
             </md-toolbar>
         </div>
     </div>
-    <div flex></div>
+    <div flex>
+
+    </div>
 </div>

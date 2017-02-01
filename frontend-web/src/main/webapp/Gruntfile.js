@@ -6,7 +6,6 @@ module.exports = function(grunt) {
         dist: 'dist/',
         temp: 'temp/',
         js: [
-                "workaround/**/*.js",
                 "*-module.js",
                 "*-!(module).js",
                 "modules/**/*-module.js",
@@ -24,7 +23,7 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     port: 9011,
-                    hostname: "localhost",
+                    hostname: "0.0.0.0",
                     bases: ['./dist/'],
                     livereload: true
                 }
@@ -269,8 +268,7 @@ module.exports = function(grunt) {
         concat: {
             js: {
                 files:{
-                    //'<%= appConfig.temp %>assets/app.js': appConfig.js.map(function(p){return appConfig.temp+p;})
-                    '<%= appConfig.dist %>assets/app.js': appConfig.js.map(function(p){return appConfig.temp+p;})
+                    '<%= appConfig.temp %>assets/app.js': appConfig.js.map(function(p){return appConfig.temp+p;})
                 }
                 /*files:[{
                     expand: true,
@@ -318,7 +316,7 @@ module.exports = function(grunt) {
         'clean:js',
         'ngAnnotate:js',
         'concat:js',
-        //'uglify:js',
+        'uglify:js',
         'clean:temp'
     ]);
     grunt.registerTask('css-application', ['cssmin:css']);

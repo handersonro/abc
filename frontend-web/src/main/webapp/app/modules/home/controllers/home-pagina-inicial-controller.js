@@ -8,6 +8,5 @@
         var vm = this;
         ///////////////////////////////////
         $scope.title = "Seja bem vindo";
-
     }
 })();

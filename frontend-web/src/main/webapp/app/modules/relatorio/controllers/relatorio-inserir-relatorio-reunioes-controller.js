@@ -1,40 +1,55 @@
 (function(){
     angular
-        .module('sisagmApp.audiencia.controllers')
-        .controller('AudienciaEditarAudienciaController', AudienciaEditarAudienciaController);
+        .module('sisagmApp.relatorio.controllers')
+        .controller('RelatorioInserirRelatorioReunioesController', RelatorioInserirRelatorioReunioesController);
 
     /* @ngInject */
-    function AudienciaEditarAudienciaController($scope, $mdDialog, $timeout, $stateParams, $state, AlertsService, ConviteRestService, UsuarioRestService){
+    function RelatorioInserirRelatorioReunioesController($scope, $mdDialog, $timeout, ConviteRestService, UsuarioRestService){
         var vm = this;
-        vm.isEdicao = true;
         vm.procurarLocal = ConviteRestService.obterLocais;
         vm.procurarUsuario = UsuarioRestService.obterUsuarios;
-        vm.title = "Editar audiência";
-        vm.audiencia = $stateParams.audiencia;
+        vm.title = "Relatório de reuniões";
         vm.autoridade = "Ministro";
-        vm.showBtnSalvar = showBtnSalvar;
-        vm.salvar = salvar;
-        vm.listaAutoridades = {};
+        vm.tipoEvento = {};
+        vm.tiposSaida = {};
+        vm.ordenacoes = {};
+        vm.direcoes = {};
+        vm.reuniao = {};
         inicializar();
-        function inicializar(){
-            if(vm.dataInicio > vm.dataFim){
-                return AlertsService.success($filter('translate')('A13.4'));
-            }
-        }
         ///////////////////////////////////
+        function inicializar(){
+            vm.tipoEvento=[
+              {evento : 'Nacional'},
+              {evento : 'Internacional'}
+            ];
+            vm.tiposSaida = [
+                {tipo: 'PDF'},
+                {tipo: 'WORD'}
+            ];
+            vm.ordenacoes = [
+                {ordenacao: 'Data da reunião'},
+                {ordenacao: 'Local da reunião'},
+                {ordenacao: 'Assunto pauta da reunião'}
+            ];
+            vm.direcoes = [
+                {direcao: 'Crescente'},
+                {direcao: 'Decrescente'}
+            ];
+        }
+
 
         vm.limpar = function(){
-          vm.audiencia = {};
+          vm.reuniao = {};
         }
+        vm.backTlPesquisa = function(){
+            vm.title = "Relatório de convite";
+            vm.telaPesquisa = true;
+            vm.telaCadastro = false;
+            vm.tbResultado = false;
+        }
+        vm.gerarRelatorio = function(){
 
-        function showBtnSalvar(){
-          return $scope.formAudiencia.$invalid;
         }
-        function salvar(){
-            AlertsService.success('Registro alterado com sucesso.');
-            $state.go('app.private.audiencia.pesquisar-audiencia');
-        }
-
         vm.carregarListConvite = function(){
 
              ConviteRestService
@@ -49,6 +64,7 @@
                  );
         };
         vm.carregarListConvite();
+
         function debounce(func, wait, context) {
           var timer;
 

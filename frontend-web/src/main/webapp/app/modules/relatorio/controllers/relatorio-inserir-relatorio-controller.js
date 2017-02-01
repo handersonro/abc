@@ -1,40 +1,32 @@
 (function(){
     angular
-        .module('sisagmApp.audiencia.controllers')
-        .controller('AudienciaEditarAudienciaController', AudienciaEditarAudienciaController);
+        .module('sisagmApp.relatorio.controllers')
+        .controller('RelatorioInserirRelatorioController', RelatorioInserirRelatorioController);
 
     /* @ngInject */
-    function AudienciaEditarAudienciaController($scope, $mdDialog, $timeout, $stateParams, $state, AlertsService, ConviteRestService, UsuarioRestService){
+    function RelatorioInserirRelatorioController($scope, $mdDialog, $timeout, ConviteRestService){
         var vm = this;
-        vm.isEdicao = true;
         vm.procurarLocal = ConviteRestService.obterLocais;
-        vm.procurarUsuario = UsuarioRestService.obterUsuarios;
-        vm.title = "Editar audiência";
-        vm.audiencia = $stateParams.audiencia;
-        vm.autoridade = "Ministro";
-        vm.showBtnSalvar = showBtnSalvar;
-        vm.salvar = salvar;
-        vm.listaAutoridades = {};
-        inicializar();
-        function inicializar(){
-            if(vm.dataInicio > vm.dataFim){
-                return AlertsService.success($filter('translate')('A13.4'));
-            }
-        }
         ///////////////////////////////////
+        vm.title = "Relatório de audiência";
+        vm.autoridade = "Ministro";
+        vm.tiposSaida = [
+            {tipo: 'PDF'},
+            {tipo: 'WORD'}
+        ];
+        vm.ordenacoes = [
+            {ordenacao: 'Data de cadastro'},
+            {ordenacao: 'Nome do solicitante'},
+            {ordenacao: 'Assunto'}
+        ];
+        vm.direcoes = [
+            {direcao: 'Crescente'},
+            {direcao: 'Decrescente'}
+        ];
 
         vm.limpar = function(){
-          vm.audiencia = {};
+         
         }
-
-        function showBtnSalvar(){
-          return $scope.formAudiencia.$invalid;
-        }
-        function salvar(){
-            AlertsService.success('Registro alterado com sucesso.');
-            $state.go('app.private.audiencia.pesquisar-audiencia');
-        }
-
         vm.carregarListConvite = function(){
 
              ConviteRestService
@@ -49,6 +41,7 @@
                  );
         };
         vm.carregarListConvite();
+
         function debounce(func, wait, context) {
           var timer;
 

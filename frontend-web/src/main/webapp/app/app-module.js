@@ -14,7 +14,6 @@
             'ngMaterialDatePicker',
             'pascalprecht.translate',
             'ncy-angular-breadcrumb',
-            'colorpicker.module',
 
             'sisagmApp.routes',
             'sisagmApp.core',
@@ -23,7 +22,6 @@
             'sisagmApp.private',
             'sisagmApp.public',
             'sisagmApp.login',
-            'sisagmApp.errors',
             'sisagmApp.home',
             'sisagmApp.pessoas',
             'sisagmApp.convite',
@@ -31,20 +29,13 @@
             'sisagmApp.audiencia',
             'sisagmApp.autoridade',
             'sisagmApp.relatorio',
-            'sisagmApp.evento',
             'menu',
-            'ngStorage',
+
             '$alerts',
 
 
             'pessoa',
-            'pluton-loader'
 
-        ]).run(run);
 
-    run.$inject = ['stateHandler'];
-
-    function run(stateHandler) {
-        stateHandler.initialize();
-    };
+        ]);
 })();

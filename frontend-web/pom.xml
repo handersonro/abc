@@ -25,63 +25,6 @@
         </dependency>
     </dependencies>
 
-    <profiles>
-
-        <profile>
-            <id>local</id>
-
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <ambiente.nome>LOCAL</ambiente.nome>
-                <ambiente.url>http://localhost:8080/sisagm-backend/api/</ambiente.url>
-                <app.url>http://localhost:8080/sisagm/</app.url>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>desenvolvimento</id>
-
-            <properties>
-                <ambiente.nome>DES</ambiente.nome>
-                <ambiente.url>http://sturdeswildfly01:8080/sisagm-backend/api/</ambiente.url>
-                <app.url>http://sturdeswildfly01:8080/sisagm/</app.url>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>teste</id>
-
-            <properties>
-                <ambiente.nome>TESTE</ambiente.nome>
-                <ambiente.url>http://sturdeswildfly01:8080/sisagm-backend/api/</ambiente.url>
-                <app.url>http://sturdeswildfly01:8080/sisagm/</app.url>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>homologacao</id>
-
-            <properties>
-                <ambiente.nome>HOM</ambiente.nome>
-                <ambiente.url>http://sturhlogwildfly01:8080/sisagm-backend/api/</ambiente.url>
-                <app.url>http://sturhlogwildfly01:8080/sisagm/</app.url>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>producao</id>
-
-            <properties>
-                <ambiente.nome>PROD</ambiente.nome>
-                <ambiente.url>http://sturespwildfly02:8080/sisagm-backend/api/</ambiente.url>
-                <app.url>http://sturprodwildfly01:8080/sisagm/</app.url>
-            </properties>
-        </profile>
-
-    </profiles>
-
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
@@ -118,15 +61,6 @@
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <webResources>
-                        <resource>
-                            <directory>src/main/webapp/dist</directory>
-                            <targetPath>.</targetPath>
-                            <filtering>true</filtering>
-                            <includes>
-                                <include>**/config-dev.js</include>
-                                <include>**/app.js</include>
-                            </includes>
-                        </resource>
                         <resource>
                             <directory>src/main/webapp/dist</directory>
                             <includes>

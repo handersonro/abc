@@ -25,200 +25,39 @@
                 },
                 params: {
                     callback: null
-                },
-                data: {
-                    authorities: []
                 }
             })
-            .state(STATE_PATH+MODULE_NAME+'.emitir-relatorio', {
-                url: '/emitir-relatorio',
-                controller: 'RelatorioEmitirRelatorioController',
+            .state(STATE_PATH+MODULE_NAME+'.inserir-relatorio', {
+                url: '/inserir-relatorio',
+                controller: 'RelatorioInserirRelatorioController',
                 controllerAs: 'vm',
-                templateUrl: MODULE_PATH+'views/relatorio-emitir-relatorio-view.html',
-                params: {
-                    filtro: {
-                        filtros: {},
-                        currentPage: 1,
-                        pageSize: 20,
-                        sortFields: 'id',
-                        sortDirections: 'asc'
-                    }
-
-                },
+                templateUrl: MODULE_PATH+'views/relatorio-inserir-relatorio-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
             })
-            .state(STATE_PATH+MODULE_NAME+'.emitir-relatorio-convite', {
-                url: '/emitir-relatorio-convite',
-                controller: 'RelatorioEmitirRelatorioConviteController',
+            .state(STATE_PATH+MODULE_NAME+'.inserir-relatorio-convite', {
+                url: '/inserir-relatorio-convite',
+                controller: 'RelatorioInserirRelatorioConviteController',
                 controllerAs: 'vm',
-                templateUrl: MODULE_PATH+'views/relatorio-emitir-relatorio-convite-view.html',
-                params: {
-                    filtro: {
-                        filtros: {},
-                        currentPage: 1,
-                        pageSize: 20,
-                        sortFields: 'id',
-                        sortDirections: 'asc'
-                    }
-
-                },
+                templateUrl: MODULE_PATH+'views/relatorio-inserir-relatorio-convite-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
             })
-            .state(STATE_PATH+MODULE_NAME+'.emitir-relatorio-reunioes', {
-                url: '/emitir-relatorio-reunioes',
-                controller: 'RelatorioEmitirRelatorioReunioesController',
+            .state(STATE_PATH+MODULE_NAME+'.inserir-relatorio-reunioes', {
+                url: '/inserir-relatorio-reunioes',
+                controller: 'RelatorioInserirRelatorioReunioesController',
                 controllerAs: 'vm',
-                templateUrl: MODULE_PATH+'views/relatorio-emitir-relatorio-reunioes-view.html',
-                params: {
-                    filtro: {
-                        filtros: {},
-                        currentPage: 1,
-                        pageSize: 20,
-                        sortFields: 'id',
-                        sortDirections: 'asc'
-                    }
-
-                },
+                templateUrl: MODULE_PATH+'views/relatorio-inserir-relatorio-reunioes-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
             })
-            .state(STATE_PATH+MODULE_NAME+'.emitir-relatorio-auditoria', {
-                url: '/emitir-relatorio-auditoria',
-                controller: 'RelatorioEmitirRelatorioAuditoriaController',
+            .state(STATE_PATH+MODULE_NAME+'.inserir-relatorio-auditoria', {
+                url: '/inserir-relatorio-auditoria',
+                controller: 'RelatorioInserirRelatorioAuditoriaController',
                 controllerAs: 'vm',
-                templateUrl: MODULE_PATH+'views/relatorio-emitir-relatorio-auditoria-view.html',
+                templateUrl: MODULE_PATH+'views/relatorio-inserir-relatorio-auditoria-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: []
                 }
-            })
-            .state(STATE_PATH+MODULE_NAME+'.relatorio-auditoria', {
-            url: '/relatorio-auditoria',
-            controller: 'RelatorioController',
-            controllerAs: 'vm',
-            templateUrl: MODULE_PATH+'views/relatorio-auditoria.html',
-            resolve: {
-            },
-                data: {
-                    authorities: []
-                }
-        })
-        .state(STATE_PATH+MODULE_NAME+'.relatorio-solicitar-audiencia', {
-            url: '/solicitar-audiencia',
-            controller: 'RelatorioSolicitarAudienciaController',
-            controllerAs: 'vm',
-            templateUrl: MODULE_PATH+'views/relatorio-solicitar-audiencia-view.html',
-            params: {
-                filtro: {
-                    filtros: {},
-                    currentPage: 1,
-                    pageSize: 20,
-                    sortFields: 'id',
-                    sortDirections: 'asc'
-                }
-
-            },
-            resolve: {
-            },
-            data: {
-                authorities: []
-            }
-        })
-        .state(STATE_PATH+MODULE_NAME+'.relatorio-solicitar-auditoria', {
-            url: '/solicitar-auditoria',
-            controller: 'RelatorioSolicitarAuditoriaController',
-            controllerAs: 'vm',
-            templateUrl: MODULE_PATH+'views/relatorio-solicitar-auditoria-view.html',
-            params: {
-                filtro: {
-                    filtros: {},
-                    currentPage: 1,
-                    pageSize: 20,
-                    sortFields: 'id',
-                    sortDirections: 'asc'
-                }
-
-            },
-            resolve: {
-            },
-            data: {
-                authorities: []
-            }
-        })
-        .state(STATE_PATH+MODULE_NAME+'.relatorio-solicitar-convite', {
-            url: '/solicitar-convite',
-            controller: 'RelatorioSolicitarConviteController',
-            controllerAs: 'vm',
-            templateUrl: MODULE_PATH+'views/relatorio-solicitar-convite-view.html',
-            params: {
-                filtro: {
-                    filtros: {},
-                    currentPage: 1,
-                    pageSize: 20,
-                    sortFields: 'id',
-                    sortDirections: 'asc'
-                }
-
-            },
-            resolve: {
-            },
-            data: {
-                authorities: []
-            }
-        })
-        .state(STATE_PATH+MODULE_NAME+'.relatorio-solicitar-remetentes', {
-            url: '/solicitar-remetentes',
-            controller: 'RelatorioSolicitarRemetentesController',
-            controllerAs: 'vm',
-            templateUrl: MODULE_PATH+'views/relatorio-solicitar-remetentes-view.html',
-            params: {
-                filtro: {
-                    filtros: {},
-                    currentPage: 1,
-                    pageSize: 20,
-                    sortFields: 'id',
-                    sortDirections: 'asc'
-                }
-
-            },
-            resolve: {
-            },
-            data: {
-                authorities: []
-            }
-        })
-        .state(STATE_PATH+MODULE_NAME+'.relatorio-solicitar-reuniao', {
-            url: '/solicitar-reuniao',
-            controller: 'RelatorioSolicitarReuniaoController',
-            controllerAs: 'vm',
-            templateUrl: MODULE_PATH+'views/relatorio-solicitar-reuniao-view.html',
-            params: {
-                filtro: {
-                    filtros: {},
-                    currentPage: 1,
-                    pageSize: 20,
-                    sortFields: 'id',
-                    sortDirections: 'asc'
-                }
-
-            },
-            resolve: {
-            },
-            data: {
-                authorities: []
-            }
-        });
+            });
     }
 })();

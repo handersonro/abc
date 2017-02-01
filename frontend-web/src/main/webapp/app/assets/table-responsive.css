@@ -5,9 +5,6 @@
   margin-bottom: 2rem;
   background-color: #ffffff;
 }
-tbody {
-  font-size: 12px;
-}
 .table > thead > tr,
 .table > tbody > tr,
 .table > tfoot > tr {
@@ -23,7 +20,7 @@ tbody {
 .table > tfoot > tr > td {
   text-align: left;
   padding: 0.6rem;
-  /*vertical-align: top;*/
+  vertical-align: top;
   border-top: 0;
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;

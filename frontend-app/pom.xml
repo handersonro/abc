@@ -49,7 +49,7 @@
         <dependency>
             <groupId>br.gov.mtur</groupId>
             <artifactId>jee7-framework</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.0-SNAPSHOT</version>
             <type>jar</type>
         </dependency>
     </dependencies>

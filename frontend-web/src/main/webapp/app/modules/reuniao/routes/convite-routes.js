@@ -3,19 +3,19 @@
 
     angular
 
-        .module('sisagmApp.audiencia.routes')
+        .module('sisagmApp.reuniao.routes')
         .config(configPublicRoutes);
 
     /* @ngInject */
     function configPublicRoutes($stateProvider) {
-        var MODULE_NAME = 'audiencia';
+        var MODULE_NAME = 'reuniao';
         var MODULE_PATH = 'modules/'+MODULE_NAME+'/';
         var STATE_PATH = 'app.private.';
         $stateProvider
             .state(STATE_PATH+MODULE_NAME, {
                 url: '/'+MODULE_NAME,
                 abstract: false,
-                controller: 'AudienciaController',
+                controller: 'ReuniaoController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/'+MODULE_NAME+'-view.html',
                 resolve:  {
@@ -27,30 +27,30 @@
                     callback: null
                 }
             })
-            .state(STATE_PATH+MODULE_NAME+'.inserir-audiencia', {
-                url: '/inserir-audiencia',
-                controller: 'AudienciaInserirAudienciaController',
+            .state(STATE_PATH+MODULE_NAME+'.inserir-reuniao', {
+                url: '/inserir-reuniao',
+                controller: 'ReuniaoInserirReuniaoController',
                 controllerAs: 'vm',
-                templateUrl: MODULE_PATH+'views/audiencia-inserir-audiencia-view.html',
+                templateUrl: MODULE_PATH+'views/reuniao-inserir-reuniao-view.html',
                 resolve: {
                 }
             })
-            .state(STATE_PATH+MODULE_NAME+'.editar-audiencia', {
-                url: '/editar-audiencia',
-                controller: 'AudienciaEditarAudienciaController',
+            .state(STATE_PATH+MODULE_NAME+'.editar-reuniao', {
+                url: '/editar-reuniao',
+                controller: 'ReuniaoEditarReuniaoController',
                 controllerAs: 'vm',
-                templateUrl: MODULE_PATH+'views/audiencia-inserir-audiencia-view.html',
+                templateUrl: MODULE_PATH+'views/reuniao-inserir-reuniao-view.html',
                 resolve: {
                 },
                 params: {
-                    audiencia: null
+                    reuniao: null
                 }
             })
-            .state(STATE_PATH+MODULE_NAME+'.pesquisar-audiencia', {
-                url: '/pesquisar-audiencia',
-                controller: 'AudienciaPesquisarAudienciaController',
+            .state(STATE_PATH+MODULE_NAME+'.pesquisar-reuniao', {
+                url: '/pesquisar-reuniao',
+                controller: 'ReuniaoPesquisarReuniaoController',
                 controllerAs: 'vm',
-                templateUrl: MODULE_PATH+'views/audiencia-pesquisar-audiencia-view.html',
+                templateUrl: MODULE_PATH+'views/reuniao-pesquisar-reuniao-view.html',
                 resolve: {
                 }
             });

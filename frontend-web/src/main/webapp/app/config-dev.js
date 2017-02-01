@@ -1,13 +1,10 @@
 (function(){
     angular
         .module('sisagmApp')
-        .constant('baseURL','${ambiente.url}')
-        .constant('versaoProjeto','${project.version}')
-        .constant('ambiente','${ambiente.nome}')
         .config(configDev);
 
     /* @ngInject */
-    function configDev(RestangularProvider,baseURL){
-        RestangularProvider.setBaseUrl(baseURL);
+    function configDev(RestangularProvider){
+		RestangularProvider.setBaseUrl();
     }
 })();

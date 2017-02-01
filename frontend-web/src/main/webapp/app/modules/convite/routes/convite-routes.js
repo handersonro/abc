@@ -25,9 +25,6 @@
                 },
                 params: {
                     callback: null
-                },
-                data: {
-                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.inserir-convite', {
@@ -36,44 +33,25 @@
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/convite-inserir-convite-view.html',
                 resolve: {
-                },
-                data: {
-                    authorities: ['INCLUIR_CONVITE']
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.editar-convite', {
                 url: '/editar-convite',
                 controller: 'ConviteEditarConviteController',
                 controllerAs: 'vm',
-                templateUrl: MODULE_PATH+'views/convite-editar-convite-view.html',
+                templateUrl: MODULE_PATH+'views/convite-inserir-convite-view.html',
                 resolve: {
                 },
                 params: {
                     convite: null
-                },
-                data: {
-                    authorities: ['PESQUISAR_CONVITE']
                 }
             })
-
             .state(STATE_PATH+MODULE_NAME+'.pesquisar-convite', {
                 url: '/pesquisar-convite',
                 controller: 'ConvitePesquisarConviteController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/convite-pesquisar-convite-view.html',
-                params: {
-                    filtro: {
-                        filtros: { noObservacao : '',noAssunto :'', noDespacho: '',noPauta: '', tipoEvento: '', idLocalidade : '',noRemetente:'',descricao:'',flEventoInternacional:'',dtInicioEvento:'',dtFimEvento:'',dataCadInicial:'',dataCadFinal:'',conviteValidacao:'', idPais: '', noCidadeInternacional: ''},
-                        currentPage: 1,
-                        pageSize: 20,
-                        sortFields: 'remetente',
-                        sortDirections: 'asc'
-                    }
-                },
                 resolve: {
-                },
-                data: {
-                    authorities: ['PESQUISAR_CONVITE']
                 }
             });
     }

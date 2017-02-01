@@ -1,7 +1,7 @@
 (function(){
     "use strict";
 
-    angular.module('sisagmApp.convite.controllers', ['sisagmApp.evento'] );
+    angular.module('sisagmApp.convite.controllers', [] );
     angular.module('sisagmApp.convite.services', ['sisagmApp.core.services'] );
     angular.module('sisagmApp.convite.routes', [] );
 

@@ -1,0 +1,198 @@
+<div id="title">
+    <md-toolbar class=" md-toolbar-tools">
+        <h1 class="md-toolbar-tools">
+            {{vm.title}}
+        </h1>
+    </md-toolbar>
+</div>
+<md-content class="box">
+  <div class="md-padding header-info" layout="row" layout-xs="column"  layout-align="end center">
+    <strong>Autoridade: &nbsp;</strong> {{vm.autoridade}}
+  </div>
+  <div class="md-padding">
+      <form name="formPesquisaRelatorioAudiencia">
+          <!-- conteudo -->
+          <div layout="row" layout-xs="column"  layout-align="space-around center">
+              <div flex="50" flex-xs="100">
+                  <div class="panel">
+                      <div class="panel-title bg-panel-default">
+                          <h3>
+                              Data da reunião
+                          </h3>
+                      </div>
+                      <div class="panel-body">
+                        <div layout-gt-xs="row">
+                              <md-input-container flex-gt-xs>
+                                <label>
+                                    Data inicial
+                                </label>
+                                <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                        min-date="minDate"
+                                        format="DD/MM/YYYY HH:mm a"
+                                        ng-model="vm.filtro.dataInicio">
+                              </md-input-container>
+
+                              <md-input-container>
+                                <label>
+                                    Data final
+                                </label>
+                                <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                        min-date="minDate"
+                                        format="DD/MM/YYYY HH:mm a"
+                                        ng-model="vm.filtro.dataFim">
+                              </md-input-container>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <div flex="50" flex-xs="100">
+                  <div class="panel ">
+                      <div class="panel-title bg-panel-default">
+                          <h3>
+                              Data do cadastro
+                          </h3>
+                      </div>
+                      <div class="panel-body">
+                        <div layout-gt-xs="row">
+                              <md-input-container flex-gt-xs>
+                                <label>
+                                    Data inicial
+                                </label>
+                                <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                        min-date="minDate"
+                                        format="DD/MM/YYYY HH:mm a"
+                                        ng-model="vm.filtro.dataInicialCad">
+                              </md-input-container>
+                              <md-input-container>
+                                <label>
+                                    Data final
+                                </label>
+                                <input mdc-datetime-picker date="true" time="true" type="text" short-time="true"
+                                        min-date="minDate"
+                                        format="DD/MM/YYYY HH:mm a"
+                                        ng-model="vm.filtro.dataFimCad">
+                              </md-input-container>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div layout-gt-xs="row">
+              <md-autocomplete
+                    flex
+                    md-input-maxlength="50"
+                    md-no-cache="true"
+                    md-selected-item="vm.reuniao.participante"
+                    md-input-name="usuario"
+                    md-search-text="vm.textoUsuario"
+                    md-items="item in vm.procurarUsuario(vm.textoUsuario)"
+                    md-item-text="item.usuario"
+                    md-min-length="1"
+                    md-floating-label="Participante">
+                  <md-item-template>
+                    <span md-highlight-text="vm.textoUsuario" md-highlight-flags="^i">{{item.usuario}}</span>
+                  </md-item-template>
+                  <md-not-found>
+                    Nenhum usuário "{{vm.textoUsuario}}" foi encontrado
+                  </md-not-found>
+              </md-autocomplete>
+          </div>
+          <div layout="row" layout-xs="column">
+              <md-input-container class="md-block" flex flex-xs="100">
+                  <label>
+                      Despacho
+                  </label>
+                  <textarea ng-model="vm.reuniao.despacho" md-maxlength="150" maxlength="150" rows="3" md-select-on-focus>
+                  </textarea>
+              </md-input-container>
+          </div>
+          <div layout="row" layout-xs="column">
+               <md-input-container flex flex-xs="100">
+                  <label>
+                      Local  da reunião
+                  </label>
+                  <textarea ng-model="vm.reuniao.localReuniao" rows="3" md-maxlength="150" maxlength="150" md-select-on-focus>
+                  </textarea>
+              </md-input-container>
+          </div>
+          <div layout="row" layout-xs="column">
+              <md-input-container flex flex-xs="100">
+                  <label>
+                      Assunto
+                  </label>
+                  <textarea ng-model="vm.reuniao.assunto" rows="3" md-maxlength="255" maxlength="255" md-select-on-focus>
+                  </textarea>
+              </md-input-container>
+          </div>
+          <div class="row">
+              <md-input-container class="md-block" flex-xs="100">
+                  <label>
+                      Pauta da reunião
+                  </label>
+                  <textarea ng-model="vm.reuniao.pautaReuniao" md-maxlength="255" maxlength="255" rows="3" md-select-on-focus>
+                  </textarea>
+              </md-input-container>
+          </div>
+          <div layout-gt-sm="row">
+              <md-input-container class="md-block md-icon-float" flex-gt-sm>
+                <label>Tipo de saída</label>
+                <md-icon>
+                    &#xE873;
+                </md-icon>
+                <md-select ng-model="vm.filtro.tipoSaida">
+                  <md-option ng-repeat="item in vm.tiposSaida" value="{{item.tipo}}">
+                    {{item.tipo}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+
+              <md-input-container class="md-block md-icon-float" flex-gt-sm>
+                <label>Ordenação</label>
+                <md-icon>
+                    &#xE152;
+                </md-icon>
+                <md-select ng-model="vm.filtro.ordenacao">
+                  <md-option ng-repeat="item in vm.ordenacoes" value="{{item.ordenacao}}">
+                    {{item.ordenacao}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+
+              <md-input-container class="md-block md-icon-float" flex-gt-sm>
+                <label>Direção da ordenação</label>
+                <md-icon>
+                    &#xE152;
+                </md-icon>
+                <md-select ng-model="vm.filtro.direcao">
+                  <md-option ng-repeat="item in vm.direcoes" value="{{item.direcao}}">
+                    {{item.direcao}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+          <!-- footer button-->
+          <section class="md-padding action" layout="row" layout-align="end center"
+          layout-wrap>
+              <md-button class="md-raised md-primary" ng-click="vm.gerarRelatorio()">
+                  <md-icon>
+                    &#xE876;
+                  </md-icon>
+                  Gerar relatório
+              </md-button>
+              <md-button class="md-raised" ng-click="vm.limpar()">
+                  <md-icon>
+                      &#xE5D5;
+                  </md-icon>
+                  Limpar
+              </md-button>
+              <md-button class="md-raised" ui-sref="app.public.home.pagina-inicial">
+                  <md-icon>
+                      &#xE5CD;
+                  </md-icon>
+                  Cancelar
+              </md-button>
+          </section>
+          <!-- footer button-->
+      </form>
+  </div>
+</md-content>

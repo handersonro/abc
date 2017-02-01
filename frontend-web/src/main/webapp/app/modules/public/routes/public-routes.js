@@ -2,11 +2,11 @@
     'use strict';
 
     angular
-        .module('sisagmApp')
+        .module('sisagmApp.public.routes')
         .config(configPublicRoutes);
 
     /* @ngInject */
-    function configPublicRoutes($stateProvider,$injector) {
+    function configPublicRoutes($stateProvider) {
         $stateProvider
             .state( 'app.public', {
                 url: '/public',
@@ -20,10 +20,8 @@
                     skip: true
                 },
                 params: {
-                    callback: function(){
-                    }
+                    callback: null
                 }
             });
-
     }
 })();
