@@ -1,7 +1,7 @@
 (function(){
     "use strict";
 
-    angular.module('sisagmApp.reuniao.controllers', [] );
+    angular.module('sisagmApp.reuniao.controllers', ['sisagmApp.evento'] );
     angular.module('sisagmApp.reuniao.services', ['sisagmApp.core.services'] );
     angular.module('sisagmApp.reuniao.routes', [] );
 

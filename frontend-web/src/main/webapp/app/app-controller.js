@@ -4,7 +4,7 @@
         .controller('AppController', AppController);
 
     /* @ngInject */
-    function AppController($scope, $mdMedia,AlertsManager, $timeout, $rootScope, $state){
+    function AppController($scope, $mdMedia,AlertsManager, $timeout, $rootScope, $state, $templateCache){
         var vm = this;
 
         vm.screenIsSmall = $mdMedia('xs');
@@ -17,7 +17,7 @@
             vm.screenIsSmall = isSmall;
         });
         $rootScope.$on('$stateChangeError', stateErrorListener);
-
+        $templateCache.put('pluton-loader/loader.html', '<div class="pluton-loader" ng-show="display"></div>');
 
         ////////////////////////////////////
 

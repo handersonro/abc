@@ -1,0 +1,288 @@
+<div id="title">
+    <md-toolbar class=" md-toolbar-tools">
+        <h1 class="md-toolbar-tools">
+            {{vm.title}}
+        </h1>
+    </md-toolbar>
+</div>
+<md-content class="box">
+  <div class="md-padding header-info" layout="row"  layout-align="end center">
+    <strong>Autoridade: &nbsp;</strong> {{vm.autoridade}}
+  </div>
+  <div class="md-padding">
+      <form name="formPesquisaRelatorioAudiencia">
+          <!-- conteudo -->
+          <div layout="row" layout-xs="column">
+              <div flex="50" flex-xs="100">
+                  <div class="panel">
+                      <div class="panel-title bg-panel-default">
+                          <h3>
+                              Data do evento
+                          </h3>
+                      </div>
+                      <div class="panel-body" layout="row" layout-xs="column">
+                          <md-input-container flex="50" flex-xs="100">
+                              <label>
+                                  Data inicial
+                              </label>
+                              <input mdc-datetime-picker ng-disabled="!vm.filtro.dataCadInicial === false" date="true" time="true" type="text" short-time="true"
+                                     min-date="minDate"
+                                     format="DD/MM/YYYY HH:mm"
+                                     ng-model="vm.filtro.dtInicioEvento"
+                                     text-cancel="Cancelar">
+                          </md-input-container>
+                          <md-input-container flex>
+                              <label>
+                                  Data final
+                              </label>
+                              <input mdc-datetime-picker ng-disabled="!vm.filtro.dataCadInicial === false" date="true" time="true" type="text" short-time="true"
+                                     min-date="minDate"
+                                     format="DD/MM/YYYY HH:mm"
+                                     ng-model="vm.filtro.dtFimEvento"
+                                     text-cancel="Cancelar">
+                          </md-input-container>
+                      </div>
+                  </div>
+              </div>
+              <div flex="50" flex-xs="100">
+                  <div class="panel ">
+                      <div class="panel-title bg-panel-default">
+                          <h3>
+                              Data do cadastro
+                          </h3>
+                      </div>
+                      <div class="panel-body" layout="row" layout-xs="column">
+                          <md-input-container flex="50" flex-xs="100">
+                              <label>
+                                  Data inicial
+                              </label>
+                              <input mdc-datetime-picker date="true" ng-disabled="!vm.filtro.dtInicioEvento === false" time="true" type="text" short-time="true"
+                                     min-date="minDate"
+                                     format="DD/MM/YYYY HH:mm"
+                                     ng-model="vm.filtro.dataCadInicial"
+                                     text-cancel="Cancelar">
+                          </md-input-container>
+
+                          <md-input-container flex>
+                              <label>
+                                  Data final
+                              </label>
+                              <input mdc-datetime-picker date="true" ng-disabled="!vm.filtro.dtInicioEvento === false" time="true" type="text" short-time="true"
+                                     min-date="minDate"
+                                     format="DD/MM/YYYY HH:mm"
+                                     ng-model="vm.filtro.dataCadFinal"
+                                     text-cancel="Cancelar">
+                          </md-input-container>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div layout-gt-xs="row">
+              <md-autocomplete
+                      flex
+                      md-no-cache="true"
+                      md-selected-item="vm.filtro.remetente"
+                      md-input-name="remetente"
+                      md-search-text="noRemetente"
+                      md-items="item in vm.procurarRemetente(noRemetente)"
+                      md-item-text="item.noRemetente"
+                      md-min-length="3"
+                      md-match-case-insensitive="true"
+                      md-floating-label="Remetente"
+                      md-icon="&#xE8A6">
+                  <md-item-template>
+                      <span md-highlight-text="noRemetente" md-highlight-flags="^i">{{item.noRemetente}}</span>
+                  </md-item-template>
+                  <md-not-found>
+                      Nenhum local de evento "{{noRemetente}}" foi encontrado
+                  </md-not-found>
+              </md-autocomplete>
+             <!-- <md-input-container flex-gt-xs class="md-icon-float md-block">
+                  <label>
+                      Remetente
+                  </label>
+                  <md-icon>
+                      &#xE8A6;
+                  </md-icon>
+                  <input name="remetente" type="text" ng-model="vm.filtro.remetente" md-maxlength="50"
+                  />
+                  <div ng-messages="formPesquisaAudiencia.remetente.$error">
+                      <div ng-message="md-maxlength">
+                          Mínimo ou igual à 50 caracter
+                      </div>
+                  </div>
+              </md-input-container>-->
+          </div>
+          <div class="row">
+              <md-radio-group ng-model="vm.filtro.flEventoInternacional">
+                  <md-input-container>
+                      <md-radio-button ng-value="false" class="md-primary">Evento nacional</md-radio-button>
+                  </md-input-container>
+                  <md-input-container>
+                      <md-radio-button ng-value="true" class="md-primary">Evento internacional</md-radio-button>
+                  </md-input-container>
+              </md-radio-group>
+          </div>
+          <div layout="row" layout-xs="column">
+
+              <md-autocomplete ng-if="vm.filtro.flEventoInternacional == true"
+                               flex
+                               md-no-cache="true"
+                               md-selected-item="vm.filtro.idPais"
+                               md-input-name="noPais"
+                               md-search-text="textoLocal"
+                               md-items="item in vm.procurarPaises(textoLocal)"
+                               md-item-text="item.noPais"
+                               md-min-length="1"
+                               md-floating-label="País">
+                  <md-item-template>
+                      <span md-highlight-text="textoLocal" md-highlight-flags="^i">{{item.noPais}}</span>
+                  </md-item-template>
+                  <md-not-found>
+                      Nenhum país "{{textoLocal}}" foi encontrado
+                  </md-not-found>
+              </md-autocomplete>
+
+
+              <md-input-container flex class="md-icon-float md-block" ng-if="vm.filtro.flEventoInternacional == true">
+                  <label>
+                      Cidade
+                  </label>
+                  <md-icon>
+                      &#xE7F1;
+                  </md-icon>
+                  <input name="cidade" type="text" ng-model="vm.filtro.noCidadeInternacional" md-maxlength="150" maxlength="150"/>
+                  <custom-validator-messages input-name="cidade" ></custom-validator-messages>
+              </md-input-container>
+          </div>
+          <div layout="row" layout-xs="column" ng-if="vm.filtro.flEventoInternacional == false">
+
+              <md-autocomplete
+                      flex
+                      md-no-cache="true"
+                      md-selected-item="vm.filtro.idLocalidade"
+                      md-input-name="noLocalidade"
+                      md-search-text="textoLocal"
+                      md-items="item in vm.procurarLocal(textoLocal)"
+                      md-item-text="item.localidadesUf"
+                      md-min-length="3"
+                      md-floating-label="Local do evento">
+                  <md-item-template>
+                      <span md-highlight-text="textoLocal" md-highlight-flags="^i">{{item.localidadesUf}}</span>
+                  </md-item-template>
+                  <md-not-found>
+                      Nenhum local de evento "{{textoLocal}}" foi encontrado
+                  </md-not-found>
+              </md-autocomplete>
+          </div>
+          <div layout="row" layout-xs="column">
+              <md-input-container class="md-icon-float md-block" flex>
+                  <label>
+                      Validado
+                  </label>
+                  <md-icon>
+                      &#xE834;
+                  </md-icon>
+                  <md-select ng-model="vm.filtro.validado">
+                      <md-option ng-repeat="item in vm.validado" value="{{item.validado}}">
+                          {{item.validado}}
+                      </md-option>
+                  </md-select>
+              </md-input-container>
+
+              <md-input-container class="md-block" flex>
+                  <label>
+                      Despacho
+                  </label>
+                  <textarea ng-model="vm.filtro.despacho" md-maxlength="150" maxlength="150" rows="1" md-select-on-focus>
+                    </textarea>
+              </md-input-container>
+          </div>
+          <div layout="row" layout-xs="column">
+              <md-input-container flex="50" flex-xs="100" class="md-block">
+                  <label>
+                      Observação
+                  </label>
+                  <textarea ng-model="vm.filtro.observacao" md-maxlength="255" maxlength="255" rows="3" md-select-on-focus>
+                    </textarea>
+              </md-input-container>
+
+              <md-input-container flex="50" class="md-block" flex-xs="100">
+                  <label>
+                      Descrição
+                  </label>
+                  <textarea ng-model="vm.filtro.descricao" md-maxlength="255" maxlength="255" rows="3" md-select-on-focus>
+                    </textarea>
+              </md-input-container>
+          </div>
+          <div layout-gt-sm="row">
+              <md-input-container class="md-block md-icon-float" flex-gt-sm>
+                <label>Tipo de saída</label>
+                <md-icon>
+                    &#xE873;
+                </md-icon>
+                <md-select ng-model="vm.filtro.tipoSaida">
+                  <md-option ng-repeat="item in vm.tiposSaida" value="{{item.tipo}}">
+                    {{item.tipo}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+
+              <md-input-container class="md-block md-icon-float" flex-gt-sm>
+                <label>Ordenação</label>
+                <md-icon>
+                    &#xE152;
+                </md-icon>
+                <md-select ng-model="vm.filtro.ordenacao">
+                  <md-option ng-repeat="item in vm.ordenacoes" value="{{item.value}}">
+                    {{item.ordenacao}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+
+              <md-input-container class="md-block md-icon-float" flex-gt-sm>
+                <label>Direção da ordenação</label>
+                <md-icon>
+                    &#xE152;
+                </md-icon>
+                <md-select ng-model="vm.filtro.direcao">
+                  <md-option ng-repeat="item in vm.direcoes" value="{{item.value}}">
+                    {{item.direcao}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+          <!-- footer button-->
+          <section class="md-padding action" layout="row" layout-align="end center"
+          layout-wrap>
+
+              <!--<md-button class="md-raised md-primary" ng-click="vm.gerarRelatorioDraw()">-->
+                  <!--<md-icon>-->
+                      <!--&#xE876;-->
+                  <!--</md-icon>-->
+                  <!--Teste PDF-->
+              <!--</md-button>-->
+
+              <md-button class="md-raised md-primary" ng-click="vm.gerarRelatorio()">
+                  <md-icon>
+                    &#xE876;
+                  </md-icon>
+                  Gerar relatório
+              </md-button>
+              <md-button class="md-raised" ng-click=" vm.limpar()">
+                  <md-icon>
+                      &#xE5D5;
+                  </md-icon>
+                  Limpar
+              </md-button>
+              <md-button class="md-raised" ui-sref="app.private.home.pagina-inicial">
+                  <md-icon>
+                      &#xE5CD;
+                  </md-icon>
+                  Cancelar
+              </md-button>
+          </section>
+          <!-- footer button-->
+      </form>
+  </div>
+</md-content>

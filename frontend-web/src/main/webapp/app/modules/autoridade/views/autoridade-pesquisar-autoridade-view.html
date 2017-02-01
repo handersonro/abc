@@ -3,6 +3,13 @@
         <h1 class="md-toolbar-tools">
             {{vm.title}}
         </h1>
+        <span flex></span>
+        <md-button class="md-fab md-mini md-acoes" aria-label="Use Android" ng-click="vm.help($event)">
+            <md-tooltip md-direction="left">
+                Ajuda
+            </md-tooltip>
+            <md-icon>&#xE8FD;</md-icon>
+        </md-button>
     </md-toolbar>
 </div>
 <md-content class="box">
@@ -15,14 +22,14 @@
                         Descrição da autoridade
                     </label>
                     <md-icon>&#xE8A6;</md-icon>
-                    <input type="text" ng-model="vm.filtro.desAutoridade" name="desAutoridade" md-maxlength="50"/>
+                    <input type="text" ng-model="vm.filtro.noAutoridade" name="desAutoridade" md-maxlength="50" maxlength="50"/>
                 </md-input-container>
                 <md-input-container flex class="md-icon-float md-block">
                     <label>
                         E-mail
                     </label>
                     <md-icon>&#xE0BE;</md-icon>
-                    <input name="email" type="email" ng-model="vm.filtro.email" md-maxlength="50"/>
+                    <input type="text" ng-model="vm.filtro.noEmail" md-maxlength="50" maxlength="50"/>
                 </md-input-container>
             </div>
             <!-- footer button-->
@@ -40,7 +47,7 @@
                     </md-icon>
                     Limpar
                 </md-button>
-                <md-button class="md-raised" ui-sref="app.public.home.pagina-inicial">
+                <md-button class="md-raised" ui-sref="app.private.home.pagina-inicial">
                     <md-icon>
                         &#xE5CD;
                     </md-icon>
@@ -51,21 +58,15 @@
         </form>
     </div>
     <!-- resultado da busca -->
-    <div id="result-pesquisa" class="md-padding" ng-show="vm.tbResultado">
+    <div id="result-pesquisa" class="md-padding" ng-if="vm.dto.list.length > 0">
         <div class="table-responsive-vertical shadow-z-1">
             <!-- Table starts here -->
             <table id="table" class="table table-hover table-mc-green">
                 <thead>
                     <tr>
-                        <th class="text-center">
-                            Ações
-                        </th>
-                        <th>
-                            Descrição da autoridade <paginacao-sorting dto="vm.dto" field-name="descAutoridade"></paginacao-sorting>
-                        </th>
-                        <th>
-                            E-mail<paginacao-sorting dto="vm.dto" field-name="email"></paginacao-sorting>
-                        </th>
+                        <th class="text-center">Ações</th>
+                        <th>Descrição da autoridade <paginacao-sorting dto="vm.dto" field-name="no_autoridade" ng-click="vm.trocaOrdenacao()"></paginacao-sorting></th>
+                        <th>E-mail<paginacao-sorting dto="vm.dto" field-name="no_email" ng-click="vm.trocaOrdenacao()"></paginacao-sorting></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,7 +81,7 @@
                               </md-button>
                                 <md-menu-content width="1">
                                     <md-menu-item>
-                                        <md-button ng-click="vm.editar(item)" title="{{item.autoridade}}">
+                                        <md-button ng-click="vm.editar(item)" title="{{item.noAutoridade}}">
                                             <md-icon>
                                                 &#xE22B;
                                             </md-icon>
@@ -91,10 +92,10 @@
                             </md-menu>
                         </td>
                         <td>
-                            {{ item.desAutoridade }}
+                            {{ item.noAutoridade }}
                         </td>
                         <td>
-                            {{ item.email }}
+                            {{ item.noEmail }}
                         </td>
                     </tr>
                 </tbody>

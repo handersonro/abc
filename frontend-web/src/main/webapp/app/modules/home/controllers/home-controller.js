@@ -4,9 +4,12 @@
         .controller('HomeController', HomeController);
 
     /* @ngInject */
-    function HomeController($scope){
+    function HomeController($scope,$state,UsuarioLogado){
+
 
         ///////////////////////////////////
+
+
 
     }
 })();

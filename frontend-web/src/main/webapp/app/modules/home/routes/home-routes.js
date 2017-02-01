@@ -10,7 +10,7 @@
     function configPublicRoutes($stateProvider) {
         var MODULE_NAME = 'home';
         var MODULE_PATH = 'modules/'+MODULE_NAME+'/';
-        var STATE_PATH = 'app.public.';
+        var STATE_PATH = 'app.private.';
         $stateProvider
             .state(STATE_PATH+MODULE_NAME, {
                 url: '/'+MODULE_NAME,
@@ -25,6 +25,9 @@
                 },
                 params: {
                     callback: null
+                },
+                data: {
+                    authorities: []
                 }
             })
             .state(STATE_PATH+MODULE_NAME+'.pagina-inicial', {
@@ -32,6 +35,9 @@
                 controller: 'PaginaInicialController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/pagina-inicial.html',
+                data: {
+                    authorities: []
+                },
                 resolve: {
                 }
             });

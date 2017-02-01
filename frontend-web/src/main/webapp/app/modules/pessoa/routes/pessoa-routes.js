@@ -15,9 +15,13 @@
             .state(STATE_PATH+'pessoa', {
                 url: '/pessoa',
                 abstract: false,
+                data: {
+                    authorities: ['PESQUISAR_REMETENTE']
+                },
                 controller: 'PessoaController',
                 controllerAs: 'vm',
                 templateUrl: MODULE_PATH+'views/'+MODULE_NAME+'-view.html',
+
                 resolve: {
                     /* @ngInject */
                     'translate': function($translatePartialLoader, $translate) {
@@ -28,6 +32,7 @@
                 onExit: function($translatePartialLoader, $translate){
                     $translatePartialLoader.deletePart(MODULE_PATH, true);
                 },
+
 
             })
             .state(STATE_PATH+'pessoa.inserir', {
@@ -40,6 +45,9 @@
                 ncyBreadcrumb: {
                     label: '{{"Inserir pessoa" | translate}}',
                     parent: 'app.private'
+                },
+                data: {
+                    authorities: []
                 }
             });
     }

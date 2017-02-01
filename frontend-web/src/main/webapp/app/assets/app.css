@@ -2,12 +2,87 @@ body{
     background-color: #dedede;
     height:auto;
 }
+
+
+/* Mensagem do sistema*/
+/*
+md-toast.md-default-theme .md-toast-content, md-toast .md-toast-content{
+    background-color: transparent;
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+}
+md-toast.ng-scope._md.md-md-danger-theme-theme.md-top.md-left.md-right{
+    background-color: red;
+    color: #fff;
+    margin: 5px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+md-toast.ng-scope._md.md-md-danger-theme-theme.md-bottom{
+    background-color: red;
+    color: #fff;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+md-toast.ng-scope._md.md-md-warning-theme-theme.md-top.md-left.md-right{
+    background-color: #fcf8e3;
+    color: #fff;
+    margin: 5px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+md-toast.ng-scope._md.md-md-warning-theme-theme.md-bottom{
+    background-color: #fcf8e3;
+    color: #fff;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+md-toast.md-default-theme .md-toast-content .md-button.md-highlight, md-toast .md-toast-content .md-button.md-highlight{
+    color: #fff;
+}
+md-toast.ng-scope._md.md-md-success-theme-theme.md-top.md-left.md-right{
+    background-color: rgb(139,195,74);
+    color: #fff;
+    margin: 5px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+md-toast.ng-scope._md.md-md-success-theme-theme.md-bottom{
+    background-color: rgb(139,195,74);
+    color: #fff;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+md-toast.md-top{
+    position: fixed;
+    margin: 5px;
+    background-color:#eb8f00;
+    color: #fff;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+md-toast.ng-scope._md.md-md-danger-theme-theme.md-bottom{
+
+}
+/*
+/* Mensagem do sistema*/
+
+
 .padding-auto{
     margin-bottom:40px;
 }
 .logo-padding-left{
     padding-left: 20px;
 }
+
 .cabecalho-logo-menuh{
     width: 80%;
     margin: 0 auto;
@@ -16,10 +91,10 @@ body{
     color: #333
 }
 .text-center{
-  text-align: center;
+    text-align: center;
 }
 .error404 h2 i{
-    font-size: 40px;
+    font-sigruze: 40px;
     padding: 10px;
     background: #fff;
     border-radius: 40px;
@@ -32,7 +107,10 @@ body{
     font-size:13px;
 }
 .md-conteudo{
-    padding-top: 60px;
+    padding-top: 30px;
+}
+.conteudo{
+    margin-bottom: 20px;
 }
 .box{
     background: #fff;
@@ -68,6 +146,7 @@ body{
 }
 .header-topo{
     background: url(img/bg-verde.jpg);
+    min-height:48px;
 }
 
 #title .md-toolbar-tools{
@@ -82,7 +161,7 @@ body{
     min-height:50px;
 }
 .md-toolbar-tools{
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6dc238+0,5cb02c+100 */
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6dc238+0,5cb02c+100 */
     background: #6dc238; /* Old browsers */
     background: -moz-linear-gradient(top, #6dc238 0%, #5cb02c 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top, #6dc238 0%,#5cb02c 100%); /* Chrome10-25,Safari5.1-6 */
@@ -107,10 +186,16 @@ body{
     .md-conteudo{
         padding-top: 17px;
     }
+    .info-user span .info-span {
+        padding-left: 8px !important;
+    }
 }
-@media only screen and (min-width: 1920px) {
-
-
+button.md-fab.md-mini.md-acoes.md-button.md-ink-ripple{
+    background: transparent !important;
+    box-shadow: none !important;
+}
+.md-acoes md-icon.ng-scope.material-icons{
+    color:#fff;
 }
 .panel{
     margin: 10px;
@@ -211,4 +296,144 @@ button.btn.btn-default:hover {
     font-size: 20px;
     padding: 9px;
     background-color: #8bc34a;
+}
+
+.hidden{
+    display: none !important;
+}
+.colorpicker{
+    min-width: 121px;
+}
+.colorpicker-selectors {
+    display: none;
+    height: 10px;
+    margin-top: 5px;
+    clear: both;
+    margin-bottom:14px;
+}
+
+.colorpicker-selectors i {
+    cursor: pointer;
+    float: left;
+    height: 10px;
+    padding: 2px;
+    width: 10px;
+    margin: 2px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+button.close.close-colorpicker {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 20px;
+}
+.colorpicker.dropdown.ng-scope.colorpicker-position-bottom.colorpicker-visible {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+md-input-container:not(.md-input-has-value) input:not(:focus), md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-ampm-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-day-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-hour-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-millisecond-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-minute-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-month-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-second-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-week-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-year-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-text{
+    color: rgba(0,0,0,0.87) !important;
+}
+.md-chips .md-chip-input-container md-autocomplete input {
+    margin-top: -2px;
+}
+/*CSS HELP*/
+.largura-help{
+    width: 100%;
+}
+
+.pequena-largura-help{
+    width: 45%;
+}
+
+.aviso-help{
+    color:#ef5252;
+    background: rgba(210, 210, 210, 0.36);
+    padding: 15px;
+}
+/*Pointe na ordenação*/
+paginacao-sorting.ng-isolate-scope {
+    cursor: pointer;
+}
+/*USER*/
+.info-user, .info-user button.md-button.md-ink-ripple {
+    font-size: 12px;
+    color: #fff;
+    text-transform: capitalize;
+}
+.info-user span .info-span {
+    padding-left: 23px;
+}
+.info-user .md-button.md-default-theme:not([disabled]):hover, .md-button:not([disabled]):hover{
+    background-color: transparent;
+}
+/*ALERTAS DO SISTEMA*/
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+}
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+.alert-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+.alert-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+.alert-danger {
+    color: #ffffff;
+    background-color: #FF0004;
+    border-color: #ebccd1;
+}
+
+.pluton-loader {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(192, 192, 192, 0.5);
+    background-image: url("img/spin.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.md-input[type=password]:-webkit-autofill ~ label:not(.md-no-float) {
+        transform: translate3d(0, 6px, 0) scale(0.75);
+        transition: transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.4s, width cubic-bezier(0.25, 0.8, 0.25, 1) 0.4s;
+        width: ~"calc((100% - 18px) / 0.75)";
+        color: rgba(0,0,0,0.54);
+    }
+
+
+@media (min-width: 1920px){
+    md-toast .md-toast-content {
+        max-width: 100% !important;
+    }
+}
+.dtp table.dtp-picker-days tr > th, .dtp-actual-day{
+    text-transform: uppercase;
+}
+.dtp-picker-month {
+    text-transform: capitalize;
+}
+.box-amb img{
+    position: fixed;
+    right: 0;
+    margin: 10px;
+    z-index: 10;
+    width: 127px;
 }

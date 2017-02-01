@@ -1,0 +1,113 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Roboto');
+    body {
+        font-family: 'Roboto', sans-serif !important;
+        font-size: 1.2em !important;
+    }
+
+    .pt10 {
+        padding-top: 10px;
+    }
+
+    .mt30 {
+        margin-top: 30px;
+    }
+
+    .mt50 {
+        margin-top: 50px;
+    }
+
+    .centro {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .cinza {
+        background-color: #666;
+        color: #fff;
+    }
+
+    .dinamica {
+        border: solid 1px #d2d2d2;
+        padding: 5px 0 5px 0;
+    }
+
+    .bdr {
+        border-right: solid 1px #d2d2d2;
+    }
+</style>
+<!--{{vm.lista}}-->
+<div class="row text-left bold mt30">
+    <br />
+    <p>MTUR - Ministério do Turismo</p>
+    <p>Solicitações de Reunião</p>
+    <p>Autoridade {{vm.autoridade}}</p>
+</div>
+
+<div class="row cinza pt10 text-center">
+    <div class="col-md-1">
+        <p>Data de Reunião</p>
+    </div>
+
+    <div class="col-md-1">
+        <p>Local da Reunião</p>
+    </div>
+
+    <div class="col-md-4">
+        <p>Assunto</p>
+    </div>
+
+    <div class="col-md-4">
+        <p>Pauta de Reunião</p>
+    </div>
+
+    <div class="col-md-2">
+        <p>Despacho</p>
+    </div>
+</div>
+
+<!-- Início ROW dinâmica -->
+<div class="row dinamica pt10 text-center"  ng-repeat="item in vm.lista">
+    <div class="col-md-1 bdr">
+        <p>{{ item.dtInicioEvento | date : 'dd/MM/yyyy HH:mm'}}</p>
+    </div>
+
+    <div class="col-md-1 bdr">
+        <p>{{ item.noLocalEvento }}</p>
+    </div>
+
+    <div class="col-md-4 bdr">
+        <p> <span ta-bind ng-model="item.noAssunto"> - </span> </p>
+    </div>
+
+    <div class="col-md-4 bdr">
+        <p> <span ta-bind ng-model="item.noPauta"></span></p>
+    </div>
+
+    <div class="col-md-1">
+        <p> <span ta-bind ng-model="item.noDespacho"></span></p>
+    </div>
+</div>
+<!-- Fim ROW dinâmica -->
+<div class="row mt30">
+    <div class="col-md-2">
+        Página xx de xx
+    </div>
+    <div class="col-md-8">
+
+    </div>
+    <div class="col-md-2">
+        Relatório gerado em {{vm.dataAtual | date: 'dd/MM/yyyy HH:mm:ss'}}
+    </div>
+</div>
+
+<hr />
