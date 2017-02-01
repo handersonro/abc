@@ -4,7 +4,7 @@
         .controller('RelatorioEmitirRelatorioConviteController', RelatorioEmitirRelatorioConviteController);
 
     /* @ngInject */
-    function RelatorioEmitirRelatorioConviteController($scope, $mdDialog, $timeout, ConviteRestService, DTO,$window, $state,$http,baseURL,Principal){
+    function RelatorioEmitirRelatorioConviteController($scope, $mdDialog, $timeout, ConviteRestService, DTO,$window, $state,$http,baseURL,Principal,appURL){
         var vm = this;
         vm.procurarLocal = ConviteRestService.obterLocais;
         vm.procurarPaises = ConviteRestService.obterPaises;
@@ -82,9 +82,12 @@
             tratarCamposParaGerarRelatorio();
             var filtroPaginacao = montarFiltros();
 
-            var reportData = '{"path":"http://localhost:28080/sisagm/#/private/relatorio/solicitar-convite","stateName":"app.private.relatorio.relatorio-solicitar-convite","PaginacaoDTO":'+JSON.stringify(filtroPaginacao)+',"noAutoridade":"'+vm.autoridade+'"}';
+            var reportData = '{"path":'+appURL+'"#/private/relatorio/solicitar-convite","stateName":"app.private.relatorio.relatorio-solicitar-convite","PaginacaoDTO":'+JSON.stringify(filtroPaginacao)+',"noAutoridade":"'+vm.autoridade+'"}';
 
-            $http.defaults.headers.common.report = reportData;
+            console.log('reportData');
+            console.log(reportData);
+
+            /*$http.defaults.headers.common.report = reportData;
             $http.post(baseURL+'relatorios/relatorio-convite',{
                 "currentPage": "1",
                 "pageSize": "20",
@@ -99,7 +102,7 @@
                     var file = new Blob([response], {type: 'application/pdf'});
                     var fileURL = URL.createObjectURL(file);
                     $window.open(fileURL, '_blank', 'location=yes');
-                });
+                });*/
 
         }
 
