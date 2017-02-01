@@ -31,14 +31,10 @@
                     }
 
                     if ($localStorage.authenticationToken === undefined && $rootScope.toState && $rootScope.toState.name !== 'app.public.login.entrar') {
-                        if ($localStorage.authenticationToken === undefined && $rootScope.toState && $rootScope.toState.name !== 'app.public.login.entrar') {
-                            //NESSE MOMENTO ESTÁ TENTANDO ACESSAR UM RECURSO NÃO PERMITIDO SEM TOKEN
-                            console.log('A8', $rootScope.toState.name.indexOf("app.private.relatorio") );
-                            if(!($rootScope.toState.name.indexOf("app.private.relatorio") === 0)) {
-                                $state.go('app.public.login.entrar');
-                            }
-                        }
+                        //NESSE MOMENTO ESTÁ TENTANDO ACESSAR UM RECURSO NÃO PERMITIDO SEM TOKEN
+                        $state.go('app.public.login.entrar');
                     }
+
 
                     if ($rootScope.toState && $rootScope.toState.data.authorities && $rootScope.toState.data.authorities.length > 0 && !Principal.hasAnyAuthority($rootScope.toState.data.authorities)) {
                             console.log('SEM', $rootScope.toState.data.authorities);
