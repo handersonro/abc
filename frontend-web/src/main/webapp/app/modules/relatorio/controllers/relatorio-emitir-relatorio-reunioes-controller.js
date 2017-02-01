@@ -4,7 +4,7 @@
         .controller('RelatorioEmitirRelatorioReunioesController', RelatorioEmitirRelatorioReunioesController);
 
     /* @ngInject */
-    function RelatorioEmitirRelatorioReunioesController($state, $scope, $mdDialog, $timeout, EventoService, $q, $mdSidenav, $log, AlertsService, ConviteRestService, ReuniaoService,EventoService,Principal, $http, baseURL){
+    function RelatorioEmitirRelatorioReunioesController($state, $scope, $mdDialog, $timeout, EventoService, $q, $mdSidenav, $log, AlertsService, ConviteRestService, ReuniaoService,EventoService,Principal, $http, baseURL,$window ){
         var vm = this;
         vm.procurarLocal = null;//ConviteRestService.obterLocais;
         vm.procurarUsuario = null//EventoService.obterUsuarios;
@@ -283,7 +283,7 @@
             var reportData = '{"path":"http://localhost:28080/sisagm/#/private/relatorio/relatorio-reuniao","stateName":"app.private.relatorio.relatorio-solicitar-reuniao","PaginacaoDTO":'+vm.PaginacaoDTO+',"noAutoridade":"'+vm.autoridade+'"}';
 
             $http.defaults.headers.common.report = reportData;
-            $http.post(baseURL+'relatorios/relatorio-remetente',{
+            $http.post(baseURL+'relatorios/relatorio-reuniao',{
                 "currentPage": "1",
                 "pageSize": "20",
                 "totalResults": "1",

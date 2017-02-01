@@ -84,10 +84,10 @@
         }
 
         return {
-            obterDados: Restangular.one('relatorios/', 'relatorio-audiencia').customPOST,
-            obterDadosConvite: Restangular.one('relatorios/', 'relatorio-convite').customPOST,
+            obterDadosAudiencia: Restangular.one('relatorios/', 'pesquisar-audiencia').customPOST,
+            obterDadosConvite: Restangular.one('relatorios/', 'pesquisar-convite').customPOST,
             obterRemetentes: Restangular.one('relatorios/', 'pesquisar-remetente').customPOST,
-            obterDadosReuniao: Restangular.one('relatorios/', 'solicitar-reuniao').customPOST,
+            obterDadosReuniao: Restangular.one('relatorios/', 'pesquisar-reuniao').customPOST,
             base64_decode : base64_decode,
             getQueryParam :getQueryParam
         };

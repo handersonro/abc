@@ -4,7 +4,7 @@
         .controller('RelatorioEmitirRelatorioConviteController', RelatorioEmitirRelatorioConviteController);
 
     /* @ngInject */
-    function RelatorioEmitirRelatorioConviteController($scope, $mdDialog, $timeout, ConviteRestService, DTO, $state, Principal){
+    function RelatorioEmitirRelatorioConviteController($scope, $mdDialog, $timeout, ConviteRestService, DTO,$window, $state,$http,baseURL,Principal){
         var vm = this;
         vm.procurarLocal = ConviteRestService.obterLocais;
         vm.procurarPaises = ConviteRestService.obterPaises;
@@ -16,6 +16,7 @@
 
         vm.dto = new DTO();
         vm.gerarRelatorio = gerarRelatorio;
+        vm.gerarRelatorioDraw = gerarRelatorioDraw;
         vm.filtro = {};
         $state.params.filtro.filtros = {'tipoEvento.id' : 2 };
         vm.relatorio ={};
@@ -77,12 +78,38 @@
             $state.go('app.private.relatorio.relatorio-solicitar-convite');
         }
 
+        function gerarRelatorioDraw() {
+            tratarCamposParaGerarRelatorio();
+            var filtroPaginacao = montarFiltros();
+
+            var reportData = '{"path":"http://localhost:28080/sisagm/#/private/relatorio/solicitar-convite","stateName":"app.private.relatorio.relatorio-solicitar-convite","PaginacaoDTO":'+JSON.stringify(filtroPaginacao)+',"noAutoridade":"'+vm.autoridade+'"}';
+
+            $http.defaults.headers.common.report = reportData;
+            $http.post(baseURL+'relatorios/relatorio-convite',{
+                "currentPage": "1",
+                "pageSize": "20",
+                "totalResults": "1",
+                "sortFields": "id",
+                "sortDirections": "asc",
+                "filtros": {
+                }
+            }, {responseType:'arraybuffer'})
+                .success(function (response) {
+                    console.log('chegou');
+                    var file = new Blob([response], {type: 'application/pdf'});
+                    var fileURL = URL.createObjectURL(file);
+                    $window.open(fileURL, '_blank', 'location=yes');
+                });
+
+        }
+
         function tratarCamposParaGerarRelatorio(){
 
-            vm.filtro.dtInicioEvento = vm.filtro.dtInicioEvento != undefined ? new Date(vm.filtro.dtInicioEvento).getTime() : "";
-            vm.filtro.dtFimEvento = vm.filtro.dtFimEvento != undefined ? new Date(vm.filtro.dtFimEvento).getTime() : "";
-            vm.filtro.dataCadInicial = vm.filtro.dataCadInicial != undefined ? new Date( vm.filtro.dataCadInicial).getTime() : "";
-            vm.filtro.dataCadFinal = vm.filtro.dataCadFinal != undefined ? new Date(vm.filtro.dataCadFinal).getTime() : "";
+            vm.filtro.dtInicioEvento = vm.filtro.dtInicioEvento != null ? new Date(vm.filtro.dtInicioEvento).getTime() : "";
+            vm.filtro.dtFimEvento = vm.filtro.dtFimEvento != null ? new Date(vm.filtro.dtFimEvento).getTime() : "";
+            vm.filtro.dataCadInicial = vm.filtro.dataCadInicial != null ? new Date( vm.filtro.dataCadInicial).getTime() : "";
+            vm.filtro.dataCadFinal = vm.filtro.dataCadFinal != null ? new Date(vm.filtro.dataCadFinal).getTime() : "";
+            vm.filtro.noAssunto = vm.filtro.noAssunto != null ? vm.noAssunto : "";
 
             if(vm.filtro.idPais == undefined || vm.filtro.idPais == "") {
                 vm.filtro.idPais = {};
