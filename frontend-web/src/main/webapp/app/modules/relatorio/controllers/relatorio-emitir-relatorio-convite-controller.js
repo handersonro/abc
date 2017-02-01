@@ -165,25 +165,25 @@
 
             //@todo passar o path dinâmicamente
 
-            var reportData = '{"path":"'+appURL+'/#/private/relatorio/solicitar-convite","stateName":"app.private.relatorio.relatorio-solicitar-convite","PaginacaoDTO":'+vm.filtroPaginacao+',"noAutoridade":"'+vm.autoridade+'"}';
-
-            $http.defaults.headers.common.report = reportData;
-            $http.post(baseURL+'relatorios/pesquisar-convite',{
-                "currentPage": "1",
-                "pageSize": "20",
-                "totalResults": "1",
-                "sortFields": "id",
-                "sortDirections": "asc",
-                "filtros": {
-                    "tipoEvento.id": 1
-                }
-            }, {responseType:'arraybuffer'})
-                .success(function (response) {
-                    console.log('chegou');
-                    var file = new Blob([response], {type: 'application/pdf'});
-                    var fileURL = URL.createObjectURL(file);
-                    $window.open(fileURL, '_blank', 'location=yes');
-                });
+            // var reportData = '{"path":"'+appURL+'/#/private/relatorio/solicitar-convite","stateName":"app.private.relatorio.relatorio-solicitar-convite","PaginacaoDTO":'+vm.filtroPaginacao+',"noAutoridade":"'+vm.autoridade+'"}';
+            //
+            // $http.defaults.headers.common.report = reportData;
+            // $http.post(baseURL+'relatorios/pesquisar-convite',{
+            //     "currentPage": "1",
+            //     "pageSize": "20",
+            //     "totalResults": "1",
+            //     "sortFields": "id",
+            //     "sortDirections": "asc",
+            //     "filtros": {
+            //         "tipoEvento.id": 1
+            //     }
+            // }, {responseType:'arraybuffer'})
+            //     .success(function (response) {
+            //         console.log('chegou');
+            //         var file = new Blob([response], {type: 'application/pdf'});
+            //         var fileURL = URL.createObjectURL(file);
+            //         $window.open(fileURL, '_blank', 'location=yes');
+            //     });
 
         }
 
