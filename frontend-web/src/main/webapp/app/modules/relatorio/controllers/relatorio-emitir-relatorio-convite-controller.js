@@ -158,7 +158,7 @@
 
             //@todo passar o path dinâmicamente
 
-            var reportData = '{"path":"'+appURL+'/#/private/relatorio/solicitar-convite","stateName":"app.private.relatorio.relatorio-solicitar-convite","PaginacaoDTO":'+vm.filtroConvite+',"noAutoridade":"'+vm.autoridade+'"}';
+            var reportData = '{"path":"'+appURL+'/#/private/relatorio/solicitar-convite","stateName":"app.private.relatorio.relatorio-solicitar-convite","PaginacaoDTO":'+vm.filtroPaginacao+',"noAutoridade":"'+vm.autoridade+'"}';
 
             $http.defaults.headers.common.report = reportData;
             $http.post(baseURL+'relatorios/pesquisar-convite',{

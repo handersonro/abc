@@ -34,14 +34,13 @@
                 // do something with subElement
             }
 
-            var filtro =  (RelatorioService.getQueryParam('PaginacaoDTO')) ? angular.fromJson(RelatorioService.base64_decode(RelatorioService.getQueryParam('PaginacaoDTO'))) : $state.current.filtroConvite;
+            var filtro =  (RelatorioService.getQueryParam('PaginacaoDTO')) ? angular.fromJson(RelatorioService.base64_decode(RelatorioService.getQueryParam('PaginacaoDTO'))) : $state.current.filtroPaginacao;
             if(undefined!== filtro && undefined !== filtro.start){
                 delete filtro.start;
                 delete filtro.list;
             }
 
             //@todo passar o filtro aqui;
-/*
             RelatorioService.obterDadosConvite(filtro)
                 .then(function (data) {
                         vm.lista = data;
@@ -51,12 +50,11 @@
                         window.status = 'loaded';
                     }
                 );
-*/
 
-            RelatorioService.obterDadosConvite($state.current.filtroPaginacao)
+            /*RelatorioService.obterDadosConvite($state.current.filtroPaginacao)
                 .then(function (data) {
                     vm.lista = data;
-                });
+                });*/
         }
     }
 })();
