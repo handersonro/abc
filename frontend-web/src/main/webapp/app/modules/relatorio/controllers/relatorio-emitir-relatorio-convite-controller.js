@@ -244,13 +244,16 @@
          }
          switch(vm.filtro.validado){
          case "Sim":
-         vm.filtro.validado = "SIM";
+             vm.filtro.validado = "SIM";
          break;
          case "Não":
-         vm.filtro.validado = "NAO";
+             vm.filtro.validado = "NAO";
+         break;
+         case "Indiferente":
+             vm.filtro.validado = "INDIFERENTE";
          break;
          default:
-         vm.filtro.validado = undefined;
+            vm.filtro.validado = undefined;
          }
          }
 
