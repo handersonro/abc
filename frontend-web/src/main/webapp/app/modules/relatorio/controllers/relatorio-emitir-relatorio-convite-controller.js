@@ -16,6 +16,7 @@
 
         vm.dto = new DTO();
         vm.gerarRelatorioDraw = gerarRelatorioDraw;
+        vm.gerarRelatorio = gerarRelatorio;
         vm.filtro = {};
         $state.params.filtro.filtros = {'tipoEvento.id' : 2 };
         vm.relatorio ={};
@@ -157,7 +158,7 @@
 
             //@todo passar o path dinâmicamente
 
-            var reportData = '{"path":"http://localhost:8080/sisagm/#/private/relatorio/relatorio-solicitar-convite","stateName":"app.private.relatorio.emitir-relatorio-convite","PaginacaoDTO":'+vm.filtroConvite+',"noAutoridade":"'+vm.autoridade+'"}';
+            var reportData = '{"path":"http://localhost:28080/sisagm/#/private/relatorio/solicitar-convite","stateName":"app.private.relatorio.relatorio-solicitar-convite","PaginacaoDTO":'+vm.filtroConvite+',"noAutoridade":"'+vm.autoridade+'"}';
 
             $http.defaults.headers.common.report = reportData;
             $http.post(baseURL+'relatorios/pesquisar-convite',{
@@ -183,13 +184,13 @@
 
 
         function gerarRelatorio() {
-//            tratarCamposParaGerarRelatorio();
-            //          var filtroPaginacao = montarFiltros();
-            //        $state.get('app.private.relatorio.relatorio-solicitar-convite').filtroPaginacao = filtroPaginacao;
+           tratarCamposParaGerarRelatorio();
+                     var filtroPaginacao = montarFiltros();
+                   $state.get('app.private.relatorio.relatorio-solicitar-convite').filtroPaginacao = filtroPaginacao;
             $state.go('app.private.relatorio.relatorio-solicitar-convite');
         }
 
-        /*function gerarRelatorioDraw() {
+        function gerarRelatorioDraw() {
          tratarCamposParaGerarRelatorio();
          var filtroPaginacao = montarFiltros();
 
@@ -212,9 +213,9 @@
          $window.open(fileURL, '_blank', 'location=yes');
          });
 
-         }*/
+         }
 
-        /*function tratarCamposParaGerarRelatorio(){
+        function tratarCamposParaGerarRelatorio(){
 
          vm.filtro.dtInicioEvento = vm.filtro.dtInicioEvento != null ? new Date(vm.filtro.dtInicioEvento).getTime() : "";
          vm.filtro.dtFimEvento = vm.filtro.dtFimEvento != null ? new Date(vm.filtro.dtFimEvento).getTime() : "";
@@ -247,32 +248,32 @@
          default:
          vm.filtro.validado = undefined;
          }
-         }*/
-
-        /* function montarFiltros(){
-         return {
-         "currentPage": $state.params.filtro.currentPage,
-         "pageSize": "20",
-         "totalResults": "1",
-         "sortFields": vm.filtro.ordenacao,
-         "sortDirections": vm.filtro.direcao,
-         "filtros": {
-         "remetente.noRemetente" : vm.filtro.remetente.noRemetente,
-         "flEventoInternacional" : vm.filtro.flEventoInternacional,
-         "noDespacho" : vm.filtro.despacho,
-         "descricao" : vm.filtro.descricao,
-         "noObservacao" : vm.filtro.observacao,
-         "idPais" : vm.filtro.idPais.id,
-         "noCidadeInternacional" : vm.filtro.noCidadeInternacional,
-         "idLocalidade" : vm.filtro.idLocalidade.id,
-         "conviteValidacao" : vm.filtro.validado,
-         "dtInicioEvento" : vm.filtro.dtInicioEvento,
-         "dtFimEvento" : vm.filtro.dtFimEvento,
-         "dataCadInicial" : vm.filtro.dataCadInicial,
-         "dataCadFinal" : vm.filtro.dataCadFinal
          }
-         };
-         }*/
+
+         function montarFiltros(){
+             return {
+             "currentPage": $state.params.filtro.currentPage,
+             "pageSize": "20",
+             "totalResults": "1",
+             "sortFields": vm.filtro.ordenacao,
+             "sortDirections": vm.filtro.direcao,
+             "filtros": {
+             "remetente.noRemetente" : vm.filtro.remetente.noRemetente,
+             "flEventoInternacional" : vm.filtro.flEventoInternacional,
+             "noDespacho" : vm.filtro.despacho,
+             "descricao" : vm.filtro.descricao,
+             "noObservacao" : vm.filtro.observacao,
+             "idPais" : vm.filtro.idPais.id,
+             "noCidadeInternacional" : vm.filtro.noCidadeInternacional,
+             "idLocalidade" : vm.filtro.idLocalidade.id,
+             "conviteValidacao" : vm.filtro.validado,
+             "dtInicioEvento" : vm.filtro.dtInicioEvento,
+             "dtFimEvento" : vm.filtro.dtFimEvento,
+             "dataCadInicial" : vm.filtro.dataCadInicial,
+             "dataCadFinal" : vm.filtro.dataCadFinal
+             }
+             };
+         }
 
     }
 })();
