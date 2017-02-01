@@ -4,7 +4,7 @@
         .controller('RelatorioEmitirRelatorioController', RelatorioEmitirRelatorioController);
 
     /* @ngInject */
-    function RelatorioEmitirRelatorioController($scope, $state, $mdDialog,$q,$window, $timeout,ConviteRestService,DTO,EventoService,$http,baseURL,Principal ){
+    function RelatorioEmitirRelatorioController($scope, $state, $mdDialog,$q,$window, $timeout,ConviteRestService,DTO,EventoService,$http,baseURL,Principal,appURL ){
         var vm = this;
         vm.dto = new DTO();
         vm.gerarRelatorio = gerarRelatorio;
@@ -241,7 +241,7 @@
 
             //@todo passar o path dinâmicamente
 
-            var reportData = '{"path":"http://localhost:28080/sisagm/#/private/relatorio/solicitar-audiencia","stateName":"app.private.relatorio.relatorio-solicitar-audiencia","PaginacaoDTO":'+vm.filtroAudiencia+',"noAutoridade":"'+vm.autoridade+'"}';
+            var reportData = '{"path":"'+appURL+'/#/private/relatorio/solicitar-audiencia","stateName":"app.private.relatorio.relatorio-solicitar-audiencia","PaginacaoDTO":'+vm.filtroAudiencia+',"noAutoridade":"'+vm.autoridade+'"}';
 
             $http.defaults.headers.common.report = reportData;
             $http.post(baseURL+'relatorios/relatorio-audiencia',{
