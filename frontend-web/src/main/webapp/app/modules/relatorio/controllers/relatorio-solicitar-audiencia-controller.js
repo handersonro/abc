@@ -52,7 +52,7 @@
 
          //@todo passar o filtro aqui;
 
-         RelatorioService.obterDados(filtro)
+         RelatorioService.obterDadosAudiencia(filtro)
              .then(function (data) {
                  vm.lista = data;
                  window.status = 'loaded';
