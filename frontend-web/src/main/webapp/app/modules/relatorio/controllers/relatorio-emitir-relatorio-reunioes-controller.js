@@ -18,6 +18,8 @@
         vm.direcoes = {};
         vm.reuniao = {};
         vm.gerarRelatorio = gerarRelatorio;
+        vm.gerarRelatorio2 = gerarRelatorio2;
+
         vm.filtro = {};
 
         /*chip*/
@@ -190,7 +192,58 @@
 
             return resolve.promise;
         }
+        function gerarRelatorio2() {
+            if(vm.filtro.ordenacao == undefined){
+                vm.filtro.ordenacao = "e.dtCadastro";
+            }
+            if(vm.filtro.direcao == undefined){
+                vm.filtro.direcao = "asc"
+            }
 
+            var idPessoa = [];
+
+            if(vm.participantes != undefined){
+                vm.participantes.forEach(function (participante) {
+                    idPessoa.push(participante.pessoa.id);
+                });
+            }
+
+            var dtInicioEvento = new Date(vm.filtro.dataInicio).getTime();
+            var dtFimEvento = new Date(vm.filtro.dataFim).getTime();
+            var dtCadastro = new Date(vm.filtro.dataInicialCad).getTime();
+            var dtFimCadastro = new Date(vm.filtro.dataFimCad).getTime();
+
+            $state.params.filtro.filtros.participantes  = vm.participantes != undefined ? idPessoa : '';
+
+            vm.filtroReuniao = {
+                "currentPage": "1",
+                "pageSize": "20",
+                "totalResults": "1",
+                "sortFields": vm.filtro.ordenacao,
+                "sortDirections": vm.filtro.direcao,
+                "filtros": {
+                    "tipoEvento.id": 3,
+                    "dtInicioEvento" : dtInicioEvento,
+                    "dtFimEvento" : dtFimEvento,
+                    "dtCadastro" : dtCadastro,
+                    "dtFimCadastro" : dtFimCadastro,
+                    "noDespacho" : vm.filtro.despacho,
+                    "noAssunto" : vm.filtro.assunto,
+                    "noLocalEvento" : vm.filtro.localReuniao,
+                    "noPauta" : vm.filtro.pautaReuniao,
+                    "tipoSaida" : vm.filtro.tipoSaida,
+                    "participantes" : idPessoa,
+                }
+            }
+
+            $http.post(baseURL+'relatorios2/relatorio-reuniao2',vm.filtroReuniao
+            , {responseType:'arraybuffer'})
+                .success(function (response) {
+                    var file = new Blob([response], {type: 'application/pdf'});
+                    var fileURL = URL.createObjectURL(file);
+                    $window.open(fileURL, '_blank', 'location=yes');
+                });
+        }
         // Gera PDF
         vm.gerarRelatorioPDF = function (){
 

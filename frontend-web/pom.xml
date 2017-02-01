@@ -75,7 +75,7 @@
 
             <properties>
                 <ambiente.nome>PROD</ambiente.nome>
-                <ambiente.url>http://sturprodwildfly01:8080/sisagm-backend/api/</ambiente.url>
+                <ambiente.url>http://sturespwildfly02:8080/sisagm-backend/api/</ambiente.url>
                 <app.url>http://sturprodwildfly01:8080/sisagm/</app.url>
             </properties>
         </profile>
