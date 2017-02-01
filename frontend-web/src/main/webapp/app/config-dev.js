@@ -1,8 +1,7 @@
 (function(){
     angular
         .module('sisagmApp')
-        .constant('baseURL','${ambiente.url}')
-        .constant('appURL','${app.url}')
+        .constant('baseURL','http://localhost:8080/sisagm-backend/api/')
         .constant('versaoProjeto','${project.version}')
         .constant('ambiente','${ambiente.nome}')
         .config(configDev);

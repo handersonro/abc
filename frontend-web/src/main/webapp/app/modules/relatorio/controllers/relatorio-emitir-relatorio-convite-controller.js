@@ -187,13 +187,10 @@
 
         }
 
-
-
-
         function gerarRelatorio() {
            tratarCamposParaGerarRelatorio();
-                     var filtroPaginacao = montarFiltros();
-                   $state.get('app.private.relatorio.relatorio-solicitar-convite').filtroPaginacao = filtroPaginacao;
+             var filtroPaginacao = montarFiltros();
+            $state.get('app.private.relatorio.relatorio-solicitar-convite').filtroPaginacao = filtroPaginacao;
             $state.go('app.private.relatorio.relatorio-solicitar-convite');
         }
 
